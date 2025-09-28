@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Wildness Unleashed</title>
 
-  <!-- Google Fonts -->
+  <!-- Google Fonts: Open Sans, Oswald, Rock Salt -->
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Oswald:wght@400;700&family=Rock+Salt&display=swap" rel="stylesheet">
   
   <style>
-    /* Colors */
+    /* Basic layout */
     :root {
       --accent-1: #ff0040;
       --accent-2: #ff6600;
@@ -50,7 +50,7 @@
       letter-spacing: 2px;
     }
 
-    /* Tagline in Rock Salt */
+    /* Tagline with Rock Salt */
     .tagline {
       font-family: 'Rock Salt', cursive;
       font-size: 2.2rem;
@@ -58,29 +58,15 @@
       color: #ffffff;
       display: inline-block;
       line-height: 1;
+      text-shadow: 0 0 8px var(--accent-1), 0 0 12px var(--accent-2);
     }
 
-    /* Neon Pranjal Vats */
-    .neon-name {
-      font-family: 'Oswald', sans-serif;
-      font-size: 1.4rem;
-      font-weight: 700; /* Bold */
+    /* Author name in neon bold */
+    .author {
+      font-size: 1.2rem;
+      font-weight: bold;
       color: #fff;
-      text-shadow: 
-        0 0 5px #ff0040,
-        0 0 10px #ff0040,
-        0 0 20px #ff6600,
-        0 0 40px #ff6600;
-      display: block;
-      margin: 0.2em 0 0.8em;
-      animation: flicker 2s infinite alternate;
-    }
-
-    @keyframes flicker {
-      0% { opacity: 1; }
-      45% { opacity: 0.85; }
-      50% { opacity: 0.6; }
-      100% { opacity: 1; }
+      text-shadow: 0 0 6px var(--accent-1), 0 0 10px var(--accent-2);
     }
 
     header .byline {
@@ -89,7 +75,7 @@
       margin-top: 0.6em;
     }
 
-    /* Main */
+    /* Page sections */
     main {
       max-width: 980px;
       margin: 36px auto;
@@ -103,21 +89,23 @@
       color: var(--accent-1);
     }
 
-    /* Buttons */
-    .btn {
+    a.btn {
       display: inline-block;
-      margin: 10px 8px 0 0;
+      margin-top: 14px;
+      margin-right: 10px;
       padding: 10px 18px;
       border-radius: 30px;
       text-decoration: none;
       font-weight: 600;
       color: #fff;
       background: var(--accent-1);
-      transition: background 0.25s ease;
+      transition: background 0.25s ease, box-shadow 0.25s ease;
+      box-shadow: 0 0 8px var(--accent-1), 0 0 14px var(--accent-2);
     }
 
-    .btn:hover {
+    a.btn:hover {
       background: var(--accent-2);
+      box-shadow: 0 0 12px var(--accent-2), 0 0 20px var(--accent-1);
     }
 
     footer {
@@ -138,11 +126,10 @@
       color: var(--accent-1);
     }
 
-    /* Responsive */
+    /* Small responsive adjustments */
     @media (max-width: 520px) {
       header h1 { font-size: 2.2rem; }
       .tagline { font-size: 1.6rem; }
-      .neon-name { font-size: 1.1rem; }
     }
   </style>
 </head>
@@ -150,7 +137,7 @@
   <header>
     <h1>Wildness Unleashed</h1>
     <p class="tagline">"Chaos Into Creation."</p>
-    <span class="neon-name"><strong>By Pranjal Vats</strong></span>
+    <p class="author">-By <strong>Pranjal Vats</strong></p>
     <p class="byline">Turning imperfections into something bold, wild, and free.</p>
   </header>
 
@@ -160,7 +147,8 @@
       <p>
         Hi, I’m Pranjal 👋  
         I believe perfection doesn't exist 🚫✨ — it’s the flaws, experiments, and wild ideas that shape who I am and where I’m going.  
-        Wildness Unleashed is my corner of the internet 🌍 — where I turn chaos into creation 🌈, building my brand, sharing my journey, and connecting with those who dare to chase their own wild side 🔥💥.
+        
+        Wildness Unleashed is my corner of the internet 🌍 — where I turn Chaos into Creation 🌈, building my brand, sharing my journey, and connecting with those who dare to chase their own wild side 🔥💥.
       </p>
     </section>
 
@@ -179,7 +167,8 @@
         Each one is a piece of my journey — from raw thoughts scribbled in a journal to visions that may one day become brands, movements, or revolutions 🌪️⚡
       </p>
       <a class="btn" href="poems.html">🌌 Read My Poems ✒️</a>
-      <a class="btn" href="Shortpem.html">⚡ Short Poems</a>
+      <a class="btn" href="shortpoem.html">⚡ Quick Strikes</a>
+      <a class="btn" href="naturepoems.html">🍃 Roots and Rhythms</a>
     </section>
 
     <section>
