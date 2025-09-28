@@ -1,152 +1,99 @@
 <!doctype html>
 <html lang="en">
-  <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Wildness Unleashed</title>
-
-  <!-- Add this line -->
-  <link href="https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap" rel="stylesheet">
-
-  <!-- Your CSS file link (if any) -->
-  </head>
-
-  <style>
-    body {
-      font-family: 'Open Sans', sans-serif;
-      margin: 0;
-      padding: 0;
-      background: linear-gradient(135deg, #0f0f0f, #1c1c1c);
-      color: #f5f5f5;
-      line-height: 1.6;
-    }
-
-  <style>
-    body {
-      font-family: 'Open Sans', sans-serif;
-      margin: 0;
-      padding: 0;
-      background: linear-gradient(135deg, #0f0f0f, #1c1c1c);
-      color: #f5f5f5;
-      line-height: 1.6;
-    }
-
-    header {
-      text-align: center;
-      padding: 80px 20px;
-      background: linear-gradient(135deg, #ff0040, #ff6600);
-      color: #fff;
-    }
-    
-
-    header h1 {
-      font-family: 'Oswald', sans-serif;
-      font-size: 3em;
-      margin-bottom: 0.2em;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-    }
-
-    header p {
-      font-size: 1.2em;
-      opacity: 0.9;
-    }
-
-    section {
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 0 20px;
-    }
-
-    h2 {
-      font-family: 'Oswald', sans-serif;
-      font-size: 2em;
-      margin-bottom: 10px;
-      color: #ff0040;
-    }
-
-    a.btn {
-      display: inline-block;
-      margin-top: 10px;
-      padding: 10px 16px;
-      border-radius: 30px;
-      text-decoration: none;
-      font-weight: bold;
-      color: #fff;
-<!doctype html>
-<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Wildness Unleashed</title>
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Rock+Salt&family=Open+Sans&family=Oswald:wght@400;700&display=swap" rel="stylesheet">
-
+  <!-- Google Fonts: Open Sans, Oswald, Rock Salt -->
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Oswald:wght@400;700&family=Rock+Salt&display=swap" rel="stylesheet">
+  
   <style>
-    body {
-      font-family: 'Open Sans', sans-serif;
-      margin: 0;
-      padding: 0;
-      background: linear-gradient(135deg, #0f0f0f, #1c1c1c);
-      color: #f5f5f5;
-      line-height: 1.6;
+    /* Basic layout */
+    :root {
+      --accent-1: #ff0040;
+      --accent-2: #ff6600;
+      --bg-1: #0f0f0f;
+      --bg-2: #1c1c1c;
+      --muted: #f5f5f5;
     }
 
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background: linear-gradient(135deg, var(--bg-1), var(--bg-2));
+      color: var(--muted);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Header */
     header {
       text-align: center;
       padding: 80px 20px;
-      background: linear-gradient(135deg, #ff0040, #ff6600);
+      background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
       color: #fff;
     }
 
     header h1 {
       font-family: 'Oswald', sans-serif;
-      font-size: 3em;
+      font-size: 3rem;
+      margin: 0;
       margin-bottom: 0.2em;
       text-transform: uppercase;
       letter-spacing: 2px;
     }
 
+    /* ONLY the tagline uses Rock Salt */
     .tagline {
       font-family: 'Rock Salt', cursive;
-      font-size: 2em;
-      margin-top: 10px;
-      color: #fff;
+      font-size: 2.2rem;
+      margin: 0.25em 0 0.6em;
+      color: #ffffff;
+      display: inline-block;
+      line-height: 1;
     }
 
-    header p {
-      font-size: 1.2em;
-      opacity: 0.9;
+    header .byline {
+      font-size: 1rem;
+      opacity: 0.95;
+      margin-top: 0.6em;
     }
 
-    section {
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 0 20px;
+    /* Page sections */
+    main {
+      max-width: 980px;
+      margin: 36px auto;
+      padding: 0 20px 60px;
     }
 
     h2 {
       font-family: 'Oswald', sans-serif;
-      font-size: 2em;
+      font-size: 1.6rem;
       margin-bottom: 10px;
-      color: #ff0040;
+      color: var(--accent-1);
     }
 
     a.btn {
       display: inline-block;
-      margin-top: 10px;
-      padding: 10px 16px;
+      margin-top: 14px;
+      padding: 10px 18px;
       border-radius: 30px;
       text-decoration: none;
-      font-weight: bold;
+      font-weight: 600;
       color: #fff;
-      background: #ff0040;
-      transition: 0.3s;
+      background: var(--accent-1);
+      transition: background 0.25s ease;
     }
 
     a.btn:hover {
-      background: #ff6600;
+      background: var(--accent-2);
     }
 
     footer {
@@ -154,17 +101,23 @@
       padding: 20px;
       background: #111;
       color: #777;
-      font-size: 0.9em;
+      font-size: 0.9rem;
       margin-top: 40px;
     }
 
     footer a {
-      color: #ff6600;
+      color: var(--accent-2);
       text-decoration: none;
     }
 
     footer a:hover {
-      color: #ff0040;
+      color: var(--accent-1);
+    }
+
+    /* Small responsive adjustments */
+    @media (max-width: 520px) {
+      header h1 { font-size: 2.2rem; }
+      .tagline { font-size: 1.6rem; }
     }
   </style>
 </head>
@@ -172,42 +125,42 @@
   <header>
     <h1>Wildness Unleashed</h1>
     <p class="tagline">"Chaos Into Creation."</p>
-    <p>By Pranjal Vats — turning imperfections into something bold, wild, and free.</p>
+    <p class="byline">By Pranjal Vats — turning imperfections into something bold, wild, and free.</p>
   </header>
-  
-  <section>
-    <h2>About Me</h2>
-    <p>
-      Hi, I’m Pranjal. I believe perfection doesn’t exist — it’s my flaws and experiments 
-      that shape my path. This site is my space to express, create, and build my very own brand.
-    </p>
-  </section>
 
-  <section>
-    <h2>Projects</h2>
-    <ul>
-      <li><strong>Dream Journal</strong> — My writings, thoughts, and untamed ideas.</li>
-      <li><strong>Future Brand</strong> — A journey where my name itself becomes a mark.</li>
-    </ul>
-  </section>
+  <main>
+    <section>
+      <h2>About Me</h2>
+      <p>
+        Hi, I’m Pranjal. I believe perfection doesn’t exist — it’s my flaws and experiments 
+        that shape my path. This site is my space to express, create, and build my very own brand.
+      </p>
+    </section>
 
-  <section>
-  <h2>Description</h2>
-  <p>
-    My projects are not just tasks or checklists — they are sparks of rebellion, 
-    wild experiments, and bold ideas that shape who I am becoming.  
-    Each one is a piece of my journey — from raw thoughts scribbled in a journal 
-    to visions that may one day become brands, movements, or revolutions.  
-  </p>
+    <section>
+      <h2>Projects</h2>
+      <ul>
+        <li><strong>Dream Journal</strong> — My writings, thoughts, and untamed ideas.</li>
+        <li><strong>Future Brand</strong> — A journey where my name itself becomes a mark.</li>
+      </ul>
+    </section>
 
-  </section>
-  <a class="btn" href="poems.html">🌌 Read My Poems</a>
-  <section>
-  <h2>Contact</h2>
-  <p>Let’s connect!</p>
-  <a class="btn" href="mailto:wildness.unleashed12@gmail.com">📩 Contact Me</a>
+    <section>
+      <h2>Description</h2>
+      <p>
+        My projects are sparks of rebellion, wild experiments, and bold ideas that shape who I am becoming.
+        Each one is a piece of my journey — from raw thoughts scribbled in a journal to visions that may one day
+        become brands, movements, or revolutions.
+      </p>
+      <a class="btn" href="poems.html">🌌 Read My Poems</a>
+    </section>
 
-  </section>
+    <section>
+      <h2>Contact</h2>
+      <p>Let’s connect!</p>
+      <a class="btn" href="mailto:wildness.unleashed12@gmail.com">📩 Contact Me</a>
+    </section>
+  </main>
 
   <footer>
     <p>© 2025 Wildness Unleashed — Built by <strong>Pranjal Vats</strong></p>
