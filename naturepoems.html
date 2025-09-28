@@ -1,127 +1,178 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Whispers of Nature🍁</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Roots and Rhythms 🍃 - Wildness Unleashed</title>
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&family=Oswald:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Rock+Salt&family=Open+Sans:wght@300;400;600;700&family=Oswald:wght@400;700&display=swap" rel="stylesheet">
 
   <style>
+    :root {
+      --accent-1: #ff0040;
+      --accent-2: #ff6600;
+      --bg-1: #0f0f0f;
+      --bg-2: #1c1c1c;
+      --muted: #f5f5f5;
+    }
+
     body {
-      font-family: 'Open Sans', sans-serif;
-      background: linear-gradient(135deg, #0f0f0f, #1c1c1c);
-      color: #f5f5f5;
+      background: linear-gradient(135deg, var(--bg-1), var(--bg-2));
+      color: var(--muted);
+      font-family: 'Georgia', serif;
       margin: 0;
       padding: 0;
-      line-height: 1.7;
+      line-height: 1.6;
     }
 
     header {
       text-align: center;
-      padding: 70px 20px 50px;
-      background: linear-gradient(135deg, #ff0040, #ff6600);
+      padding: 2.5rem 1rem;
+      background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
       color: #fff;
     }
 
     header h1 {
-      font-family: 'Oswald', sans-serif;
-      font-size: 3rem;
+      font-family: 'Rock Salt', cursive;
+      font-size: 2.6rem;
       margin: 0;
-      text-transform: uppercase;
       letter-spacing: 2px;
     }
 
-    main {
-      max-width: 800px;
-      margin: 40px auto;
-      padding: 0 20px;
+    section {
+      padding: 2rem;
+      max-width: 900px;
+      margin: auto;
     }
 
-    .poem {
-      margin-bottom: 60px;
-      padding: 20px;
-      border-left: 4px solid #ff0040;
+    article {
       background: #111;
-      border-radius: 8px;
-      box-shadow: 0 0 12px rgba(255, 0, 64, 0.3);
+      border: 2px solid var(--accent-1);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      box-shadow: 0px 0px 12px var(--accent-1), 0px 0px 18px var(--accent-2);
     }
 
-    .poem h2 {
-      font-family: 'Oswald', sans-serif;
-      font-size: 1.8rem;
-      margin-bottom: 15px;
-      color: #ff0040;
-    }
-
-    .poem p {
-      margin: 8px 0;
-      white-space: pre-line;
-      font-size: 1.05rem;
-    }
-
-    footer {
+    article h2 {
+      color: var(--accent-2);
       text-align: center;
-      padding: 20px;
-      background: #111;
-      color: #777;
-      font-size: 0.9rem;
-      margin-top: 60px;
+      margin-bottom: 1rem;
+      font-family: 'Oswald', sans-serif;
     }
 
-    footer a {
-      color: #ff6600;
+    article p {
+      white-space: pre-line;
+      text-align: center;
+      font-size: 1.15rem;
+    }
+
+    .btn {
+      display: inline-block;
+      margin: 20px auto;
+      padding: 10px 20px;
+      border-radius: 30px;
       text-decoration: none;
+      font-weight: 600;
+      color: #fff;
+      background: var(--accent-1);
+      box-shadow: 0 0 8px var(--accent-1), 0 0 14px var(--accent-2);
+      transition: background 0.3s ease, box-shadow 0.3s ease;
     }
 
-    footer a:hover {
-      color: #ff0040;
+    .btn:hover {
+      background: var(--accent-2);
+      box-shadow: 0 0 12px var(--accent-2), 0 0 20px var(--accent-1);
+    }
+
+    .center {
+      text-align: center;
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>Whispers of Nature🍁</h1>
+    <h1>Roots and Rhythms 🍃</h1>
+    <p>Poems inspired by the wild spirit of nature</p>
   </header>
 
-  <main>
-    <article class="poem">
-      <h2>The Silent River🌊</h2>
+  <section>
+    <!-- Poem 1 -->
+    <article>
+      <h2>Earth Eternal, Man Ephemeral 🌍</h2>
       <p>
-The river flows, it does not speak,  
-Yet carves the valleys, strong yet meek.  
-A patient hand, a timeless song,  
-It shows where all the wild belong.  
-        -By Pranjal Vats 🌻 
+Mountains rise, rivers flow,  
+Seasons come, seasons go.  
+Forests whisper, oceans roar,  
+Earth remains forevermore.  
+
+Yet man walks with head held high,  
+Believing he commands the sky.  
+Taming rivers, carving stone,  
+Calling this vast world his own.  
+
+He builds his towers, stakes his claim,  
+Writes his laws, bestows his name.  
+Forgets the dust from which he came,  
+And thinks the Earth will bow the same.  
+
+But winds will sweep, the roots will grow,  
+Mountains crumble, rivers flow.  
+Time erases every hand,  
+No kingdom stays, no name will stand.  
+
+For nature’s song is old and wise,  
+It hums beyond where memory lies.  
+Man may dream of endless reign,  
+Yet he will turn to dust again.  
+
+— By <b>Pranjal Vats 🌻</b>
       </p>
     </article>
 
-    <article class="poem">
-      <h2>Roots🪾</h2>
+    <!-- Poem 2 -->
+    <article>
+      <h2>Whispers of the Wind 🍂</h2>
       <p>
-Beneath the earth where no eyes see,  
-A forest breathes in secrecy.  
-Each root a thread, each leaf a prayer,  
-A woven truth beyond compare. 
-        -By Pranjal Vats 🌻
+The wind speaks softly through the trees,  
+A secret carried on gentle breeze.  
+It hums of ages, lost and gone,  
+Yet whispers life to carry on.  
+
+— By <b>Pranjal Vats 🌻</b>
       </p>
     </article>
 
-    <article class="poem">
-      <h2>Windsong🌬️</h2>
+    <!-- Poem 3 -->
+    <article>
+      <h2>River’s Song 🌊</h2>
       <p>
-The wind is restless, never still,  
-It bends the trees against their will.  
-Yet whispers hope in fields of green,  
-A voice of all that’s felt, not seen.  
-        -By Pranjal Vats 🌻
+A river carves with patient grace,  
+Through rock, through time, it finds its place.  
+No rush, no force, just steady flow,  
+A lesson in the way to grow.  
+
+— By <b>Pranjal Vats 🌻</b>
       </p>
     </article>
-  </main>
 
-  <footer>
-    <p>© 2025 Wildness Unleashed — <strong>Pranjal Vats</strong></p>
-  </footer>
+    <!-- Poem 4 -->
+    <article>
+      <h2>Roots Beneath 🌱</h2>
+      <p>
+We see the tree, its crown, its might,  
+But roots hold steady out of sight.  
+In hidden soil, they weave, they stay,  
+The strength that keeps the storms away.  
+
+— By <b>Pranjal Vats 🌻</b>
+      </p>
+    </article>
+
+    <div class="center">
+      <a class="btn" href="index.html">🏠 Back to Home</a>
+    </div>
+  </section>
 </body>
 </html>
