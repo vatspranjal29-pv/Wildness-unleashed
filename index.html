@@ -9,7 +9,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Oswald:wght@400;700&family=Rock+Salt&display=swap" rel="stylesheet">
   
   <style>
-    /* Basic layout */
     :root {
       --accent-1: #ff0040;
       --accent-2: #ff6600;
@@ -18,22 +17,15 @@
       --muted: #f5f5f5;
     }
 
-    html, body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-    }
-
     body {
       font-family: 'Open Sans', sans-serif;
+      margin: 0;
+      padding: 0;
       background: linear-gradient(135deg, var(--bg-1), var(--bg-2));
       color: var(--muted);
       line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
     }
 
-    /* Header */
     header {
       text-align: center;
       padding: 80px 20px;
@@ -50,7 +42,24 @@
       letter-spacing: 2px;
     }
 
-    /* ONLY the tagline uses Rock Salt */
+    /* ✅ Neon shining effect */
+    .neon {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #fff;
+      text-shadow: 0 0 5px #fff,
+                   0 0 10px var(--accent-1),
+                   0 0 20px var(--accent-1),
+                   0 0 40px var(--accent-2);
+      animation: flicker 1.5s infinite alternate;
+    }
+
+    @keyframes flicker {
+      0% { opacity: 1; }
+      45% { opacity: 0.8; }
+      100% { opacity: 1; }
+    }
+
     .tagline {
       font-family: 'Rock Salt', cursive;
       font-size: 2.2rem;
@@ -66,7 +75,6 @@
       margin-top: 0.6em;
     }
 
-    /* Page sections */
     main {
       max-width: 980px;
       margin: 36px auto;
@@ -96,6 +104,19 @@
       background: var(--accent-2);
     }
 
+    /* ✅ Side-by-side layout for Poems + Short Poems */
+    .poems-container {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    .poems-container section {
+      flex: 1;
+      min-width: 250px;
+    }
+
     footer {
       text-align: center;
       padding: 20px;
@@ -114,7 +135,6 @@
       color: var(--accent-1);
     }
 
-    /* Small responsive adjustments */
     @media (max-width: 520px) {
       header h1 { font-size: 2.2rem; }
       .tagline { font-size: 1.6rem; }
@@ -124,40 +144,48 @@
 <body>
   <header>
     <h1>Wildness Unleashed</h1>
+    <!-- ✅ Neon Byline -->
+    <p class="neon">By Pranjal Vats</p>
     <p class="tagline">"Chaos Into Creation."</p>
-    <p class="byline">By Pranjal Vats — turning imperfections into something bold, wild, and free.</p>
+    <p class="byline">Turning imperfections into something bold, wild, and free.</p>
   </header>
 
   <main>
     <section>
       <h2>About Me</h2>
       <p>
-        Hi, I’m Pranjal 👋
-        I believe perfection doesn't exist🚫✨-it’s the flaws, experiments, and wild ideas that shape who I am and where I’m going.
-        
+        Hi, I’m Pranjal 👋  
+        I believe perfection doesn't exist 🚫✨ — it’s the flaws, experiments, and wild ideas that shape who I am and where I’m going.  
         Wildness Unleashed is my corner of the internet 🌍 — where I turn Chaos into creation 🌈, building my brand, sharing my journey 
-       
-        and connecting with those who dare to chase their own wild side🔥💥.
+        and connecting with those who dare to chase their own wild side 🔥💥.
       </p>
     </section>
 
     <section>
       <h2>Projects</h2>
       <ul>
-        <li><strong>Dream Journal</strong> — My writings, thoughts, and untamed ideas.⚔️</li>
-        <li><strong>Future Brand</strong> — A journey where my name itself becomes a mark👑.</li>
+        <li><strong>Dream Journal</strong> — My writings, thoughts, and untamed ideas ⚔️</li>
+        <li><strong>Future Brand</strong> — A journey where my name itself becomes a mark 👑</li>
       </ul>
     </section>
 
-    <section>
-      <h2>Description</h2>
-      <p>
-        My projects are sparks of rebellion, wild experiments, and bold ideas that shape who I am becoming.
-        Each one is a piece of my journey — from raw thoughts scribbled in a journal to visions that may one day
-        become brands, movements, or revolutions.🌪️⚡
-      </p>
-      <a class="btn" href="poems.html">🌌 Read My Poems✒️</a>
-    </section>
+    <!-- ✅ Poems + Short Poems side by side -->
+    <div class="poems-container">
+      <section>
+        <h2>Poems</h2>
+        <a class="btn" href="poems.html">🌌 Read My Poems ✒️</a>
+      </section>
+
+      <section>
+        <h2>Short Poems</h2>
+        <p>
+          🔥 Break the chains, ignite the sky,<br>
+          🌊 Waves may crash, but I will fly.<br>
+          🌌 In chaos I find my creation,<br>
+          ⚡ Wildness fuels my liberation.
+        </p>
+      </section>
+    </div>
 
     <section>
       <h2>Contact</h2>
