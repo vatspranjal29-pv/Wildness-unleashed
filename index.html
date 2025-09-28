@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Wildness Unleashed</title>
 
-  <!-- Google Fonts: Open Sans, Oswald, Rock Salt -->
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Oswald:wght@400;700&family=Rock+Salt&display=swap" rel="stylesheet">
   
   <style>
-    /* Basic layout */
+    /* Colors */
     :root {
       --accent-1: #ff0040;
       --accent-2: #ff6600;
@@ -50,37 +50,46 @@
       letter-spacing: 2px;
     }
 
-    /* Tagline */
+    /* Tagline in Rock Salt */
     .tagline {
       font-family: 'Rock Salt', cursive;
       font-size: 2.2rem;
       margin: 0.25em 0 0.4em;
       color: #ffffff;
-      display: block;
-      line-height: 1.2;
+      display: inline-block;
+      line-height: 1;
     }
 
-    /* Neon effect for name */
+    /* Neon Pranjal Vats */
     .neon-name {
       font-family: 'Oswald', sans-serif;
-      font-size: 1.3rem;
+      font-size: 1.4rem;
+      font-weight: 700; /* Bold */
       color: #fff;
       text-shadow: 
         0 0 5px #ff0040,
         0 0 10px #ff0040,
         0 0 20px #ff6600,
         0 0 40px #ff6600;
-      display: inline-block;
-      margin-top: 0.2em;
+      display: block;
+      margin: 0.2em 0 0.8em;
+      animation: flicker 2s infinite alternate;
+    }
+
+    @keyframes flicker {
+      0% { opacity: 1; }
+      45% { opacity: 0.85; }
+      50% { opacity: 0.6; }
+      100% { opacity: 1; }
     }
 
     header .byline {
       font-size: 1rem;
       opacity: 0.95;
-      margin-top: 0.8em;
+      margin-top: 0.6em;
     }
 
-    /* Page sections */
+    /* Main */
     main {
       max-width: 980px;
       margin: 36px auto;
@@ -97,7 +106,7 @@
     /* Buttons */
     .btn {
       display: inline-block;
-      margin: 10px 8px 0;
+      margin: 10px 8px 0 0;
       padding: 10px 18px;
       border-radius: 30px;
       text-decoration: none;
@@ -129,7 +138,7 @@
       color: var(--accent-1);
     }
 
-    /* Responsive adjustments */
+    /* Responsive */
     @media (max-width: 520px) {
       header h1 { font-size: 2.2rem; }
       .tagline { font-size: 1.6rem; }
@@ -141,7 +150,7 @@
   <header>
     <h1>Wildness Unleashed</h1>
     <p class="tagline">"Chaos Into Creation."</p>
-    <span class="neon-name">By Pranjal Vats</span>
+    <span class="neon-name"><strong>By Pranjal Vats</strong></span>
     <p class="byline">Turning imperfections into something bold, wild, and free.</p>
   </header>
 
@@ -151,17 +160,15 @@
       <p>
         Hi, I’m Pranjal 👋  
         I believe perfection doesn't exist 🚫✨ — it’s the flaws, experiments, and wild ideas that shape who I am and where I’m going.  
-        
-        Wildness Unleashed is my corner of the internet 🌍 — where I turn Chaos into creation 🌈, building my brand, sharing my journey,  
-        and connecting with those who dare to chase their own wild side 🔥💥.
+        Wildness Unleashed is my corner of the internet 🌍 — where I turn chaos into creation 🌈, building my brand, sharing my journey, and connecting with those who dare to chase their own wild side 🔥💥.
       </p>
     </section>
 
     <section>
       <h2>Projects</h2>
       <ul>
-        <li><strong>Dream Journal</strong> — My writings, thoughts, and untamed ideas ⚔️.</li>
-        <li><strong>Future Brand</strong> — A journey where my name itself becomes a mark 👑.</li>
+        <li><strong>Dream Journal</strong> — My writings, thoughts, and untamed ideas ⚔️</li>
+        <li><strong>Future Brand</strong> — A journey where my name itself becomes a mark 👑</li>
       </ul>
     </section>
 
@@ -169,8 +176,7 @@
       <h2>Description</h2>
       <p>
         My projects are sparks of rebellion, wild experiments, and bold ideas that shape who I am becoming.  
-        Each one is a piece of my journey — from raw thoughts scribbled in a journal to visions that may one day  
-        become brands, movements, or revolutions. 🌪️⚡
+        Each one is a piece of my journey — from raw thoughts scribbled in a journal to visions that may one day become brands, movements, or revolutions 🌪️⚡
       </p>
       <a class="btn" href="poems.html">🌌 Read My Poems ✒️</a>
       <a class="btn" href="Shortpem.html">⚡ Short Poems</a>
