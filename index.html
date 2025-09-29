@@ -31,6 +31,16 @@
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
+
+      /* 🚫 Prevent text selection */
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    img {
+      pointer-events: none; /* 🚫 Prevent dragging images */
     }
 
     /* Header */
@@ -132,6 +142,25 @@
       .tagline { font-size: 1.6rem; }
     }
   </style>
+
+  <script>
+    // 🚫 Disable right-click menu
+    document.addEventListener("contextmenu", event => event.preventDefault());
+
+    // 🚫 Disable text selection and copy
+    document.addEventListener("copy", event => {
+      event.preventDefault();
+      alert("Copying is disabled on this page!");
+    });
+
+    // 🚫 Disable PrintScreen key (basic protection)
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "PrintScreen") {
+        alert("Screenshots are disabled!");
+        navigator.clipboard.writeText(""); // clears clipboard
+      }
+    });
+  </script>
 </head>
 <body>
   <header>
