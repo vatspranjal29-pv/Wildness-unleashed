@@ -9,7 +9,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Oswald:wght@400;700&family=Rock+Salt&display=swap" rel="stylesheet">
   
   <style>
-    /* Basic layout */
     :root {
       --accent-1: #ff0040;
       --accent-2: #ff6600;
@@ -31,8 +30,6 @@
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
-
-      /* 🚫 Prevent text selection */
       -webkit-user-select: none;
       -moz-user-select: none;
       -ms-user-select: none;
@@ -40,10 +37,9 @@
     }
 
     img {
-      pointer-events: none; /* 🚫 Prevent dragging images */
+      pointer-events: none;
     }
 
-    /* Header */
     header {
       text-align: center;
       padding: 80px 20px;
@@ -60,7 +56,6 @@
       letter-spacing: 2px;
     }
 
-    /* Tagline with Rock Salt */
     .tagline {
       font-family: 'Rock Salt', cursive;
       font-size: 2.2rem;
@@ -71,7 +66,6 @@
       text-shadow: 0 0 8px var(--accent-1), 0 0 12px var(--accent-2);
     }
 
-    /* Author name in neon bold */
     .author {
       font-size: 1.2rem;
       font-weight: bold;
@@ -85,7 +79,6 @@
       margin-top: 0.6em;
     }
 
-    /* Page sections */
     main {
       max-width: 980px;
       margin: 36px auto;
@@ -136,7 +129,6 @@
       color: var(--accent-1);
     }
 
-    /* Small responsive adjustments */
     @media (max-width: 520px) {
       header h1 { font-size: 2.2rem; }
       .tagline { font-size: 1.6rem; }
@@ -144,20 +136,12 @@
   </style>
 
   <script>
-    // 🚫 Disable right-click menu
     document.addEventListener("contextmenu", event => event.preventDefault());
-
-    // 🚫 Disable text selection and copy
-    document.addEventListener("copy", event => {
-      event.preventDefault();
-      alert("Copying is disabled on this page!");
-    });
-
-    // 🚫 Disable PrintScreen key (basic protection)
+    document.addEventListener("copy", event => { event.preventDefault(); alert("Copying is disabled on this page!"); });
     document.addEventListener("keydown", function (e) {
       if (e.key === "PrintScreen") {
         alert("Screenshots are disabled!");
-        navigator.clipboard.writeText(""); // clears clipboard
+        navigator.clipboard.writeText("");
       }
     });
   </script>
@@ -195,8 +179,9 @@
         My projects are sparks of rebellion, wild experiments, and bold ideas that shape who I am becoming.  
         Each one is a piece of my journey — from raw thoughts scribbled in a journal to visions that may one day become brands, movements, or revolutions 🌪️⚡
       </p>
-      <a class="btn" href="trilogy.html">Time special ⏳</a>
-      <a class="btn" href="poems.html"> Read My Poems ✒️</a>
+      <a class="btn" href="villain.html">💔 Villainous Visions</a>
+      <a class="btn" href="trilogy.html">Time Special ⏳</a>
+      <a class="btn" href="poems.html">Read My Poems ✒️</a>
       <a class="btn" href="Shortpem.html">⚡ Quick Strikes</a>
       <a class="btn" href="naturepoems.html">🍃 Roots and Rhythms</a>
     </section>
