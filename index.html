@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Wildness Unleashed</title>
 
-  <!-- Google Fonts: Open Sans, Oswald, Rock Salt -->
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Oswald:wght@400;700&family=Rock+Salt&display=swap" rel="stylesheet">
   
   <style>
@@ -30,15 +30,15 @@
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
+
+      /* 🚫 Prevent text selection */
       -webkit-user-select: none;
       -moz-user-select: none;
       -ms-user-select: none;
       user-select: none;
     }
 
-    img {
-      pointer-events: none;
-    }
+    img { pointer-events: none; }
 
     header {
       text-align: center;
@@ -50,8 +50,7 @@
     header h1 {
       font-family: 'Oswald', sans-serif;
       font-size: 3rem;
-      margin: 0;
-      margin-bottom: 0.2em;
+      margin: 0 0 0.2em;
       text-transform: uppercase;
       letter-spacing: 2px;
     }
@@ -61,8 +60,6 @@
       font-size: 2.2rem;
       margin: 0.25em 0 0.4em;
       color: #ffffff;
-      display: inline-block;
-      line-height: 1;
       text-shadow: 0 0 8px var(--accent-1), 0 0 12px var(--accent-2);
     }
 
@@ -136,8 +133,12 @@
   </style>
 
   <script>
+    // Disable right-click and copy
     document.addEventListener("contextmenu", event => event.preventDefault());
-    document.addEventListener("copy", event => { event.preventDefault(); alert("Copying is disabled on this page!"); });
+    document.addEventListener("copy", event => {
+      event.preventDefault();
+      alert("Copying is disabled on this page!");
+    });
     document.addEventListener("keydown", function (e) {
       if (e.key === "PrintScreen") {
         alert("Screenshots are disabled!");
@@ -146,6 +147,7 @@
     });
   </script>
 </head>
+
 <body>
   <header>
     <h1>Wildness Unleashed</h1>
@@ -155,16 +157,17 @@
   </header>
 
   <main>
+    <!-- About Section -->
     <section>
       <h2>About Me</h2>
       <p>
         Hi, I’m Pranjal 👋  
         I believe perfection doesn't exist 🚫✨ — it’s the flaws, experiments, and wild ideas that shape who I am and where I’m going.  
-        
         Wildness Unleashed is my corner of the internet 🌍 — where I turn Chaos into Creation 🌈, building my brand, sharing my journey, and connecting with those who dare to chase their own wild side 🔥💥.
       </p>
     </section>
 
+    <!-- Projects -->
     <section>
       <h2>Projects</h2>
       <ul>
@@ -173,19 +176,42 @@
       </ul>
     </section>
 
+    <!-- Description -->
     <section>
       <h2>Description</h2>
       <p>
         My projects are sparks of rebellion, wild experiments, and bold ideas that shape who I am becoming.  
         Each one is a piece of my journey — from raw thoughts scribbled in a journal to visions that may one day become brands, movements, or revolutions 🌪️⚡
       </p>
-      <a class="btn" href="villain.html">☠️Villainous Visions</a>
-      <a class="btn" href="trilogy.html">Time Special ⏳</a>
-      <a class="btn" href="poems.html">Read My Poems ✒️</a>
+      <a class="btn" href="trilogy.html">⏳ Time Special</a>
+      <a class="btn" href="poems.html">✒️ Read My Poems</a>
       <a class="btn" href="Shortpem.html">⚡ Quick Strikes</a>
       <a class="btn" href="naturepoems.html">🍃 Roots and Rhythms</a>
     </section>
 
+    <!-- 🩸 New Section: Villainous Verses -->
+    <section>
+      <h2>🩸 Villainous Verses</h2>
+      <p>
+        For every hero’s tale, there lies a shadow.  
+        <strong>“The Villain I Became”</strong> is a reflection on broken crowns, inner chaos, and the beauty of embracing your own darkness.  
+        Because sometimes, being the villain is just another way to rise ⚔️🔥
+      </p>
+      <a class="btn" href="villain.html">Read The Villain I Became 💔⚡</a>
+    </section>
+
+    <!-- 🌙 New Section: Unproven Peace -->
+    <section>
+      <h2>🌙 Unproven Peace</h2>
+      <p>
+        <strong>“Enough, At Last”</strong> is a soft rebellion — a quiet surrender to self-acceptance.  
+        It’s about stepping off the stage, letting go of validation, and finally living for yourself.  
+        A peace that doesn’t need to be proven — only felt ✨🌿
+      </p>
+      <a class="btn" href="unproven.html">Read Enough, At Last 🌌</a>
+    </section>
+
+    <!-- Contact -->
     <section>
       <h2>Contact</h2>
       <p>Let’s connect!</p>
