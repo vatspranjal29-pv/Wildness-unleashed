@@ -31,11 +31,10 @@
             100% {background-position: 0% 50%;}
         }
 
-        /* Heading */
         h1 {
             z-index: 10;
             text-align: center;
-            color: #ff4d4d; /* red-golden */
+            color: #ff4d4d;
             margin-bottom: 40px;
             font-size: 3rem;
             text-shadow: 0 0 5px #ff4d4d, 0 0 15px #ffb347, 0 0 25px #ff4d4d;
@@ -47,25 +46,31 @@
             to { text-shadow: 0 0 15px #ff4d4d, 0 0 30px #ffb347, 0 0 45px #ff4d4d; }
         }
 
-        /* Shayari Card */
         .shayari {
             position: relative;
-            background: rgba(40, 40, 40, 0.85);
-            border-left: 6px solid #ff4d4d; /* red-golden border */
-            padding: 25px 30px;
+            background: rgba(40, 40, 40, 0.9);
+            border-left: 8px solid #ff4d4d;
+            padding: 40px 45px;
             margin: 20px;
-            max-width: 700px;
-            border-radius: 15px;
-            box-shadow: 0 12px 25px rgba(0,0,0,0.5);
-            line-height: 1.8;
+            max-width: 800px; /* increased width */
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.6);
+            line-height: 2.2;
             text-align: center;
             animation: fadeIn 2s ease-in-out;
             backdrop-filter: blur(5px);
             z-index: 10;
+            font-size: 1.5rem; /* larger font */
+        }
+
+        .shayari p.author {
+            font-size: 1.3rem; 
+            font-weight: bold;
+            margin-top: 20px;
         }
 
         .shayari p {
-            margin: 10px 0;
+            margin: 12px 0;
             opacity: 0;
             animation: appear 1s forwards;
         }
@@ -76,6 +81,7 @@
         .shayari p:nth-child(4) { animation-delay: 2s; }
         .shayari p:nth-child(5) { animation-delay: 2.5s; }
         .shayari p:nth-child(6) { animation-delay: 3s; }
+        .shayari p.author { animation-delay: 3.5s; }
 
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
@@ -86,7 +92,6 @@
             to { opacity: 1; }
         }
 
-        /* Overlay for Copy/Screenshot */
         #overlay {
             position: fixed;
             top: 0;
@@ -103,18 +108,36 @@
             display: none;
         }
 
-        /* Particles */
         .particle {
             position: absolute;
             border-radius: 50%;
-            background: rgba(255, 77, 77, 0.5); /* red-golden particles */
-            animation: float 10s linear infinite;
+            background: rgba(255, 77, 77, 0.5);
+            animation: float 15s linear infinite;
         }
 
         @keyframes float {
-            0% { transform: translateY(100vh) translateX(0) scale(0.5); opacity: 0.5; }
+            0% { transform: translateY(0) translateX(0) scale(0.5); opacity: 0.3; }
             50% { opacity: 1; }
-            100% { transform: translateY(-10vh) translateX(50px) scale(1); opacity: 0; }
+            100% { transform: translateY(-100vh) translateX(50px) scale(1); opacity: 0; }
+        }
+
+        .home-button {
+            margin-top: 40px;
+            padding: 12px 30px;
+            background: #ff4d4d;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            text-decoration: none;
+            transition: 0.3s;
+            z-index: 10;
+        }
+
+        .home-button:hover {
+            background: #ff1a1a;
+            transform: scale(1.05);
         }
     </style>
 </head>
@@ -129,7 +152,10 @@
         <p>Main jeet likh dungi.</p>
         <p>Main khamosh hoon par kamzor nahi,</p>
         <p>Tum zakhm likh dena, main dawa likh dungi...</p>
+        <p class="author">-By Pranjal Vats 🌻</p>
     </div>
+
+    <a href="index.html" class="home-button">Back to Home 🏠</a>
 
     <div id="overlay">Copying & Screenshots Disabled</div>
 
@@ -154,7 +180,7 @@
             e.preventDefault();
         });
 
-        // Attempt to detect Print Screen
+        // Detect Print Screen
         document.addEventListener('keyup', function(e) {
             if (e.key === "PrintScreen") {
                 let overlay = document.getElementById('overlay');
@@ -165,12 +191,13 @@
         });
 
         // Generate particles
-        const numParticles = 30;
+        const numParticles = 50;
         for(let i=0; i<numParticles; i++){
             const particle = document.createElement('div');
             particle.classList.add('particle');
-            particle.style.width = particle.style.height = Math.random() * 6 + 4 + 'px';
+            particle.style.width = particle.style.height = Math.random() * 8 + 4 + 'px';
             particle.style.left = Math.random() * window.innerWidth + 'px';
+            particle.style.top = Math.random() * window.innerHeight + 'px';
             particle.style.animationDuration = (10 + Math.random() * 10) + 's';
             particle.style.background = `rgba(255,77,77,${0.3 + Math.random()*0.7})`;
             document.body.appendChild(particle);
