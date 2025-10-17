@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shayari Collection</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Roboto Slab', serif;
+            background: #1e1e1e;
+            color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            justify-content: center;
+            user-select: none; /* disable text selection */
+        }
+
+        h1 {
+            text-align: center;
+            color: #ff6f61;
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 5px #000;
+        }
+
+        .shayari {
+            background: #2c2c2c;
+            border-left: 6px solid #ff6f61;
+            padding: 25px 30px;
+            margin: 20px;
+            max-width: 700px;
+            border-radius: 12px;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.4);
+            line-height: 1.8;
+            text-align: center;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .shayari p {
+            margin: 10px 0;
+            opacity: 0;
+            animation: appear 1s forwards;
+        }
+
+        .shayari p:nth-child(1) { animation-delay: 0.5s; }
+        .shayari p:nth-child(2) { animation-delay: 1s; }
+        .shayari p:nth-child(3) { animation-delay: 1.5s; }
+        .shayari p:nth-child(4) { animation-delay: 2s; }
+        .shayari p:nth-child(5) { animation-delay: 2.5s; }
+        .shayari p:nth-child(6) { animation-delay: 3s; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes appear {
+            to { opacity: 1; }
+        }
+
+        /* Overlay if screenshot attempted (partial) */
+        #overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(30, 30, 30, 0.9);
+            color: #ff6f61;
+            font-size: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Shayari Collection</h1>
+
+    <div class="shayari">
+        <p>Tum raat bhar andhera likho,</p>
+        <p>Main subah likh dungi.</p>
+        <p>Tum haar ka naam likho,</p>
+        <p>Main jeet likh dungi.</p>
+        <p>Main khamosh hoon par kamzor nahi,</p>
+        <p>Tum zakhm likh dena, main dawa likh dungi...</p>
+    </div>
+
+    <div id="overlay">Copying & Screenshots Disabled</div>
+
+    <script>
+        // Disable right-click
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            alert("Right-click is disabled!");
+        });
+
+        // Disable keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && 
+               (e.key === 'c' || e.key === 's' || e.key === 'u' || e.key === 'p')) {
+                e.preventDefault();
+                alert("Copying is disabled!");
+            }
+        });
+
+        // Disable text selection
+        document.addEventListener('selectstart', function(e) {
+            e.preventDefault();
+        });
+
+        // Attempt to detect Print Screen
+        document.addEventListener('keyup', function(e) {
+            if (e.key === "PrintScreen") {
+                let overlay = document.getElementById('overlay');
+                overlay.style.display = 'flex';
+                setTimeout(() => { overlay.style.display = 'none'; }, 2000);
+                alert("Screenshots are disabled!");
+            }
+        });
+    </script>
+
+</body>
+</html>
