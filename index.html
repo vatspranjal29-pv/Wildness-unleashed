@@ -29,17 +29,14 @@
     /* Navbar */
     nav {
       display:flex;
-      justify-content:space-between;
+      justify-content:space-between; /* Brand left, links right */
       align-items:center;
-      padding:10px 20px;
-      position:fixed;
-      top:14px;
-      left:0; right:0;
-      z-index:100;
+      padding:10px 16px;
       background: rgba(10,10,10,0.35);
       border-radius:999px;
       backdrop-filter: blur(8px) saturate(120%);
       border:1px solid rgba(255,255,255,0.03);
+      flex-wrap: nowrap;
     }
 
     nav .brand {
@@ -47,18 +44,19 @@
       color:var(--gold);
       font-weight:700;
       font-size:1.05rem;
-      cursor:pointer;
-      position:relative;
+      cursor:default;
     }
 
     .nav-links {
       display:flex;
-      gap:14px;
-      align-items:center;
-      transition: max-height 0.3s ease, opacity 0.3s ease;
+      gap:12px;
+      overflow-x:auto; /* horizontal scroll if needed */
+      scrollbar-width:none; /* hide scrollbar for Firefox */
     }
+    .nav-links::-webkit-scrollbar { display:none; } /* hide scrollbar for Chrome/Safari */
 
     .nav-links a {
+      white-space:nowrap; /* keep text in one line */
       color: rgba(255,215,140,0.95);
       text-decoration:none;
       font-weight:600;
@@ -67,33 +65,22 @@
       padding:6px 8px;
       transition: color .22s ease, transform .15s ease;
     }
-
     .nav-links a:hover { color: var(--red-mid); transform: translateY(-2px); }
 
-    /* Mobile dropdown */
+    /* Mobile portrait */
     @media(max-width:520px){
-      .nav-links {
-        position:absolute;
-        top:50px;
-        left:50%;
-        transform:translateX(-50%);
-        flex-direction:column;
-        background: rgba(10,10,10,0.95);
-        padding:12px 18px;
-        border-radius:12px;
-        gap:12px;
-        max-height:0;
-        overflow:hidden;
-        opacity:0;
-        pointer-events:none;
-      }
-      .nav-links.show {
-        max-height:500px;
-        opacity:1;
-        pointer-events:auto;
-      }
+      nav { justify-content:space-between; }
+      .nav-links { justify-content:flex-start; } /* scrollable from left */
     }
 
+    /* Mobile landscape: center links next to brand */
+    @media(max-width:520px) and (orientation: landscape){
+      nav { justify-content:center; }
+      .brand { margin-right:16px; }
+      .nav-links { justify-content:center; }
+    }
+
+    /* Header */
     header{
       position:relative; z-index:20;
       text-align:center;
@@ -120,6 +107,7 @@
     }
     .author { margin-top:10px; color:#fff; font-weight:700; font-size:1rem; }
 
+    /* Main content */
     main{
       position:relative; z-index:20;
       max-width:980px;
@@ -174,16 +162,12 @@
     document.addEventListener("keydown", e => {
       if(e.key === 'PrintScreen'){ try{ navigator.clipboard.writeText(''); } catch{}; alert("Screenshots disabled!"); }
     });
-
-    function toggleMenu() {
-      document.querySelector('.nav-links').classList.toggle('show');
-    }
   </script>
 </head>
 
 <body>
   <nav>
-    <div class="brand" onclick="toggleMenu()">PV.</div>
+    <div class="brand">PV.</div>
     <div class="nav-links">
       <a href="index.html">Home</a>
       <a href="shayari.html">Mehfill</a>
@@ -213,6 +197,7 @@
       </p>
     </section>
 
+    
     <section id="description">
       <h2>Description</h2>
       <p>
