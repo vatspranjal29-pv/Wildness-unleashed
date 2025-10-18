@@ -3,225 +3,428 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Wildness Unleashed</title>
+  <title>Wildness Unleashed — Pranjal Vats</title>
+
+  <!-- Meta / SEO -->
+  <meta name="description" content="Wildness Unleashed — By Pranjal Vats 🌻 | Where Chaos turns into Creation.">
+  <meta name="author" content="Pranjal Vats">
+  <meta name="theme-color" content="#ff0040">
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Oswald:wght@400;700&family=Rock+Salt&display=swap" rel="stylesheet">
-  
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Oswald:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+
   <style>
-    :root {
-      --accent-1: #ff0040;
-      --accent-2: #ff6600;
-      --bg-1: #0f0f0f;
-      --bg-2: #1c1c1c;
+    :root{
+      --red-strong: #ff0040;
+      --red-mid: #ff4d4d;
+      --gold: #ffd166;
+      --bg-dark-1: #0c0c0c;
+      --bg-dark-2: #141313;
       --muted: #f5f5f5;
+      --glass: rgba(255,255,255,0.03);
     }
 
-    html, body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
+    /* Reset & base */
+    *{box-sizing: border-box}
+    html,body{height:100%;margin:0;padding:0}
+    body{
+      font-family: 'Open Sans', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      color:var(--muted);
+      line-height:1.6;
+      background: radial-gradient(1200px 600px at 10% 12%, rgba(255,20,60,0.06), transparent 8%),
+                  radial-gradient(900px 500px at 85% 85%, rgba(255,177,102,0.03), transparent 10%),
+                  linear-gradient(180deg, var(--bg-dark-1) 0%, var(--bg-dark-2) 100%);
+      overflow-x:hidden;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+
+      /* prevent text selection */
+      -webkit-user-select:none;
+      -moz-user-select:none;
+      -ms-user-select:none;
+      user-select:none;
     }
 
-    body {
-      font-family: 'Open Sans', sans-serif;
-      background: linear-gradient(135deg, var(--bg-1), var(--bg-2));
-      color: var(--muted);
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-
-      /* 🚫 Prevent text selection */
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
+    /* Canvas sits behind everything */
+    #particles {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.9;
     }
 
-    img { pointer-events: none; }
-
-    header {
-      text-align: center;
-      padding: 80px 20px;
-      background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
-      color: #fff;
+    /* Top floating transparent nav */
+    nav{
+      position: fixed;
+      top: 14px;
+      left:50%;
+      transform: translateX(-50%);
+      z-index: 40;
+      display:flex;
+      gap:18px;
+      align-items:center;
+      padding:8px 18px;
+      background: rgba(10,10,10,0.35);
+      border-radius: 999px;
+      backdrop-filter: blur(8px) saturate(120%);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.45);
+      border: 1px solid rgba(255,255,255,0.03);
     }
 
-    header h1 {
+    nav .brand {
+      font-family: 'Playfair Display', serif;
+      color: var(--gold);
+      font-weight:700;
+      font-size:1.05rem;
+      padding-right:8px;
+      border-right:1px solid rgba(255,255,255,0.03);
+      margin-right:10px;
+    }
+
+    nav a {
+      color: rgba(255,215,140,0.95);
+      text-decoration:none;
+      font-weight:600;
       font-family: 'Oswald', sans-serif;
-      font-size: 3rem;
-      margin: 0 0 0.2em;
-      text-transform: uppercase;
-      letter-spacing: 2px;
+      font-size:0.95rem;
+      padding:6px 8px;
+      transition: color .22s ease, transform .15s ease;
+    }
+    nav a:hover{ color: var(--red-mid); transform: translateY(-2px); }
+
+    /* Header / hero */
+    header{
+      position:relative;
+      z-index:20;
+      text-align:center;
+      padding:110px 20px 72px;
+      margin-bottom:20px;
     }
 
-    .tagline {
-      font-family: 'Rock Salt', cursive;
-      font-size: 2.2rem;
-      margin: 0.25em 0 0.4em;
-      color: #ffffff;
-      text-shadow: 0 0 8px var(--accent-1), 0 0 12px var(--accent-2);
+    header .hero-inner{
+      max-width:980px;
+      margin:0 auto;
     }
 
-    .author {
-      font-size: 1.2rem;
-      font-weight: bold;
-      color: #fff;
-      text-shadow: 0 0 6px var(--accent-1), 0 0 10px var(--accent-2);
+    header h1{
+      font-family:'Playfair Display', serif;
+      font-size:3.6rem;
+      margin:0 0 8px;
+      color:var(--gold);
+      letter-spacing:0.5px;
+      text-shadow: 0 6px 28px rgba(255,80,100,0.06), 0 2px 6px rgba(0,0,0,0.6);
+      transform-origin:center center;
     }
 
-    header .byline {
-      font-size: 1rem;
-      opacity: 0.95;
-      margin-top: 0.6em;
+    .tagline{
+      font-family:'Playfair Display', serif;
+      color: var(--red-mid);
+      font-size:1.4rem;
+      margin:0 0 12px;
+      text-shadow: 0 2px 14px rgba(255,77,77,0.06);
     }
 
-    main {
-      max-width: 980px;
-      margin: 36px auto;
-      padding: 0 20px 60px;
+    .byline{
+      font-weight:600;
+      color: rgba(255,255,255,0.92);
+      background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      display:inline-block;
+      padding:8px 14px;
+      border-radius:999px;
+      font-size:0.98rem;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.5);
     }
 
-    h2 {
+    header .author {
+      margin-top:10px;
+      color:#fff;
+      font-weight:700;
+      font-size:1rem;
+      text-shadow: 0 0 10px rgba(255,77,77,0.06);
+    }
+
+    /* Main container */
+    main{
+      position:relative;
+      z-index:20;
+      max-width:980px;
+      margin:24px auto 60px;
+      padding:0 20px;
+    }
+
+    section{
+      padding:42px 0;
+      border-bottom:1px solid rgba(255,255,255,0.03);
+      animation: fadeInUp .9s ease both;
+    }
+
+    section h2{
+      font-family:'Oswald', sans-serif;
+      color: var(--red-strong);
+      font-size:1.5rem;
+      margin:0 0 12px;
+    }
+
+    section p, section ul { font-size:1rem; color: rgba(255,255,255,0.95); margin:0 0 10px; }
+
+    ul{ padding-left:18px; }
+    ul li{ margin:8px 0 }
+
+    /* Buttons */
+    .btn{
+      display:inline-block;
+      margin-top:16px;
+      margin-right:8px;
+      padding:10px 18px;
+      border-radius:28px;
+      text-decoration:none;
+      font-weight:700;
+      color:#111;
+      background: linear-gradient(45deg, var(--red-strong), var(--gold));
+      box-shadow: 0 8px 28px rgba(255,85,100,0.07), 0 0 10px rgba(255,200,80,0.06);
+      transition: transform .18s ease, box-shadow .18s ease, opacity .18s ease;
       font-family: 'Oswald', sans-serif;
-      font-size: 1.6rem;
-      margin-bottom: 10px;
-      color: var(--accent-1);
+    }
+    .btn:hover{ transform: translateY(-4px) scale(1.02); box-shadow: 0 20px 40px rgba(255,120,100,0.12); opacity:0.98; }
+
+    /* Contact anchor for navigation */
+    #contact { scroll-margin-top:90px; }
+
+    /* Footer */
+    footer{
+      text-align:center;
+      padding:26px 12px;
+      background: linear-gradient(180deg, rgba(255,0,64,0.02), rgba(0,0,0,0.2));
+      color: rgba(255,255,255,0.8);
+      border-top:1px solid rgba(255,255,255,0.03);
+      z-index:20;
+    }
+    footer strong { color: var(--gold); }
+
+    /* Responsive tweaks */
+    @media (max-width:880px){
+      header h1 { font-size:2.6rem; }
+      .tagline { font-size:1.15rem; }
+      nav { gap:12px; padding:8px 12px; }
+    }
+    @media (max-width:520px){
+      header{ padding:80px 18px 40px; }
+      header h1{ font-size:2rem; }
+      .byline{ font-size:0.92rem; padding:7px 12px; }
+      .btn{ padding:9px 14px; font-size:0.95rem; border-radius:22px; }
+      nav a{ font-size:0.86rem; }
     }
 
-    a.btn {
-      display: inline-block;
-      margin-top: 14px;
-      margin-right: 10px;
-      padding: 10px 18px;
-      border-radius: 30px;
-      text-decoration: none;
-      font-weight: 600;
-      color: #fff;
-      background: var(--accent-1);
-      transition: background 0.25s ease, box-shadow 0.25s ease;
-      box-shadow: 0 0 8px var(--accent-1), 0 0 14px var(--accent-2);
+    /* Fade-in up animation */
+    @keyframes fadeInUp{
+      from { opacity:0; transform: translateY(18px) }
+      to { opacity:1; transform: translateY(0) }
     }
 
-    a.btn:hover {
-      background: var(--accent-2);
-      box-shadow: 0 0 12px var(--accent-2), 0 0 20px var(--accent-1);
-    }
+    /* subtle focus outline for accessibility on links */
+    a:focus { outline: 3px solid rgba(255,215,120,0.14); outline-offset:4px; border-radius:6px; }
 
-    footer {
-      text-align: center;
-      padding: 20px;
-      background: #111;
-      color: #777;
-      font-size: 0.9rem;
-      margin-top: 40px;
-    }
-
-    footer a {
-      color: var(--accent-2);
-      text-decoration: none;
-    }
-
-    footer a:hover {
-      color: var(--accent-1);
-    }
-
-    @media (max-width: 520px) {
-      header h1 { font-size: 2.2rem; }
-      .tagline { font-size: 1.6rem; }
-    }
   </style>
 
+  <!-- Lightweight copy/screenshot protections & keyboard blocks -->
   <script>
-    // Disable right-click and copy
-    document.addEventListener("contextmenu", event => event.preventDefault());
-    document.addEventListener("copy", event => {
-      event.preventDefault();
-      alert("Copying is disabled on this page!");
-    });
-    document.addEventListener("keydown", function (e) {
-      if (e.key === "PrintScreen") {
+    // disable right-click
+    document.addEventListener("contextmenu", e => { e.preventDefault(); });
+
+    // disable copy
+    document.addEventListener("copy", e => { e.preventDefault(); alert("Copying is disabled on this page!"); });
+
+    // block common developer hotkeys (gentle)
+    document.addEventListener("keydown", function(e){
+      // block Ctrl+U, Ctrl+Shift+I, Ctrl+Shift+C, Ctrl+Shift+J, F12
+      if ((e.ctrlKey && e.key === 'u') ||
+          (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'C' || e.key === 'J')) ||
+          e.key === 'F12') {
+        e.preventDefault();
+        alert("Shortcuts are disabled!");
+      }
+      // detect PrintScreen
+      if (e.key === 'PrintScreen') {
+        e.preventDefault();
         alert("Screenshots are disabled!");
-        navigator.clipboard.writeText("");
+        try { navigator.clipboard.writeText(''); } catch(e){}
       }
     });
   </script>
-</head>
 
+</head>
 <body>
+
+  <!-- Particles canvas (behind content) -->
+  <canvas id="particles"></canvas>
+
+  <!-- Nav -->
+  <nav aria-label="Main navigation">
+    <div class="brand">PV.</div>
+    <a href="#">Home</a>
+    <a href="shayari.html">Shayari</a>
+    <a href="poems.html">Poems</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <!-- Hero -->
   <header>
-    <h1>Wildness Unleashed</h1>
-    <p class="tagline">"Chaos Into Creation."</p>
-    <p class="author">-By <strong>Pranjal Vats</strong></p>
-    <p class="byline">Turning imperfections into something bold, wild, and free.</p>
+    <div class="hero-inner">
+      <h1>Wildness Unleashed</h1>
+      <div class="tagline">"Chaos Into Creation."</div>
+      <div class="byline">Turning imperfections into something bold, wild, and free.</div>
+      <div class="author">-By <strong>Pranjal Vats</strong></div>
+      <div style="margin-top:18px;">
+        <a class="btn" href="shayari.html">🖊️ Mehfill</a>
+        <a class="btn" href="poems.html">✒️ Read My Poems</a>
+      </div>
+    </div>
   </header>
 
   <main>
-    <!-- About Section -->
-    <section>
+
+    <!-- About -->
+    <section id="about">
       <h2>About Me</h2>
-      <p>
-        Hi, I’m Pranjal 👋  
-        I believe perfection doesn't exist 🚫✨ — it’s the flaws, experiments, and wild ideas that shape who I am and where I’m going.  
-        Wildness Unleashed is my corner of the internet 🌍 — where I turn Chaos into Creation 🌈, building my brand, sharing my journey, and connecting with those who dare to chase their own wild side 🔥💥.
-      </p>
+      <p>Hi, I’m Pranjal 👋 I believe perfection doesn't exist — it’s the flaws, experiments, and wild ideas that shape who I am and where I’m going. Wildness Unleashed is my corner of the internet 🌍 — where I turn Chaos into Creation, build my brand, and share work that matters.</p>
     </section>
 
     <!-- Projects -->
-    <section>
+    <section id="projects">
       <h2>Projects</h2>
       <ul>
-        <li><strong>Dream Journal</strong> — My writings, thoughts, and untamed ideas ⚔️</li>
-        <li><strong>Future Brand</strong> — A journey where my name itself becomes a mark 👑</li>
+        <li><strong>Dream Journal</strong> — My writings, thoughts, and untamed ideas.</li>
+        <li><strong>Future Brand</strong> — A journey where my name itself becomes a mark.</li>
       </ul>
     </section>
 
     <!-- Description -->
-    <section>
+    <section id="description">
       <h2>Description</h2>
-      <p>
-        My projects are sparks of rebellion, wild experiments, and bold ideas that shape who I am becoming.  
-        Each one is a piece of my journey — from raw thoughts scribbled in a journal to visions that may one day become brands, movements, or revolutions 🌪️⚡
-      </p>
-      <a class="btn" href="shayari.html">🖊️ Mehfill</a>
-      <a class="btn" href="trilogy.html">⏳ Time Special</a>
-      <a class="btn" href="poems.html">✒️ Read My Poems</a>
-      <a class="btn" href="Shortpem.html">⚡ Quick Strikes</a>
-      <a class="btn" href="naturepoems.html">🍃 Roots and Rhythms</a>
+      <p>My projects are sparks of rebellion, wild experiments, and bold ideas that shape who I am becoming. Each one is a piece of my journey — from raw thoughts scribbled in a journal to visions that may one day become brands, movements, or revolutions.</p>
+
+      <div style="margin-top:12px;">
+        <a class="btn" href="shayari.html">🖊️ Mehfill</a>
+        <a class="btn" href="trilogy.html">⏳ Time Special</a>
+        <a class="btn" href="Shortpem.html">⚡ Quick Strikes</a>
+        <a class="btn" href="naturepoems.html">🍃 Roots & Rhythms</a>
+      </div>
     </section>
 
-    <!-- 🩸 New Section: Villainous Verses -->
-    <section>
+    <!-- Villainous Verses -->
+    <section id="villain">
       <h2>🩸 Villainous Verses</h2>
-      <p>
-        For every hero’s tale, there lies a shadow.  
-        <strong>“The Villain I Became”</strong> is a reflection on broken crowns, inner chaos, and the beauty of embracing your own darkness.  
-        Because sometimes, being the villain is just another way to rise ⚔️🔥
-      </p>
-      <a class="btn" href="villain.html">Read The Villain I Became 💔⚡</a>
+      <p>For every hero’s tale, there lies a shadow. <strong>“The Villain I Became”</strong> is a reflection on broken crowns, inner chaos, and the beauty of embracing your own darkness.</p>
+      <a class="btn" href="villain.html">Read The Villain I Became</a>
     </section>
 
-    <!-- 🌙 New Section: Unproven Peace -->
-    <section>
+    <!-- Unproven Peace -->
+    <section id="unproven">
       <h2>🌙 Unproven Peace</h2>
-      <p>
-        <strong>“Enough, At Last”</strong> is a soft rebellion — a quiet surrender to self-acceptance.  
-        It’s about stepping off the stage, letting go of validation, and finally living for yourself.  
-        A peace that doesn’t need to be proven — only felt ✨🌿
-      </p>
-      <a class="btn" href="unproven.html">Read Enough, At Last 🌌</a>
+      <p><strong>“Enough, At Last”</strong> is a soft rebellion — a quiet surrender to self-acceptance and living for yourself. A peace that doesn’t need to be proven — only felt.</p>
+      <a class="btn" href="unproven.html">Read Enough, At Last</a>
     </section>
 
     <!-- Contact -->
-    <section>
+    <section id="contact">
       <h2>Contact</h2>
-      <p>Let’s connect!</p>
+      <p>Let’s connect! Reach out for collaborations, commissions or just to say hi.</p>
       <a class="btn" href="mailto:wildness.unleashed12@gmail.com">📩 Contact Me</a>
     </section>
+
   </main>
 
   <footer>
     <p>© 2025 Wildness Unleashed — Built by <strong>Pranjal Vats</strong></p>
   </footer>
+
+  <!-- Particles script (lightweight canvas) -->
+  <script>
+    (function(){
+      const canvas = document.getElementById('particles');
+      const ctx = canvas.getContext('2d');
+      let w = canvas.width = window.innerWidth;
+      let h = canvas.height = window.innerHeight;
+      const num = Math.min(100, Math.floor((w*h)/90000)); // scale density with size
+      const particles = [];
+
+      function rand(min,max){ return Math.random()*(max-min)+min; }
+
+      function init(){
+        particles.length = 0;
+        for(let i=0;i<num;i++){
+          particles.push({
+            x: rand(0,w),
+            y: rand(0,h),
+            r: rand(0.8,3.2),
+            vx: rand(-0.15,0.15),
+            vy: rand(0.1,0.9),
+            alpha: rand(0.2,0.95),
+            phase: rand(0,Math.PI*2)
+          });
+        }
+      }
+
+      function resize(){
+        w = canvas.width = window.innerWidth;
+        h = canvas.height = window.innerHeight;
+        init();
+      }
+
+      window.addEventListener('resize', resize);
+
+      function draw(){
+        ctx.clearRect(0,0,w,h);
+        // subtle vignette overlay
+        ctx.save();
+        const grd = ctx.createLinearGradient(0,0,w,h);
+        grd.addColorStop(0,'rgba(255,20,60,0.01)');
+        grd.addColorStop(0.7,'rgba(0,0,0,0)');
+        ctx.fillStyle = grd;
+        ctx.fillRect(0,0,w,h);
+        ctx.restore();
+
+        particles.forEach(p => {
+          p.x += p.vx;
+          p.y += p.vy;
+          p.phase += 0.01;
+          // wrap around
+          if(p.y > h + 20) { p.y = -10; p.x = rand(0,w); }
+          if(p.x < -20) p.x = w + 20;
+          if(p.x > w + 20) p.x = -20;
+
+          // twinkle
+          const alpha = p.alpha * (0.6 + 0.4 * Math.sin(p.phase));
+
+          ctx.beginPath();
+          ctx.fillStyle = `rgba(255,215,120,${alpha})`; // gold tone
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+          ctx.fill();
+        });
+        requestAnimationFrame(draw);
+      }
+
+      init();
+      draw();
+    })();
+  </script>
+
+  <!-- Smooth scroll for internal links -->
+  <script>
+    document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
+      anchor.addEventListener('click', function(e){
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if(target){
+          target.scrollIntoView({ behavior:'smooth', block:'start' });
+        } else {
+          // if it's just "#", go to top
+          window.scrollTo({ top:0, behavior:'smooth' });
+        }
+      });
+    });
+  </script>
+
 </body>
 </html>
