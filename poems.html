@@ -1,127 +1,476 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Poems by Pranjal Vats</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Wild Verses — By Pranjal Vats 🌻</title>
+
+<!-- Fonts (kept minimal) -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-body {
-  margin: 0;
-  font-family: 'Poppins', sans-serif;
-  background: #000;
-  color: #fff;
-}
+  :root{
+    --red:#ff1744;
+    --red-strong:#ff0040;
+    --gold:#FFD700;
+    --bg-dark:#0d0d0d;
+    --card-bg:#111111;
+    --muted:#f5f5f5;
+  }
 
-/* NAVIGATION BAR */
-.navbar {
-  background: #111;
-  border-bottom: 2px solid #ff1744;
-  padding: 0.8rem 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  box-shadow: 0 0 15px #ff1744aa;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
+  html,body{height:100%;margin:0;}
+  body{
+    background: radial-gradient(circle at 10% 10%, rgba(255,20,68,0.04) 0%, transparent 10%),
+                radial-gradient(circle at 90% 90%, rgba(255,209,102,0.03) 0%, transparent 12%),
+                linear-gradient(180deg,#070707 0%, #0d0d0d 100%);
+    color:var(--muted);
+    font-family:'Open Sans',system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    overflow-y:auto;
+  }
 
-.navbar h1 {
-  color: gold;
-  margin: 0;
-  font-size: 1.6rem;
-  letter-spacing: 1px;
-}
+  /* subtle particle canvas sits behind content */
+  #particle-canvas{
+    position:fixed;
+    inset:0;
+    z-index:0;
+    pointer-events:none;
+    opacity:0.28;
+    mix-blend-mode: screen;
+  }
 
-.nav-links a {
-  color: #fff;
-  text-decoration: none;
-  margin: 0 1rem;
-  font-weight: 500;
-  transition: color 0.3s;
-}
+  /* NAVBAR (matches index style) */
+  .navbar{
+    position:sticky;
+    top:0;
+    z-index:30;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:1rem;
+    padding:14px 20px;
+    background:rgba(0,0,0,0.45);
+    backdrop-filter: blur(6px);
+    border-bottom:2px solid rgba(255,23,68,0.06);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+  }
+  .brand{
+    display:flex;
+    gap:12px;
+    align-items:center;
+  }
+  .brand .logo{
+    font-family:'Playfair Display',serif;
+    color:var(--gold);
+    font-weight:700;
+    font-size:1.1rem;
+    letter-spacing:0.6px;
+  }
+  .nav-links{
+    display:flex;
+    gap:12px;
+    align-items:center;
+    flex-wrap:wrap;
+    overflow:auto;
+  }
+  .nav-links a{
+    color:var(--muted);
+    text-decoration:none;
+    padding:8px 12px;
+    border-radius:22px;
+    font-weight:600;
+    white-space:nowrap;
+    transition: all .18s ease;
+  }
+  .nav-links a:hover{ color:var(--gold); background: rgba(255,23,68,0.04); }
 
-.nav-links a:hover {
-  color: gold;
-}
+  /* Page header */
+  header.page-head{
+    text-align:center;
+    padding:42px 18px 6px;
+    z-index:10;
+    position:relative;
+  }
+  header.page-head h1{
+    margin:0;
+    font-family:'Playfair Display', serif;
+    color:var(--gold);
+    font-size:2.25rem;
+    letter-spacing:0.6px;
+  }
+  header.page-head p.subtitle{
+    margin:8px 0 0;
+    color:#ffd;
+    opacity:0.88;
+    font-size:1rem;
+  }
 
-/* POEM CARDS */
-.poem-card {
-  background: #111;
-  border: 2px solid #ff1744; /* red border */
-  border-radius: 12px;
-  padding: 1.5rem;
-  margin: 2rem;
-  box-shadow: 0 0 12px #ff1744aa;
-}
+  /* main wrapper */
+  main{
+    position:relative;
+    z-index:10;
+    max-width:1100px;
+    margin:22px auto 80px;
+    padding:0 20px;
+  }
 
-.poem-card h2 {
-  color: gold; /* title in gold */
-  text-align: center;
-  margin-bottom: 1rem;
-}
+  /* poems list: cards stacked, but grid-like spacing */
+  .poems-list{ display:grid; grid-template-columns: 1fr; gap:18px; }
 
-.poem-content {
-  color: #ffffff; /* poem text white */
-  text-align: center;
-  font-size: 1.1rem;
-  max-height: 12em; /* initial height */
-  overflow: hidden;
-  transition: max-height 0.5s ease;
-}
+  .poem-card{
+    background:var(--card-bg);
+    border:2px solid var(--red);
+    border-radius:14px;
+    padding:20px;
+    box-shadow: 0 10px 30px rgba(255,23,68,0.06);
+    transition: transform .18s ease, box-shadow .18s ease;
+    overflow:visible;
+  }
+  .poem-card:hover{ transform: translateY(-6px); box-shadow: 0 18px 40px rgba(255,23,68,0.10); }
 
-.poem-card.expanded .poem-content {
-  max-height: 100em; /* expand to full */
-}
+  .poem-title{
+    margin:0 0 10px;
+    text-align:center;
+    color:var(--gold);
+    font-family:'Playfair Display', serif;
+    font-size:1.25rem;
+    letter-spacing:0.3px;
+  }
 
-.author {
-  text-align: center;
-  margin-top: 1rem;
-  font-weight: bold;
-  color: #f5f5f5;
-  font-size: 1rem;
-  user-select: none;
-}
+  .poem-content{
+    color:#ffffff;
+    white-space:pre-line;
+    line-height:1.65;
+    font-size:1.05rem;
+    max-height:none; /* we'll control via class for small screens */
+    overflow:hidden;
+    transition: max-height .35s ease;
+  }
 
-/* Read More button */
-.read-more-btn {
-  display: block;
-  margin: 10px auto 0;
-  padding: 6px 16px;
-  border-radius: 20px;
-  background: #ff1744;
-  color: #fff;
-  font-weight: bold;
-  cursor: pointer;
-  width: fit-content;
-  transition: 0.3s;
-}
+  .author{
+    margin-top:14px;
+    color:var(--muted);
+    text-align:center;
+    font-weight:600;
+  }
 
-.read-more-btn:hover {
-  background: #ff5252;
-}
+  .read-toggle{
+    display:block;
+    margin:14px auto 0;
+    text-align:center;
+    color:var(--red);
+    background:linear-gradient(90deg,var(--red),var(--red-strong));
+    color:#fff;
+    padding:8px 18px;
+    border-radius:999px;
+    width:max-content;
+    cursor:pointer;
+    font-weight:700;
+    border:none;
+  }
+  .read-toggle:hover{ filter:brightness(1.05); transform:translateY(-2px); }
+
+  /* collapsed behavior on small screens: hide long text by default */
+  @media (max-width:900px){
+    .poem-content{ max-height:10.5em; } /* show first ~10-11 lines */
+    .poem-card.expanded .poem-content{ max-height:2000px; }
+  }
+  /* desktop: expand all by default */
+  @media (min-width:900px){
+    .read-toggle{ display:none; }
+  }
+
+  /* bottom home button (styled like your site) */
+  .home-btn{
+    display:block;
+    margin:30px auto 80px;
+    width:fit-content;
+    padding:10px 20px;
+    background: linear-gradient(90deg,var(--red),var(--red-strong));
+    color:#fff;
+    text-decoration:none;
+    border-radius:28px;
+    font-weight:700;
+  }
+
+  /* small screens adjust */
+  @media (max-width:520px){
+    header.page-head h1{ font-size:1.6rem; }
+    .poem-card{ padding:16px; margin:14px; border-radius:10px; }
+    .poem-title{ font-size:1.05rem; }
+    .poem-content{ font-size:1rem; }
+    .navbar{ padding:10px 12px; }
+  }
 </style>
 </head>
-
 <body>
 
-<!-- 🔹 NAVBAR -->
-<nav class="navbar">
-  <h1>Pranjal Vats ✨</h1>
-  <div class="nav-links">
-    <a href="#home">Home</a>
-    <a href="#poems">Poems</a>
-    <a href="#about">About</a>
-    <a href="#contact">Contact</a>
+<!-- particle background canvas -->
+<canvas id="particle-canvas"></canvas>
+
+<!-- NAVBAR (full like index.html) -->
+<nav class="navbar" role="navigation" aria-label="Main navigation">
+  <div class="brand">
+    <div class="logo">PV.</div>
+  </div>
+
+  <div class="nav-links" role="menubar">
+    <a href="index.html" role="menuitem">Home</a>
+    <a href="shayari.html" role="menuitem">Mehfill</a>
+    <a href="poems.html" role="menuitem" aria-current="page">Poems</a>
+    <a href="villain.html" role="menuitem">Shadows</a>
+    <a href="unproven.html" role="menuitem">Stillness</a>
+    <a href="trilogy.html" role="menuitem">Time Special</a>
+    <a href="Shortpem.html" role="menuitem">Quick Strikes</a>
+    <a href="naturepoems.html" role="menuitem">Roots &amp; Rhythms</a>
+    <a href="mailto:wildness.unleashed12@gmail.com" role="menuitem">Contact</a>
   </div>
 </nav>
 
-<!-- 🔹 POEMS -->
-<section id="poems">
-<article class="poem-card">
-  <h2>Running on Empty 🕯️</h2>
-  <p class="poem-content">
+<header class="page-head" id="home">
+  <h1>Wild Verses — By Pranjal Vats 🌻</h1>
+  <p class="subtitle">Collected stanzas — raw, reflective, and relentless.</p>
+</header>
+
+<main>
+  <section class="poems-list" id="poems">
+
+    <!-- 1 — Will I Regret??? -->
+    <article class="poem-card">
+      <h2 class="poem-title">Will I Regret???</h2>
+      <div class="poem-content">
+Will I regret the times I stalled,  
+The chances missed, the dreams I called—  
+Then left unheard, beneath my doubt,  
+Too scared to scream, too worn to shout?  
+
+Will I regret the work half-done,  
+The races lost I could have won?  
+The lazy days, the fleeting fire,  
+The faded edge of once desire?  
+
+I tell myself, "You'll make it still,"  
+But time won't pause for fading will.  
+Each hour that slips through idle hands,  
+Could build the life my soul demands.  
+
+Will I regret not giving all,  
+When I still had the strength to fall—  
+And rise again, with dirt and grace,  
+Instead of quitting at half pace?  
+
+But maybe… maybe I will learn,  
+That purpose isn't always stern.  
+That stumbles count, that trying slow,  
+Still leads somewhere—still helps me grow.  
+
+So will I regret? The fear runs deep,  
+But I’ll build something I can keep.  
+Not perfect paths or flawless days—  
+But truth I lived in flawed, real ways.
+      </div>
+      <div class="author">— By Pranjal Vats 🌻</div>
+      <button class="read-toggle" onclick="toggleCard(this)">Read More ▼</button>
+    </article>
+
+    <!-- 2 — Like Salt -->
+    <article class="poem-card">
+      <h2 class="poem-title">Like Salt 🧂</h2>
+      <div class="poem-content">
+I am like salt, simple and small,  
+Yet I blend in quietly, touching all.  
+In every dish, in every soul,  
+I never seek to take control.  
+
+Too little of me—you’ll feel the lack,  
+A silent space, a subtle crack.  
+Too much—and I’ll sting the tongue,  
+A harmony lost, a song unsung.  
+
+I walk with fire, laugh with rain,  
+Ease your joy, and soothe your pain.  
+I don’t need to shine or lead,  
+Just be the part that others need.  
+
+From the richest plate to the poorest fare,  
+You’ll find my spirit lingering there.  
+Not loud or proud, but always true—  
+A silent strength that carries through.  
+
+I shift, I mold, I find my place,  
+In every heart, in every space.  
+Call me humble, or call me wise—  
+I am salt—small, but I rise.
+      </div>
+      <div class="author">— By Pranjal Vats 🌻</div>
+      <button class="read-toggle" onclick="toggleCard(this)">Read More ▼</button>
+    </article>
+
+    <!-- 3 — Clockwork Days -->
+    <article class="poem-card">
+      <h2 class="poem-title">Clockwork Days ⏰</h2>
+      <div class="poem-content">
+Tick-tock, tick-tock — the rhythm never sways,  
+I rise and fall in endless, numbered days.  
+A cog inside a giant, silent wheel,  
+No room to laugh, no time to feel.  
+
+Same street, same step, same weary breath,  
+Each hour chimes a little death.  
+Eyes on the screen, hands to the task,  
+Beneath this skin, I wear a mask.  
+
+No curveballs thrown, no sudden skies,  
+Just blinking lights and tired eyes.  
+Coffee, calls, and empty talk,  
+Life reduced to a daily walk.  
+
+No dance, no detour, no surprise,  
+Just routine dressed in a thin disguise.  
+A robot’s grace, a rusted soul,  
+Marching on to someone else’s goal.  
+
+I dream of mess, of wild delight,  
+Of losing track of day and night.  
+Of roads unplanned, of skies unknown,  
+Of moments I can call my own.  
+
+But still I tick, I tock, I turn,  
+A silent ache, a buried yearn.  
+For now, I move where I'm supposed to be,  
+But deep inside — I long to break free.
+      </div>
+      <div class="author">— By Pranjal Vats 🌻</div>
+      <button class="read-toggle" onclick="toggleCard(this)">Read More ▼</button>
+    </article>
+
+    <!-- 4 — What Will Happen? -->
+    <article class="poem-card">
+      <h2 class="poem-title">What Will Happen? 🤔</h2>
+      <div class="poem-content">
+I'm trying, yes, but not my best,  
+A silent war inside my chest.  
+I know the cost, I know the stakes,  
+Still find myself making mistakes.  
+
+I want to rise, I want to prove,  
+But some days I just cannot move.  
+When fire burns, I give my all,  
+When it goes dim, I slip, I fall.  
+
+Motivation—fickle friend,  
+Here one day, then meets its end.  
+When it’s strong, I scale the sky,  
+When it fades, I barely try.  
+
+I ask myself, “What will this mean?”  
+Will I be lost in might-have-beens?  
+Will dreams decay in silent rust,  
+All for a lack of constant trust?  
+
+But deep inside, beneath the doubt,  
+A voice still whispers, strong and loud:  
+“You are not made of perfect days,  
+But strength is shown in flawed displays.”  
+
+So what will happen? Time will say,  
+But I will rise in my own way.
+      </div>
+      <div class="author">— By Pranjal Vats 🌻</div>
+      <button class="read-toggle" onclick="toggleCard(this)">Read More ▼</button>
+    </article>
+
+    <!-- 5 — I Am the Storm -->
+    <article class="poem-card">
+      <h2 class="poem-title">I Am the Storm 🌪️</h2>
+      <div class="poem-content">
+I was the quiet one, eyes full of flame,  
+Now they all shiver when they hear my name.  
+Mocked my dreams? Well, joke’s on you—  
+I built a throne from the shade you threw.  
+
+Didn’t fit in? I never tried.  
+Kings don’t blend, they multiply pride.  
+Now I walk in with that “don’t-care” grin,  
+And a fire so fierce, I burn to win.  
+
+Friends turned rivals, haters in disguise,  
+Watch me rise while they rehearse lies.  
+I don’t flex cheap—I let my life scream,  
+Luxury’s my silence, success is my scream.  
+
+Call it revenge? I call it fate.  
+You doubted gold ‘cause you saw it in slate.  
+Now I shine like a war god’s crown,  
+Watch me buy what once brought me down.  
+
+No more limits, no second guess,  
+I’m the calm chaos in tailored finesse.  
+Spent too long being their maybe, their "not quite”—  
+Now I’m first-class flying into every fight.  
+
+I’m the answer to every eye that rolled,  
+The living proof that stories unfold  
+Not in their hands, not in their say—  
+But in the silence of those who slay.  
+
+You want humble? That phase is dead.  
+Now I live bold, paint the skyline red.  
+I'm not just rich—I'm out of your league,  
+A walking revenge in designer intrigue.  
+
+So when they ask, “How did you win?”  
+I’ll smirk and say, “By never giving in.”  
+Let my glow blind every fake smile swarm—  
+I didn’t chase the light. I became the storm.
+      </div>
+      <div class="author">— By Pranjal Vats 🌻</div>
+      <button class="read-toggle" onclick="toggleCard(this)">Read More ▼</button>
+    </article>
+
+    <!-- 6 — Salt in My Soul -->
+    <article class="poem-card">
+      <h2 class="poem-title">Salt in My Soul 🧂</h2>
+      <div class="poem-content">
+I’m not the flame that steals the scene,  
+Nor the velvet in a royal sheen.  
+I’m quiet strength, not loud or bold,  
+But without me, the story feels cold.  
+
+In laughter's feast or silence deep,  
+In moments loud or ones you keep,  
+I’m there—unseen but understood,  
+The touch that turns bland into good.  
+
+I sit with joy, I walk with grief,  
+I bring a pause, I grant relief.  
+I never beg, I never boast,  
+But I become what you need most.  
+
+With strangers, I am light and kind,  
+With friends, a peace they’re glad to find.  
+In chaos, I can hold the ground,  
+In stillness, I can wear the crown.  
+
+Adaptive, yes—yet still my core,  
+Unchanged though I’m asked for more.  
+I bend, but never disappear,  
+I'm felt the most when I'm sincere.  
+
+So taste and see—don’t rush or shove,  
+I’m best when measured, shared with love.  
+Not too much, nor barely there,  
+Just enough—and I’m everywhere.
+      </div>
+      <div class="author">— By Pranjal Vats 🌻</div>
+      <button class="read-toggle" onclick="toggleCard(this)">Read More ▼</button>
+    </article>
+
+    <!-- 7 — Running on Empty -->
+    <article class="poem-card">
+      <h2 class="poem-title">Running on Empty 🕯️</h2>
+      <div class="poem-content">
 I used to wake with fire in my chest,  
 Now it’s just weight that won’t let me rest.  
 My calendar's full, but my soul feels thin,  
@@ -146,14 +495,15 @@ But maybe rest is not defeat,
 Maybe pause is what makes strength complete.  
 I’ll learn to breathe, not just survive—  
 To stop, to heal, to feel alive.
-  </p>
-  <div class="author">— By Pranjal Vats 🌻</div>
-  <span class="read-more-btn" onclick="toggleRead(this)">Read More</span>
-</article>
+      </div>
+      <div class="author">— By Pranjal Vats 🌻</div>
+      <button class="read-toggle" onclick="toggleCard(this)">Read More ▼</button>
+    </article>
 
-<article class="poem-card">
-  <h2>The Pause ⏸️</h2>
-  <p class="poem-content">
+    <!-- 8 — The Pause -->
+    <article class="poem-card">
+      <h2 class="poem-title">The Pause ⏸️</h2>
+      <div class="poem-content">
 I gave and gave, then gave some more,  
 Till I forgot what I was doing it for.  
 Each win felt empty, joy ran dry,  
@@ -173,19 +523,93 @@ A softer voice I hadn’t heard.
 It’s okay to just float halfway.”  
 And in the quiet, I found my start—  
 Not in the doing, but in the heart.
-  </p>
-  <div class="author">— By Pranjal Vats 🌻</div>
-  <span class="read-more-btn" onclick="toggleRead(this)">Read More</span>
-</article>
-</section>
+      </div>
+      <div class="author">— By Pranjal Vats 🌻</div>
+      <button class="read-toggle" onclick="toggleCard(this)">Read More ▼</button>
+    </article>
 
+  </section>
+
+  <a class="home-btn" href="index.html">⬅ 🏠 Back to Home</a>
+</main>
+
+<!-- SCRIPTS -->
 <script>
-function toggleRead(btn) {
-  const article = btn.parentElement;
-  article.classList.toggle('expanded');
-  btn.textContent = article.classList.contains('expanded') ? "Read Less" : "Read More";
-}
-</script>
+/* Copy / right-click / selection prevention */
+document.addEventListener("contextmenu", e => e.preventDefault());
+document.addEventListener("selectstart", e => e.preventDefault());
+document.addEventListener("copy", e => { e.preventDefault(); alert("Copying is disabled on this page!"); });
+document.addEventListener("keydown", e => {
+  if(e.key === "PrintScreen"){
+    try { navigator.clipboard.writeText(''); } catch(e){}
+    alert("Screenshots are disabled!");
+  }
+});
 
+/* Read toggle for mobile (desktop hides the button and all cards are expanded) */
+function toggleCard(btn){
+  const card = btn.closest('.poem-card');
+  card.classList.toggle('expanded');
+  btn.textContent = card.classList.contains('expanded') ? 'Read Less ▲' : 'Read More ▼';
+}
+
+/* On load: expand all cards on wide screens so desktop shows full poems */
+function setInitialExpansion(){
+  const isWide = window.innerWidth >= 900;
+  document.querySelectorAll('.poem-card').forEach(card => {
+    if(isWide) {
+      card.classList.add('expanded');
+    } else {
+      card.classList.remove('expanded');
+    }
+  });
+}
+window.addEventListener('load', setInitialExpansion);
+window.addEventListener('resize', setInitialExpansion);
+
+/* Simple particle animation for background canvas */
+(function(){
+  const canvas = document.getElementById('particle-canvas');
+  if(!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let w = canvas.width = innerWidth;
+  let h = canvas.height = innerHeight;
+  const particles = [];
+  const COUNT = Math.round((w*h)/90000); // scale by viewport
+  for(let i=0;i<Math.max(18, COUNT);i++){
+    particles.push({
+      x: Math.random()*w,
+      y: Math.random()*h,
+      r: 0.6 + Math.random()*2.2,
+      vx: (Math.random()-0.5)*0.25,
+      vy: -0.15 - Math.random()*0.4,
+      alpha: 0.12 + Math.random()*0.25,
+      hue: 345 + Math.random()*20 // red-ish
+    });
+  }
+  function resize(){
+    w = canvas.width = innerWidth;
+    h = canvas.height = innerHeight;
+  }
+  window.addEventListener('resize', resize);
+  function draw(){
+    ctx.clearRect(0,0,w,h);
+    for(const p of particles){
+      p.x += p.vx;
+      p.y += p.vy;
+      if(p.y < -30) { p.y = h + 30; p.x = Math.random()*w; }
+      if(p.x < -30) p.x = w+30;
+      if(p.x > w+30) p.x = -30;
+      ctx.beginPath();
+      ctx.fillStyle = `hsla(${p.hue},80%,60%,${p.alpha})`;
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+      ctx.fill();
+    }
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+</script>
 </body>
 </html>
