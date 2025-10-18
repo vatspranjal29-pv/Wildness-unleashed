@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Wild Verses — By Pranjal Vats 🌻</title>
 
-<!-- Fonts (kept minimal) -->
+<!-- Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
@@ -30,7 +30,6 @@
     overflow-y:auto;
   }
 
-  /* subtle particle canvas sits behind content */
   #particle-canvas{
     position:fixed;
     inset:0;
@@ -40,7 +39,7 @@
     mix-blend-mode: screen;
   }
 
-  /* NAVBAR (matches index style) */
+  /* Navbar */
   .navbar{
     position:sticky;
     top:0;
@@ -54,11 +53,6 @@
     backdrop-filter: blur(6px);
     border-bottom:2px solid rgba(255,23,68,0.06);
     box-shadow: 0 6px 20px rgba(0,0,0,0.5);
-  }
-  .brand{
-    display:flex;
-    gap:12px;
-    align-items:center;
   }
   .brand .logo{
     font-family:'Playfair Display',serif;
@@ -85,7 +79,6 @@
   }
   .nav-links a:hover{ color:var(--gold); background: rgba(255,23,68,0.04); }
 
-  /* Page header */
   header.page-head{
     text-align:center;
     padding:42px 18px 6px;
@@ -106,17 +99,20 @@
     font-size:1rem;
   }
 
-  /* main wrapper */
   main{
     position:relative;
     z-index:10;
-    max-width:1100px;
+    max-width:1200px;
     margin:22px auto 80px;
     padding:0 20px;
   }
 
-  /* poems list: cards stacked, but grid-like spacing */
-  .poems-list{ display:grid; grid-template-columns: 1fr; gap:18px; }
+  /* poems grid 2 columns */
+  .poems-list{
+    display:grid;
+    grid-template-columns: repeat(auto-fit,minmax(460px,1fr));
+    gap:18px;
+  }
 
   .poem-card{
     background:var(--card-bg);
@@ -124,8 +120,8 @@
     border-radius:14px;
     padding:20px;
     box-shadow: 0 10px 30px rgba(255,23,68,0.06);
-    transition: transform .18s ease, box-shadow .18s ease;
     overflow:visible;
+    transition: transform .18s ease, box-shadow .18s ease;
   }
   .poem-card:hover{ transform: translateY(-6px); box-shadow: 0 18px 40px rgba(255,23,68,0.10); }
 
@@ -143,7 +139,7 @@
     white-space:pre-line;
     line-height:1.65;
     font-size:1.05rem;
-    max-height:none; /* we'll control via class for small screens */
+    max-height:none;
     overflow:hidden;
     transition: max-height .35s ease;
   }
@@ -159,7 +155,6 @@
     display:block;
     margin:14px auto 0;
     text-align:center;
-    color:var(--red);
     background:linear-gradient(90deg,var(--red),var(--red-strong));
     color:#fff;
     padding:8px 18px;
@@ -171,17 +166,14 @@
   }
   .read-toggle:hover{ filter:brightness(1.05); transform:translateY(-2px); }
 
-  /* collapsed behavior on small screens: hide long text by default */
   @media (max-width:900px){
-    .poem-content{ max-height:10.5em; } /* show first ~10-11 lines */
+    .poem-content{ max-height:10.5em; }
     .poem-card.expanded .poem-content{ max-height:2000px; }
   }
-  /* desktop: expand all by default */
   @media (min-width:900px){
     .read-toggle{ display:none; }
   }
 
-  /* bottom home button (styled like your site) */
   .home-btn{
     display:block;
     margin:30px auto 80px;
@@ -193,50 +185,37 @@
     border-radius:28px;
     font-weight:700;
   }
-
-  /* small screens adjust */
-  @media (max-width:520px){
-    header.page-head h1{ font-size:1.6rem; }
-    .poem-card{ padding:16px; margin:14px; border-radius:10px; }
-    .poem-title{ font-size:1.05rem; }
-    .poem-content{ font-size:1rem; }
-    .navbar{ padding:10px 12px; }
-  }
 </style>
 </head>
 <body>
 
-<!-- particle background canvas -->
 <canvas id="particle-canvas"></canvas>
 
-<!-- NAVBAR (full like index.html) -->
-<nav class="navbar" role="navigation" aria-label="Main navigation">
-  <div class="brand">
-    <div class="logo">PV.</div>
-  </div>
-
-  <div class="nav-links" role="menubar">
-    <a href="index.html" role="menuitem">Home</a>
-    <a href="shayari.html" role="menuitem">Mehfill</a>
-    <a href="poems.html" role="menuitem" aria-current="page">Poems</a>
-    <a href="villain.html" role="menuitem">Shadows</a>
-    <a href="unproven.html" role="menuitem">Stillness</a>
-    <a href="trilogy.html" role="menuitem">Time Special</a>
-    <a href="Shortpem.html" role="menuitem">Quick Strikes</a>
-    <a href="naturepoems.html" role="menuitem">Roots &amp; Rhythms</a>
-    <a href="mailto:wildness.unleashed12@gmail.com" role="menuitem">Contact</a>
+<!-- Navbar -->
+<nav class="navbar">
+  <div class="brand"><div class="logo">PV.</div></div>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="shayari.html">Mehfill</a>
+    <a href="poems.html" aria-current="page">Poems</a>
+    <a href="villain.html">Shadows</a>
+    <a href="unproven.html">Stillness</a>
+    <a href="trilogy.html">Time Special</a>
+    <a href="Shortpem.html">Quick Strikes</a>
+    <a href="naturepoems.html">Roots & Rhythms</a>
+    <a href="mailto:wildness.unleashed12@gmail.com">Contact</a>
   </div>
 </nav>
 
-<header class="page-head" id="home">
+<header class="page-head">
   <h1>Wild Verses — By Pranjal Vats 🌻</h1>
   <p class="subtitle">Collected stanzas — raw, reflective, and relentless.</p>
 </header>
 
 <main>
-  <section class="poems-list" id="poems">
+  <section class="poems-list">
 
-    <!-- 1 — Will I Regret??? -->
+    <!-- 1 -->
     <article class="poem-card">
       <h2 class="poem-title">Will I Regret???</h2>
       <div class="poem-content">
@@ -274,7 +253,7 @@ But truth I lived in flawed, real ways.
       <button class="read-toggle" onclick="toggleCard(this)">Read More ▼</button>
     </article>
 
-    <!-- 2 — Like Salt -->
+    <!-- 2 -->
     <article class="poem-card">
       <h2 class="poem-title">Like Salt 🧂</h2>
       <div class="poem-content">
@@ -307,7 +286,7 @@ I am salt—small, but I rise.
       <button class="read-toggle" onclick="toggleCard(this)">Read More ▼</button>
     </article>
 
-    <!-- 3 — Clockwork Days -->
+    <!-- 3 -->
     <article class="poem-card">
       <h2 class="poem-title">Clockwork Days ⏰</h2>
       <div class="poem-content">
@@ -345,7 +324,7 @@ But deep inside — I long to break free.
       <button class="read-toggle" onclick="toggleCard(this)">Read More ▼</button>
     </article>
 
-    <!-- 4 — What Will Happen? -->
+    <!-- 4 -->
     <article class="poem-card">
       <h2 class="poem-title">What Will Happen? 🤔</h2>
       <div class="poem-content">
@@ -381,7 +360,7 @@ But I will rise in my own way.
       <button class="read-toggle" onclick="toggleCard(this)">Read More ▼</button>
     </article>
 
-    <!-- 5 — I Am the Storm -->
+    <!-- 5 -->
     <article class="poem-card">
       <h2 class="poem-title">I Am the Storm 🌪️</h2>
       <div class="poem-content">
