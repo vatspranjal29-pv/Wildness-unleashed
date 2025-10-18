@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Stillness - Enough, At Last</title>
+  <title>Enough, At Last - Wildness Unleashed</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Open+Sans&family=Oswald:wght@500&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -98,6 +98,8 @@
       white-space: pre-line;
       color: rgba(255, 255, 255, 0.96);
     }
+    .btn { display:inline-block; margin-top:20px; padding:10px 18px; border-radius:28px; text-decoration:none; font-weight:700; color:#111; background: linear-gradient(45deg, #ff0040, #ffd166); transition: transform .18s ease; font-family: 'Oswald', sans-serif; }
+    .btn:hover { transform: translateY(-4px) scale(1.02); }
 
     footer {
       text-align: center;
@@ -105,21 +107,20 @@
       font-size: 0.9rem;
       color: rgba(255, 255, 255, 0.5);
     }
+    footer strong { color: #ffd166; }
 
-    /* Responsive adjustments */
     @media (max-width: 768px) {
-      nav {
-        flex-direction: column;
-        gap: 10px;
-      }
-      .nav-links {
-        justify-content: center;
-        gap: 14px;
-      }
+      nav { flex-direction: column; gap: 10px; }
+      .nav-links { justify-content: center; gap: 14px; }
       header h1 { font-size: 2.2rem; }
       .card { padding: 28px; }
     }
   </style>
+  <script>
+    document.addEventListener("contextmenu", e => e.preventDefault());
+    document.addEventListener("copy", e => { e.preventDefault(); alert("Copying is disabled!"); });
+    document.addEventListener("keydown", e => { if(e.key==='PrintScreen'){ try{ navigator.clipboard.writeText(''); }catch{}; alert("Screenshots disabled!"); }});
+  </script>
 </head>
 <body>
   <nav>
@@ -137,7 +138,7 @@
   </nav>
 
   <header>
-    <h1>Unproven</h1>
+    <h1>Stillness</h1>
     <p class="tagline">"Enough, At Last"</p>
     <p class="author">By Pranjal Vats 🌻</p>
   </header>
@@ -169,6 +170,7 @@ It blooms in silence, anyway.
 I am done proving what I am worth—  
 I was enough since my first breath on earth.
       </p>
+      <a class="btn" href="index.html">🏠 Back to Home</a>
     </div>
   </main>
 
