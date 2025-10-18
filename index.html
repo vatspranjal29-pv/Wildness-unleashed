@@ -47,20 +47,17 @@
       color:var(--gold);
       font-weight:700;
       font-size:1.05rem;
-    }
-
-    .menu-toggle {
-      display:none;
-      font-size:1.5rem;
-      color: var(--gold);
       cursor:pointer;
+      position:relative;
     }
 
     .nav-links {
       display:flex;
       gap:14px;
       align-items:center;
+      transition: max-height 0.3s ease, opacity 0.3s ease;
     }
+
     .nav-links a {
       color: rgba(255,215,140,0.95);
       text-decoration:none;
@@ -70,20 +67,31 @@
       padding:6px 8px;
       transition: color .22s ease, transform .15s ease;
     }
+
     .nav-links a:hover { color: var(--red-mid); transform: translateY(-2px); }
 
-    /* Mobile */
+    /* Mobile dropdown */
     @media(max-width:520px){
-      .menu-toggle { display:block; }
-      .nav-links { 
-        display:none; 
-        flex-direction:column; 
-        gap:12px; 
-        background: rgba(10,10,10,0.95); 
-        position:absolute; top:60px; left:50%; transform:translateX(-50%);
-        padding:12px 18px; border-radius:12px;
+      .nav-links {
+        position:absolute;
+        top:50px;
+        left:50%;
+        transform:translateX(-50%);
+        flex-direction:column;
+        background: rgba(10,10,10,0.95);
+        padding:12px 18px;
+        border-radius:12px;
+        gap:12px;
+        max-height:0;
+        overflow:hidden;
+        opacity:0;
+        pointer-events:none;
       }
-      .nav-links.active { display:flex; }
+      .nav-links.show {
+        max-height:500px;
+        opacity:1;
+        pointer-events:auto;
+      }
     }
 
     header{
@@ -167,16 +175,15 @@
       if(e.key === 'PrintScreen'){ try{ navigator.clipboard.writeText(''); } catch{}; alert("Screenshots disabled!"); }
     });
 
-    function toggleMenu(){
-      document.querySelector('.nav-links').classList.toggle('active');
+    function toggleMenu() {
+      document.querySelector('.nav-links').classList.toggle('show');
     }
   </script>
 </head>
 
 <body>
   <nav>
-    <div class="brand">PV.</div>
-    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    <div class="brand" onclick="toggleMenu()">PV.</div>
     <div class="nav-links">
       <a href="index.html">Home</a>
       <a href="shayari.html">Mehfill</a>
@@ -201,19 +208,18 @@
     <section id="about">
       <h2>About Me</h2>
       <p>
-        Hi, I’m Pranjal 👋  
-        I believe perfection is a myth 🚫✨ — it’s the experiments, flaws, and fearless ideas that shape who I am.  
-        <strong>Wildness Unleashed</strong> is my space to turn chaos into creation 🌈, share my journey, build my vision, and connect with those who dare to explore their own untamed path 🔥💥.
+        I’m Pranjal Vats 👋  
+        Creativity thrives in imperfection. *Wildness Unleashed* is my space to turn bold ideas into reality and connect with those who embrace their own untamed journey.
       </p>
     </section>
 
     <section id="description">
       <h2>Description</h2>
       <p>
-        Every project I create is a spark of rebellion — bold ideas, wild experiments, and unfiltered thoughts that define my journey.  
-        From raw scribbles in my journal to visions that may one day become brands, movements, or revolutions 🌪️⚡, each piece reflects a step toward embracing my true self and inspiring others to do the same.
+        My projects blend experimentation and vision — from journals to future brands.  
+        Each piece reflects growth, self-expression, and the courage to create fearlessly.
       </p>
-      
+
     </section>
 
     <section id="contact">
