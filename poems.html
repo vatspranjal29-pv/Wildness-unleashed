@@ -319,4 +319,131 @@ I didn’t chase the light. I became the storm.
 
 — By Pranjal Vats 🌻
     </p>
-    <span class="read
+    <span class="read-more-btn" onclick="toggleRead(this)">Read More</span>
+  </article>
+
+
+      <style>
+.poem-card {
+  background: #111;
+  border: 2px solid #ff1744; /* red border */
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 0 12px #ff1744aa;
+}
+
+.poem-card h2 {
+  color: gold; /* title in gold */
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.poem-content {
+  color: #ffffff; /* poem text white */
+  text-align: center;
+  font-size: 1.1rem;
+  max-height: 12em; /* initial height */
+  overflow: hidden;
+  transition: max-height 0.5s ease;
+}
+
+.poem-card.expanded .poem-content {
+  max-height: 100em; /* expand to full */
+}
+
+.author {
+  text-align: center;
+  margin-top: 1rem;
+  font-weight: bold;
+  color: #f5f5f5;
+  font-size: 1rem;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Read More button */
+.read-more-btn {
+  display: block;
+  margin: 10px auto 0;
+  padding: 6px 16px;
+  border-radius: 20px;
+  background: #ff1744;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  width: fit-content;
+  transition: 0.3s;
+}
+
+.read-more-btn:hover {
+  background: #ff5252;
+}
+</style>
+
+<article class="poem-card">
+  <h2>Running on Empty 🕯️</h2>
+  <p class="poem-content">
+I used to wake with fire in my chest,  
+Now it’s just weight that won’t let me rest.  
+My calendar's full, but my soul feels thin,  
+Like I’m chasing a race I forgot to begin.  
+
+Smiles worn like practiced art,  
+But the cracks run deep beneath my heart.  
+“Keep going,” they cheer — I nod, comply,  
+Yet every breath feels like a lie.  
+
+The to-dos scream louder than my needs,  
+I water others, forget my own seeds.  
+Eyes wide open, but the light is dim,  
+Even silence feels like it’s wearing thin.  
+
+It’s not that I’m weak, or don’t want to try,  
+I’m just tired in ways no sleep can defy.  
+A soul stretched thin, a mind worn out,  
+An inner scream behind a whisper shout.  
+
+But maybe rest is not defeat,  
+Maybe pause is what makes strength complete.  
+I’ll learn to breathe, not just survive—  
+To stop, to heal, to feel alive.
+  </p>
+  <div class="author">— By Pranjal Vats 🌻</div>
+  <span class="read-more-btn" onclick="toggleRead(this)">Read More</span>
+</article>
+
+<article class="poem-card">
+  <h2>The Pause ⏸️</h2>
+  <p class="poem-content">
+I gave and gave, then gave some more,  
+Till I forgot what I was doing it for.  
+Each win felt empty, joy ran dry,  
+Even the sunrise passed me by.  
+
+They called me strong, they called me brave,  
+But didn’t see the pieces I gave.  
+Behind the work, beneath the grin,  
+I barely knew the skin I’m in.  
+
+Then one day—I didn’t rise.  
+Just laid there, staring at the skies.  
+And in that stillness, something stirred:  
+A softer voice I hadn’t heard.  
+
+“You don’t have to climb today.  
+It’s okay to just float halfway.”  
+And in the quiet, I found my start—  
+Not in the doing, but in the heart.
+  </p>
+  <div class="author">— By Pranjal Vats 🌻</div>
+  <span class="read-more-btn" onclick="toggleRead(this)">Read More</span>
+</article>
+
+<script>
+function toggleRead(btn) {
+  const article = btn.parentElement;
+  article.classList.toggle('expanded');
+  btn.textContent = article.classList.contains('expanded') ? "Read Less" : "Read More";
+}
+</script>
