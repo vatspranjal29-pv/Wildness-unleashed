@@ -18,117 +18,192 @@
       --muted: #f5f5f5;
     }
 
-    html, body { height:100%; margin:0; padding:0; font-family:'Open Sans', sans-serif; color:var(--muted); background: linear-gradient(135deg, var(--bg-dark-1), var(--bg-dark-2)); -webkit-user-select:none; -moz-user-select:none; -ms-user-select:none; user-select:none; }
-    #particles { position: fixed; inset:0; z-index:0; pointer-events:none; }
+    html, body {
+      height:100%; margin:0; padding:0;
+      font-family:'Open Sans', sans-serif;
+      color:var(--muted);
+      background: linear-gradient(135deg, var(--bg-dark-1), var(--bg-dark-2));
+      -webkit-user-select:none; -moz-user-select:none; -ms-user-select:none; user-select:none;
+    }
 
+    /* Navbar */
     nav {
       position: fixed;
-      top:14px;
-      left:50%;
+      top:14px; left:50%;
       transform:translateX(-50%);
       z-index:50;
       display:flex;
-      gap:18px;
+      flex-wrap: wrap; /* allow wrapping on small screens */
+      gap:12px;
       align-items:center;
-      padding:8px 18px;
+      justify-content:center;
+      padding:8px 16px;
       background: rgba(10,10,10,0.35);
       border-radius:999px;
       backdrop-filter: blur(8px) saturate(120%);
       border:1px solid rgba(255,255,255,0.03);
     }
-    nav .brand { font-family:'Playfair Display', serif; color:var(--gold); font-weight:700; font-size:1.05rem; padding-right:8px; border-right:1px solid rgba(255,255,255,0.03); margin-right:10px; }
-    nav a { color: rgba(255,215,140,0.95); text-decoration:none; font-weight:600; font-family:'Oswald',sans-serif; font-size:0.95rem; padding:6px 8px; transition: color .22s ease, transform .15s ease; }
-    nav a:hover{ color: var(--red-mid); transform: translateY(-2px); }
 
-    header{ position:relative; z-index:20; text-align:center; padding:110px 20px 72px; margin-bottom:20px; }
-    header h1{ font-family:'Playfair Display', serif; font-size:3.6rem; margin:0 0 8px; color:var(--gold); }
-    .tagline{ font-family:'Playfair Display', serif; color: var(--red-mid); font-size:1.4rem; margin:0 0 12px; }
-    .byline{ font-weight:600; color: rgba(255,255,255,0.92); display:inline-block; padding:8px 14px; border-radius:999px; font-size:0.98rem; }
+    nav .brand {
+      font-family:'Playfair Display', serif;
+      color:var(--gold);
+      font-weight:700;
+      font-size:1.05rem;
+      padding-right:8px;
+      border-right:1px solid rgba(255,255,255,0.03);
+      margin-right:10px;
+      flex-shrink:0;
+    }
+
+    nav a {
+      color: rgba(255,215,140,0.95);
+      text-decoration:none;
+      font-weight:600;
+      font-family:'Oswald',sans-serif;
+      font-size:0.95rem;
+      padding:6px 8px;
+      transition: color .22s ease, transform .15s ease;
+    }
+
+    nav a:hover {
+      color: var(--red-mid);
+      transform: translateY(-2px);
+    }
+
+    header{
+      position:relative; z-index:20;
+      text-align:center;
+      padding:110px 20px 72px;
+      margin-bottom:20px;
+    }
+    header h1{
+      font-family:'Playfair Display', serif;
+      font-size:3.6rem; margin:0 0 8px;
+      color:var(--gold);
+    }
+    .tagline{
+      font-family:'Playfair Display', serif;
+      color: var(--red-mid);
+      font-size:1.4rem; margin:0 0 12px;
+    }
+    .byline{
+      font-weight:600;
+      color: rgba(255,255,255,0.92);
+      display:inline-block;
+      padding:8px 14px;
+      border-radius:999px;
+      font-size:0.98rem;
+    }
     .author { margin-top:10px; color:#fff; font-weight:700; font-size:1rem; }
 
-    main{ position:relative; z-index:20; max-width:980px; margin:24px auto 60px; padding:0 20px; }
-    section{ padding:42px 0; border-bottom:1px solid rgba(255,255,255,0.03); }
-    section h2{ font-family:'Oswald', sans-serif; color: var(--red-strong); font-size:1.5rem; margin:0 0 12px; }
+    main{
+      position:relative; z-index:20;
+      max-width:980px;
+      margin:24px auto 60px;
+      padding:0 20px;
+    }
+    section{
+      padding:42px 0;
+      border-bottom:1px solid rgba(255,255,255,0.03);
+    }
+    section h2{
+      font-family:'Oswald', sans-serif;
+      color: var(--red-strong);
+      font-size:1.5rem; margin:0 0 12px;
+    }
     section p, section ul { font-size:1rem; color: rgba(255,255,255,0.95); margin:0 0 10px; }
     ul{ padding-left:18px; } ul li{ margin:8px 0; }
 
-    .btn{ display:inline-block; margin-top:16px; margin-right:8px; padding:10px 18px; border-radius:28px; text-decoration:none; font-weight:700; color:#111; background: linear-gradient(45deg, var(--red-strong), var(--gold)); transition: transform .18s ease, box-shadow .18s ease; font-family: 'Oswald', sans-serif; }
+    .btn{
+      display:inline-block; margin-top:16px; margin-right:8px;
+      padding:10px 18px; border-radius:28px;
+      text-decoration:none; font-weight:700; color:#111;
+      background: linear-gradient(45deg, var(--red-strong), var(--gold));
+      transition: transform .18s ease, box-shadow .18s ease; font-family: 'Oswald', sans-serif;
+    }
     .btn:hover{ transform: translateY(-4px) scale(1.02); }
 
-    footer{ text-align:center; padding:26px 12px; background: linear-gradient(180deg, rgba(255,0,64,0.02), rgba(0,0,0,0.2)); color: rgba(255,255,255,0.8); border-top:1px solid rgba(255,255,255,0.03); z-index:20; }
+    footer{
+      text-align:center; padding:26px 12px;
+      background: linear-gradient(180deg, rgba(255,0,64,0.02), rgba(0,0,0,0.2));
+      color: rgba(255,255,255,0.8);
+      border-top:1px solid rgba(255,255,255,0.03); z-index:20;
+    }
     footer strong { color: var(--gold); }
 
-    @media (max-width:880px){ header h1 { font-size:2.6rem; } .tagline { font-size:1.15rem; } nav { gap:12px; padding:8px 12px; } }
-    @media (max-width:520px){ header{ padding:80px 18px 40px; } header h1{ font-size:2rem; } .byline{ font-size:0.92rem; padding:7px 12px; } .btn{ padding:9px 14px; font-size:0.95rem; border-radius:22px; } nav a{ font-size:0.86rem; } }
+    /* Responsive tweaks */
+    @media (max-width:880px){
+      header h1 { font-size:2.6rem; }
+      .tagline { font-size:1.15rem; }
+      nav { gap:10px; padding:8px 12px; }
+    }
+    @media (max-width:520px){
+      header{ padding:80px 18px 40px; }
+      header h1{ font-size:2rem; }
+      .byline{ font-size:0.92rem; padding:7px 12px; }
+      .btn{ padding:9px 14px; font-size:0.95rem; border-radius:22px; }
+      nav { flex-direction: column; padding:6px 12px; }
+      nav a{ font-size:0.88rem; padding:5px 6px; }
+    }
   </style>
 
   <script>
+    // Prevent copy & screenshot
     document.addEventListener("contextmenu", e => e.preventDefault());
     document.addEventListener("copy", e => { e.preventDefault(); alert("Copying is disabled on this page!"); });
-    document.addEventListener("keydown", function(e){
+    document.addEventListener("keydown", e => {
       if(e.key === 'PrintScreen'){ try{ navigator.clipboard.writeText(''); } catch{}; alert("Screenshots disabled!"); }
     });
   </script>
 </head>
 
 <body>
-<canvas id="particles"></canvas>
+  <nav>
+    <div class="brand">PV.</div>
+    <a href="index.html">Home</a>
+    <a href="shayari.html">Mehfill</a>
+    <a href="poems.html">Poems</a>
+    <a href="villain.html">Shadows</a>
+    <a href="unproven.html">Stillness</a>
+    <a href="trilogy.html">Time Special</a>
+    <a href="Shortpem.html">Quick Strikes</a>
+    <a href="naturepoems.html">Roots & Rhythms</a>
+    <a href="#contact">Contact</a>
+  </nav>
 
-<nav>
-  <div class="brand">PV.</div>
-  <a href="index.html">Home</a>
-  <a href="shayari.html">Mehfill</a>
-  <a href="poems.html">Poems</a>
-  <a href="villain.html">Shadows</a>
-  <a href="unproven.html">Stillness</a>
-  <a href="trilogy.html">Time Special</a>
-  <a href="Shortpem.html">Quick Strikes</a>
-  <a href="naturepoems.html">Roots & Rhythms</a>
-  <a href="#contact">Contact</a>
-</nav>
+  <header>
+    <h1>Wildness Unleashed</h1>
+    <p class="tagline">"Chaos Into Creation."</p>
+    <p class="author">-By Pranjal Vats 🌻</p>
+    <p class="byline">Turning imperfections into something bold, wild, and free.</p>
+  </header>
 
-<header>
-  <h1>Wildness Unleashed</h1>
-  <p class="tagline">"Chaos Into Creation."</p>
-  <p class="author">-By Pranjal Vats 🌻</p>
-  <p class="byline">Turning imperfections into something bold, wild, and free.</p>
-</header>
+  <main>
+    <section id="about">
+      <h2>About Me</h2>
+      <p>
+        Hi, I’m Pranjal 👋  
+        I believe perfection is a myth 🚫✨ — it’s the experiments, flaws, and fearless ideas that shape who I am.  
+        <strong>Wildness Unleashed</strong> is my space to turn chaos into creation 🌈, share my journey, build my vision, and connect with those who dare to explore their own untamed path 🔥💥.
+      </p>
+    </section>
+    <section id="description">
+      <h2>Description</h2>
+      <p>
+        Every project I create is a spark of rebellion — bold ideas, wild experiments, and unfiltered thoughts that define my journey.  
+        From raw scribbles in my journal to visions that may one day become brands, movements, or revolutions 🌪️⚡, each piece reflects a step toward embracing my true self and inspiring others to do the same.
+      </p>
+    </section>
 
-<main>
-  <section id="about">
-    <h2>About Me</h2>
-    <p>
-      Hi, I’m Pranjal 👋  
-      I believe perfection is a myth 🚫✨ — it’s the experiments, flaws, and fearless ideas that shape who I am.  
-      <strong>Wildness Unleashed</strong> is my space to turn chaos into creation 🌈, share my journey, build my vision, and connect with those who dare to explore their own untamed path 🔥💥.
-    </p>
-  </section>
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>Let’s connect!</p>
+      <a class="btn" href="mailto:wildness.unleashed12@gmail.com">📩 Contact Me</a>
+    </section>
+  </main>
 
-  <section id="projects">
-    <h2>Projects</h2>
-    <ul>
-      <li><strong>Dream Journal</strong> — My writings, thoughts, and untamed ideas ⚔️</li>
-      <li><strong>Future Brand</strong> — A journey where my name itself becomes a mark 👑</li>
-    </ul>
-  </section>
-
-  <section id="description">
-    <h2>Description</h2>
-    <p>
-      Every project I create is a spark of rebellion — bold ideas, wild experiments, and unfiltered thoughts that define my journey.  
-      From raw scribbles in my journal to visions that may one day become brands, movements, or revolutions 🌪️⚡, each piece reflects a step toward embracing my true self and inspiring others to do the same.
-    </p>
-  </section>
-
-  <section id="contact">
-    <h2>Contact</h2>
-    <p>Let’s connect!</p>
-    <a class="btn" href="mailto:wildness.unleashed12@gmail.com">📩 Contact Me</a>
-  </section>
-</main>
-
-<footer>
-  <p>© 2025 Wildness Unleashed — Built by <strong>Pranjal Vats</strong></p>
-</footer>
+  <footer>
+    <p>© 2025 Wildness Unleashed — Built by <strong>Pranjal Vats</strong></p>
+  </footer>
 </body>
 </html>
