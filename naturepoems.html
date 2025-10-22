@@ -1,121 +1,236 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Roots and Rhythms 🍃 - Wildness Unleashed</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+<title>Roots and Rhythms 🍃 — By Pranjal Vats 🌻</title>
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Rock+Salt&family=Open+Sans:wght@300;400;600;700&family=Oswald:wght@400;700&display=swap" rel="stylesheet">
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
 
-  <style>
-    :root {
-      --accent-1: #ff0040;
-      --accent-2: #ff6600;
-      --bg-1: #0f0f0f;
-      --bg-2: #1c1c1c;
-      --muted: #f5f5f5;
-    }
+<style>
+:root{
+  --red:#ff1744;
+  --red-strong:#ff0040;
+  --gold:#FFD700;
+  --bg-dark:#0d0d0d;
+  --card-bg:#111111;
+  --muted:#f5f5f5;
+}
 
-    body {
-      background: linear-gradient(135deg, var(--bg-1), var(--bg-2));
-      color: var(--muted);
-      font-family: 'Georgia', serif;
-      margin: 0;
-      padding: 0;
-      line-height: 1.6;
-    }
+html,body{height:100%;margin:0;}
+body{
+  background: radial-gradient(circle at 10% 10%, rgba(255,20,68,0.04) 0%, transparent 10%),
+              radial-gradient(circle at 90% 90%, rgba(255,209,102,0.03) 0%, transparent 12%),
+              linear-gradient(180deg,#070707 0%, #0d0d0d 100%);
+  color:var(--muted);
+  font-family:'Open Sans',system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  overflow-y:auto;
+}
 
-    header {
-      text-align: center;
-      padding: 2.5rem 1rem;
-      background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
-      color: #fff;
-    }
+/* NAVBAR */
+.navbar{
+  position:sticky;
+  top:0;
+  z-index:30;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:1rem;
+  padding:14px 20px;
+  background:rgba(0,0,0,0.45);
+  backdrop-filter: blur(6px);
+  border-bottom:2px solid rgba(255,23,68,0.06);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+}
+.brand{
+  display:flex;
+  gap:12px;
+  align-items:center;
+}
+.brand .logo{
+  font-family:'Playfair Display',serif;
+  color:var(--gold);
+  font-weight:700;
+  font-size:1.1rem;
+  letter-spacing:0.6px;
+}
+.nav-links{
+  display:flex;
+  gap:12px;
+  align-items:center;
+  flex-wrap:wrap;
+  overflow:auto;
+}
+.nav-links a{
+  color:var(--muted);
+  text-decoration:none;
+  padding:8px 12px;
+  border-radius:22px;
+  font-weight:600;
+  white-space:nowrap;
+  transition: all .18s ease;
+}
+.nav-links a:hover{ color:var(--gold); background: rgba(255,23,68,0.04); }
 
-    header h1 {
-      font-family: 'Rock Salt', cursive;
-      font-size: 2.6rem;
-      margin: 0;
-      letter-spacing: 2px;
-    }
+/* Page header */
+header.page-head{
+  text-align:center;
+  padding:42px 18px 6px;
+  z-index:10;
+  position:relative;
+}
+header.page-head h1{
+  margin:0;
+  font-family:'Playfair Display', serif;
+  color:var(--gold);
+  font-size:2.25rem;
+  letter-spacing:0.6px;
+}
+header.page-head p.subtitle{
+  margin:8px 0 0;
+  color:#ffd;
+  opacity:0.88;
+  font-size:1rem;
+}
 
-    section {
-      padding: 2rem;
-      max-width: 900px;
-      margin: auto;
-    }
+/* main wrapper */
+main{
+  position:relative;
+  z-index:10;
+  max-width:1100px;
+  margin:22px auto 80px;
+  padding:0 20px;
+}
 
-    article {
-      background: #111;
-      border: 2px solid var(--accent-1);
-      border-radius: 12px;
-      padding: 1.5rem;
-      margin-bottom: 2rem;
-      box-shadow: 0px 0px 12px var(--accent-1), 0px 0px 18px var(--accent-2);
-    }
+/* poems list: 2 columns desktop, 1 column mobile */
+.poems-list{ 
+  display:grid; 
+  grid-template-columns: 1fr; 
+  gap:18px; 
+}
+@media(min-width:900px){
+  .poems-list{
+    grid-template-columns: 1fr 1fr;
+  }
+}
 
-    article h2 {
-      color: var(--accent-2);
-      text-align: center;
-      margin-bottom: 1rem;
-      font-family: 'Oswald', sans-serif;
-    }
+.poem-card{
+  background:var(--card-bg);
+  border:2px solid var(--red);
+  border-radius:14px;
+  padding:20px;
+  box-shadow: 0 10px 30px rgba(255,23,68,0.06);
+  overflow:visible;
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.poem-card:hover{ transform: translateY(-6px); box-shadow: 0 18px 40px rgba(255,23,68,0.10); }
 
-    article p {
-      white-space: pre-line;
-      text-align: center;
-      font-size: 1.15rem;
-    }
+.poem-title{
+  margin:0 0 10px;
+  text-align:center;
+  color:var(--gold);
+  font-family:'Playfair Display', serif;
+  font-size:1.25rem;
+  letter-spacing:0.3px;
+}
 
-    .btn {
-      display: inline-block;
-      margin: 20px auto;
-      padding: 10px 20px;
-      border-radius: 30px;
-      text-decoration: none;
-      font-weight: 600;
-      color: #fff;
-      background: var(--accent-1);
-      box-shadow: 0 0 8px var(--accent-1), 0 0 14px var(--accent-2);
-      transition: background 0.3s ease, box-shadow 0.3s ease;
-    }
+.poem-content{
+  color:#ffffff;
+  white-space:pre-line;
+  line-height:1.65;
+  font-size:1.05rem;
+  max-height:none; /* mobile controls with class */
+  overflow:hidden;
+  transition: max-height .35s ease;
+}
 
-    .btn:hover {
-      background: var(--accent-2);
-      box-shadow: 0 0 12px var(--accent-2), 0 0 20px var(--accent-1);
-    }
+.author{
+  margin-top:14px;
+  color:var(--muted);
+  text-align:center;
+  font-weight:600;
+}
 
-    .center {
-      text-align: center;
-    }
-  </style>
+.read-toggle{
+  display:block;
+  margin:14px auto 0;
+  text-align:center;
+  background:linear-gradient(90deg,var(--red),var(--red-strong));
+  color:#fff;
+  padding:8px 18px;
+  border-radius:999px;
+  width:max-content;
+  cursor:pointer;
+  font-weight:700;
+  border:none;
+}
+.read-toggle:hover{ filter:brightness(1.05); transform:translateY(-2px); }
 
-  <!-- Protection Script -->
-  <script>
-    document.addEventListener("contextmenu", e => e.preventDefault());
-    document.addEventListener("keydown", e => {
-      if (
-        e.ctrlKey &&
-        (e.key === "c" || e.key === "u" || e.key === "s" || e.key === "p") ||
-        e.key === "F12"
-      ) {
-        e.preventDefault();
-      }
-    });
-  </script>
+@media (max-width:900px){
+  .poem-content{ max-height:10.5em; } 
+  .poem-card.expanded .poem-content{ max-height:2000px; }
+}
+@media (min-width:900px){
+  .read-toggle{ display:none; }
+}
+
+/* Home button */
+.home-btn{
+  display:block;
+  margin:30px auto 80px;
+  width:fit-content;
+  padding:10px 20px;
+  background: linear-gradient(90deg,var(--red),var(--red-strong));
+  color:#fff;
+  text-decoration:none;
+  border-radius:28px;
+  font-weight:700;
+}
+
+@media (max-width:520px){
+  header.page-head h1{ font-size:1.6rem; }
+  .poem-card{ padding:16px; margin:14px; border-radius:10px; }
+  .poem-title{ font-size:1.05rem; }
+  .poem-content{ font-size:1rem; }
+  .navbar{ padding:10px 12px; }
+}
+</style>
 </head>
 <body>
-  <header>
-    <h1>Roots and Rhythms 🍃</h1>
-    <p>Poems inspired by the wild spirit of nature</p>
-  </header>
 
-  <section>
-    <!-- Poem 1 -->
-    <article>
-      <h2>Earth Eternal, Man Ephemeral 🌍</h2>
-      <p>
+<!-- NAVBAR -->
+<nav class="navbar" role="navigation" aria-label="Main navigation">
+  <div class="brand">
+    <div class="logo">PV.</div>
+  </div>
+  <div class="nav-links" role="menubar">
+    <a href="index.html" role="menuitem">Home</a>
+    <a href="shayari.html" role="menuitem">Mehfill</a>
+    <a href="poems.html" role="menuitem" aria-current="page">Poems</a>
+    <a href="villain.html" role="menuitem">Shadows</a>
+    <a href="unproven.html" role="menuitem">Stillness</a>
+    <a href="trilogy.html" role="menuitem">Time Special</a>
+    <a href="Shortpem.html" role="menuitem">Quick Strikes</a>
+    <a href="naturepoems.html" role="menuitem">Roots &amp; Rhythms</a>
+    <a href="mailto:wildness.unleashed12@gmail.com" role="menuitem">Contact</a>
+  </div>
+</nav>
+
+<header class="page-head">
+  <h1>Roots and Rhythms 🍃</h1>
+  <p class="subtitle">Collected poems — raw, reflective, and relentless.</p>
+</header>
+
+<main>
+<section class="poems-list">
+
+<!-- Poem 1 -->
+<article class="poem-card">
+  <h2 class="poem-title">Earth Eternal, Man Ephemeral 🌍</h2>
+  <div class="poem-content">
 Mountains rise, rivers flow,  
 Seasons come, seasons go.  
 Forests whisper, oceans roar,  
@@ -141,53 +256,61 @@ It hums beyond where memory lies.
 Man may dream of endless reign,  
 Yet he will turn to dust again.  
 
-— By <b>Pranjal Vats 🌻</b>
-      </p>
-    </article>
+— By Pranjal Vats 🌻
+  </div>
+  <div class="author">— By Pranjal Vats 🌻</div>
+  <button class="read-toggle" onclick="toggleCard(this)">Read More ▼</button>
+</article>
 
-    <!-- Poem 2 -->
-    <article>
-      <h2>Whispers of the Wind 🍂</h2>
-      <p>
+<!-- Poem 2 -->
+<article class="poem-card">
+  <h2 class="poem-title">Whispers of the Wind 🍂</h2>
+  <div class="poem-content">
 The wind speaks softly through the trees,  
 A secret carried on gentle breeze.  
 It hums of ages, lost and gone,  
 Yet whispers life to carry on.  
 
-— By <b>Pranjal Vats 🌻</b>
-      </p>
-    </article>
+— By Pranjal Vats 🌻
+  </div>
+  <div class="author">— By Pranjal Vats 🌻</div>
+  <button class="read-toggle" onclick="toggleCard(this)">Read More ▼</button>
+</article>
 
-    <!-- Poem 3 -->
-    <article>
-      <h2>River’s Song 🌊</h2>
-      <p>
+<!-- Poem 3 -->
+<article class="poem-card">
+  <h2 class="poem-title">River’s Song 🌊</h2>
+  <div class="poem-content">
 A river carves with patient grace,  
 Through rock, through time, it finds its place.  
 No rush, no force, just steady flow,  
 A lesson in the way to grow.  
 
-— By <b>Pranjal Vats 🌻</b>
-      </p>
-    </article>
+— By Pranjal Vats 🌻
+  </div>
+  <div class="author">— By Pranjal Vats 🌻</div>
+  <button class="read-toggle" onclick="toggleCard(this)">Read More ▼</button>
+</article>
 
-    <!-- Poem 4 -->
-    <article>
-      <h2>Roots Beneath 🌱</h2>
-      <p>
+<!-- Poem 4 -->
+<article class="poem-card">
+  <h2 class="poem-title">Roots Beneath 🌱</h2>
+  <div class="poem-content">
 We see the tree, its crown, its might,  
 But roots hold steady out of sight.  
 In hidden soil, they weave, they stay,  
 The strength that keeps the storms away.  
 
-— By <b>Pranjal Vats 🌻</b>
-      </p>
-    </article>
+— By Pranjal Vats 🌻
+  </div>
+  <div class="author">— By Pranjal Vats 🌻</div>
+  <button class="read-toggle" onclick="toggleCard(this)">Read More ▼</button>
+</article>
 
-    <!-- Poem 5 -->
-    <article>
-      <h2>Whispers of Night 🌌</h2>
-      <p>
+<!-- Poem 5 -->
+<article class="poem-card">
+  <h2 class="poem-title">Whispers of Night 🌌</h2>
+  <div class="poem-content">
 The sky is painted deep and wide,  
 A velvet sea where stars reside.  
 They shimmer soft, they whisper light,  
@@ -213,14 +336,16 @@ A dreamer waits—she wants it all.
 With stars above and heart so wide,  
 She walks with hope, and time as guide.  
 
-— By <b>Pranjal Vats 🌻</b>
-      </p>
-    </article>
+— By Pranjal Vats 🌻
+  </div>
+  <div class="author">— By Pranjal Vats 🌻</div>
+  <button class="read-toggle" onclick="toggleCard(this)">Read More ▼</button>
+</article>
 
-    <!-- Poem 6 -->
-    <article>
-      <h2>Under Starlit Dreams ✨</h2>
-      <p>
+<!-- Poem 6 -->
+<article class="poem-card">
+  <h2 class="poem-title">Under Starlit Dreams ✨</h2>
+  <div class="poem-content">
 The night is quiet, soft, and deep,  
 The stars above, their secrets keep.  
 They shimmer bright, they call my name,  
@@ -236,14 +361,16 @@ I wait for dreams to take their flight.
 But till they come, I stand so still,  
 With stars above and heart to fill.  
 
-— By <b>Pranjal Vats 🌻</b>
-      </p>
-    </article>
+— By Pranjal Vats 🌻
+  </div>
+  <div class="author">— By Pranjal Vats 🌻</div>
+  <button class="read-toggle" onclick="toggleCard(this)">Read More ▼</button>
+</article>
 
-    <!-- Poem 7 -->
-    <article>
-      <h2>The Shape of Water 💦</h2>
-      <p>
+<!-- Poem 7 -->
+<article class="poem-card">
+  <h2 class="poem-title">The Shape of Water 💦</h2>
+  <div class="poem-content">
 It drips in silence, soft and small,  
 A silver thread, unnoticed fall—  
 It bends to shape, to cup, to stream,  
@@ -274,13 +401,36 @@ This quiet force we all have known.
 For water—gentle, vast, and free—  
 Is strength wrapped in humility.  
 
-— By <b>Pranjal Vats 🌻</b>
-      </p>
-    </article>
+— By Pranjal Vats 🌻
+  </div>
+  <div class="author">— By Pranjal Vats 🌻</div>
+  <button class="read-toggle" onclick="toggleCard(this)">Read More ▼</button>
+</article>
 
-    <div class="center">
-      <a class="btn" href="index.html">🏠 Back to Home</a>
-    </div>
-  </section>
+</section>
+
+<a class="home-btn" href="index.html">⬅ 🏠 Back to Home</a>
+</main>
+
+<script>
+function toggleCard(btn){
+  const card = btn.closest('.poem-card');
+  card.classList.toggle('expanded');
+  btn.textContent = card.classList.contains('expanded') ? 'Read Less ▲' : 'Read More ▼';
+}
+window.addEventListener('load',()=>{
+  if(window.innerWidth>=900){
+    document.querySelectorAll('.poem-card').forEach(c=>c.classList.add('expanded'));
+  }
+});
+window.addEventListener('resize',()=>{
+  if(window.innerWidth>=900){
+    document.querySelectorAll('.poem-card').forEach(c=>c.classList.add('expanded'));
+  } else {
+    document.querySelectorAll('.poem-card').forEach(c=>c.classList.remove('expanded'));
+  }
+});
+</script>
+
 </body>
 </html>
