@@ -1,205 +1,101 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Echoes of Pranjal — Home</title>
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Echoes of Pranjal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@300;400&display=swap" rel="stylesheet">
   <style>
-    :root{
-      --bg: #f7f3ef; /* soft cream */
-      --muted:#9b9087;
-      --accent:#d6b98f; /* warm gold */
-      --max-width:1100px;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
-
-    *{box-sizing:border-box}
-    html,body{height:100%;margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,"Helvetica Neue",Arial; background:var(--bg); color:#111}
-    a{color:inherit; text-decoration:none}
-
-    .container{max-width:var(--max-width);margin:0 auto;padding:28px 24px}
-
-    /* Header */
-    header{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
-    .brand{font-family:'Playfair Display',serif;font-size:28px;letter-spacing:2px}
-    .nav{display:flex;gap:18px;align-items:center}
-    .nav a{font-weight:600;color:var(--muted);font-size:14px}
-
-    /* Hero */
-    .hero{display:grid;grid-template-columns:1fr;gap:28px; align-items:center;padding:36px 0}
-    .hero-left{padding-right:8px}
-    .kicker{font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:2px;margin-bottom:10px}
-    .title{font-family:'Playfair Display',serif;font-size:44px;line-height:1.02;margin:0 0 12px}
-    .tagline{color:var(--muted);max-width:560px;margin-bottom:18px}
-    .cta{display:inline-block;padding:12px 18px;border:1px solid #cfc2b6;border-radius:4px;font-weight:600}
-
-    .hero-photo{width:100%;border-radius:6px;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,0.06)}
-    .hero-photo img{width:100%;height:auto;display:block}
-
-    /* Two-column sections like featured book */
-    .split{display:grid;grid-template-columns:1fr;gap:28px;align-items:center;padding:36px 0}
-    .book-card{display:flex;gap:22px;align-items:center}
-    .book-card img{width:240px;border-radius:6px}
-    .book-meta h3{font-family:'Playfair Display',serif;font-size:30px;margin:0}
-    .book-meta p{color:var(--muted);margin-top:10px}
-
-    /* Gallery / visuals */
-    .visuals{display:grid;grid-template-columns:1fr;gap:20px;padding:24px 0}
-
-    /* Newsletter */
-    .newsletter{background:linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.25)); padding:24px;border-radius:8px;border:1px solid rgba(0,0,0,0.03);margin:28px 0;display:flex;flex-direction:column;gap:12px}
-    .newsletter input{padding:12px;border-radius:6px;border:1px solid #ddd;font-size:15px}
-    .newsletter button{padding:10px 14px;border-radius:6px;border:1px solid #cfc2b6;background:transparent;font-weight:600}
-
-    footer{padding:28px 0;color:var(--muted);font-size:14px}
-
-    /* accents (watercolor-like) */
-    .accent-splash{position:relative}
-    .accent-splash::before{content:'';position:absolute;left:-10px;top:-20px;width:160px;height:160px;background:radial-gradient(circle at 30% 30%, rgba(167,201,224,0.25), transparent 40%), radial-gradient(circle at 70% 70%, rgba(214,185,143,0.12), transparent 30%);filter:blur(6px);transform:rotate(-10deg);z-index:-1;border-radius:50%}
-
-    /* Responsive */
-    @media(min-width:840px){
-      .hero{grid-template-columns: 1fr 420px}
-      .title{font-size:64px}
-      .split{grid-template-columns: 420px 1fr}
-      .visuals{grid-template-columns:repeat(2,1fr)}
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f7f3ef;
+      color: #333;
+      line-height: 1.6;
     }
-
-    /* small polish */
-    .muted{color:var(--muted)}
-    .center{text-align:center}
-
-    /* subtle animation */
-    .fade-up{opacity:0;transform:translateY(12px);transition:opacity .6s ease, transform .6s ease}
-    .fade-up.in{opacity:1;transform:none}
-
+    header {
+      text-align: center;
+      padding: 6rem 1rem 4rem 1rem;
+      background: url('https://images.unsplash.com/photo-1616627987937-632d4bcbac2d?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      position: relative;
+    }
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(247,243,239,0.85);
+    }
+    header h1 {
+      position: relative;
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      color: #222;
+      z-index: 1;
+    }
+    section {
+      padding: 4rem 1rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    section::before {
+      content: '';
+      position: absolute;
+      top: -50px;
+      left: 0;
+      width: 100%;
+      height: 200%;
+      background: url('https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat;
+      opacity: 0.08;
+      z-index: 0;
+    }
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+    .books img {
+      width: 100%;
+      max-width: 400px;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+      margin-top: 1.5rem;
+      z-index: 1;
+      position: relative;
+    }
+    .poem-section {
+      background: #fffaf6;
+    }
+    footer {
+      padding: 2rem 1rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #777;
+    }
   </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <div class="brand">Echoes of Pranjal</div>
-      <nav class="nav">
-        <a href="#poems">Poems</a>
-        <a href="#works">Works</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </header>
-
-    <!-- HERO -->
-    <section class="hero">
-      <div class="hero-left">
-        <div class="kicker">New Release</div>
-        <h1 class="title">Words that wander,<br>yet always find home.</h1>
-        <p class="tagline">Short lines, quiet illusions, and open pages — poems and micro‑essays by Pranjal that sit softly on the pulse.</p>
-        <div style="display:flex;gap:12px;align-items:center">
-          <a class="cta" href="#works">Read Now</a>
-          <a class="cta" href="#contact">Book a Reading</a>
-        </div>
-      </div>
-
-      <div class="accent-splash">
-        <div class="hero-photo">
-          <!-- Replace with your portrait -->
-          <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1200&auto=format&fit=crop&s=placeholder" alt="Pranjal portrait">
-        </div>
-      </div>
-    </section>
-
-    <!-- Featured book / collection -->
-    <section id="works" class="split">
-      <div class="book-card fade-up" style="gap:18px">
-        <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?q=80&w=800&auto=format&fit=crop&s=placeholder" alt="Book cover mock">
-        <div class="book-meta">
-          <h3>Wildness Unleashed — A Collection</h3>
-          <p class="muted">A sequence of short poems and fragments exploring belonging, quiet rebellion, and the small rituals that hold us together.</p>
-          <div style="margin-top:12px">
-            <a class="cta" href="#">Buy Now</a>
-            <a class="cta" href="#" style="margin-left:8px">Preview</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="visuals">
-        <div class="fade-up">
-          <div style="font-family:'Playfair Display',serif;font-size:28px;margin-bottom:6px">Rupi‑Kaur style performance</div>
-          <p class="muted">Short filmed readings, live moments from staged shows, and new audio poems.</p>
-        </div>
-
-        <div class="fade-up">
-          <!-- video placeholder -->
-          <div style="border-radius:8px;overflow:hidden;box-shadow:0 8px 24px rgba(0,0,0,0.06)">
-            <iframe width="100%" height="220" src="https://www.youtube.com/embed/VIDEO_ID" title="YouTube video" frameborder="0" allowfullscreen></iframe>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Poems preview -->
-    <section id="poems" style="padding:28px 0">
-      <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px">
-        <h2 style="font-family:'Playfair Display',serif;margin:0">Recent Poems</h2>
-        <a href="#" class="muted">View archive →</a>
-      </div>
-
-      <div style="display:grid;grid-template-columns:1fr;gap:16px">
-        <article style="padding:18px;background:white;border-radius:8px;border:1px solid rgba(0,0,0,0.03)">
-          <h3 style="margin:0 0 8px;font-family:'Playfair Display',serif;font-size:20px">When Silence Speaks</h3>
-          <p class="muted" style="margin:0">A short experiment in listening — a poem about rooms, the names left unsaid, and the paper left on the table.</p>
-        </article>
-
-        <article style="padding:18px;background:white;border-radius:8px;border:1px solid rgba(0,0,0,0.03)">
-          <h3 style="margin:0 0 8px;font-family:'Playfair Display',serif;font-size:20px">The Garden Keeps Its Secrets</h3>
-          <p class="muted" style="margin:0">Fragments. A letter. A single afternoon.’</p>
-        </article>
-      </div>
-    </section>
-
-    <!-- Newsletter -->
-    <section>
-      <div class="newsletter">
-        <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
-          <div>
-            <div style="font-family:'Playfair Display',serif;font-size:20px">Letters from Pranjal</div>
-            <div class="muted">Short notes and first reads — once a month.</div>
-          </div>
-          <div style="min-width:220px">
-            <form onsubmit="event.preventDefault();alert('Thanks — replace this with real subscribe logic.')">
-              <input type="email" placeholder="your email" required style="width:100%;margin-bottom:8px">
-              <div style="display:flex;gap:8px"><button type="submit">Subscribe</button><button type="button" onclick="window.location='#contact'">Contact</button></div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- About and footer -->
-    <section id="about" style="padding:18px 0">
-      <h2 style="font-family:'Playfair Display',serif">About</h2>
-      <p class="muted">Pranjal writes short poems and personal essays. This is a quiet space for lines that remember — find him on social platforms and hear new readings here.</p>
-    </section>
-
-    <footer>
-      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
-        <div>&copy; <strong>Echoes of Pranjal</strong> • All rights reserved</div>
-        <div class="muted">Instagram • YouTube • Bandcamp</div>
-      </div>
-    </footer>
-  </div>
-
-  <script>
-    // small script to reveal fade-up elements on load
-    document.addEventListener('DOMContentLoaded',function(){
-      requestAnimationFrame(()=>{
-        document.querySelectorAll('.fade-up').forEach((el,i)=>{
-          setTimeout(()=>el.classList.add('in'), 120*i);
-        })
-      })
-    })
-  </script>
+  <header>
+    <h1>Echoes of Pranjal</h1>
+  </header>  <section class="books">
+    <h2>Wildness Unleashed</h2>
+    <img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=800&q=80" alt="Aesthetic black and white books" />
+  </section>  <section class="poem-section">
+    <h2>Recent Poems</h2>
+    <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=800&q=80" alt="Black and white open book aesthetic" />
+  </section>  <section>
+    <h2>About</h2>
+    <p style="max-width:600px;margin:0 auto;position:relative;z-index:1;">
+      A space where ink meets silence — a collection of thoughts that echo softly within every soul.
+      Here, simplicity and emotion intertwine, bringing poetry to life in quiet colors and gentle tones.
+    </p>
+  </section>  <footer>
+    © 2025 Echoes of Pranjal — All rights reserved.
+  </footer>
 </body>
 </html>
