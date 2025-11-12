@@ -4,7 +4,12 @@
 <head>  
   <meta charset="utf-8" />  
   <meta name="viewport" content="width=device-width,initial-scale=1" />  
-  <title>Echoes of Pranjal — Pranjal Vats</title>    <!-- Fonts -->    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:wght@400;500&display=swap" rel="stylesheet">    <style>  
+  <title>Echoes of Pranjal — Pranjal Vats</title>    
+
+  <!-- Fonts -->    
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:wght@400;500&display=swap" rel="stylesheet">    
+
+  <style>  
     :root {  
       --cream-bg: #FBF6F0;  
       --ink-black: #1f1f1f;  
@@ -14,7 +19,6 @@
       --section-wash-opacity: 0.84;  
     }  
   
-    /* Reset & base */  
     * { box-sizing: border-box; }  
     html,body { height:100%; margin:0; padding:0; background:var(--cream-bg); color:var(--ink-black); font-family:'Lora', serif; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; line-height:1.7; font-size:18px; }  
     body {  
@@ -29,7 +33,6 @@
   
     .page { max-width:var(--max-width); margin:0 auto; padding:0 20px 60px; }  
   
-    /* NAV */  
     nav {  
       position:fixed; top:18px; left:50%; transform:translateX(-50%);  
       width:92%; max-width:var(--max-width);  
@@ -43,7 +46,6 @@
     .nav-links a { text-decoration:none; color:var(--muted-gray); font-weight:500; }  
     .nav-links a:hover { color:var(--ink-black); }  
   
-    /* Header */  
     header { text-align:center; margin-top:120px; padding:86px 20px 28px; }  
     header h1 { font-family:'Playfair Display', serif; font-size:clamp(2.6rem,6vw,3.8rem); margin:0 0 16px; line-height:1; }  
     .tagline { font-style:italic; color:var(--muted-gray); margin-bottom:8px; font-size:1.18rem; }  
@@ -52,7 +54,6 @@
   
     main { max-width:900px; margin:56px auto 0; padding:0 18px; }  
   
-    /* Sections — each gets its own visible wash behind it */  
     section {  
       position:relative;  
       margin-bottom:72px;  
@@ -64,7 +65,6 @@
     }  
     section.visible { opacity:1; transform:none; }  
   
-    /* generic wash behind each section (colorful layered watercolors) */  
     section::before {  
       content:"";  
       position:absolute;  
@@ -82,7 +82,6 @@
       transform: rotate(-4deg);  
     }  
   
-    /* different color mixes for variety (applied by class) */  
     section.wash-1::before {  
       background-image:  
         radial-gradient(circle at 12% 36%, rgba(244,143,177,0.95), transparent 25%),  
@@ -103,12 +102,10 @@
         radial-gradient(circle at 50% 40%, rgba(191,214,255,0.6), transparent 20%);  
       transform: rotate(-8deg);  
     }  
-    /* make washes a bit lighter on small */  
     @media (max-width:980px) {  
       section::before { display:none; }  
     }  
   
-    /* Headings inside sections */  
     section h2 { position:relative; font-family:'Playfair Display', serif; font-size:1.7rem; margin:0 0 12px; z-index:6; }  
     section h2::after { content:""; display:block; width:88px; height:6px; border-radius:5px; background:linear-gradient(90deg, rgba(244,143,177,0.95), rgba(255,183,110,0.95)); margin-top:8px; opacity:0.95; }  
   
@@ -119,7 +116,6 @@
   
     footer { text-align:center; padding:44px 20px; color:var(--muted-gray); border-top:1px solid rgba(0,0,0,0.06); background:rgba(255,255,255,0.35); margin-top:18px; z-index:6; }  
   
-    /* === Featured image+poem blocks (half-overlap) === */  
     .features { display:flex; flex-direction:column; gap:36px; margin-top:12px; z-index:6; }  
   
     .feature {  
@@ -134,7 +130,14 @@
       z-index:6;  
     }  
   
-    /* poem block sits overlapping the image */  
+    .feat-image img {  
+      width:900px;  
+      height:600px;  
+      object-fit:cover;  
+      border-radius:12px;  
+      box-shadow:0 4px 20px rgba(0,0,0,0.3);  
+    }  
+  
     .poem-block {  
       z-index:12;  
       position:relative;  
@@ -144,18 +147,15 @@
       border-radius:10px;  
       box-shadow:0 12px 30px rgba(10,10,10,0.03);  
       font-family:'Lora', serif;  
-      transform: translateX(-18%); /* overlap to the left */  
+      transform: translateX(-18%);  
     }  
   
-    /* alternate layout for the second feature (poem overlaps to the right) */  
     .feature.second .poem-block { transform: translateX(18%); }  
   
     .poem-title { font-family:'Playfair Display', serif; font-weight:700; margin-bottom:8px; font-size:1.02rem; }  
     .poem-line { margin:7px 0; color:var(--muted-gray); white-space:pre-line; }  
-  
     .feat-caption { display:block; margin-top:10px; font-size:0.9rem; color:var(--muted-gray); font-family:'Lora', serif; z-index:7; }  
   
-    /* small screen: stack and remove overlap */  
     @media (max-width:980px) {  
       .feature { grid-template-columns: 1fr; gap:16px; padding:12px; }  
       .poem-block { transform:none; max-width:100%; }  
@@ -163,11 +163,13 @@
       section::before{ display:none; }  
     }  
   
-    /* fade-in on scroll for features & sections */  
     .feature, section { opacity:0; transform:translateY(18px); transition:opacity .8s ease, transform .8s ease; }  
     .feature.visible, section.visible { opacity:1; transform:translateY(0); }  
   
-  </style>  </head>  <body>  
+  </style>  
+</head>  
+
+<body>  
   <div class="page">  
     <nav>  
       <div class="brand">PV</div>  
@@ -178,92 +180,86 @@
         <a href="naturepoems.html">Roots & Rhythms</a>  
         <a href="#contact">Contact</a>  
       </div>  
-    </nav>  <header>  
-  <h1>Echoes of Pranjal</h1>  
-  <p class="tagline">“Chaos into Creation.”</p>  
-  <p class="author">— By Pranjal Vats 🌻</p>  
-  <p class="byline">Turning imperfections into something bold, wild, and free.</p>  
-</header>  
+    </nav>  
 
-<main>  
-  <!-- ABOUT (unchanged) -->  
-  <section id="about" class="wash-1">  
-    <h2>About Me</h2>  
-    <p>  
-      I’m Pranjal Vats, a budding writer learning to turn feeling into form.<br>
+    <header>  
+      <h1>Echoes of Pranjal</h1>  
+      <p class="tagline">“Chaos into Creation.”</p>  
+      <p class="author">— By Pranjal Vats 🌻</p>  
+      <p class="byline">Turning imperfections into something bold, wild, and free.</p>  
+    </header>  
 
-<b>Echoes of Pranjal </b>is my space to grow — where words find rhythm and thoughts find home.<br>
-I’m still discovering my voice, shaping emotions into verses,
-and learning that sometimes, chaos is just creation in disguise.<br>
+    <main>  
+      <section id="about" class="wash-1">  
+        <h2>About Me</h2>  
+        <p>  
+          I’m Pranjal Vats, a budding writer learning to turn feeling into form.<br>  
+          <b>Echoes of Pranjal </b>is my space to grow — where words find rhythm and thoughts find home.<br>  
+          I’m still discovering my voice, shaping emotions into verses,  
+          and learning that sometimes, chaos is just creation in disguise.<br>  
+        </p>  
+      </section>  
 
-</p>  
-  </section>  
+      <section id="description" class="wash-2">  
+        <h2>Description</h2>  
+        <p>  
+          My projects blend experimentation and vision — from scribbles to poems.<br>  
+          Each piece reflects growth, self-expression, and the courage to create fearlessly and represent me in a way I may not always be able to express verbally.  
+        </p>  
+      </section>  
 
-  <!-- DESCRIPTION (unchanged) -->  
-  <section id="description" class="wash-2">  
-    <h2>Description</h2>  
-    <p>  
-      My projects blend experimentation and vision — from scribbles to poems.<br>  
-      Each piece reflects growth, self-expression, and the courage to create fearlessly and represent me in a way I may not always be able to express verbally.  
-    </p>  
-  </section>  
+      <!-- FEATURES SECTION WITH YOUR IMAGES -->
+      <section aria-label="Featured poems" class="wash-3" style="padding-bottom:0; border-bottom:none;">  
+        <div class="features">  
 
-  <!-- FEATURES: inserted between Description and Contact -->  
-  <section aria-label="Featured poems" class="wash-3" style="padding-bottom:0; border-bottom:none;">  
-    <div class="features">  
+          <!-- Feature 1: Fire image -->
+          <article class="feature first" aria-label="Fuel the Fire">  
+            <div class="feat-image" aria-hidden="false">  
+              <img src="fire-image.jpg" alt="Person near campfire">  
+            </div>  
 
-      <!-- Feature 1: black & white open books + poem overlapping left -->  
-      <article class="feature first" aria-label="Fuel the Fire">  
-        <div class="feat-image" aria-hidden="false">  
-          <!-- unsplash source query returns aesthetic B&W book images; you can replace with local if desired -->  
-          <img src="https://source.unsplash.com/1200x900/?open-book,books,black-and-white" alt="black and white open book">  
-      
+            <aside class="poem-block" aria-label="Fuel the Fire poem">  
+              <div class="poem-title">Fuel the Fire 🔥</div>  
+              <p class="poem-line">Fuel the fire, break the mold,</p>  
+              <p class="poem-line">Chase the future, fierce and bold.</p>  
+              <p class="poem-line">Every setback builds my climb,</p>  
+              <p class="poem-line">I turn the struggle into shine.</p>  
+              <p class="poem-line"><br>— <strong>By Pranjal Vats 🌻</strong></p>  
+            </aside>  
+          </article>  
+
+          <!-- Feature 2: Crowd image -->
+          <article class="feature second" aria-label="Alone in a Crowd">  
+            <div class="feat-image" aria-hidden="false">  
+              <img src="crowd-image.jpg" alt="Person standing in a moving crowd">  
+            </div>  
+
+            <aside class="poem-block" aria-label="Alone in a Crowd poem">  
+              <div class="poem-title">Alone in a Crowd 🌑</div>  
+              <p class="poem-line">Surrounded by voices, yet none hear mine,</p>  
+              <p class="poem-line">A room full of light, but no warmth to find.</p>  
+              <p class="poem-line">The world moves around, its rhythm so loud,</p>  
+              <p class="poem-line">Yet I stand alone, lost in the crowd.</p>  
+              <p class="poem-line"><br>— <strong>By Pranjal Vats 🌻</strong></p>  
+            </aside>  
+          </article>  
+
         </div>  
+      </section>  
 
-        <aside class="poem-block" aria-label="Fuel the Fire poem">  
-          <div class="poem-title">Fuel the Fire 🔥</div>  
-          <p class="poem-line">Fuel the fire, break the mold,</p>  
-          <p class="poem-line">Chase the future, fierce and bold.</p>  
-          <p class="poem-line">Every setback builds my climb,</p>  
-          <p class="poem-line">I turn the struggle into shine.</p>  
-          <p class="poem-line"><br>— <strong>By Pranjal Vats 🌻</strong></p>  
-        </aside>  
-      </article>  
+      <section id="contact" class="wash-1">  
+        <h2>Contact</h2>  
+        <p>Let’s connect!</p>  
+        <a class="btn" href="mailto:wildness.unleashed12@gmail.com">📩 Contact Me</a>  
+      </section>  
+    </main>  
 
-      <!-- Feature 2: black & white writing scene + poem overlapping right -->  
-      <article class="feature second" aria-label="Alone in a Crowd">  
-        <div class="feat-image" aria-hidden="false">  
-          <img src="https://source.unsplash.com/1200x900/?books,writing,black-and-white" alt="black and white books and writing">  
-        </div>  
+    <footer>  
+      <p>© 2025 Echoes of Pranjal — Built by <strong>Pranjal Vats</strong></p>  
+    </footer>  
+  </div>  
 
-        <aside class="poem-block" aria-label="Alone in a Crowd poem">  
-          <div class="poem-title">Alone in a Crowd 🌑</div>  
-          <p class="poem-line">Surrounded by voices, yet none hear mine,</p>  
-          <p class="poem-line">A room full of light, but no warmth to find.</p>  
-          <p class="poem-line">The world moves around, its rhythm so loud,</p>  
-          <p class="poem-line">Yet I stand alone, lost in the crowd.</p>  
-          <p class="poem-line"><br>— <strong>By Pranjal Vats 🌻</strong></p>  
-        </aside>  
-      </article>  
-
-    </div>  
-  </section>  
-
-  <!-- CONTACT (unchanged, placed after features) -->  
-  <section id="contact" class="wash-1">  
-    <h2>Contact</h2>  
-    <p>Let’s connect!</p>  
-    <a class="btn" href="mailto:wildness.unleashed12@gmail.com">📩 Contact Me</a>  
-  </section>  
-
-</main>  
-
-<footer>  
-  <p>© 2025 Echoes of Pranjal — Built by <strong>Pranjal Vats</strong></p>  
-</footer>
-
-  </div>    <script>  
-    // IntersectionObserver to reveal sections & features on scroll  
+  <script>  
     (function(){  
       const observers = [];  
       const revealTargets = document.querySelectorAll('section, .feature');  
@@ -281,5 +277,6 @@ and learning that sometimes, chaos is just creation in disguise.<br>
       }, { threshold: 0.15 });  
       revealTargets.forEach(t => io.observe(t));  
     })();  
-  </script>  </body>  
+  </script>  
+</body>  
 </html>
