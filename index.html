@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Echoes of Pranjal — Pranjal Vats</title>
 
-  <!-- Google Fonts -->
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:wght@400;500&display=swap" rel="stylesheet">
 
   <style>
@@ -17,6 +17,7 @@
       --gold-wash: rgba(220,180,80,0.18);
       --blue-wash: rgba(120,160,220,0.15);
       --fade-accent: rgba(0,0,0,0.08);
+      --max-width: 1100px;
     }
 
     html, body {
@@ -33,11 +34,19 @@
       line-height: 1.7;
       font-size: 18px;
       -webkit-font-smoothing: antialiased;
-      animation: fadeIn 1.2s ease forwards;
+      -moz-osx-font-smoothing: grayscale;
+      animation: fadeIn 1s ease forwards;
       opacity: 0;
     }
 
     @keyframes fadeIn { to { opacity: 1; } }
+
+    /* page container constraint */
+    .page {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 20px;
+    }
 
     /* Navbar */
     nav {
@@ -48,8 +57,8 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      width: 90%;
-      max-width: 1000px;
+      width: 92%;
+      max-width: var(--max-width);
       padding: 12px 24px;
       border-radius: 40px;
       background: rgba(255,255,255,0.55);
@@ -190,61 +199,204 @@
 
     footer strong { color: var(--ink-black); }
 
-    @media (max-width: 600px) {
-      nav { flex-direction: column; gap: 10px; padding: 12px 16px; }
+    /* Featured image + poem section (Rupi-like) */
+    .feature {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 36px;
+      align-items: center;
+      margin: 50px 0;
+      position: relative;
+    }
+
+    /* Add a subtle watercolor SVG behind each .feature (positioned with pseudo element) */
+    .feature::before {
+      content: "";
+      position: absolute;
+      inset: auto -6% -6% auto;
+      width: 48%;
+      height: 84%;
+      pointer-events: none;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+      opacity: 0.36;
+      transform: translateX(-8%) rotate(-6deg);
+      z-index: -1;
+      filter: blur(6px) saturate(0.95);
+    }
+    /* first feature uses a warm gold wash */
+    .feature.feature-1::before {
+      background-image: url('data:image/svg+xml;utf8,\
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400">\
+          <defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="%23F7E7C7" stop-opacity="1"/><stop offset="1" stop-color="%23F0D6B5" stop-opacity="1"/></linearGradient></defs>\
+          <path d="M50 300 C150 260 220 180 300 160 C420 140 520 220 570 280 L570 380 L50 380 Z" fill="url(%23g)"/></svg>');
+    }
+    /* second feature uses a cool blue wash */
+    .feature.feature-2::before {
+      background-image: url('data:image/svg+xml;utf8,\
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400">\
+          <defs><linearGradient id="g2" x1="0" x2="1"><stop offset="0" stop-color="%23D9EEF8" stop-opacity="1"/><stop offset="1" stop-color="%23CDE9F1" stop-opacity="1"/></linearGradient></defs>\
+          <path d="M30 320 C120 280 200 200 300 170 C420 140 520 220 560 260 L560 360 L30 360 Z" fill="url(%23g2)"/></svg>');
+      transform: translateY(6px);
+      opacity: 0.98;
+    }
+
+    .feature .feat-image {
+      display: block;
+      width: 100%;
+      overflow: hidden;
+      border-radius: 8px;
+      box-shadow: 0 22px 48px rgba(15,15,15,0.08);
+      background: #fff;
+    }
+    .feature .feat-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+    }
+
+    .feature .poem {
+      max-width: 46ch;
+      font-family: 'Lora', serif;
+      color: var(--ink-black);
+      font-size: 1.05rem;
+      line-height: 1.5;
+      background: rgba(255,255,255,0.6);
+      padding: 22px 18px;
+      border-radius: 8px;
+      box-shadow: 0 10px 30px rgba(10,10,10,0.03);
+    }
+
+    .poem .poem-title {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      margin-bottom: 8px;
+      font-size: 1.05rem;
+    }
+
+    .poem p.line {
+      margin: 7px 0;
+      color: var(--muted-gray);
+      font-style: normal;
+      letter-spacing: 0.01em;
+    }
+
+    /* small caption style for image credit if needed */
+    .feat-caption {
+      display: block;
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: var(--muted-gray);
+      font-family: 'Lora', serif;
+    }
+
+    /* grid order for alternating layout */
+    .feature.feature-1 .feat-image { order: 1; }
+    .feature.feature-1 .poem       { order: 2; }
+    .feature.feature-2 .feat-image { order: 2; }
+    .feature.feature-2 .poem       { order: 1; }
+
+    /* responsiveness */
+    @media (max-width: 980px) {
+      .feature { grid-template-columns: 1fr; gap: 24px; }
+      .feature::before { display: none; } /* hide big SVG washes on small */
       header h1 { font-size: 2.3rem; }
-      section h2 { font-size: 1.5rem; }
+      nav { flex-direction: column; gap: 10px; padding: 10px 16px; }
+      main { margin: 40px auto 60px; }
     }
   </style>
 </head>
 
 <body>
-  <nav>
-    <div class="brand">PV</div>
-    <div class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="shayari.html">Mehfill</a>
-      <a href="poems.html">Poems</a>
-      <a href="naturepoems.html">Roots & Rhythms</a>
-      <a href="#contact">Contact</a>
-    </div>
-  </nav>
+  <div class="page">
+    <nav>
+      <div class="brand">PV</div>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="shayari.html">Mehfill</a>
+        <a href="poems.html">Poems</a>
+        <a href="naturepoems.html">Roots & Rhythms</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
 
-  <header>
-    <h1>Echoes of Pranjal</h1>
-    <p class="tagline">“Chaos into Creation.”</p>
-    <p class="author">— By Pranjal Vats 🌻</p>
-    <p class="byline">Turning imperfections into something bold, wild, and free.</p>
-  </header>
+    <header>
+      <h1>Echoes of Pranjal</h1>
+      <p class="tagline">“Chaos into Creation.”</p>
+      <p class="author">— By Pranjal Vats 🌻</p>
+      <p class="byline">Turning imperfections into something bold, wild, and free.</p>
+    </header>
 
-  <main>
-    <section id="about">
-      <h2>About Me</h2>
-      <p>
-        I’m Pranjal Vats.<br>
-        This is where I breathe. <b>Echoes of Pranjal</b> isn’t just a name — it’s my way of existing.<br>
-        I don’t chase perfection… I shape the chaos I feel into meaning.<br>
-        This space is where I experiment boldly, feel deeply, write fiercely, and allow myself to stay untamed.
-      </p>
-    </section>
+    <main>
+      <!-- original content kept exactly the same -->
+      <section id="about">
+        <h2>About Me</h2>
+        <p>
+          I’m Pranjal Vats.<br>
+          This is where I breathe. <b>Echoes of Pranjal</b> isn’t just a name — it’s my way of existing.<br>
+          I don’t chase perfection… I shape the chaos I feel into meaning.<br>
+          This space is where I experiment boldly, feel deeply, write fiercely, and allow myself to stay untamed.
+        </p>
+      </section>
 
-    <section id="description">
-      <h2>Description</h2>
-      <p>
-        My projects blend experimentation and vision — from scribbles to poems.<br>
-        Each piece reflects growth, self-expression, and the courage to create fearlessly and represent me in a way I may not always be able to express verbally.
-      </p>
-    </section>
+      <section id="description">
+        <h2>Description</h2>
+        <p>
+          My projects blend experimentation and vision — from scribbles to poems.<br>
+          Each piece reflects growth, self-expression, and the courage to create fearlessly and represent me in a way I may not always be able to express verbally.
+        </p>
+      </section>
 
-    <section id="contact">
-      <h2>Contact</h2>
-      <p>Let’s connect!</p>
-      <a class="btn" href="mailto:wildness.unleashed12@gmail.com">📩 Contact Me</a>
-    </section>
-  </main>
+      <!-- FEATURED: first uploaded image + poem -->
+      <!-- Replace image path if your file is named differently -->
+      <section aria-label="Featured Poem 1" class="feature feature-1" style="margin-bottom:0; border-bottom:none;">
+        <div class="feat-image" aria-hidden="false">
+          <!-- image: roses over dictionary (user image 1) -->
+          <img src="images/rose-books.jpg" alt="stack of books with roses illustration">
+          <span class="feat-caption" aria-hidden="true">Image: roses & books</span>
+        </div>
 
-  <footer>
-    <p>© 2025 Echoes of Pranjal — Built by <strong>Pranjal Vats</strong></p>
-  </footer>
+        <aside class="poem" aria-label="Sample poem">
+          <div class="poem-title">from a small room</div>
+          <p class="line">i learned to keep my storms</p>
+          <p class="line">like pressed flowers —</p>
+          <p class="line">folded soft between pages</p>
+          <p class="line">so their thunder could be opened</p>
+          <p class="line">only by hands brave enough to read</p>
+        </aside>
+      </section>
+
+      <!-- FEATURED: second uploaded image + poem -->
+      <section aria-label="Featured Poem 2" class="feature feature-2" style="margin-top: 24px; padding-top: 24px;">
+        <div class="feat-image" aria-hidden="false">
+          <!-- image: open books wall (user image 2) -->
+          <img src="images/open-books.jpg" alt="many open books arranged">
+          <span class="feat-caption" aria-hidden="true">Image: open books</span>
+        </div>
+
+        <aside class="poem" aria-label="Sample poem">
+          <div class="poem-title">on quiet shelves</div>
+          <p class="line">i found the places i had left unfinished</p>
+          <p class="line">and stitched them into sentences</p>
+          <p class="line">because the afternoon had nowhere to go</p>
+          <p class="line">but into the gentle keeping of words</p>
+          <p class="line">— and the wanting to be whole again</p>
+        </aside>
+      </section>
+
+      <!-- original content continues unchanged -->
+      <section id="contact" style="margin-top: 40px;">
+        <h2>Contact</h2>
+        <p>Let’s connect!</p>
+        <a class="btn" href="mailto:wildness.unleashed12@gmail.com">📩 Contact Me</a>
+      </section>
+    </main>
+
+    <footer>
+      <p>© 2025 Echoes of Pranjal — Built by <strong>Pranjal Vats</strong></p>
+    </footer>
+  </div>
 </body>
 </html>
