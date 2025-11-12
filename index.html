@@ -1,310 +1,271 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Echoes of Pranjal — Pranjal Vats</title>
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:wght@400;500&display=swap" rel="stylesheet">
 
   <style>
-    :root {
+    :root{
       --cream-bg: #FBF6F0;
       --ink-black: #1f1f1f;
       --muted-gray: #565656;
-      --accent-green: #7C9A6A;
-      --gold-wash: rgba(220,180,80,0.18);
-      --blue-wash: rgba(120,160,220,0.15);
-      --fade-accent: rgba(0,0,0,0.08);
       --max-width: 1100px;
+      --accent-1: rgba(238,150,161,0.88);  /* pink */
+      --accent-2: rgba(174,154,224,0.86);  /* lavender */
+      --accent-3: rgba(129,199,132,0.86);  /* green */
+      --accent-4: rgba(255,183,110,0.86);  /* orange */
+      --wash-opacity: 0.82;
     }
 
-    html, body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-      background: var(--cream-bg);
+    /* Page reset */
+    html,body{
+      height:100%;
+      margin:0;
+      padding:0;
+      background:var(--cream-bg);
+      color:var(--ink-black);
+      font-family:'Lora', serif;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.7;
+      font-size:18px;
+    }
+
+    /* subtle background radial washes */
+    body{
       background-image:
-        radial-gradient(circle at 15% 25%, var(--blue-wash) 0%, transparent 40%),
-        radial-gradient(circle at 85% 75%, var(--gold-wash) 0%, transparent 40%);
+        radial-gradient(circle at 12% 18%, rgba(120,160,220,0.10) 0%, transparent 35%),
+        radial-gradient(circle at 86% 72%, rgba(220,180,80,0.10) 0%, transparent 35%);
       background-attachment: fixed;
-      color: var(--ink-black);
-      font-family: 'Lora', serif;
-      line-height: 1.7;
-      font-size: 18px;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      animation: fadeIn 1s ease forwards;
-      opacity: 0;
     }
 
-    @keyframes fadeIn { to { opacity: 1; } }
-
-    /* page container constraint */
-    .page {
-      max-width: var(--max-width);
-      margin: 0 auto;
-      padding: 0 20px;
+    .page{
+      max-width:var(--max-width);
+      margin:0 auto;
+      padding:0 20px 80px;
     }
 
-    /* Navbar */
-    nav {
-      position: fixed;
-      top: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      width: 92%;
-      max-width: var(--max-width);
-      padding: 12px 24px;
-      border-radius: 40px;
-      background: rgba(255,255,255,0.55);
-      backdrop-filter: blur(8px);
-      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-      z-index: 100;
+    /* NAV */
+    nav{
+      position:fixed;
+      top:20px;
+      left:50%;
+      transform:translateX(-50%);
+      width:92%;
+      max-width:var(--max-width);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:12px 22px;
+      border-radius:40px;
+      background:rgba(255,255,255,0.62);
+      backdrop-filter:blur(8px);
+      box-shadow:0 6px 30px rgba(0,0,0,0.06);
+      z-index:120;
     }
-
-    nav .brand {
-      font-family: 'Playfair Display', serif;
-      font-weight: 700;
-      font-size: 1.3rem;
-      letter-spacing: 0.04em;
-      color: var(--ink-black);
+    .brand{
+      font-family:'Playfair Display', serif;
+      font-weight:700;
+      font-size:1.25rem;
+      color:var(--ink-black);
     }
-
-    .nav-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 16px;
+    .nav-links{ display:flex; gap:16px; flex-wrap:wrap; }
+    .nav-links a{
+      text-decoration:none;
+      color:var(--muted-gray);
+      font-weight:500;
+      font-family:'Lora', serif;
     }
-
-    .nav-links a {
-      text-decoration: none;
-      color: var(--muted-gray);
-      font-weight: 500;
-      transition: color .25s ease;
-      font-family: 'Lora', serif;
-    }
-
-    .nav-links a:hover { color: var(--ink-black); }
+    .nav-links a:hover{ color:var(--ink-black); }
 
     /* Header */
-    header {
-      text-align: center;
-      margin-top: 120px;
-      padding: 80px 20px 40px;
-      position: relative;
+    header{
+      text-align:center;
+      margin-top:120px;
+      padding:86px 20px 28px;
+    }
+    header h1{
+      font-family:'Playfair Display', serif;
+      font-size:clamp(2.6rem, 6vw, 3.8rem);
+      line-height:1;
+      margin:0 0 16px;
+    }
+    .tagline{
+      font-family:'Lora', serif;
+      font-style:italic;
+      color:var(--muted-gray);
+      margin-bottom:8px;
+      font-size:1.18rem;
+    }
+    .author{
+      font-family:'Playfair Display', serif;
+      font-weight:700;
+      margin-bottom:6px;
+      font-size:1.05rem;
+    }
+    .byline{
+      color:var(--muted-gray);
+      font-style:italic;
+      max-width:46ch;
+      margin:0 auto;
     }
 
-    header h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2.8rem, 6vw, 4rem);
-      line-height: 1;
-      margin-bottom: 20px;
-      color: var(--ink-black);
+    main{
+      max-width:880px;
+      margin:56px auto 0;
+      padding:0 18px;
     }
 
-    .tagline {
-      font-family: 'Lora', serif;
-      font-size: 1.25rem;
-      color: var(--muted-gray);
-      font-style: italic;
-      margin-bottom: 10px;
+    section{
+      margin-bottom:72px;
+      padding-bottom:28px;
+      border-bottom:1px dashed rgba(0,0,0,0.06);
+    }
+    section h2{
+      font-family:'Playfair Display', serif;
+      font-size:1.7rem;
+      margin-bottom:12px;
+      color:var(--ink-black);
+    }
+    section h2::after{
+      content:"";
+      display:block;
+      width:88px;
+      height:6px;
+      border-radius:5px;
+      background:linear-gradient(90deg,var(--accent-1),var(--accent-4));
+      margin-top:8px;
+      opacity:0.9;
+    }
+    section p{
+      color:var(--muted-gray);
+      font-size:1.05rem;
+      max-width:64ch;
     }
 
-    .author {
-      font-weight: 700;
-      font-family: 'Playfair Display', serif;
-      margin-bottom: 4px;
-      font-size: 1.1rem;
+    .btn{
+      display:inline-block;
+      margin-top:18px;
+      padding:10px 22px;
+      border-radius:8px;
+      border:1.5px solid var(--ink-black);
+      background:transparent;
+      color:var(--ink-black);
+      text-decoration:none;
+      font-family:'Lora', serif;
+      font-weight:500;
+      transition:transform .18s ease, background .18s ease;
+    }
+    .btn:hover{ transform:translateY(-3px); background:rgba(0,0,0,0.04); }
+
+    footer{
+      text-align:center;
+      padding:44px 20px;
+      color:var(--muted-gray);
+      border-top:1px solid rgba(0,0,0,0.06);
+      background:rgba(255,255,255,0.35);
+      margin-top:18px;
+    }
+    footer strong{ color:var(--ink-black); }
+
+    /* === FEATURED IMAGE+POEM AREA === */
+    .features {
+      display:flex;
+      flex-direction:column;
+      gap:42px;
+      margin-top:10px;
     }
 
-    .byline {
-      color: var(--muted-gray);
-      font-style: italic;
-      font-size: 1rem;
-      max-width: 42ch;
-      margin: 0 auto;
-    }
-
-    main {
-      max-width: 850px;
-      margin: 60px auto 80px;
-      padding: 0 24px;
-    }
-
-    section {
-      margin-bottom: 80px;
-      padding-bottom: 40px;
-      border-bottom: 1px dashed var(--fade-accent);
-      position: relative;
-    }
-
-    section h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.8rem;
-      color: var(--ink-black);
-      margin-bottom: 18px;
-      position: relative;
-    }
-
-    section h2::after {
-      content: "";
-      display: block;
-      width: 80px;
-      height: 6px;
-      border-radius: 4px;
-      background: linear-gradient(90deg, rgba(124,154,106,0.7), rgba(220,180,80,0.6));
-      margin-top: 6px;
-    }
-
-    section p {
-      color: var(--muted-gray);
-      font-size: 1.06rem;
-      max-width: 60ch;
-    }
-
-    .btn {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 10px 22px;
-      border-radius: 6px;
-      border: 1.5px solid var(--ink-black);
-      background: transparent;
-      color: var(--ink-black);
-      text-decoration: none;
-      font-weight: 500;
-      font-family: 'Lora', serif;
-      transition: all .25s ease;
-      letter-spacing: 0.02em;
-    }
-
-    .btn:hover {
-      background: rgba(0,0,0,0.05);
-      transform: translateY(-2px);
-    }
-
-    footer {
-      text-align: center;
-      padding: 40px 20px;
-      font-size: 0.95rem;
-      color: var(--muted-gray);
-      border-top: 1px solid var(--fade-accent);
-      background: rgba(255,255,255,0.4);
-      font-family: 'Lora', serif;
-    }
-
-    footer strong { color: var(--ink-black); }
-
-    /* Featured image + poem section (Rupi-like) */
     .feature {
-      display: grid;
+      position:relative;
+      display:grid;
       grid-template-columns: 1fr 1fr;
-      gap: 36px;
-      align-items: center;
-      margin: 50px 0;
-      position: relative;
+      gap:32px;
+      align-items:center;
+      padding:26px;
+      border-radius:12px;
+      overflow:visible;
     }
 
-    /* Add a subtle watercolor SVG behind each .feature (positioned with pseudo element) */
-    .feature::before {
-      content: "";
-      position: absolute;
-      inset: auto -6% -6% auto;
-      width: 48%;
-      height: 84%;
-      pointer-events: none;
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: contain;
-      opacity: 0.36;
-      transform: translateX(-8%) rotate(-6deg);
-      z-index: -1;
-      filter: blur(6px) saturate(0.95);
+    /* watercolor SVG containers (visible and layered) */
+    .feature .wash {
+      position:absolute;
+      inset:auto -6% -6% auto;
+      width:64%;
+      height:92%;
+      pointer-events:none;
+      z-index:5;
+      filter:blur(6px) saturate(0.98);
+      opacity:var(--wash-opacity);
+      transform:rotate(-6deg);
     }
-    /* first feature uses a warm gold wash */
-    .feature.feature-1::before {
-      background-image: url('data:image/svg+xml;utf8,\
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400">\
-          <defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="%23F7E7C7" stop-opacity="1"/><stop offset="1" stop-color="%23F0D6B5" stop-opacity="1"/></linearGradient></defs>\
-          <path d="M50 300 C150 260 220 180 300 160 C420 140 520 220 570 280 L570 380 L50 380 Z" fill="url(%23g)"/></svg>');
+    .feature.second .wash{ transform:rotate(4deg) translateY(8px); left:auto; right:-6%; }
+
+    /* multiple colored layered brushes: use separate SVG elements inside .wash for rich color mix */
+    .wash svg{ width:100%; height:100%; display:block; }
+
+    .feat-image{
+      position:relative;
+      z-index:10;
+      border-radius:8px;
+      overflow:hidden;
+      box-shadow:0 22px 48px rgba(15,15,15,0.08);
+      background:#fff;
     }
-    /* second feature uses a cool blue wash */
-    .feature.feature-2::before {
-      background-image: url('data:image/svg+xml;utf8,\
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400">\
-          <defs><linearGradient id="g2" x1="0" x2="1"><stop offset="0" stop-color="%23D9EEF8" stop-opacity="1"/><stop offset="1" stop-color="%23CDE9F1" stop-opacity="1"/></linearGradient></defs>\
-          <path d="M30 320 C120 280 200 200 300 170 C420 140 520 220 560 260 L560 360 L30 360 Z" fill="url(%23g2)"/></svg>');
-      transform: translateY(6px);
-      opacity: 0.98;
+    .feat-image img{
+      display:block;
+      width:100%;
+      height:auto;
+      object-fit:cover;
+    }
+    .feat-caption{
+      display:block;
+      font-size:0.9rem;
+      color:var(--muted-gray);
+      margin-top:10px;
+      font-family:'Lora', serif;
+      z-index:12;
     }
 
-    .feature .feat-image {
-      display: block;
-      width: 100%;
-      overflow: hidden;
-      border-radius: 8px;
-      box-shadow: 0 22px 48px rgba(15,15,15,0.08);
-      background: #fff;
+    .poem-block{
+      z-index:12;
+      position:relative;
+      max-width:46ch;
+      background:rgba(255,255,255,0.78);
+      padding:20px 18px;
+      border-radius:10px;
+      box-shadow:0 12px 30px rgba(10,10,10,0.03);
+      font-family:'Lora', serif;
     }
-    .feature .feat-image img {
-      width: 100%;
-      height: auto;
-      display: block;
-      object-fit: cover;
+    .poem-title{
+      font-family:'Playfair Display', serif;
+      font-weight:700;
+      margin-bottom:8px;
+      font-size:1.02rem;
     }
+    .poem-line{ margin:8px 0; color:var(--muted-gray); }
 
-    .feature .poem {
-      max-width: 46ch;
-      font-family: 'Lora', serif;
-      color: var(--ink-black);
-      font-size: 1.05rem;
-      line-height: 1.5;
-      background: rgba(255,255,255,0.6);
-      padding: 22px 18px;
-      border-radius: 8px;
-      box-shadow: 0 10px 30px rgba(10,10,10,0.03);
-    }
+    /* Alternating layout */
+    .feature.first .feat-image{ order:1; }
+    .feature.first .poem-block{ order:2; }
+    .feature.second .feat-image{ order:2; }
+    .feature.second .poem-block{ order:1; }
 
-    .poem .poem-title {
-      font-family: 'Playfair Display', serif;
-      font-weight: 700;
-      margin-bottom: 8px;
-      font-size: 1.05rem;
-    }
+    /* Fade-in on scroll */
+    .feature { opacity:0; transform:translateY(18px); transition:opacity .8s ease, transform .8s ease; }
+    .feature.visible { opacity:1; transform:translateY(0); }
 
-    .poem p.line {
-      margin: 7px 0;
-      color: var(--muted-gray);
-      font-style: normal;
-      letter-spacing: 0.01em;
-    }
-
-    /* small caption style for image credit if needed */
-    .feat-caption {
-      display: block;
-      margin-top: 10px;
-      font-size: 0.9rem;
-      color: var(--muted-gray);
-      font-family: 'Lora', serif;
-    }
-
-    /* grid order for alternating layout */
-    .feature.feature-1 .feat-image { order: 1; }
-    .feature.feature-1 .poem       { order: 2; }
-    .feature.feature-2 .feat-image { order: 2; }
-    .feature.feature-2 .poem       { order: 1; }
-
-    /* responsiveness */
-    @media (max-width: 980px) {
-      .feature { grid-template-columns: 1fr; gap: 24px; }
-      .feature::before { display: none; } /* hide big SVG washes on small */
-      header h1 { font-size: 2.3rem; }
-      nav { flex-direction: column; gap: 10px; padding: 10px 16px; }
-      main { margin: 40px auto 60px; }
+    /* Responsive */
+    @media (max-width:980px){
+      nav{ width:94%; padding:10px 16px; }
+      header{ margin-top:100px; padding:56px 16px 18px; }
+      .feature{ grid-template-columns: 1fr; gap:18px; padding:18px; }
+      .feature .wash{ display:none; }
+      .poem-block{ padding:18px; }
     }
   </style>
 </head>
@@ -330,7 +291,6 @@
     </header>
 
     <main>
-      <!-- original content kept exactly the same -->
       <section id="about">
         <h2>About Me</h2>
         <p>
@@ -349,45 +309,92 @@
         </p>
       </section>
 
-      <!-- FEATURED: first uploaded image + poem -->
-      <!-- Replace image path if your file is named differently -->
-      <section aria-label="Featured Poem 1" class="feature feature-1" style="margin-bottom:0; border-bottom:none;">
-        <div class="feat-image" aria-hidden="false">
-          <!-- image: roses over dictionary (user image 1) -->
-          <img src="images/rose-books.jpg" alt="stack of books with roses illustration">
-          <span class="feat-caption" aria-hidden="true">Image: roses & books</span>
-        </div>
+      <!-- FEATURES: placed between Description and Contact -->
+      <div class="features">
 
-        <aside class="poem" aria-label="Sample poem">
-          <div class="poem-title">from a small room</div>
-          <p class="line">i learned to keep my storms</p>
-          <p class="line">like pressed flowers —</p>
-          <p class="line">folded soft between pages</p>
-          <p class="line">so their thunder could be opened</p>
-          <p class="line">only by hands brave enough to read</p>
-        </aside>
-      </section>
+        <!-- FEATURE 1 -->
+        <article class="feature first" aria-label="Featured poem 1">
+          <!-- watercolor wash (multiple color blobs) -->
+          <div class="wash" aria-hidden="true">
+            <!-- SVG with mixed pink + orange washes -->
+            <svg viewBox="0 0 800 520" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" role="img">
+              <defs>
+                <linearGradient id="gA" x1="0" x2="1">
+                  <stop offset="0" stop-color="#f48fb1" stop-opacity="1"/>
+                  <stop offset="1" stop-color="#ffb74d" stop-opacity="1"/>
+                </linearGradient>
+                <linearGradient id="gB" x1="0" x2="1">
+                  <stop offset="0" stop-color="#f8bbd0" stop-opacity="0.85"/>
+                  <stop offset="1" stop-color="#ffcc99" stop-opacity="0.7"/>
+                </linearGradient>
+              </defs>
 
-      <!-- FEATURED: second uploaded image + poem -->
-      <section aria-label="Featured Poem 2" class="feature feature-2" style="margin-top: 24px; padding-top: 24px;">
-        <div class="feat-image" aria-hidden="false">
-          <!-- image: open books wall (user image 2) -->
-          <img src="images/open-books.jpg" alt="many open books arranged">
-          <span class="feat-caption" aria-hidden="true">Image: open books</span>
-        </div>
+              <g transform="translate(0,0)">
+                <path d="M40 360 C140 320 220 240 340 210 C460 180 560 240 700 280 L700 520 L40 520 Z" fill="url(#gA)" opacity="0.9"/>
+                <path d="M0 420 C120 380 210 290 340 250 C480 210 560 260 780 300 L780 520 L0 520 Z" fill="url(#gB)" opacity="0.45"/>
+              </g>
+            </svg>
+          </div>
 
-        <aside class="poem" aria-label="Sample poem">
-          <div class="poem-title">on quiet shelves</div>
-          <p class="line">i found the places i had left unfinished</p>
-          <p class="line">and stitched them into sentences</p>
-          <p class="line">because the afternoon had nowhere to go</p>
-          <p class="line">but into the gentle keeping of words</p>
-          <p class="line">— and the wanting to be whole again</p>
-        </aside>
-      </section>
+          <!-- image (black & white) -->
+          <div class="feat-image" aria-hidden="false">
+            <!-- OFFICIAL: two public Unsplash images used in grayscale -->
+            <!-- Replace these src URLs if you want to host images locally -->
+            <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=1200&q=80&grayscale=1" alt="black and white stack of books">
+            <span class="feat-caption">Image: quiet stacks</span>
+          </div>
 
-      <!-- original content continues unchanged -->
-      <section id="contact" style="margin-top: 40px;">
+          <aside class="poem-block" aria-label="Poem 1">
+            <div class="poem-title">a small keeping</div>
+            <p class="poem-line">i folded my afternoons into pockets</p>
+            <p class="poem-line">so they would not scatter like loose pages</p>
+            <p class="poem-line">and found, one quiet evening,</p>
+            <p class="poem-line">how gentle the world becomes when held</p>
+            <p class="poem-line">— open only by hands that read slowly</p>
+          </aside>
+        </article>
+
+        <!-- FEATURE 2 -->
+        <article class="feature second" aria-label="Featured poem 2">
+          <div class="wash" aria-hidden="true">
+            <!-- SVG with mixed lavender + green washes -->
+            <svg viewBox="0 0 800 520" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" role="img">
+              <defs>
+                <linearGradient id="gC" x1="0" x2="1">
+                  <stop offset="0" stop-color="#b39ddb" stop-opacity="1"/>
+                  <stop offset="1" stop-color="#8bc34a" stop-opacity="1"/>
+                </linearGradient>
+                <linearGradient id="gD" x1="0" x2="1">
+                  <stop offset="0" stop-color="#e1bee7" stop-opacity="0.9"/>
+                  <stop offset="1" stop-color="#c5e1a5" stop-opacity="0.6"/>
+                </linearGradient>
+              </defs>
+              <g>
+                <path d="M60 320 C150 280 230 200 360 170 C500 140 600 210 740 250 L740 520 L60 520 Z" fill="url(#gC)" opacity="0.95"/>
+                <path d="M20 360 C120 320 220 240 350 200 C480 160 600 220 780 260 L780 520 L20 520 Z" fill="url(#gD)" opacity="0.5"/>
+              </g>
+            </svg>
+          </div>
+
+          <div class="feat-image" aria-hidden="false">
+            <img src="https://images.unsplash.com/photo-1528207776546-365bb710ee93?auto=format&fit=crop&w=1200&q=80&grayscale=1" alt="black and white open books">
+            <span class="feat-caption">Image: open pages</span>
+          </div>
+
+          <aside class="poem-block" aria-label="Poem 2">
+            <div class="poem-title">shelf-maps</div>
+            <p class="poem-line">i walked across chapters like rooms</p>
+            <p class="poem-line">and left little lights on the pages i loved</p>
+            <p class="poem-line">so the dark would know where to sit</p>
+            <p class="poem-line">and the morning would find the courage</p>
+            <p class="poem-line">to come back to me, patient and steady</p>
+          </aside>
+        </article>
+
+      </div>
+
+      <!-- CONTACT unchanged & after features as requested -->
+      <section id="contact">
         <h2>Contact</h2>
         <p>Let’s connect!</p>
         <a class="btn" href="mailto:wildness.unleashed12@gmail.com">📩 Contact Me</a>
@@ -398,5 +405,27 @@
       <p>© 2025 Echoes of Pranjal — Built by <strong>Pranjal Vats</strong></p>
     </footer>
   </div>
+
+  <script>
+    // simple scroll fade-in using IntersectionObserver
+    (function(){
+      const items = document.querySelectorAll('.feature');
+      if(!('IntersectionObserver' in window)){
+        // fallback: reveal all
+        items.forEach(i => i.classList.add('visible'));
+        return;
+      }
+      const io = new IntersectionObserver((entries)=>{
+        entries.forEach(e=>{
+          if(e.isIntersecting){
+            e.target.classList.add('visible');
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.18 });
+
+      items.forEach(i => io.observe(i));
+    })();
+  </script>
 </body>
 </html>
