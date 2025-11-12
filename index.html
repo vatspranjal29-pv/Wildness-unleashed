@@ -2,271 +2,179 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Echoes of Pranjal — Pranjal Vats</title>
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:wght@400;500&display=swap" rel="stylesheet">
 
   <style>
-    :root{
+    :root {
       --cream-bg: #FBF6F0;
       --ink-black: #1f1f1f;
       --muted-gray: #565656;
       --max-width: 1100px;
-      --accent-1: rgba(238,150,161,0.88);  /* pink */
-      --accent-2: rgba(174,154,224,0.86);  /* lavender */
-      --accent-3: rgba(129,199,132,0.86);  /* green */
-      --accent-4: rgba(255,183,110,0.86);  /* orange */
-      --wash-opacity: 0.82;
+      --accent-opacity: 0.86;
+      --section-wash-opacity: 0.84;
     }
 
-    /* Page reset */
-    html,body{
-      height:100%;
-      margin:0;
-      padding:0;
-      background:var(--cream-bg);
-      color:var(--ink-black);
-      font-family:'Lora', serif;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      line-height:1.7;
-      font-size:18px;
-    }
-
-    /* subtle background radial washes */
-    body{
+    /* Reset & base */
+    * { box-sizing: border-box; }
+    html,body { height:100%; margin:0; padding:0; background:var(--cream-bg); color:var(--ink-black); font-family:'Lora', serif; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; line-height:1.7; font-size:18px; }
+    body {
       background-image:
-        radial-gradient(circle at 12% 18%, rgba(120,160,220,0.10) 0%, transparent 35%),
-        radial-gradient(circle at 86% 72%, rgba(220,180,80,0.10) 0%, transparent 35%);
+        radial-gradient(circle at 12% 18%, rgba(120,160,220,0.08) 0%, transparent 30%),
+        radial-gradient(circle at 86% 72%, rgba(220,180,80,0.08) 0%, transparent 30%);
       background-attachment: fixed;
+      padding-bottom: 60px;
+      animation: pageFade .9s ease both;
     }
+    @keyframes pageFade { from { opacity:0; transform: translateY(6px);} to { opacity:1; transform:none; } }
 
-    .page{
-      max-width:var(--max-width);
-      margin:0 auto;
-      padding:0 20px 80px;
-    }
+    .page { max-width:var(--max-width); margin:0 auto; padding:0 20px 60px; }
 
     /* NAV */
-    nav{
-      position:fixed;
-      top:20px;
-      left:50%;
-      transform:translateX(-50%);
-      width:92%;
-      max-width:var(--max-width);
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      padding:12px 22px;
-      border-radius:40px;
-      background:rgba(255,255,255,0.62);
-      backdrop-filter:blur(8px);
-      box-shadow:0 6px 30px rgba(0,0,0,0.06);
-      z-index:120;
+    nav {
+      position:fixed; top:18px; left:50%; transform:translateX(-50%);
+      width:92%; max-width:var(--max-width);
+      display:flex; justify-content:space-between; align-items:center;
+      padding:12px 20px; border-radius:40px;
+      background:rgba(255,255,255,0.62); backdrop-filter: blur(8px);
+      box-shadow:0 6px 30px rgba(0,0,0,0.06); z-index:120;
     }
-    .brand{
-      font-family:'Playfair Display', serif;
-      font-weight:700;
-      font-size:1.25rem;
-      color:var(--ink-black);
-    }
+    .brand { font-family:'Playfair Display', serif; font-weight:700; font-size:1.25rem; color:var(--ink-black); }
     .nav-links{ display:flex; gap:16px; flex-wrap:wrap; }
-    .nav-links a{
-      text-decoration:none;
-      color:var(--muted-gray);
-      font-weight:500;
-      font-family:'Lora', serif;
-    }
-    .nav-links a:hover{ color:var(--ink-black); }
+    .nav-links a { text-decoration:none; color:var(--muted-gray); font-weight:500; }
+    .nav-links a:hover { color:var(--ink-black); }
 
     /* Header */
-    header{
-      text-align:center;
-      margin-top:120px;
-      padding:86px 20px 28px;
-    }
-    header h1{
-      font-family:'Playfair Display', serif;
-      font-size:clamp(2.6rem, 6vw, 3.8rem);
-      line-height:1;
-      margin:0 0 16px;
-    }
-    .tagline{
-      font-family:'Lora', serif;
-      font-style:italic;
-      color:var(--muted-gray);
-      margin-bottom:8px;
-      font-size:1.18rem;
-    }
-    .author{
-      font-family:'Playfair Display', serif;
-      font-weight:700;
-      margin-bottom:6px;
-      font-size:1.05rem;
-    }
-    .byline{
-      color:var(--muted-gray);
-      font-style:italic;
-      max-width:46ch;
-      margin:0 auto;
-    }
+    header { text-align:center; margin-top:120px; padding:86px 20px 28px; }
+    header h1 { font-family:'Playfair Display', serif; font-size:clamp(2.6rem,6vw,3.8rem); margin:0 0 16px; line-height:1; }
+    .tagline { font-style:italic; color:var(--muted-gray); margin-bottom:8px; font-size:1.18rem; }
+    .author { font-family:'Playfair Display', serif; font-weight:700; margin-bottom:6px; font-size:1.05rem; }
+    .byline { color:var(--muted-gray); font-style:italic; max-width:46ch; margin:0 auto; }
 
-    main{
-      max-width:880px;
-      margin:56px auto 0;
-      padding:0 18px;
-    }
+    main { max-width:900px; margin:56px auto 0; padding:0 18px; }
 
-    section{
+    /* Sections — each gets its own visible wash behind it */
+    section {
+      position:relative;
       margin-bottom:72px;
-      padding-bottom:28px;
+      padding:28px 18px;
       border-bottom:1px dashed rgba(0,0,0,0.06);
+      overflow:visible;
+      transition: transform .5s ease, opacity .5s ease;
+      opacity:0; transform:translateY(18px);
     }
-    section h2{
-      font-family:'Playfair Display', serif;
-      font-size:1.7rem;
-      margin-bottom:12px;
-      color:var(--ink-black);
-    }
-    section h2::after{
+    section.visible { opacity:1; transform:none; }
+
+    /* generic wash behind each section (colorful layered watercolors) */
+    section::before {
       content:"";
-      display:block;
-      width:88px;
-      height:6px;
-      border-radius:5px;
-      background:linear-gradient(90deg,var(--accent-1),var(--accent-4));
-      margin-top:8px;
-      opacity:0.9;
-    }
-    section p{
-      color:var(--muted-gray);
-      font-size:1.05rem;
-      max-width:64ch;
+      position:absolute;
+      z-index:0;
+      pointer-events:none;
+      left:-6%;
+      right:-6%;
+      top:-6%;
+      bottom:-6%;
+      background-repeat:no-repeat;
+      background-position:center;
+      background-size:cover;
+      opacity:var(--section-wash-opacity);
+      filter: blur(6px) saturate(1.02);
+      transform: rotate(-4deg);
     }
 
-    .btn{
-      display:inline-block;
-      margin-top:18px;
-      padding:10px 22px;
-      border-radius:8px;
-      border:1.5px solid var(--ink-black);
-      background:transparent;
-      color:var(--ink-black);
-      text-decoration:none;
-      font-family:'Lora', serif;
-      font-weight:500;
-      transition:transform .18s ease, background .18s ease;
+    /* different color mixes for variety (applied by class) */
+    section.wash-1::before {
+      background-image:
+        radial-gradient(circle at 12% 36%, rgba(244,143,177,0.95), transparent 25%),
+        radial-gradient(circle at 76% 68%, rgba(255,183,110,0.92), transparent 25%),
+        radial-gradient(circle at 50% 20%, rgba(255,224,178,0.72), transparent 20%);
     }
-    .btn:hover{ transform:translateY(-3px); background:rgba(0,0,0,0.04); }
+    section.wash-2::before {
+      background-image:
+        radial-gradient(circle at 10% 20%, rgba(177,154,217,0.95), transparent 22%),
+        radial-gradient(circle at 82% 70%, rgba(129,199,132,0.92), transparent 22%),
+        radial-gradient(circle at 60% 30%, rgba(255,205,210,0.72), transparent 18%);
+      transform: rotate(2deg);
+    }
+    section.wash-3::before {
+      background-image:
+        radial-gradient(circle at 20% 60%, rgba(244,143,177,0.88), transparent 22%),
+        radial-gradient(circle at 84% 34%, rgba(255,224,178,0.88), transparent 22%),
+        radial-gradient(circle at 50% 40%, rgba(191,214,255,0.6), transparent 20%);
+      transform: rotate(-8deg);
+    }
+    /* make washes a bit lighter on small */
+    @media (max-width:980px) {
+      section::before { display:none; }
+    }
 
-    footer{
-      text-align:center;
-      padding:44px 20px;
-      color:var(--muted-gray);
-      border-top:1px solid rgba(0,0,0,0.06);
-      background:rgba(255,255,255,0.35);
-      margin-top:18px;
-    }
-    footer strong{ color:var(--ink-black); }
+    /* Headings inside sections */
+    section h2 { position:relative; font-family:'Playfair Display', serif; font-size:1.7rem; margin:0 0 12px; z-index:6; }
+    section h2::after { content:""; display:block; width:88px; height:6px; border-radius:5px; background:linear-gradient(90deg, rgba(244,143,177,0.95), rgba(255,183,110,0.95)); margin-top:8px; opacity:0.95; }
 
-    /* === FEATURED IMAGE+POEM AREA === */
-    .features {
-      display:flex;
-      flex-direction:column;
-      gap:42px;
-      margin-top:10px;
-    }
+    section p { color:var(--muted-gray); font-size:1.05rem; max-width:64ch; position:relative; z-index:6; }
+
+    .btn { display:inline-block; margin-top:18px; padding:10px 22px; border-radius:8px; border:1.5px solid var(--ink-black); background:transparent; color:var(--ink-black); text-decoration:none; font-weight:500; transition:transform .18s ease, background .18s ease; z-index:6; }
+    .btn:hover { transform:translateY(-3px); background:rgba(0,0,0,0.04); }
+
+    footer { text-align:center; padding:44px 20px; color:var(--muted-gray); border-top:1px solid rgba(0,0,0,0.06); background:rgba(255,255,255,0.35); margin-top:18px; z-index:6; }
+
+    /* === Featured image+poem blocks (half-overlap) === */
+    .features { display:flex; flex-direction:column; gap:36px; margin-top:12px; z-index:6; }
 
     .feature {
       position:relative;
       display:grid;
       grid-template-columns: 1fr 1fr;
-      gap:32px;
+      gap:28px;
       align-items:center;
-      padding:26px;
+      padding:18px;
       border-radius:12px;
       overflow:visible;
+      z-index:6;
     }
 
-    /* watercolor SVG containers (visible and layered) */
-    .feature .wash {
-      position:absolute;
-      inset:auto -6% -6% auto;
-      width:64%;
-      height:92%;
-      pointer-events:none;
-      z-index:5;
-      filter:blur(6px) saturate(0.98);
-      opacity:var(--wash-opacity);
-      transform:rotate(-6deg);
-    }
-    .feature.second .wash{ transform:rotate(4deg) translateY(8px); left:auto; right:-6%; }
+    /* image container */
+    .feat-image { position:relative; z-index:6; border-radius:10px; overflow:hidden; box-shadow:0 20px 48px rgba(10,10,10,0.08); background:#fff; }
+    .feat-image img { display:block; width:100%; height:auto; object-fit:cover; filter: grayscale(100%) contrast(1.06) brightness(0.98); }
 
-    /* multiple colored layered brushes: use separate SVG elements inside .wash for rich color mix */
-    .wash svg{ width:100%; height:100%; display:block; }
-
-    .feat-image{
-      position:relative;
-      z-index:10;
-      border-radius:8px;
-      overflow:hidden;
-      box-shadow:0 22px 48px rgba(15,15,15,0.08);
-      background:#fff;
-    }
-    .feat-image img{
-      display:block;
-      width:100%;
-      height:auto;
-      object-fit:cover;
-    }
-    .feat-caption{
-      display:block;
-      font-size:0.9rem;
-      color:var(--muted-gray);
-      margin-top:10px;
-      font-family:'Lora', serif;
-      z-index:12;
-    }
-
-    .poem-block{
+    /* poem block sits overlapping the image */
+    .poem-block {
       z-index:12;
       position:relative;
       max-width:46ch;
-      background:rgba(255,255,255,0.78);
+      background: rgba(255,255,255,0.86);
       padding:20px 18px;
       border-radius:10px;
       box-shadow:0 12px 30px rgba(10,10,10,0.03);
       font-family:'Lora', serif;
+      transform: translateX(-18%); /* overlap to the left */
     }
-    .poem-title{
-      font-family:'Playfair Display', serif;
-      font-weight:700;
-      margin-bottom:8px;
-      font-size:1.02rem;
+
+    /* alternate layout for the second feature (poem overlaps to the right) */
+    .feature.second .poem-block { transform: translateX(18%); }
+
+    .poem-title { font-family:'Playfair Display', serif; font-weight:700; margin-bottom:8px; font-size:1.02rem; }
+    .poem-line { margin:7px 0; color:var(--muted-gray); white-space:pre-line; }
+
+    .feat-caption { display:block; margin-top:10px; font-size:0.9rem; color:var(--muted-gray); font-family:'Lora', serif; z-index:7; }
+
+    /* small screen: stack and remove overlap */
+    @media (max-width:980px) {
+      .feature { grid-template-columns: 1fr; gap:16px; padding:12px; }
+      .poem-block { transform:none; max-width:100%; }
+      .feature.second .poem-block { transform:none; }
+      section::before{ display:none; }
     }
-    .poem-line{ margin:8px 0; color:var(--muted-gray); }
 
-    /* Alternating layout */
-    .feature.first .feat-image{ order:1; }
-    .feature.first .poem-block{ order:2; }
-    .feature.second .feat-image{ order:2; }
-    .feature.second .poem-block{ order:1; }
+    /* fade-in on scroll for features & sections */
+    .feature, section { opacity:0; transform:translateY(18px); transition:opacity .8s ease, transform .8s ease; }
+    .feature.visible, section.visible { opacity:1; transform:translateY(0); }
 
-    /* Fade-in on scroll */
-    .feature { opacity:0; transform:translateY(18px); transition:opacity .8s ease, transform .8s ease; }
-    .feature.visible { opacity:1; transform:translateY(0); }
-
-    /* Responsive */
-    @media (max-width:980px){
-      nav{ width:94%; padding:10px 16px; }
-      header{ margin-top:100px; padding:56px 16px 18px; }
-      .feature{ grid-template-columns: 1fr; gap:18px; padding:18px; }
-      .feature .wash{ display:none; }
-      .poem-block{ padding:18px; }
-    }
   </style>
 </head>
 
@@ -291,7 +199,8 @@
     </header>
 
     <main>
-      <section id="about">
+      <!-- ABOUT (unchanged) -->
+      <section id="about" class="wash-1">
         <h2>About Me</h2>
         <p>
           I’m Pranjal Vats.<br>
@@ -301,7 +210,8 @@
         </p>
       </section>
 
-      <section id="description">
+      <!-- DESCRIPTION (unchanged) -->
+      <section id="description" class="wash-2">
         <h2>Description</h2>
         <p>
           My projects blend experimentation and vision — from scribbles to poems.<br>
@@ -309,96 +219,55 @@
         </p>
       </section>
 
-      <!-- FEATURES: placed between Description and Contact -->
-      <div class="features">
+      <!-- FEATURES: inserted between Description and Contact -->
+      <section aria-label="Featured poems" class="wash-3" style="padding-bottom:0; border-bottom:none;">
+        <div class="features">
 
-        <!-- FEATURE 1 -->
-        <article class="feature first" aria-label="Featured poem 1">
-          <!-- watercolor wash (multiple color blobs) -->
-          <div class="wash" aria-hidden="true">
-            <!-- SVG with mixed pink + orange washes -->
-            <svg viewBox="0 0 800 520" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" role="img">
-              <defs>
-                <linearGradient id="gA" x1="0" x2="1">
-                  <stop offset="0" stop-color="#f48fb1" stop-opacity="1"/>
-                  <stop offset="1" stop-color="#ffb74d" stop-opacity="1"/>
-                </linearGradient>
-                <linearGradient id="gB" x1="0" x2="1">
-                  <stop offset="0" stop-color="#f8bbd0" stop-opacity="0.85"/>
-                  <stop offset="1" stop-color="#ffcc99" stop-opacity="0.7"/>
-                </linearGradient>
-              </defs>
+          <!-- Feature 1: black & white open books + poem overlapping left -->
+          <article class="feature first" aria-label="Fuel the Fire">
+            <div class="feat-image" aria-hidden="false">
+              <!-- unsplash source query returns aesthetic B&W book images; you can replace with local if desired -->
+              <img src="https://source.unsplash.com/1200x900/?open-book,books,black-and-white" alt="black and white open book">
+              <span class="feat-caption">Image: open book</span>
+            </div>
 
-              <g transform="translate(0,0)">
-                <path d="M40 360 C140 320 220 240 340 210 C460 180 560 240 700 280 L700 520 L40 520 Z" fill="url(#gA)" opacity="0.9"/>
-                <path d="M0 420 C120 380 210 290 340 250 C480 210 560 260 780 300 L780 520 L0 520 Z" fill="url(#gB)" opacity="0.45"/>
-              </g>
-            </svg>
-          </div>
+            <aside class="poem-block" aria-label="Fuel the Fire poem">
+              <div class="poem-title">Fuel the Fire 🔥</div>
+              <p class="poem-line">Fuel the fire, break the mold,</p>
+              <p class="poem-line">Chase the future, fierce and bold.</p>
+              <p class="poem-line">Every setback builds my climb,</p>
+              <p class="poem-line">I turn the struggle into shine.</p>
+              <p class="poem-line"><br>— <strong>By Pranjal Vats 🌻</strong></p>
+            </aside>
+          </article>
 
-          <!-- image (black & white) -->
-          <div class="feat-image" aria-hidden="false">
-            <!-- OFFICIAL: two public Unsplash images used in grayscale -->
-            <!-- Replace these src URLs if you want to host images locally -->
-            <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=1200&q=80&grayscale=1" alt="black and white stack of books">
-            <span class="feat-caption">Image: quiet stacks</span>
-          </div>
+          <!-- Feature 2: black & white writing scene + poem overlapping right -->
+          <article class="feature second" aria-label="Alone in a Crowd">
+            <div class="feat-image" aria-hidden="false">
+              <img src="https://source.unsplash.com/1200x900/?books,writing,black-and-white" alt="black and white books and writing">
+              <span class="feat-caption">Image: books & writing</span>
+            </div>
 
-          <aside class="poem-block" aria-label="Poem 1">
-            <div class="poem-title">Alone in a crowd🌑</div>
-            <p class="poem-line">Surrounded by voices, yet none hear mine</p>
-            <p class="poem-line">A room full of light, but no warmth to find</p>
-            <p class="poem-line">The world moves around, its rhythm so loud,</p>
-            <p class="poem-line">Yet I stand alone, lost in the crowd.</p>
-            <p class="poem-line">— By Pranjal Vats 🌻</p>
-          </aside>
-        </article>
+            <aside class="poem-block" aria-label="Alone in a Crowd poem">
+              <div class="poem-title">Alone in a Crowd 🌑</div>
+              <p class="poem-line">Surrounded by voices, yet none hear mine,</p>
+              <p class="poem-line">A room full of light, but no warmth to find.</p>
+              <p class="poem-line">The world moves around, its rhythm so loud,</p>
+              <p class="poem-line">Yet I stand alone, lost in the crowd.</p>
+              <p class="poem-line"><br>— <strong>By Pranjal Vats 🌻</strong></p>
+            </aside>
+          </article>
 
-        <!-- FEATURE 2 -->
-        <article class="feature second" aria-label="Featured poem 2">
-          <div class="wash" aria-hidden="true">
-            <!-- SVG with mixed lavender + green washes -->
-            <svg viewBox="0 0 800 520" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" role="img">
-              <defs>
-                <linearGradient id="gC" x1="0" x2="1">
-                  <stop offset="0" stop-color="#b39ddb" stop-opacity="1"/>
-                  <stop offset="1" stop-color="#8bc34a" stop-opacity="1"/>
-                </linearGradient>
-                <linearGradient id="gD" x1="0" x2="1">
-                  <stop offset="0" stop-color="#e1bee7" stop-opacity="0.9"/>
-                  <stop offset="1" stop-color="#c5e1a5" stop-opacity="0.6"/>
-                </linearGradient>
-              </defs>
-              <g>
-                <path d="M60 320 C150 280 230 200 360 170 C500 140 600 210 740 250 L740 520 L60 520 Z" fill="url(#gC)" opacity="0.95"/>
-                <path d="M20 360 C120 320 220 240 350 200 C480 160 600 220 780 260 L780 520 L20 520 Z" fill="url(#gD)" opacity="0.5"/>
-              </g>
-            </svg>
-          </div>
+        </div>
+      </section>
 
-          <div class="feat-image" aria-hidden="false">
-            <img src="https://images.unsplash.com/photo-1528207776546-365bb710ee93?auto=format&fit=crop&w=1200&q=80&grayscale=1" alt="black and white open books">
-            <span class="feat-caption">Image: open pages</span>
-          </div>
-
-          <aside class="poem-block" aria-label="Poem 2">
-            <div class="poem-title">shelf-maps</div>
-            <p class="poem-line">i walked across chapters like rooms</p>
-            <p class="poem-line">and left little lights on the pages i loved</p>
-            <p class="poem-line">so the dark would know where to sit</p>
-            <p class="poem-line">and the morning would find the courage</p>
-            <p class="poem-line">to come back to me, patient and steady</p>
-          </aside>
-        </article>
-
-      </div>
-
-      <!-- CONTACT unchanged & after features as requested -->
-      <section id="contact">
+      <!-- CONTACT (unchanged, placed after features) -->
+      <section id="contact" class="wash-1">
         <h2>Contact</h2>
         <p>Let’s connect!</p>
         <a class="btn" href="mailto:wildness.unleashed12@gmail.com">📩 Contact Me</a>
       </section>
+
     </main>
 
     <footer>
@@ -407,24 +276,23 @@
   </div>
 
   <script>
-    // simple scroll fade-in using IntersectionObserver
+    // IntersectionObserver to reveal sections & features on scroll
     (function(){
-      const items = document.querySelectorAll('.feature');
+      const observers = [];
+      const revealTargets = document.querySelectorAll('section, .feature');
       if(!('IntersectionObserver' in window)){
-        // fallback: reveal all
-        items.forEach(i => i.classList.add('visible'));
+        revealTargets.forEach(t => t.classList.add('visible'));
         return;
       }
-      const io = new IntersectionObserver((entries)=>{
-        entries.forEach(e=>{
+      const io = new IntersectionObserver((entries, obs) => {
+        entries.forEach(e => {
           if(e.isIntersecting){
             e.target.classList.add('visible');
-            io.unobserve(e.target);
+            obs.unobserve(e.target);
           }
         });
-      }, { threshold: 0.18 });
-
-      items.forEach(i => io.observe(i));
+      }, { threshold: 0.15 });
+      revealTargets.forEach(t => io.observe(t));
     })();
   </script>
 </body>
