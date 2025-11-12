@@ -1,101 +1,265 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Echoes of Pranjal</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Noto+Serif+Devanagari:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
     body {
-      font-family: 'Inter', sans-serif;
-      background-color: #f7f3ef;
-      color: #333;
-      line-height: 1.6;
-    }
-    header {
-      text-align: center;
-      padding: 6rem 1rem 4rem 1rem;
-      background: url('https://images.unsplash.com/photo-1616627987937-632d4bcbac2d?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
-      position: relative;
-    }
-    header::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(247,243,239,0.85);
-    }
-    header h1 {
-      position: relative;
+      margin: 0;
       font-family: 'Playfair Display', serif;
+      background-color: #f9f6f1;
+      color: #2b2b2b;
+      scroll-behavior: smooth;
+    }
+
+    /* Navbar */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: #f9f6f1e6;
+      backdrop-filter: blur(6px);
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      padding: 1rem;
+      box-shadow: 0 1px 8px rgba(0,0,0,0.05);
+      z-index: 10;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #2b2b2b;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #bfa15d;
+    }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 120px 20px 80px;
+      background: url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      color: #2b2b2b;
+    }
+
+    .hero h1 {
       font-size: 3rem;
-      color: #222;
-      z-index: 1;
+      letter-spacing: 1px;
+      background-color: rgba(255, 255, 255, 0.6);
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      border-radius: 10px;
     }
+
     section {
-      padding: 4rem 1rem;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
+      padding: 80px 20px;
+      max-width: 900px;
+      margin: auto;
     }
-    section::before {
-      content: '';
-      position: absolute;
-      top: -50px;
-      left: 0;
-      width: 100%;
-      height: 200%;
-      background: url('https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat;
-      opacity: 0.08;
-      z-index: 0;
-    }
+
     h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 2rem;
-      margin-bottom: 1rem;
-      position: relative;
-      z-index: 1;
-    }
-    .books img {
-      width: 100%;
-      max-width: 400px;
-      border-radius: 12px;
-      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
-      margin-top: 1.5rem;
-      z-index: 1;
-      position: relative;
-    }
-    .poem-section {
-      background: #fffaf6;
-    }
-    footer {
-      padding: 2rem 1rem;
       text-align: center;
+      margin-bottom: 40px;
+      font-size: 2rem;
+      color: #bfa15d;
+    }
+
+    .poem {
+      background: #fffaf3;
+      padding: 25px;
+      margin-bottom: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    .poem h3 {
+      color: #bfa15d;
+      margin-bottom: 15px;
+    }
+
+    .poem p {
+      line-height: 1.7;
+    }
+
+    .hindi {
+      font-family: 'Noto Serif Devanagari', serif;
+      font-size: 1.1rem;
+    }
+
+    /* Gallery */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .gallery img {
+      width: 100%;
+      border-radius: 12px;
+      filter: grayscale(100%);
+      transition: all 0.4s ease;
+    }
+
+    .gallery img:hover {
+      filter: grayscale(0%);
+      transform: scale(1.02);
+    }
+
+    /* Contact */
+    .contact {
+      text-align: center;
+      font-size: 1.1rem;
+    }
+
+    .contact a {
+      display: inline-block;
+      margin: 0 10px;
+      text-decoration: none;
+      color: #2b2b2b;
+      transition: color 0.3s;
+    }
+
+    .contact a:hover {
+      color: #bfa15d;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 30px;
+      background: #f3efea;
+      color: #555;
       font-size: 0.9rem;
-      color: #777;
+      border-top: 1px solid #e5e1dc;
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
     }
   </style>
 </head>
 <body>
-  <header>
+
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#hindi">Hindi Poems</a>
+    <a href="#english">English Poems</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <section id="home" class="hero" data-aos="fade-up">
     <h1>Echoes of Pranjal</h1>
-  </header>  <section class="books">
-    <h2>Wildness Unleashed</h2>
-    <img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=800&q=80" alt="Aesthetic black and white books" />
-  </section>  <section class="poem-section">
-    <h2>Recent Poems</h2>
-    <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=800&q=80" alt="Black and white open book aesthetic" />
-  </section>  <section>
-    <h2>About</h2>
-    <p style="max-width:600px;margin:0 auto;position:relative;z-index:1;">
-      A space where ink meets silence — a collection of thoughts that echo softly within every soul.
-      Here, simplicity and emotion intertwine, bringing poetry to life in quiet colors and gentle tones.
-    </p>
-  </section>  <footer>
-    © 2025 Echoes of Pranjal — All rights reserved.
+  </section>
+
+  <section id="hindi" data-aos="fade-up">
+    <h2>हिंदी कविताएँ</h2>
+    <div class="poem hindi">
+      <h3>1. खामोशी की चादर</h3>
+      <p>खामोशी की चादर ओढ़े,<br>
+      हम वक्त से बातें करते हैं,<br>
+      भीड़ में भी तन्हा रहकर,<br>
+      यादों के संग चलते हैं।<br><br>
+      कोई आवाज़ नहीं आती,<br>
+      पर दिल बहुत कुछ कहता है,<br>
+      हर खामोशी में छिपा कहीं,<br>
+      कोई अधूरा किस्सा रहता है।</p>
+    </div>
+
+    <div class="poem hindi">
+      <h3>2. रौशनी की राह</h3>
+      <p>अंधेरों में भी जो दिखे,<br>
+      वही तो असली नजर है,<br>
+      ठोकरों में जो सीखे,<br>
+      वही तो असली सफर है।<br><br>
+      गिरकर भी जो उठे मुस्कराकर,<br>
+      वही तो जीवन की चाह है,<br>
+      टूटकर भी जो जोड़े खुद को,<br>
+      वही तो रौशनी की राह है।</p>
+    </div>
+
+    <div class="poem hindi">
+      <h3>3. अधूरी बातें</h3>
+      <p>कुछ बातें अधूरी रह जाती हैं,<br>
+      जैसे धूप के साये शाम में,<br>
+      कुछ चेहरे याद रह जाते हैं,<br>
+      अनजाने उस भीड़ के नाम में।<br><br>
+      वक्त रुकता नहीं किसी के लिए,<br>
+      पर यादें अक्सर थम जाती हैं,<br>
+      अधूरी बातें भी एक दिन,<br>
+      कहानियाँ बन जाती हैं।</p>
+    </div>
+  </section>
+
+  <section id="english" data-aos="fade-up">
+    <h2>English Poems</h2>
+
+    <div class="poem">
+      <h3>1. Whispers of Time</h3>
+      <p>The clock hums softly in the dark,<br>
+      A memory stirs, a silent mark,<br>
+      Pages flutter in the midnight breeze,<br>
+      Carrying echoes of untold pleas.<br><br>
+      Time doesn’t wait, it only weaves,<br>
+      The story that every soul believes.</p>
+    </div>
+
+    <div class="poem">
+      <h3>2. Paper Wings</h3>
+      <p>I folded dreams into paper wings,<br>
+      And sent them where the skyline sings,<br>
+      They carried hopes I couldn’t say,<br>
+      Into the warmth of another day.<br><br>
+      Some fell, some flew, but all were mine,<br>
+      Lost between clouds and silver lines.</p>
+    </div>
+
+    <div class="poem">
+      <h3>3. Beneath the Still Sky</h3>
+      <p>Beneath the still and endless sky,<br>
+      I asked the stars a quiet why,<br>
+      They blinked and smiled, as if to say,<br>
+      “Some answers bloom when hearts obey.”<br><br>
+      So I closed my eyes, and softly knew,<br>
+      The silence sometimes whispers true.</p>
+    </div>
+  </section>
+
+  <section id="gallery" data-aos="fade-up">
+    <h2>Gallery</h2>
+    <div class="gallery">
+      <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=800&q=80" alt="Books">
+      <img src="https://images.unsplash.com/photo-1528207776546-365bb710ee93?auto=format&fit=crop&w=800&q=80" alt="Open Book">
+      <img src="https://images.unsplash.com/photo-1529590003491-3edc0e8cc9b3?auto=format&fit=crop&w=800&q=80" alt="Reading">
+    </div>
+  </section>
+
+  <section id="contact" data-aos="fade-up">
+    <h2>Contact</h2>
+    <div class="contact">
+      <p>Connect with me:</p>
+      <a href="#">Instagram</a> |
+      <a href="#">YouTube</a> |
+      <a href="mailto:contact@echoesofpranjal.com">Email</a>
+    </div>
+  </section>
+
+  <footer>
+    © 2025 Pranjal Vats — All rights reserved.
   </footer>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 1000, once: true });
+  </script>
 </body>
 </html>
