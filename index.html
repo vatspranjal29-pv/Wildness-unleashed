@@ -6,40 +6,38 @@
   <title>Echoes of Pranjal — Pranjal Vats</title>
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:wght@400;500&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --cream-bg: #f8f7f4;
-      --ink-black: #1c1b1a;
-      --muted-gray: #444;
-      --soft-pink: #f2d7d9;
-      --pastel-blue: #d8e3e7;
-      --fade-accent: #cfcfcf;
+      --cream-bg: #FBF6F0;
+      --ink-black: #1f1f1f;
+      --muted-gray: #565656;
+      --accent-green: #7C9A6A;
+      --gold-wash: rgba(220,180,80,0.18);
+      --blue-wash: rgba(120,160,220,0.15);
+      --fade-accent: rgba(0,0,0,0.08);
     }
 
     html, body {
       height: 100%;
       margin: 0;
       padding: 0;
-      font-family: 'Open Sans', sans-serif;
-      color: var(--ink-black);
       background: var(--cream-bg);
-      background-image: 
-        radial-gradient(circle at 10% 20%, rgba(242,215,217,0.25) 0%, transparent 40%),
-        radial-gradient(circle at 80% 70%, rgba(216,227,231,0.25) 0%, transparent 40%);
+      background-image:
+        radial-gradient(circle at 15% 25%, var(--blue-wash) 0%, transparent 40%),
+        radial-gradient(circle at 85% 75%, var(--gold-wash) 0%, transparent 40%);
       background-attachment: fixed;
-      transition: background 1s ease-in-out;
+      color: var(--ink-black);
+      font-family: 'Lora', serif;
+      line-height: 1.7;
+      font-size: 18px;
+      -webkit-font-smoothing: antialiased;
+      animation: fadeIn 1.2s ease forwards;
+      opacity: 0;
     }
 
-    /* Fade-in animation */
-    body {
-      opacity: 0;
-      animation: fadeIn 1.2s ease forwards;
-    }
-    @keyframes fadeIn {
-      to { opacity: 1; }
-    }
+    @keyframes fadeIn { to { opacity: 1; } }
 
     /* Navbar */
     nav {
@@ -52,127 +50,150 @@
       justify-content: space-between;
       width: 90%;
       max-width: 1000px;
-      padding: 10px 20px;
-      border-radius: 50px;
-      background: rgba(255,255,255,0.7);
+      padding: 12px 24px;
+      border-radius: 40px;
+      background: rgba(255,255,255,0.55);
       backdrop-filter: blur(8px);
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
       z-index: 100;
     }
 
     nav .brand {
       font-family: 'Playfair Display', serif;
       font-weight: 700;
-      font-size: 1.2rem;
+      font-size: 1.3rem;
+      letter-spacing: 0.04em;
       color: var(--ink-black);
     }
 
     .nav-links {
       display: flex;
       flex-wrap: wrap;
-      gap: 14px;
+      gap: 16px;
     }
 
     .nav-links a {
       text-decoration: none;
       color: var(--muted-gray);
-      font-weight: 600;
+      font-weight: 500;
       transition: color .25s ease;
+      font-family: 'Lora', serif;
     }
 
-    .nav-links a:hover {
-      color: var(--ink-black);
-    }
+    .nav-links a:hover { color: var(--ink-black); }
 
+    /* Header */
     header {
       text-align: center;
       margin-top: 120px;
-      padding: 60px 20px 30px;
+      padding: 80px 20px 40px;
+      position: relative;
     }
 
     header h1 {
       font-family: 'Playfair Display', serif;
-      font-size: 3.4rem;
-      margin-bottom: 10px;
+      font-size: clamp(2.8rem, 6vw, 4rem);
+      line-height: 1;
+      margin-bottom: 20px;
       color: var(--ink-black);
     }
 
     .tagline {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.3rem;
+      font-family: 'Lora', serif;
+      font-size: 1.25rem;
       color: var(--muted-gray);
-      margin-bottom: 12px;
       font-style: italic;
+      margin-bottom: 10px;
     }
 
     .author {
       font-weight: 700;
-      margin-bottom: 5px;
+      font-family: 'Playfair Display', serif;
+      margin-bottom: 4px;
+      font-size: 1.1rem;
     }
 
     .byline {
-      color: var(--ink-black);
+      color: var(--muted-gray);
       font-style: italic;
       font-size: 1rem;
+      max-width: 42ch;
+      margin: 0 auto;
     }
 
     main {
-      max-width: 800px;
-      margin: 50px auto;
-      padding: 0 20px;
+      max-width: 850px;
+      margin: 60px auto 80px;
+      padding: 0 24px;
     }
 
     section {
-      margin-bottom: 60px;
-      padding-bottom: 30px;
+      margin-bottom: 80px;
+      padding-bottom: 40px;
       border-bottom: 1px dashed var(--fade-accent);
+      position: relative;
     }
 
     section h2 {
       font-family: 'Playfair Display', serif;
-      font-size: 1.6rem;
+      font-size: 1.8rem;
       color: var(--ink-black);
-      margin-bottom: 10px;
+      margin-bottom: 18px;
+      position: relative;
+    }
+
+    section h2::after {
+      content: "";
+      display: block;
+      width: 80px;
+      height: 6px;
+      border-radius: 4px;
+      background: linear-gradient(90deg, rgba(124,154,106,0.7), rgba(220,180,80,0.6));
+      margin-top: 6px;
     }
 
     section p {
-      line-height: 1.7;
       color: var(--muted-gray);
-      font-size: 1.05rem;
+      font-size: 1.06rem;
+      max-width: 60ch;
     }
 
     .btn {
       display: inline-block;
-      margin-top: 16px;
-      padding: 10px 20px;
-      border-radius: 30px;
-      background: var(--ink-black);
-      color: var(--cream-bg);
+      margin-top: 20px;
+      padding: 10px 22px;
+      border-radius: 6px;
+      border: 1.5px solid var(--ink-black);
+      background: transparent;
+      color: var(--ink-black);
       text-decoration: none;
-      font-weight: 600;
-      transition: background .3s ease;
+      font-weight: 500;
+      font-family: 'Lora', serif;
+      transition: all .25s ease;
+      letter-spacing: 0.02em;
     }
 
     .btn:hover {
-      background: var(--muted-gray);
+      background: rgba(0,0,0,0.05);
+      transform: translateY(-2px);
     }
 
     footer {
       text-align: center;
-      padding: 30px;
+      padding: 40px 20px;
       font-size: 0.95rem;
       color: var(--muted-gray);
       border-top: 1px solid var(--fade-accent);
       background: rgba(255,255,255,0.4);
+      font-family: 'Lora', serif;
     }
 
-    footer strong {
-      color: var(--ink-black);
-    }
+    footer strong { color: var(--ink-black); }
 
-    @media (max-width:600px) {
+    @media (max-width: 600px) {
+      nav { flex-direction: column; gap: 10px; padding: 12px 16px; }
       header h1 { font-size: 2.3rem; }
-      nav { flex-direction: column; gap: 8px; padding: 12px; }
+      section h2 { font-size: 1.5rem; }
     }
   </style>
 </head>
