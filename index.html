@@ -3,171 +3,183 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Wildness Unleashed — Pranjal Vats</title>
+  <title>Echoes of Pranjal — Pranjal Vats</title>
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Oswald:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --red-strong: #ff0040;
-      --red-mid: #ff4d4d;
-      --gold: #ffd166;
-      --bg-dark-1: #0c0c0c;
-      --bg-dark-2: #141313;
-      --muted: #f5f5f5;
+      --cream-bg: #f8f7f4;
+      --ink-black: #1c1b1a;
+      --muted-gray: #444;
+      --soft-pink: #f2d7d9;
+      --pastel-blue: #d8e3e7;
+      --fade-accent: #cfcfcf;
     }
 
     html, body {
-      height:100%; margin:0; padding:0;
-      font-family:'Open Sans', sans-serif;
-      color:var(--muted);
-      background: linear-gradient(135deg, var(--bg-dark-1), var(--bg-dark-2));
-      -webkit-user-select:none; -moz-user-select:none; -ms-user-select:none; user-select:none;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      font-family: 'Open Sans', sans-serif;
+      color: var(--ink-black);
+      background: var(--cream-bg);
+      background-image: 
+        radial-gradient(circle at 10% 20%, rgba(242,215,217,0.25) 0%, transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(216,227,231,0.25) 0%, transparent 40%);
+      background-attachment: fixed;
+      transition: background 1s ease-in-out;
+    }
+
+    /* Fade-in animation */
+    body {
+      opacity: 0;
+      animation: fadeIn 1.2s ease forwards;
+    }
+    @keyframes fadeIn {
+      to { opacity: 1; }
     }
 
     /* Navbar */
     nav {
-      display:flex;
-      justify-content:space-between; /* Brand left, links right */
-      align-items:center;
-      padding:10px 16px;
-      background: rgba(10,10,10,0.35);
-      border-radius:999px;
-      backdrop-filter: blur(8px) saturate(120%);
-      border:1px solid rgba(255,255,255,0.03);
-      flex-wrap: nowrap;
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 90%;
+      max-width: 1000px;
+      padding: 10px 20px;
+      border-radius: 50px;
+      background: rgba(255,255,255,0.7);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      z-index: 100;
     }
 
     nav .brand {
-      font-family:'Playfair Display', serif;
-      color:var(--gold);
-      font-weight:700;
-      font-size:1.05rem;
-      cursor:default;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--ink-black);
     }
 
     .nav-links {
-      display:flex;
-      gap:12px;
-      overflow-x:auto; /* horizontal scroll if needed */
-      scrollbar-width:none; /* hide scrollbar for Firefox */
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
     }
-    .nav-links::-webkit-scrollbar { display:none; } /* hide scrollbar for Chrome/Safari */
 
     .nav-links a {
-      white-space:nowrap; /* keep text in one line */
-      color: rgba(255,215,140,0.95);
-      text-decoration:none;
-      font-weight:600;
-      font-family:'Oswald',sans-serif;
-      font-size:0.95rem;
-      padding:6px 8px;
-      transition: color .22s ease, transform .15s ease;
-    }
-    .nav-links a:hover { color: var(--red-mid); transform: translateY(-2px); }
-
-    /* Mobile portrait */
-    @media(max-width:520px){
-      nav { justify-content:space-between; }
-      .nav-links { justify-content:flex-start; } /* scrollable from left */
+      text-decoration: none;
+      color: var(--muted-gray);
+      font-weight: 600;
+      transition: color .25s ease;
     }
 
-    /* Mobile landscape: center links next to brand */
-    @media(max-width:520px) and (orientation: landscape){
-      nav { justify-content:center; }
-      .brand { margin-right:16px; }
-      .nav-links { justify-content:center; }
+    .nav-links a:hover {
+      color: var(--ink-black);
     }
 
-    /* Header */
-    header{
-      position:relative; z-index:20;
-      text-align:center;
-      padding:110px 20px 72px;
-      margin-bottom:20px;
+    header {
+      text-align: center;
+      margin-top: 120px;
+      padding: 60px 20px 30px;
     }
-    header h1{
-      font-family:'Playfair Display', serif;
-      font-size:3.6rem; margin:0 0 8px;
-      color:var(--gold);
-    }
-    .tagline{
-      font-family:'Playfair Display', serif;
-      color: var(--red-mid);
-      font-size:1.4rem; margin:0 0 12px;
-    }
-    .byline{
-      font-weight:600;
-      color: rgba(255,255,255,0.92);
-      display:inline-block;
-      padding:8px 14px;
-      border-radius:999px;
-      font-size:0.98rem;
-    }
-    .author { margin-top:10px; color:#fff; font-weight:700; font-size:1rem; }
 
-    /* Main content */
-    main{
-      position:relative; z-index:20;
-      max-width:980px;
-      margin:24px auto 60px;
-      padding:0 20px;
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.4rem;
+      margin-bottom: 10px;
+      color: var(--ink-black);
     }
-    section{
-      padding:42px 0;
-      border-bottom:1px solid rgba(255,255,255,0.03);
-    }
-    section h2{
-      font-family:'Oswald', sans-serif;
-      color: var(--red-strong);
-      font-size:1.5rem; margin:0 0 12px;
-    }
-    section p, section ul { font-size:1rem; color: rgba(255,255,255,0.95); margin:0 0 10px; }
-    ul{ padding-left:18px; } ul li{ margin:8px 0; }
 
-    .btn{
-      display:inline-block; margin-top:16px; margin-right:8px;
-      padding:10px 18px; border-radius:28px;
-      text-decoration:none; font-weight:700; color:#111;
-      background: linear-gradient(45deg, var(--red-strong), var(--gold));
-      transition: transform .18s ease, box-shadow .18s ease; font-family: 'Oswald', sans-serif;
+    .tagline {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      color: var(--muted-gray);
+      margin-bottom: 12px;
+      font-style: italic;
     }
-    .btn:hover{ transform: translateY(-4px) scale(1.02); }
 
-    footer{
-      text-align:center; padding:26px 12px;
-      background: linear-gradient(180deg, rgba(255,0,64,0.02), rgba(0,0,0,0.2));
-      color: rgba(255,255,255,0.8);
-      border-top:1px solid rgba(255,255,255,0.03); z-index:20;
+    .author {
+      font-weight: 700;
+      margin-bottom: 5px;
     }
-    footer strong { color: var(--gold); }
 
-    @media (max-width:880px){
-      header h1 { font-size:2.6rem; }
-      .tagline { font-size:1.15rem; }
+    .byline {
+      color: var(--ink-black);
+      font-style: italic;
+      font-size: 1rem;
     }
-    @media (max-width:520px){
-      header{ padding:80px 18px 40px; }
-      header h1{ font-size:2rem; }
-      .byline{ font-size:0.92rem; padding:7px 12px; }
-      .btn{ padding:9px 14px; font-size:0.95rem; border-radius:22px; }
+
+    main {
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 0 20px;
+    }
+
+    section {
+      margin-bottom: 60px;
+      padding-bottom: 30px;
+      border-bottom: 1px dashed var(--fade-accent);
+    }
+
+    section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      color: var(--ink-black);
+      margin-bottom: 10px;
+    }
+
+    section p {
+      line-height: 1.7;
+      color: var(--muted-gray);
+      font-size: 1.05rem;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 16px;
+      padding: 10px 20px;
+      border-radius: 30px;
+      background: var(--ink-black);
+      color: var(--cream-bg);
+      text-decoration: none;
+      font-weight: 600;
+      transition: background .3s ease;
+    }
+
+    .btn:hover {
+      background: var(--muted-gray);
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      font-size: 0.95rem;
+      color: var(--muted-gray);
+      border-top: 1px solid var(--fade-accent);
+      background: rgba(255,255,255,0.4);
+    }
+
+    footer strong {
+      color: var(--ink-black);
+    }
+
+    @media (max-width:600px) {
+      header h1 { font-size: 2.3rem; }
+      nav { flex-direction: column; gap: 8px; padding: 12px; }
     }
   </style>
-
-  <script>
-    // Copy & screenshot protection
-    document.addEventListener("contextmenu", e => e.preventDefault());
-    document.addEventListener("copy", e => { e.preventDefault(); alert("Copying is disabled on this page!"); });
-    document.addEventListener("keydown", e => {
-      if(e.key === 'PrintScreen'){ try{ navigator.clipboard.writeText(''); } catch{}; alert("Screenshots disabled!"); }
-    });
-  </script>
 </head>
 
 <body>
   <nav>
-    <div class="brand">PV.</div>
+    <div class="brand">Echoes of Pranjal</div>
     <div class="nav-links">
       <a href="index.html">Home</a>
       <a href="shayari.html">Mehfill</a>
@@ -177,37 +189,35 @@
       <a href="trilogy.html">Time Special</a>
       <a href="Shortpem.html">Quick Strikes</a>
       <a href="naturepoems.html">Roots & Rhythms</a>
-      <a href="Newstyle.html">me</a>
+      <a href="Newstyle.html">Me</a>
       <a href="#contact">Contact</a>
     </div>
   </nav>
 
   <header>
-    <h1>Wildness Unleashed</h1>
-    <p class="tagline">"Chaos Into Creation."</p>
-    <p class="author">-By Pranjal Vats 🌻</p>
+    <h1>Echoes of Pranjal</h1>
+    <p class="tagline">“Chaos into Creation.”</p>
+    <p class="author">— By Pranjal Vats 🌻</p>
     <p class="byline">Turning imperfections into something bold, wild, and free.</p>
   </header>
 
   <main>
     <section id="about">
-  <h2>About Me</h2>
-  <p>
-    I’m Pranjal Vats <br>
-    This is where I breathe. <b>Wildness Unleashed</b> isn’t just a name — it’s my way of existing.  
-    I don’t chase perfection… I shape the chaos I feel into meaning.  
-    This space is where I experiment boldly, feel deeply, write fiercely, and allow myself to stay untamed.
-  </p>
+      <h2>About Me</h2>
+      <p>
+        I’m Pranjal Vats.<br>
+        This is where I breathe. <b>Echoes of Pranjal</b> isn’t just a name — it’s my way of existing.<br>
+        I don’t chase perfection… I shape the chaos I feel into meaning.<br>
+        This space is where I experiment boldly, feel deeply, write fiercely, and allow myself to stay untamed.
+      </p>
     </section>
 
-    
     <section id="description">
       <h2>Description</h2>
       <p>
-        My projects blend experimentation and vision — from scribbles to poems.  
-        Each piece reflects growth, self-expression, and the courage to create fearlessly and represent me in a way that i may not be able to express verbally.
+        My projects blend experimentation and vision — from scribbles to poems.<br>
+        Each piece reflects growth, self-expression, and the courage to create fearlessly and represent me in a way I may not always be able to express verbally.
       </p>
-
     </section>
 
     <section id="contact">
@@ -218,7 +228,7 @@
   </main>
 
   <footer>
-    <p>© 2025 Wildness Unleashed — Built by <strong>Pranjal Vats</strong></p>
+    <p>© 2025 Echoes of Pranjal — Built by <strong>Pranjal Vats</strong></p>
   </footer>
 </body>
 </html>
