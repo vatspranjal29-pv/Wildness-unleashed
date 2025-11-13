@@ -461,53 +461,46 @@ Not in the doing, but in the heart.</div>
   </div>
 
   <!-- Scripts -->
-  <script>
-  /* Read More / Less & responsive expansion */
-  function setupReadToggles(){
-    const cards = document.querySelectorAll('.card');
-    const isWide = window.innerWidth >= 900;
-    cards.forEach(card=>{
-      const excerpt = card.querySelector('.excerpt');
-      const full = card.querySelector('.full');
-      const btn = card.querySelector('.read');
-      if(!excerpt || !full || !btn) return;
+<script>
+  document.querySelectorAll(".read-more").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const card = btn.closest(".poem-card");
+      const full = card.querySelector(".full");
+      full.classList.toggle("show");
 
-      if(isWide){
-        card.classList.add('expanded');
-        full.style.maxHeight='2000px';
-        full.style.opacity='1';
-        btn.style.display='none';
+      if (full.classList.contains("show")) {
+        btn.textContent = "Read Less ▲";
       } else {
-        card.classList.remove('expanded');
-        full.style.maxHeight='0';
-        full.style.opacity='0';
-        btn.style.display='inline-block';
-        btn.textContent='Read More ▾';
-        btn.onclick = ()=>{
-          card.classList.toggle('expanded');
-          if(card.classList.contains('expanded')){
-            full.style.maxHeight='2000px';
-            full.style.opacity='1';
-            btn.textContent='Read Less ▲';
-          } else {
-            full.style.maxHeight='0';
-            full.style.opacity='0';
-            btn.textContent='Read More ▾';
-          }
-        };
+        btn.textContent = "Read More ▼";
       }
     });
-  }
-  window.addEventListener('load', setupReadToggles);
-  window.addEventListener('resize', setupReadToggles);
+  });
+</script>
 
-  /* Fade-in intersection observer (matches index behavior) */
-  const observer = new IntersectionObserver(entries=>{
-    entries.forEach(entry=>{
-      if(entry.isIntersecting) entry.target.classList.add('visible');
-    });
-  }, { threshold: 0.12 });
-  document.querySelectorAll('.card').forEach(card=>observer.observe(card));
-  </script>
+<style>
+  .full {
+    display: none;
+  }
+
+  .full.show {
+    display: block;
+    margin-top: 10px;
+  }
+
+  .read-more {
+    margin-top: 12px;
+    background: none;
+    border: none;
+    color: #5b4bb7;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: color 0.2s ease;
+  }
+
+  .read-more:hover {
+    color: #3d3197;
+  }
+</style>
 </body>
 </html>
