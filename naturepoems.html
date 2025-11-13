@@ -1,239 +1,213 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Roots & Rhythms 🍃 — By Pranjal Vats 🌻</title>
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Oswald:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:wght@400;500&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --red-strong: #ff0040;
-      --red-mid: #ff4d4d;
-      --gold: #ffd166;
-      --bg-dark-1: #0c0c0c;
-      --bg-dark-2: #141313;
-      --muted: #f5f5f5;
+      --cream-bg: #FBF6F0;
+      --ink-black: #1f1f1f;
+      --muted-gray: #565656;
+      --max-width: 1100px;
+      --section-wash-opacity: 0.9;
     }
+
+    * { box-sizing: border-box; }
 
     html, body {
-      margin:0; padding:0; height:100%;
-      font-family:'Open Sans', sans-serif;
-      background: linear-gradient(135deg, var(--bg-dark-1), var(--bg-dark-2));
-      color: var(--muted);
-      -webkit-user-select:none; user-select:none;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background: var(--cream-bg);
+      color: var(--ink-black);
+      font-family: 'Lora', serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      line-height: 1.7;
+      font-size: 18px;
     }
 
-    /* Navbar */
+    body {
+      background-image:
+        radial-gradient(circle at 12% 18%, rgba(120,160,220,0.16) 0%, transparent 30%),
+        radial-gradient(circle at 86% 72%, rgba(220,180,80,0.16) 0%, transparent 30%),
+        radial-gradient(circle at 50% 50%, rgba(244,143,177,0.18) 0%, transparent 40%);
+      background-attachment: fixed;
+      background-size: cover;
+      background-repeat: no-repeat;
+      padding-bottom: 60px;
+      animation: pageFade .9s ease both;
+    }
+
+    @keyframes pageFade {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: none; }
+    }
+
     nav {
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      padding:10px 16px;
-      background: rgba(10,10,10,0.35);
-      border-radius:999px;
-      backdrop-filter: blur(8px) saturate(120%);
-      border:1px solid rgba(255,255,255,0.03);
-      margin: 16px auto 0;
-      max-width:95%;
-      flex-wrap: nowrap;
+      position: fixed;
+      top: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 92%;
+      max-width: var(--max-width);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 20px;
+      border-radius: 40px;
+      background: rgba(255,255,255,0.75);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 6px 30px rgba(0,0,0,0.06);
+      z-index: 120;
     }
 
-    nav .brand {
-      font-family:'Playfair Display', serif;
-      color:var(--gold);
-      font-weight:700;
-      font-size:1.05rem;
-    }
+    .brand { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.25rem; color: var(--ink-black); }
+    .nav-links { display: flex; gap: 16px; flex-wrap: wrap; }
+    .nav-links a { text-decoration: none; color: var(--muted-gray); font-weight: 500; }
+    .nav-links a:hover { color: var(--ink-black); }
 
-    .nav-links {
-      display:flex; gap:12px; overflow-x:auto;
-      scrollbar-width:none;
-    }
-
-    .nav-links::-webkit-scrollbar { display:none; }
-
-    .nav-links a {
-      white-space:nowrap;
-      color: rgba(255,215,140,0.95);
-      text-decoration:none;
-      font-weight:600;
-      font-family:'Oswald',sans-serif;
-      font-size:0.95rem;
-      padding:6px 8px;
-      transition: color .22s ease, transform .15s ease;
-    }
-
-    .nav-links a:hover {
-      color: var(--red-mid);
-      transform: translateY(-2px);
-    }
-
-    /* Header */
     header {
-      text-align:center;
-      padding:110px 20px 72px;
-      margin-bottom:20px;
+      text-align: center;
+      margin-top: 120px;
+      padding: 86px 20px 28px;
     }
+
     header h1 {
-      font-family:'Playfair Display', serif;
-      font-size:3.4rem;
-      margin:0 0 8px;
-      color:var(--gold);
-    }
-    .tagline {
-      font-family:'Playfair Display', serif;
-      color: var(--red-mid);
-      font-size:1.4rem;
-      margin:0 0 12px;
-    }
-    .author {
-      margin-top:10px;
-      color:#fff;
-      font-weight:700;
-      font-size:1rem;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 6vw, 3.6rem);
+      margin: 0 0 16px;
+      line-height: 1;
     }
 
-    /* Main Layout */
+    .subtitle { font-style: italic; color: var(--muted-gray); margin-bottom: 8px; font-size: 1.15rem; }
+
     main {
-      max-width:980px;
-      margin:24px auto 60px;
-      padding:0 20px;
+      max-width: 900px;
+      margin: 56px auto 0;
+      padding: 0 18px;
     }
 
-    .poems-list {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 26px;
+    article {
+      background: rgba(255,255,255,0.72);
+      border-radius: 16px;
+      padding: 32px 28px;
+      margin-bottom: 40px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 35px rgba(0,0,0,0.05);
+      transition: transform .25s ease, box-shadow .25s ease;
     }
 
-    @media(min-width:900px){
-      .poems-list {
-        grid-template-columns: 1fr 1fr;
-      }
+    article:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 40px rgba(0,0,0,0.08);
     }
 
-    /* Poem Cards */
-    .poem-card {
-      background: rgba(255,255,255,0.04);
-      padding:26px 28px;
-      border-radius:14px;
-      box-shadow: 0 0 12px rgba(255,0,64,0.2), 0 0 18px rgba(255,209,102,0.15);
-      font-size:1.05rem;
-      line-height:1.75;
-      transition: transform .18s ease, box-shadow .18s ease;
-    }
-    .poem-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 0 22px rgba(255,0,64,0.25), 0 0 26px rgba(255,209,102,0.25);
-    }
-
-    .poem-title {
-      text-align:center;
-      font-family:'Playfair Display', serif;
-      color:var(--gold);
-      font-size:1.4rem;
-      margin-bottom:10px;
+    article::before {
+      content: "";
+      position: absolute;
+      left: -10%;
+      right: -10%;
+      top: -10%;
+      bottom: -10%;
+      z-index: 0;
+      opacity: var(--section-wash-opacity);
+      background-image:
+        radial-gradient(circle at 18% 22%, rgba(177,154,217,0.4), transparent 30%),
+        radial-gradient(circle at 84% 72%, rgba(255,205,210,0.4), transparent 30%),
+        radial-gradient(circle at 60% 40%, rgba(255,224,178,0.35), transparent 25%);
+      filter: blur(10px);
+      transform: rotate(-2deg);
     }
 
-    .poem-content {
-      color:rgba(255,255,255,0.95);
-      white-space:pre-line;
+    article h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      margin: 0 0 14px;
+      position: relative;
+      z-index: 6;
     }
 
-    .author-line {
-      float:right;
-      font-weight:bold;
-      color:var(--gold);
-      margin-top:10px;
+    .poem {
+      white-space: pre-line;
+      position: relative;
+      z-index: 6;
+      color: var(--muted-gray);
+      font-size: 1.05rem;
+      line-height: 1.7;
     }
 
-    .read-toggle {
-      display:block;
-      margin:14px auto 0;
-      text-align:center;
-      background:linear-gradient(45deg,var(--red-strong),var(--gold));
-      color:#111;
-      padding:8px 18px;
-      border-radius:999px;
-      font-family:'Oswald', sans-serif;
-      font-weight:700;
-      border:none;
-      cursor:pointer;
-      transition:transform .18s ease;
+    .author {
+      margin-top: 20px;
+      text-align: right;
+      font-weight: 600;
+      font-style: italic;
+      color: var(--ink-black);
+      position: relative;
+      z-index: 6;
     }
 
-    .read-toggle:hover {
-      transform:translateY(-3px) scale(1.02);
+    .home-btn {
+      display: block;
+      margin: 60px auto 40px;
+      width: fit-content;
+      padding: 10px 22px;
+      border-radius: 8px;
+      border: 1.5px solid var(--ink-black);
+      background: transparent;
+      color: var(--ink-black);
+      text-decoration: none;
+      font-weight: 500;
+      transition: transform .18s ease, background .18s ease;
     }
 
-    /* Back Button */
-    .btn {
-      display:inline-block;
-      margin-top:36px;
-      margin-right:8px;
-      padding:10px 18px;
-      border-radius:28px;
-      text-decoration:none;
-      font-weight:700;
-      color:#111;
-      background: linear-gradient(45deg, var(--red-strong), var(--gold));
-      transition: transform .18s ease;
-      font-family: 'Oswald', sans-serif;
-    }
-    .btn:hover {
-      transform: translateY(-4px) scale(1.02);
-    }
+    .home-btn:hover { transform: translateY(-3px); background: rgba(0,0,0,0.04); }
 
-    /* Footer */
     footer {
-      text-align:center;
-      padding:26px 12px;
-      background: linear-gradient(180deg, rgba(255,0,64,0.02), rgba(0,0,0,0.2));
-      color: rgba(255,255,255,0.8);
-      border-top:1px solid rgba(255,255,255,0.03);
+      text-align: center;
+      padding: 44px 20px;
+      color: var(--muted-gray);
+      border-top: 1px solid rgba(0,0,0,0.06);
+      background: rgba(255,255,255,0.35);
+      margin-top: 18px;
     }
 
-    footer strong {
-      color:var(--gold);
-    }
-
-    @media(max-width:520px){
-      header { padding:80px 18px 40px; }
-      header h1 { font-size:2.1rem; }
-      .poem-card { padding:18px; }
-      .poem-title { font-size:1.2rem; }
+    @media (max-width: 768px) {
+      nav { flex-direction: column; gap: 6px; padding: 10px; }
+      header { margin-top: 100px; padding: 60px 14px 20px; }
+      article { padding: 24px 18px; }
+      article::before { filter: blur(7px); opacity: 0.7; }
     }
   </style>
 </head>
 
 <body>
   <nav>
-    <div class="brand">PV.</div>
+    <div class="brand">PV</div>
     <div class="nav-links">
       <a href="index.html">Home</a>
       <a href="shayari.html">Mehfill</a>
       <a href="poems.html">Poems</a>
       <a href="naturepoems.html">Roots & Rhythms</a>
-      <a href="#contact">Contact</a>
     </div>
   </nav>
 
   <header>
     <h1>Roots & Rhythms 🍃</h1>
-    <p class="tagline">"Where the Earth breathes and verses bloom."</p>
-    <p class="author">– By Pranjal Vats 🌻</p>
+    <p class="subtitle">Collected poems — raw, reflective, and relentless.</p>
   </header>
 
   <main>
-    <section class="poems-list">
 
-      <!-- 📝 Poem 1 -->
-      <div class="poem-card">
-        <h2 class="poem-title">Earth Eternal, Man Ephemeral 🌍</h2>
-        <div class="poem-content">
+    <article>
+      <h2>Earth Eternal, Man Ephemeral 🌍</h2>
+      <div class="poem">
 Mountains rise, rivers flow,  
 Seasons come, seasons go.  
 Forests whisper, oceans roar,  
@@ -257,63 +231,47 @@ No kingdom stays, no name will stand.
 For nature’s song is old and wise,  
 It hums beyond where memory lies.  
 Man may dream of endless reign,  
-Yet he will turn to dust again.
-        </div>
-        <span class="author-line">– Pranjal Vats 🌻</span>
-          <button class="read-toggle" onclick="toggleCard(this)">Read More ▼</button>
-      </article>
+Yet he will turn to dust again.  
       </div>
+      <div class="author">— By Pranjal Vats 🌻</div>
+    </article>
 
-      
-<!-- Poem 2 -->
-<article class="poem-card">
-  <h2 class="poem-title">Whispers of the Wind 🍂</h2>
-  <div class="poem-content">
+    <article>
+      <h2>Whispers of the Wind 🍂</h2>
+      <div class="poem">
 The wind speaks softly through the trees,  
 A secret carried on gentle breeze.  
 It hums of ages, lost and gone,  
 Yet whispers life to carry on.  
+      </div>
+      <div class="author">— By Pranjal Vats 🌻</div>
+    </article>
 
-— By Pranjal Vats 🌻
-  </div>
-  <div class="author">— By Pranjal Vats 🌻</div>
-  <button class="read-toggle" onclick="toggleCard(this)">Read More ▼</button>
-</article>
-
-<!-- Poem 3 -->
-<article class="poem-card">
-  <h2 class="poem-title">River’s Song 🌊</h2>
-  <div class="poem-content">
+    <article>
+      <h2>River’s Song 🌊</h2>
+      <div class="poem">
 A river carves with patient grace,  
 Through rock, through time, it finds its place.  
 No rush, no force, just steady flow,  
 A lesson in the way to grow.  
+      </div>
+      <div class="author">— By Pranjal Vats 🌻</div>
+    </article>
 
-— By Pranjal Vats 🌻
-  </div>
-  <div class="author">— By Pranjal Vats 🌻</div>
-  <button class="read-toggle" onclick="toggleCard(this)">Read More ▼</button>
-</article>
-
-<!-- Poem 4 -->
-<article class="poem-card">
-  <h2 class="poem-title">Roots Beneath 🌱</h2>
-  <div class="poem-content">
+    <article>
+      <h2>Roots Beneath 🌱</h2>
+      <div class="poem">
 We see the tree, its crown, its might,  
 But roots hold steady out of sight.  
 In hidden soil, they weave, they stay,  
 The strength that keeps the storms away.  
+      </div>
+      <div class="author">— By Pranjal Vats 🌻</div>
+    </article>
 
-— By Pranjal Vats 🌻
-  </div>
-  <div class="author">— By Pranjal Vats 🌻</div>
-  <button class="read-toggle" onclick="toggleCard(this)">Read More ▼</button>
-</article>
-
-<!-- Poem 5 -->
-<article class="poem-card">
-  <h2 class="poem-title">Whispers of Night 🌌</h2>
-  <div class="poem-content">
+    <article>
+      <h2>Whispers of Night 🌌</h2>
+      <div class="poem">
 The sky is painted deep and wide,  
 A velvet sea where stars reside.  
 They shimmer soft, they whisper light,  
@@ -338,17 +296,13 @@ So let them shine, let midnight call,
 A dreamer waits—she wants it all.  
 With stars above and heart so wide,  
 She walks with hope, and time as guide.  
+      </div>
+      <div class="author">— By Pranjal Vats 🌻</div>
+    </article>
 
-— By Pranjal Vats 🌻
-  </div>
-  <div class="author">— By Pranjal Vats 🌻</div>
-  <button class="read-toggle" onclick="toggleCard(this)">Read More ▼</button>
-</article>
-
-<!-- Poem 6 -->
-<article class="poem-card">
-  <h2 class="poem-title">Under Starlit Dreams ✨</h2>
-  <div class="poem-content">
+    <article>
+      <h2>Under Starlit Dreams ✨</h2>
+      <div class="poem">
 The night is quiet, soft, and deep,  
 The stars above, their secrets keep.  
 They shimmer bright, they call my name,  
@@ -363,17 +317,13 @@ I wait for dawn, I wait for light,
 I wait for dreams to take their flight.  
 But till they come, I stand so still,  
 With stars above and heart to fill.  
+      </div>
+      <div class="author">— By Pranjal Vats 🌻</div>
+    </article>
 
-— By Pranjal Vats 🌻
-  </div>
-  <div class="author">— By Pranjal Vats 🌻</div>
-  <button class="read-toggle" onclick="toggleCard(this)">Read More ▼</button>
-</article>
-
-<!-- Poem 7 -->
-<article class="poem-card">
-  <h2 class="poem-title">The Shape of Water 💦</h2>
-  <div class="poem-content">
+    <article>
+      <h2>The Shape of Water 💦</h2>
+      <div class="poem">
 It drips in silence, soft and small,  
 A silver thread, unnoticed fall—  
 It bends to shape, to cup, to stream,  
@@ -403,37 +353,15 @@ So judge it not by calm alone,
 This quiet force we all have known.  
 For water—gentle, vast, and free—  
 Is strength wrapped in humility.  
+      </div>
+      <div class="author">— By Pranjal Vats 🌻</div>
+    </article>
 
-— By Pranjal Vats 🌻
-  </div>
-  <div class="author">— By Pranjal Vats 🌻</div>
-  <button class="read-toggle" onclick="toggleCard(this)">Read More ▼</button>
-</article>
+    <a href="index.html" class="home-btn">⬅ Back to Home</a>
+  </main>
 
-</section>
-
-<a class="home-btn" href="index.html">⬅ 🏠 Back to Home</a>
-</main>
-
-<script>
-function toggleCard(btn){
-  const card = btn.closest('.poem-card');
-  card.classList.toggle('expanded');
-  btn.textContent = card.classList.contains('expanded') ? 'Read Less ▲' : 'Read More ▼';
-}
-window.addEventListener('load',()=>{
-  if(window.innerWidth>=900){
-    document.querySelectorAll('.poem-card').forEach(c=>c.classList.add('expanded'));
-  }
-});
-window.addEventListener('resize',()=>{
-  if(window.innerWidth>=900){
-    document.querySelectorAll('.poem-card').forEach(c=>c.classList.add('expanded'));
-  } else {
-    document.querySelectorAll('.poem-card').forEach(c=>c.classList.remove('expanded'));
-  }
-});
-</script>
-
+  <footer>
+    <p>© 2025 Echoes of Pranjal — Built by <strong>Pranjal Vats</strong></p>
+  </footer>
 </body>
 </html>
