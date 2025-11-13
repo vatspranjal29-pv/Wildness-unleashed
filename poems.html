@@ -480,146 +480,59 @@ Not in the doing, but in the heart.
   </div>
   <!-- SCRIPTS -->
 <script>
-/* Copy / right-click / selection prevention */
-document.addEventListener("contextmenu", e => e.preventDefault());
-document.addEventListener("selectstart", e => e.preventDefault());
-document.addEventListener("copy", e => { e.preventDefault(); alert("Copying is disabled on this page!"); });
-document.addEventListener("keydown", e => {
-  if(e.key === "PrintScreen"){
-    try { navigator.clipboard.writeText(''); } catch(e){}
-    alert("Screenshots are disabled!");
-  }
+// Smooth fade-in for poem cards
+const cards = document.querySelectorAll('.card');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
 });
+cards.forEach(card => observer.observe(card));
 
-/* Read toggle for mobile (desktop hides the button and all cards are expanded) */
-function toggleCard(btn){
-  const card = btn.closest('.poem-card');
-  card.classList.toggle('expanded');
-  btn.textContent = card.classList.contains('expanded') ? 'Read Less ▲' : 'Read More ▼';
-}
-
-/* On load: expand all cards on wide screens so desktop shows full poems */
-function setInitialExpansion(){
+// Read More / Read Less Toggle
+function setupReadToggles() {
+  const cards = document.querySelectorAll('.card');
   const isWide = window.innerWidth >= 900;
-  document.querySelectorAll('.poem-card').forEach(card => {
-    if(isWide) {
+
+  cards.forEach(card => {
+    const excerpt = card.querySelector('.excerpt');
+    const full = card.querySelector('.full');
+    const btn = card.querySelector('.read');
+
+    if (!excerpt || !full || !btn) return;
+
+    // Desktop: all expanded, hide button
+    if (isWide) {
       card.classList.add('expanded');
-    } else {
+      full.style.maxHeight = '2000px';
+      full.style.opacity = '1';
+      btn.classList.add('hidden');
+    } 
+    // Mobile: collapse, show button
+    else {
       card.classList.remove('expanded');
+      full.style.maxHeight = '0';
+      full.style.opacity = '0';
+      btn.classList.remove('hidden');
+      btn.onclick = () => {
+        card.classList.toggle('expanded');
+        if (card.classList.contains('expanded')) {
+          full.style.maxHeight = '2000px';
+          full.style.opacity = '1';
+          btn.textContent = 'Read Less ▲';
+        } else {
+          full.style.maxHeight = '0';
+          full.style.opacity = '0';
+          btn.textContent = 'Read More ▾';
+        }
+      };
     }
   });
 }
-window.addEventListener('load', setInitialExpansion);
-window.addEventListener('resize', setInitialExpansion);
 
-/* Simple particle animation for background canvas */
-(function(){
-  const canvas = document.getElementById('particle-canvas');
-  if(!canvas) return;
-  const ctx = canvas.getContext('2d');
-  let w = canvas.width = innerWidth;
-  let h = canvas.height = innerHeight;
-  const particles = [];
-  const COUNT = Math.round((w*h)/90000); // scale by viewport
-  for(let i=0;i<Math.max(18, COUNT);i++){
-    particles.push({
-      x: Math.random()*w,
-      y: Math.random()*h,
-      r: 0.6 + Math.random()*2.2,
-      vx: (Math.random()-0.5)*0.25,
-      vy: -0.15 - Math.random()*0.4,
-      alpha: 0.12 + Math.random()*0.25,
-      hue: 345 + Math.random()*20 // red-ish
-    });
-  }
-  function resize(){
-    w = canvas.width = innerWidth;
-    h = canvas.height = innerHeight;
-  }
-  window.addEventListener('resize', resize);
-  function draw(){
-    ctx.clearRect(0,0,w,h);
-    for(const p of particles){
-      p.x += p.vx;
-      p.y += p.vy;
-      if(p.y < -30) { p.y = h + 30; p.x = Math.random()*w; }
-      if(p.x < -30) p.x = w+30;
-      if(p.x > w+30) p.x = -30;
-      ctx.beginPath();
-      ctx.fillStyle = `hsla(${p.hue},80%,60%,${p.alpha})`;
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
-      ctx.fill();
-    }
-    requestAnimationFrame(draw);
-  }
-  draw();
-})();
-
+window.addEventListener('load', setupReadToggles);
+window.addEventListener('resize', setupReadToggles);
 </script>
-  
 
-  <script>
-    // Intersection observer for fade-in (matches index animation)
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if(e.isIntersecting){ e.target.classList.add('visible'); observer.unobserve(e.target); }
-      });
-    }, { threshold: 0.15 });
-
-    document.querySelectorAll('.card').forEach(c => observer.observe(c));
-
-    // Read More toggle + accessibility
-    document.querySelectorAll('.card').forEach(card => {
-      const btn = card.querySelector('.read');
-      const full = card.querySelector('.full');
-      const excerpt = card.querySelector('.excerpt');
-
-      if(!btn) return;
-      // hide button if no extra content
-      if(!full || full.textContent.trim().length === 0){ btn.classList.add('hidden'); return; }
-
-      btn.addEventListener('click', () => {
-        const open = card.classList.toggle('expanded');
-        if(open){
-          full.setAttribute('aria-hidden','false');
-          excerpt.classList.add('expanded');
-          btn.textContent = 'Read Less ▴';
-          // small scroll to keep context on narrow screens
-          if(window.innerWidth < 820) setTimeout(()=> card.scrollIntoView({behavior:'smooth', block:'start'}), 220);
-        } else {
-          full.setAttribute('aria-hidden','true');
-          excerpt.classList.remove('expanded');
-          btn.textContent = 'Read More ▾';
-        }
-      });
-
-      // keyboard: Enter toggles when focused on button
-      btn.addEventListener('keydown', e => { if(e.key === 'Enter') btn.click(); });
-    });
-
-    // Expand on wide screens
-    function adaptWide(){
-      const wide = window.innerWidth >= 900;
-      document.querySelectorAll('.card').forEach(card => {
-        const full = card.querySelector('.full');
-        const btn = card.querySelector('.read');
-        if(wide){
-          if(full && full.textContent.trim().length>0){
-            card.classList.add('expanded');
-            full.setAttribute('aria-hidden','false');
-            if(btn) btn.textContent = 'Read Less ▴';
-          }
-        } else {
-          if(full && full.textContent.trim().length>0){
-            card.classList.remove('expanded');
-            full.setAttribute('aria-hidden','true');
-            if(btn) btn.textContent = 'Read More ▾';
-          }
-        }
-      });
-    }
-    window.addEventListener('load', adaptWide);
-    window.addEventListener('resize', adaptWide);
-  </script>
 </body>
 </html>
