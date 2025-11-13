@@ -1,367 +1,253 @@
 <!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Roots & Rhythms 🍃 — By Pranjal Vats 🌻</title>
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:wght@400;500&display=swap" rel="stylesheet">
+<html lang="en">  
+<head>  
+  <meta charset="utf-8" />  
+  <meta name="viewport" content="width=device-width,initial-scale=1" />  
+  <title>Echoes of Pranjal — Pranjal Vats</title>    <!-- Fonts -->    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:wght@400;500&display=swap" rel="stylesheet">    <style>  
+    :root {  
+      --cream-bg: #FBF6F0;  
+      --ink-black: #1f1f1f;  
+      --muted-gray: #565656;  
+      --max-width: 1100px;  
+      --accent-opacity: 0.86;  
+      --section-wash-opacity: 0.9; /* slightly stronger now */  
+    }  
+  
+    * { box-sizing: border-box; }  
+  
+    html, body {  
+      height: 100%;  
+      margin: 0;  
+      padding: 0;  
+      background: var(--cream-bg);  
+      color: var(--ink-black);  
+      font-family: 'Lora', serif;  
+      -webkit-font-smoothing: antialiased;  
+      -moz-osx-font-smoothing: grayscale;  
+      line-height: 1.7;  
+      font-size: 18px;  
+    }  
+  
+    body {  
+      background-image:  
+        radial-gradient(circle at 12% 18%, rgba(120,160,220,0.16) 0%, transparent 30%),  
+        radial-gradient(circle at 86% 72%, rgba(220,180,80,0.16) 0%, transparent 30%),  
+        radial-gradient(circle at 50% 50%, rgba(244,143,177,0.18) 0%, transparent 40%);  
+      background-attachment: fixed;  
+      background-size: cover;  
+      background-repeat: no-repeat;  
+      padding-bottom: 60px;  
+      animation: pageFade .9s ease both;  
+    }  
+  
+    @keyframes pageFade {  
+      from { opacity: 0; transform: translateY(6px); }  
+      to { opacity: 1; transform: none; }  
+    }  
+  
+    .page { max-width: var(--max-width); margin: 0 auto; padding: 0 20px 60px; }  
+  
+    nav {  
+      position: fixed;  
+      top: 18px;  
+      left: 50%;  
+      transform: translateX(-50%);  
+      width: 92%;  
+      max-width: var(--max-width);  
+      display: flex;  
+      justify-content: space-between;  
+      align-items: center;  
+      padding: 12px 20px;  
+      border-radius: 40px;  
+      background: rgba(255,255,255,0.75);  
+      backdrop-filter: blur(8px);  
+      box-shadow: 0 6px 30px rgba(0,0,0,0.06);  
+      z-index: 120;  
+    }  
+  
+    .brand { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.25rem; color: var(--ink-black); }  
+    .nav-links { display: flex; gap: 16px; flex-wrap: wrap; }  
+    .nav-links a { text-decoration: none; color: var(--muted-gray); font-weight: 500; }  
+    .nav-links a:hover { color: var(--ink-black); }  
+  
+    header {  
+      text-align: center;  
+      margin-top: 120px;  
+      padding: 86px 20px 28px;  
+    }  
+  
+    header h1 {  
+      font-family: 'Playfair Display', serif;  
+      font-size: clamp(2.6rem, 6vw, 3.8rem);  
+      margin: 0 0 16px;  
+      line-height: 1;  
+    }  
+  
+    .tagline { font-style: italic; color: var(--muted-gray); margin-bottom: 8px; font-size: 1.18rem; }  
+    .author { font-family: 'Playfair Display', serif; font-weight: 700; margin-bottom: 6px; font-size: 1.05rem; }  
+    .byline { color: var(--muted-gray); font-style: italic; max-width: 46ch; margin: 0 auto; }  
+  
+    main { max-width: 900px; margin: 56px auto 0; padding: 0 18px; }  
+  
+    section {  
+      position: relative;  
+      margin-bottom: 72px;  
+      padding: 36px 18px;  
+      border-bottom: 1px dashed rgba(0,0,0,0.06);  
+      transition: transform .5s ease, opacity .5s ease;  
+      opacity: 0;  
+      transform: translateY(18px);  
+      border-radius: 16px;  
+      overflow: hidden;  
+    }  
+  
+    section.visible { opacity: 1; transform: none; }  
+  
+    section::before {  
+      content: "";  
+      position: absolute;  
+      z-index: 0;  
+      left: -6%;  
+      right: -6%;  
+      top: -6%;  
+      bottom: -6%;  
+      background-repeat: no-repeat;  
+      background-position: center;  
+      background-size: cover;  
+      opacity: var(--section-wash-opacity);  
+      filter: blur(8px) saturate(1.2);  
+      transform: rotate(-2deg);  
+    }  
+  
+    section.wash-1::before {  
+      background-image:  
+        radial-gradient(circle at 12% 36%, rgba(244,143,177,0.7), transparent 25%),  
+        radial-gradient(circle at 76% 68%, rgba(255,183,110,0.65), transparent 25%),  
+        radial-gradient(circle at 50% 20%, rgba(255,224,178,0.55), transparent 20%);  
+    }  
+  
+    section.wash-2::before {  
+      background-image:  
+        radial-gradient(circle at 10% 20%, rgba(177,154,217,0.75), transparent 22%),  
+        radial-gradient(circle at 82% 70%, rgba(129,199,132,0.65), transparent 22%),  
+        radial-gradient(circle at 60% 30%, rgba(255,205,210,0.55), transparent 18%);  
+    }  
+  
+    section.wash-3::before {  
+      background-image:  
+        radial-gradient(circle at 20% 60%, rgba(244,143,177,0.75), transparent 22%),  
+        radial-gradient(circle at 84% 34%, rgba(255,224,178,0.65), transparent 22%),  
+        radial-gradient(circle at 50% 40%, rgba(191,214,255,0.55), transparent 20%);  
+    }  
+  
+    section h2 {  
+      position: relative;  
+      font-family: 'Playfair Display', serif;  
+      font-size: 1.7rem;  
+      margin: 0 0 12px;  
+      z-index: 6;  
+    }  
+  
+    section h2::after {  
+      content: "";  
+      display: block;  
+      width: 88px;  
+      height: 6px;  
+      border-radius: 5px;  
+      background: linear-gradient(90deg, rgba(244,143,177,0.95), rgba(255,183,110,0.95));  
+      margin-top: 8px;  
+      opacity: 0.95;  
+    }  
+  
+    section p { color: var(--muted-gray); font-size: 1.05rem; max-width: 64ch; position: relative; z-index: 6; }  
+  
+    .btn {  
+      display: inline-block;  
+      margin-top: 18px;  
+      padding: 10px 22px;  
+      border-radius: 8px;  
+      border: 1.5px solid var(--ink-black);  
+      background: transparent;  
+      color: var(--ink-black);  
+      text-decoration: none;  
+      font-weight: 500;  
+      transition: transform .18s ease, background .18s ease;  
+      z-index: 6;  
+    }  
+  
+    .btn:hover { transform: translateY(-3px); background: rgba(0,0,0,0.04); }  
+  
+    footer {  
+      text-align: center;  
+      padding: 44px 20px;  
+      color: var(--muted-gray);  
+      border-top: 1px solid rgba(0,0,0,0.06);  
+      background: rgba(255,255,255,0.35);  
+      margin-top: 18px;  
+      z-index: 6;  
+    }  
+  
+    /* Responsive Improvements */  
+    @media (max-width: 768px) {  
+      nav {  
+        flex-direction: column;  
+        gap: 6px;  
+        padding: 10px;  
+      }  
+      header { margin-top: 100px; padding: 60px 14px 20px; }  
+      section { padding: 24px 14px; margin-bottom: 56px; }  
+      section::before { opacity: 0.65; filter: blur(6px) saturate(1.1); }  
+      .page { padding: 0 14px 40px; }  
+    }  
+  </style>  </head>  <body>  
+  <div class="page">  
+    <nav>  
+      <div class="brand">PV</div>  
+      <div class="nav-links">  
+        <a href="index.html">Home</a>  
+        <a href="shayari.html">Mehfill</a>  
+        <a href="poems.html">Poems</a>  
+        <a href="naturepoems.html">Roots & Rhythms</a>  
+        <a href="#contact">Contact</a>  
+      </div>  
+    </nav>  <header>  
+  <h1>Echoes of Pranjal</h1>  
+  <p class="tagline">“Chaos into Creation.”</p>  
+  <p class="author">— By Pranjal Vats 🌻</p>  
+  <p class="byline">Turning imperfections into something bold, wild, and free.</p>  
+</header>  
 
-  <style>
-    :root {
-      --cream-bg: #FBF6F0;
-      --ink-black: #1f1f1f;
-      --muted-gray: #565656;
-      --max-width: 1100px;
-      --section-wash-opacity: 0.9;
-    }
+<main>  
+  <section id="about" class="wash-1 visible">  
+    <h2>About Me</h2>  
+    <p>  
+      I’m Pranjal Vats, a budding writer learning to turn feeling into form.<br>  
+      <b>Echoes of Pranjal</b> is my space to grow — where words find rhythm and thoughts find home.<br>  
+      I’m still discovering my voice, shaping emotions into verses,  
+      and learning that sometimes, chaos is just creation in disguise.<br>  
+    </p>  
+  </section>  
 
-    * { box-sizing: border-box; }
+  <section id="description" class="wash-2 visible">  
+    <h2>Description</h2>  
+    <p>  
+      My projects blend experimentation and vision — from scribbles to poems.<br>  
+      Each piece reflects growth, self-expression, and the courage to create fearlessly and represent me in a way I may not always be able to express verbally.  
+    </p>  
+  </section>  
 
-    html, body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-      background: var(--cream-bg);
-      color: var(--ink-black);
-      font-family: 'Lora', serif;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      line-height: 1.7;
-      font-size: 18px;
-    }
+  <section id="contact" class="wash-3 visible">  
+    <h2>Contact</h2>  
+    <p>Let’s connect!</p>  
+    <a class="btn" href="mailto:wildness.unleashed12@gmail.com">📩 Contact Me</a>  
+  </section>  
+</main>  
 
-    body {
-      background-image:
-        radial-gradient(circle at 12% 18%, rgba(120,160,220,0.16) 0%, transparent 30%),
-        radial-gradient(circle at 86% 72%, rgba(220,180,80,0.16) 0%, transparent 30%),
-        radial-gradient(circle at 50% 50%, rgba(244,143,177,0.18) 0%, transparent 40%);
-      background-attachment: fixed;
-      background-size: cover;
-      background-repeat: no-repeat;
-      padding-bottom: 60px;
-      animation: pageFade .9s ease both;
-    }
+<footer>  
+  <p>© 2025 Echoes of Pranjal — Built by <strong>Pranjal Vats</strong></p>  
+</footer>
 
-    @keyframes pageFade {
-      from { opacity: 0; transform: translateY(6px); }
-      to { opacity: 1; transform: none; }
-    }
-
-    nav {
-      position: fixed;
-      top: 18px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 92%;
-      max-width: var(--max-width);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 12px 20px;
-      border-radius: 40px;
-      background: rgba(255,255,255,0.75);
-      backdrop-filter: blur(8px);
-      box-shadow: 0 6px 30px rgba(0,0,0,0.06);
-      z-index: 120;
-    }
-
-    .brand { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.25rem; color: var(--ink-black); }
-    .nav-links { display: flex; gap: 16px; flex-wrap: wrap; }
-    .nav-links a { text-decoration: none; color: var(--muted-gray); font-weight: 500; }
-    .nav-links a:hover { color: var(--ink-black); }
-
-    header {
-      text-align: center;
-      margin-top: 120px;
-      padding: 86px 20px 28px;
-    }
-
-    header h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2.4rem, 6vw, 3.6rem);
-      margin: 0 0 16px;
-      line-height: 1;
-    }
-
-    .subtitle { font-style: italic; color: var(--muted-gray); margin-bottom: 8px; font-size: 1.15rem; }
-
-    main {
-      max-width: 900px;
-      margin: 56px auto 0;
-      padding: 0 18px;
-    }
-
-    article {
-      background: rgba(255,255,255,0.72);
-      border-radius: 16px;
-      padding: 32px 28px;
-      margin-bottom: 40px;
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 10px 35px rgba(0,0,0,0.05);
-      transition: transform .25s ease, box-shadow .25s ease;
-    }
-
-    article:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 14px 40px rgba(0,0,0,0.08);
-    }
-
-    article::before {
-      content: "";
-      position: absolute;
-      left: -10%;
-      right: -10%;
-      top: -10%;
-      bottom: -10%;
-      z-index: 0;
-      opacity: var(--section-wash-opacity);
-      background-image:
-        radial-gradient(circle at 18% 22%, rgba(177,154,217,0.4), transparent 30%),
-        radial-gradient(circle at 84% 72%, rgba(255,205,210,0.4), transparent 30%),
-        radial-gradient(circle at 60% 40%, rgba(255,224,178,0.35), transparent 25%);
-      filter: blur(10px);
-      transform: rotate(-2deg);
-    }
-
-    article h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.6rem;
-      margin: 0 0 14px;
-      position: relative;
-      z-index: 6;
-    }
-
-    .poem {
-      white-space: pre-line;
-      position: relative;
-      z-index: 6;
-      color: var(--muted-gray);
-      font-size: 1.05rem;
-      line-height: 1.7;
-    }
-
-    .author {
-      margin-top: 20px;
-      text-align: right;
-      font-weight: 600;
-      font-style: italic;
-      color: var(--ink-black);
-      position: relative;
-      z-index: 6;
-    }
-
-    .home-btn {
-      display: block;
-      margin: 60px auto 40px;
-      width: fit-content;
-      padding: 10px 22px;
-      border-radius: 8px;
-      border: 1.5px solid var(--ink-black);
-      background: transparent;
-      color: var(--ink-black);
-      text-decoration: none;
-      font-weight: 500;
-      transition: transform .18s ease, background .18s ease;
-    }
-
-    .home-btn:hover { transform: translateY(-3px); background: rgba(0,0,0,0.04); }
-
-    footer {
-      text-align: center;
-      padding: 44px 20px;
-      color: var(--muted-gray);
-      border-top: 1px solid rgba(0,0,0,0.06);
-      background: rgba(255,255,255,0.35);
-      margin-top: 18px;
-    }
-
-    @media (max-width: 768px) {
-      nav { flex-direction: column; gap: 6px; padding: 10px; }
-      header { margin-top: 100px; padding: 60px 14px 20px; }
-      article { padding: 24px 18px; }
-      article::before { filter: blur(7px); opacity: 0.7; }
-    }
-  </style>
-</head>
-
-<body>
-  <nav>
-    <div class="brand">PV</div>
-    <div class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="shayari.html">Mehfill</a>
-      <a href="poems.html">Poems</a>
-      <a href="naturepoems.html">Roots & Rhythms</a>
-    </div>
-  </nav>
-
-  <header>
-    <h1>Roots & Rhythms 🍃</h1>
-    <p class="subtitle">Collected poems — raw, reflective, and relentless.</p>
-  </header>
-
-  <main>
-
-    <article>
-      <h2>Earth Eternal, Man Ephemeral 🌍</h2>
-      <div class="poem">
-Mountains rise, rivers flow,  
-Seasons come, seasons go.  
-Forests whisper, oceans roar,  
-Earth remains forevermore.  
-
-Yet man walks with head held high,  
-Believing he commands the sky.  
-Taming rivers, carving stone,  
-Calling this vast world his own.  
-
-He builds his towers, stakes his claim,  
-Writes his laws, bestows his name.  
-Forgets the dust from which he came,  
-And thinks the Earth will bow the same.  
-
-But winds will sweep, the roots will grow,  
-Mountains crumble, rivers flow.  
-Time erases every hand,  
-No kingdom stays, no name will stand.  
-
-For nature’s song is old and wise,  
-It hums beyond where memory lies.  
-Man may dream of endless reign,  
-Yet he will turn to dust again.  
-      </div>
-      <div class="author">— By Pranjal Vats 🌻</div>
-    </article>
-
-    <article>
-      <h2>Whispers of the Wind 🍂</h2>
-      <div class="poem">
-The wind speaks softly through the trees,  
-A secret carried on gentle breeze.  
-It hums of ages, lost and gone,  
-Yet whispers life to carry on.  
-      </div>
-      <div class="author">— By Pranjal Vats 🌻</div>
-    </article>
-
-    <article>
-      <h2>River’s Song 🌊</h2>
-      <div class="poem">
-A river carves with patient grace,  
-Through rock, through time, it finds its place.  
-No rush, no force, just steady flow,  
-A lesson in the way to grow.  
-      </div>
-      <div class="author">— By Pranjal Vats 🌻</div>
-    </article>
-
-    <article>
-      <h2>Roots Beneath 🌱</h2>
-      <div class="poem">
-We see the tree, its crown, its might,  
-But roots hold steady out of sight.  
-In hidden soil, they weave, they stay,  
-The strength that keeps the storms away.  
-      </div>
-      <div class="author">— By Pranjal Vats 🌻</div>
-    </article>
-
-    <article>
-      <h2>Whispers of Night 🌌</h2>
-      <div class="poem">
-The sky is painted deep and wide,  
-A velvet sea where stars reside.  
-They shimmer soft, they whisper light,  
-A thousand wishes born tonight.  
-
-The moonlight hums a silent tune,  
-Silvered dreams beneath its bloom.  
-The wind it sighs, the heart it yearns,  
-For time to turn, for fate to burn.  
-
-Eyes that wander, lost in glow,  
-Holding stories yet to grow.  
-A quiet hope, a secret flight,  
-Waiting for the perfect night.  
-
-Oh, distant dreams, just past my hand,  
-Like golden dust, like grains of sand.  
-Still I wait, still I believe,  
-That time will come, that stars will weave.  
-
-So let them shine, let midnight call,  
-A dreamer waits—she wants it all.  
-With stars above and heart so wide,  
-She walks with hope, and time as guide.  
-      </div>
-      <div class="author">— By Pranjal Vats 🌻</div>
-    </article>
-
-    <article>
-      <h2>Under Starlit Dreams ✨</h2>
-      <div class="poem">
-The night is quiet, soft, and deep,  
-The stars above, their secrets keep.  
-They shimmer bright, they call my name,  
-Like tiny sparks of hope and flame.  
-
-The breeze is light, it sings so low,  
-A song of dreams I used to know.  
-I close my eyes and let it be,  
-The night, the stars, just time and me.  
-
-I wait for dawn, I wait for light,  
-I wait for dreams to take their flight.  
-But till they come, I stand so still,  
-With stars above and heart to fill.  
-      </div>
-      <div class="author">— By Pranjal Vats 🌻</div>
-    </article>
-
-    <article>
-      <h2>The Shape of Water 💦</h2>
-      <div class="poem">
-It drips in silence, soft and small,  
-A silver thread, unnoticed fall—  
-It bends to shape, to cup, to stream,  
-It hides in mist, it sighs in dream.  
-
-It takes the form of what it meets,  
-The mountain cracks, the city's streets.  
-In glass or gulf, in storm or dew,  
-It molds itself, yet remains true.  
-
-So simple—clear, with no disguise,  
-Yet holds the world within its guise.  
-Ignored in peace, praised in drought,  
-Yet none can truly live without.  
-
-It carves through stone with quiet grace,  
-No rush—just time to claim its place.  
-It heals, it feeds, it bears, it grows,  
-In every breath, its presence flows.  
-
-But oh—when fury floods its soul,  
-No dam, no prayer can take control.  
-It swallows lands, it breaks the chain,  
-No throne, no war can it contain.  
-
-So judge it not by calm alone,  
-This quiet force we all have known.  
-For water—gentle, vast, and free—  
-Is strength wrapped in humility.  
-      </div>
-      <div class="author">— By Pranjal Vats 🌻</div>
-    </article>
-
-    <a href="index.html" class="home-btn">⬅ Back to Home</a>
-  </main>
-
-  <footer>
-    <p>© 2025 Echoes of Pranjal — Built by <strong>Pranjal Vats</strong></p>
-  </footer>
-</body>
-</html>
+  </div>  
+</body>  
+</html>  
