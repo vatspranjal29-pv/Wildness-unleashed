@@ -446,9 +446,97 @@ Not in the doing, but in the heart.
     </article>
 
   </section>
+    
+      <!-- placeholders -->
+      <article class="card wash-peach">
+        <h2 class="title">Coming Soon — New Poem</h2>
+        <div class="excerpt">A new verse will bloom here soon. Stay tuned — more poems are on the way.</div>
+        <div class="full" aria-hidden="true"></div>
+        <button class="read hidden">Read More ▾</button>
+        <div class="author-line">— By Pranjal Vats 🌻</div>
+      </article>
 
-  <a class="home- btn" href="index.html">⬅ 🏠 Back to Home</a>
-</main>
+      <article class="card wash-blush">
+        <h2 class="title">Coming Soon — New Poem</h2>
+        <div class="excerpt">A new verse will bloom here soon. Stay tuned — more poems are on the way.</div>
+        <div class="full" aria-hidden="true"></div>
+        <button class="read hidden">Read More ▾</button>
+        <div class="author-line">— By Pranjal Vats 🌻</div>
+      </article>
+
+      <a class="home-btn" href="index.html">⬅ Back to Home</a>
+    </main>
+
+    <footer style="text-align:center;padding:44px 20px;color:var(--muted-gray);border-top:1px solid rgba(0,0,0,0.06);background:rgba(255,255,255,0.35);margin-top:18px">
+      <p>© 2025 Echoes of Pranjal — Built by <strong>Pranjal Vats</strong></p>
+    </footer>
+  </div>
+
+  <script>
+    // Intersection observer for fade-in (matches index animation)
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if(e.isIntersecting){ e.target.classList.add('visible'); observer.unobserve(e.target); }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.card').forEach(c => observer.observe(c));
+
+    // Read More toggle + accessibility
+    document.querySelectorAll('.card').forEach(card => {
+      const btn = card.querySelector('.read');
+      const full = card.querySelector('.full');
+      const excerpt = card.querySelector('.excerpt');
+
+      if(!btn) return;
+      // hide button if no extra content
+      if(!full || full.textContent.trim().length === 0){ btn.classList.add('hidden'); return; }
+
+      btn.addEventListener('click', () => {
+        const open = card.classList.toggle('expanded');
+        if(open){
+          full.setAttribute('aria-hidden','false');
+          excerpt.classList.add('expanded');
+          btn.textContent = 'Read Less ▴';
+          // small scroll to keep context on narrow screens
+          if(window.innerWidth < 820) setTimeout(()=> card.scrollIntoView({behavior:'smooth', block:'start'}), 220);
+        } else {
+          full.setAttribute('aria-hidden','true');
+          excerpt.classList.remove('expanded');
+          btn.textContent = 'Read More ▾';
+        }
+      });
+
+      // keyboard: Enter toggles when focused on button
+      btn.addEventListener('keydown', e => { if(e.key === 'Enter') btn.click(); });
+    });
+
+    // Expand on wide screens
+    function adaptWide(){
+      const wide = window.innerWidth >= 900;
+      document.querySelectorAll('.card').forEach(card => {
+        const full = card.querySelector('.full');
+        const btn = card.querySelector('.read');
+        if(wide){
+          if(full && full.textContent.trim().length>0){
+            card.classList.add('expanded');
+            full.setAttribute('aria-hidden','false');
+            if(btn) btn.textContent = 'Read Less ▴';
+          }
+        } else {
+          if(full && full.textContent.trim().length>0){
+            card.classList.remove('expanded');
+            full.setAttribute('aria-hidden','true');
+            if(btn) btn.textContent = 'Read More ▾';
+          }
+        }
+      });
+    }
+    window.addEventListener('load', adaptWide);
+    window.addEventListener('resize', adaptWide);
+  </script>
+</body>
+</html>
 
 <!-- SCRIPTS -->
 <script>
@@ -528,5 +616,3 @@ window.addEventListener('resize', setInitialExpansion);
 })();
 
 </script>
-</body>
-</html>
