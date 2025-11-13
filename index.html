@@ -15,7 +15,7 @@
       --muted-gray: #565656;
       --max-width: 1100px;
       --accent-opacity: 0.86;
-      --section-wash-opacity: 0.84;
+      --section-wash-opacity: 0.9; /* slightly stronger now */
     }
 
     * { box-sizing: border-box; }
@@ -35,9 +35,9 @@
 
     body {
       background-image:
-        radial-gradient(circle at 12% 18%, rgba(120,160,220,0.1) 0%, transparent 30%),
-        radial-gradient(circle at 86% 72%, rgba(220,180,80,0.1) 0%, transparent 30%),
-        radial-gradient(circle at 50% 50%, rgba(244,143,177,0.12) 0%, transparent 40%);
+        radial-gradient(circle at 12% 18%, rgba(120,160,220,0.16) 0%, transparent 30%),
+        radial-gradient(circle at 86% 72%, rgba(220,180,80,0.16) 0%, transparent 30%),
+        radial-gradient(circle at 50% 50%, rgba(244,143,177,0.18) 0%, transparent 40%);
       background-attachment: fixed;
       background-size: cover;
       background-repeat: no-repeat;
@@ -64,7 +64,7 @@
       align-items: center;
       padding: 12px 20px;
       border-radius: 40px;
-      background: rgba(255,255,255,0.7);
+      background: rgba(255,255,255,0.75);
       backdrop-filter: blur(8px);
       box-shadow: 0 6px 30px rgba(0,0,0,0.06);
       z-index: 120;
@@ -97,11 +97,13 @@
     section {
       position: relative;
       margin-bottom: 72px;
-      padding: 28px 18px;
+      padding: 36px 18px;
       border-bottom: 1px dashed rgba(0,0,0,0.06);
       transition: transform .5s ease, opacity .5s ease;
       opacity: 0;
       transform: translateY(18px);
+      border-radius: 16px;
+      overflow: hidden;
     }
 
     section.visible { opacity: 1; transform: none; }
@@ -118,25 +120,29 @@
       background-position: center;
       background-size: cover;
       opacity: var(--section-wash-opacity);
-      filter: blur(6px) saturate(1.02);
+      filter: blur(8px) saturate(1.2);
+      transform: rotate(-2deg);
     }
 
     section.wash-1::before {
       background-image:
-        radial-gradient(circle at 12% 36%, rgba(244,143,177,0.3), transparent 25%),
-        radial-gradient(circle at 76% 68%, rgba(255,183,110,0.25), transparent 25%);
+        radial-gradient(circle at 12% 36%, rgba(244,143,177,0.7), transparent 25%),
+        radial-gradient(circle at 76% 68%, rgba(255,183,110,0.65), transparent 25%),
+        radial-gradient(circle at 50% 20%, rgba(255,224,178,0.55), transparent 20%);
     }
 
     section.wash-2::before {
       background-image:
-        radial-gradient(circle at 10% 20%, rgba(177,154,217,0.3), transparent 22%),
-        radial-gradient(circle at 82% 70%, rgba(129,199,132,0.3), transparent 22%);
+        radial-gradient(circle at 10% 20%, rgba(177,154,217,0.75), transparent 22%),
+        radial-gradient(circle at 82% 70%, rgba(129,199,132,0.65), transparent 22%),
+        radial-gradient(circle at 60% 30%, rgba(255,205,210,0.55), transparent 18%);
     }
 
     section.wash-3::before {
       background-image:
-        radial-gradient(circle at 20% 60%, rgba(244,143,177,0.3), transparent 22%),
-        radial-gradient(circle at 84% 34%, rgba(255,224,178,0.3), transparent 22%);
+        radial-gradient(circle at 20% 60%, rgba(244,143,177,0.75), transparent 22%),
+        radial-gradient(circle at 84% 34%, rgba(255,224,178,0.65), transparent 22%),
+        radial-gradient(circle at 50% 40%, rgba(191,214,255,0.55), transparent 20%);
     }
 
     section h2 {
@@ -194,9 +200,9 @@
         padding: 10px;
       }
       header { margin-top: 100px; padding: 60px 14px 20px; }
-      section { padding: 20px 12px; margin-bottom: 56px; }
+      section { padding: 24px 14px; margin-bottom: 56px; }
+      section::before { opacity: 0.65; filter: blur(6px) saturate(1.1); }
       .page { padding: 0 14px 40px; }
-      section::before { display: block; filter: blur(4px); opacity: 0.45; }
     }
   </style>
 </head>
@@ -222,7 +228,7 @@
     </header>
 
     <main>
-      <section id="about" class="wash-1">
+      <section id="about" class="wash-1 visible">
         <h2>About Me</h2>
         <p>
           I’m Pranjal Vats, a budding writer learning to turn feeling into form.<br>
@@ -232,7 +238,7 @@
         </p>
       </section>
 
-      <section id="description" class="wash-2">
+      <section id="description" class="wash-2 visible">
         <h2>Description</h2>
         <p>
           My projects blend experimentation and vision — from scribbles to poems.<br>
@@ -240,7 +246,7 @@
         </p>
       </section>
 
-      <section id="contact" class="wash-3">
+      <section id="contact" class="wash-3 visible">
         <h2>Contact</h2>
         <p>Let’s connect!</p>
         <a class="btn" href="mailto:wildness.unleashed12@gmail.com">📩 Contact Me</a>
@@ -251,24 +257,5 @@
       <p>© 2025 Echoes of Pranjal — Built by <strong>Pranjal Vats</strong></p>
     </footer>
   </div>
-
-  <script>
-    (function(){
-      const revealTargets = document.querySelectorAll('section');
-      if(!('IntersectionObserver' in window)){
-        revealTargets.forEach(t => t.classList.add('visible'));
-        return;
-      }
-      const io = new IntersectionObserver((entries, obs) => {
-        entries.forEach(e => {
-          if(e.isIntersecting){
-            e.target.classList.add('visible');
-            obs.unobserve(e.target);
-          }
-        });
-      }, { threshold: 0.15 });
-      revealTargets.forEach(t => io.observe(t));
-    })();
-  </script>
 </body>
 </html>
