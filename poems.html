@@ -1,8 +1,8 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Poems — Wildness Unleashed</title>
 
   <!-- Google Fonts -->
@@ -13,18 +13,48 @@
       --red-strong: #ff0040;
       --red-mid: #ff4d4d;
       --gold: #ffd166;
-      --bg-dark-1: #0c0c0c;
-      --bg-dark-2: #141313;
+      --bg1: #0b0a0a;
+      --bg2: #1a1717;
       --muted: #f5f5f5;
     }
 
     html, body {
-      height: 100%;
       margin: 0;
       padding: 0;
-      font-family: 'Open Sans', sans-serif;
+      height: 100%;
       color: var(--muted);
-      background: linear-gradient(135deg, var(--bg-dark-1), var(--bg-dark-2));
+      font-family: 'Open Sans', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* Animated background */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(at 20% 30%, rgba(255,192,203,0.15), transparent 60%),
+                  radial-gradient(at 80% 70%, rgba(200,162,255,0.18), transparent 60%),
+                  radial-gradient(at 50% 50%, rgba(240,180,255,0.12), transparent 70%),
+                  linear-gradient(135deg, var(--bg1), var(--bg2));
+      animation: moveBrush 12s ease-in-out infinite alternate;
+      z-index: -2;
+    }
+
+    @keyframes moveBrush {
+      0% { background-position: 0% 0%, 100% 100%, 50% 50%; }
+      100% { background-position: 100% 100%, 0% 0%, 50% 50%; }
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at top left, rgba(255,255,255,0.05), transparent 70%),
+                  radial-gradient(circle at bottom right, rgba(255,255,255,0.05), transparent 70%);
+      z-index: -1;
     }
 
     /* Navbar */
@@ -36,8 +66,12 @@
       background: rgba(10,10,10,0.35);
       border-radius: 999px;
       backdrop-filter: blur(8px) saturate(120%);
-      border: 1px solid rgba(255,255,255,0.03);
-      flex-wrap: nowrap;
+      border: 1px solid rgba(255,255,255,0.05);
+      position: sticky;
+      top: 10px;
+      margin: 10px auto;
+      max-width: 940px;
+      z-index: 100;
     }
 
     nav .brand {
@@ -101,14 +135,29 @@
     }
 
     .poem-card {
-      background: rgba(255,255,255,0.03);
+      background: rgba(255,255,255,0.04);
       border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 18px;
-      padding: 20px 24px;
-      margin: 20px 0;
+      border-radius: 20px;
+      padding: 22px 24px;
+      margin: 22px 0;
       position: relative;
       overflow: hidden;
-      transition: all 0.3s ease;
+      box-shadow: 0 0 0 rgba(255, 215, 102, 0);
+      transition: all 0.4s ease;
+    }
+
+    .poem-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top left, rgba(230,190,255,0.12), transparent 60%),
+                  radial-gradient(circle at bottom right, rgba(250,200,255,0.12), transparent 60%);
+      z-index: 0;
+    }
+
+    .poem-card:hover {
+      box-shadow: 0 0 20px rgba(255, 215, 102, 0.25);
+      transform: translateY(-2px);
     }
 
     .poem-title {
@@ -116,6 +165,8 @@
       color: var(--red-strong);
       font-size: 1.5rem;
       margin-bottom: 12px;
+      position: relative;
+      z-index: 2;
     }
 
     .poem-content {
@@ -123,6 +174,8 @@
       overflow: hidden;
       transition: max-height 0.4s ease;
       white-space: pre-line;
+      position: relative;
+      z-index: 2;
     }
 
     .poem-card.expanded .poem-content {
@@ -139,6 +192,8 @@
       cursor: pointer;
       margin-top: 8px;
       transition: color 0.2s ease;
+      position: relative;
+      z-index: 2;
     }
     .read-toggle:hover {
       color: var(--red-mid);
@@ -148,6 +203,8 @@
       color: rgba(255,255,255,0.9);
       margin-top: 12px;
       font-weight: 600;
+      position: relative;
+      z-index: 2;
     }
 
     footer {
@@ -162,6 +219,7 @@
     @media (max-width: 600px) {
       header h1 { font-size: 2rem; }
       .poem-content { max-height: 150px; }
+      nav { flex-direction: column; gap: 6px; }
     }
   </style>
 
@@ -189,20 +247,7 @@
       <a href="#contact">Contact</a>
     </div>
   </nav>
-<style>
-  main{ max-width:980px; margin:24px auto 60px; padding:0 20px; }
-    section{ padding:42px 0; border-bottom:1px solid rgba(255,255,255,0.03); }
-    section h2{ font-family:'Oswald', sans-serif; font-size:1.5rem; color: var(--red-strong); margin-bottom:12px; }
-    section p{ font-size:1.05rem; line-height:1.7; color: rgba(255,255,255,0.95); }
-  
-  .btn{ display:inline-block; margin-top:16px; margin-right:8px; padding:10px 18px; border-radius:28px; text-decoration:none; font-weight:700; color:#111; background: linear-gradient(45deg, var(--red-strong), var(--gold)); transition: transform .18s ease; font-family: 'Oswald', sans-serif; }
-    .btn:hover{ transform: translateY(-4px) scale(1.02); }
 
-    footer{ text-align:center; padding:26px 12px; background: linear-gradient(180deg, rgba(255,0,64,0.02), rgba(0,0,0,0.2)); color: rgba(255,255,255,0.8); border-top:1px solid rgba(255,255,255,0.03); }
-    footer strong { color: var(--gold); }
-
-    @media(max-width:520px){ header{ padding:80px 18px 40px; } header h1{ font-size:2rem; } }
-</style>
   <header>
     <h1>Poems</h1>
     <p class="tagline">"Chaos Into Creation."</p>
@@ -210,7 +255,6 @@
   </header>
 
   <main>
-
 <!-- 1 -->
 <article class="poem-card">
   <h2 class="poem-title">Will I Regret...</h2>
