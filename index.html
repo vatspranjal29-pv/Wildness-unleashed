@@ -216,6 +216,17 @@
     padding: 0 14px 40px;
   }
 }
+    /* Fix header overlap with fixed navbar */
+header {
+  padding-top: 120px; /* creates space under nav */
+}
+
+@media (max-width: 768px) {
+  header {
+    padding-top: 180px; /* extra top padding for mobile */
+    margin-top: 0; /* remove old margin */
+  }
+}
   </style>  </head>  <body>  
   <div class="page">  
     <nav>  
