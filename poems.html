@@ -9,119 +9,92 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:wght@400;500&display=swap" rel="stylesheet">
 
   <style>
-    :root{
-      --cream-bg:#FBF6F0;
-      --ink-black:#1f1f1f;
-      --muted-gray:#565656;
-      --max-width:1200px;
-      --card-radius:16px;
-      --card-pad:28px;
-      --ease:cubic-bezier(.2,.9,.28,1);
+    :root {
+      --cream-bg: #FBF6F0;
+      --ink-black: #1f1f1f;
+      --muted-gray: #565656;
+      --max-width: 1200px;
+      --card-radius: 16px;
+      --card-pad: 28px;
+      --ease: cubic-bezier(.2,.9,.28,1);
     }
 
-    *{box-sizing:border-box;margin:0;padding:0}
-    html,body{height:100%}
-    body{
-      background:var(--cream-bg);
-      color:var(--ink-black);
-      font-family:'Lora',serif;
-      line-height:1.7;
-      font-size:18px;
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+    body {
+      background: var(--cream-bg);
+      color: var(--ink-black);
+      font-family: 'Lora', serif;
+      line-height: 1.7;
+      font-size: 18px;
       background-image:
         radial-gradient(circle at 12% 18%, rgba(120,160,220,0.12) 0%, transparent 30%),
         radial-gradient(circle at 86% 72%, rgba(220,180,80,0.12) 0%, transparent 30%),
         radial-gradient(circle at 50% 50%, rgba(244,143,177,0.14) 0%, transparent 40%);
-      background-attachment:fixed;
-      padding-bottom:80px;
+      background-attachment: fixed;
+      padding-bottom: 80px;
     }
 
-    .page { max-width:var(--max-width); margin:0 auto; padding:0 20px 60px; }
+    .page { max-width: var(--max-width); margin: 0 auto; padding: 0 20px 60px; }
 
-    /* Navbar */
-    nav{
-      position:fixed; top:18px; left:50%; transform:translateX(-50%);
-      width:92%; max-width:var(--max-width);
-      display:flex; justify-content:space-between; align-items:center;
-      padding:12px 20px; border-radius:40px;
-      background:rgba(255,255,255,0.75); backdrop-filter:blur(8px);
-      box-shadow:0 6px 30px rgba(0,0,0,0.06); z-index:130;
+    nav {
+      position: fixed; top: 18px; left: 50%; transform: translateX(-50%);
+      width: 92%; max-width: var(--max-width);
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 12px 20px; border-radius: 40px;
+      background: rgba(255,255,255,0.75); backdrop-filter: blur(8px);
+      box-shadow: 0 6px 30px rgba(0,0,0,0.06); z-index: 130;
     }
-    .brand{font-family:'Playfair Display',serif;font-weight:700;font-size:1.25rem;color:var(--ink-black)}
-    .nav-links{display:flex;gap:16px;flex-wrap:wrap}
-    .nav-links a{ text-decoration:none; color:var(--muted-gray); font-weight:500 }
-    .nav-links a:hover{ color:var(--ink-black) }
 
-    header{ text-align:center; margin-top:120px; padding:86px 20px 28px }
-    header h1{ font-family:'Playfair Display',serif; font-size:clamp(2.4rem,6vw,3.6rem); margin-bottom:16px }
-    .subtitle{ font-style:italic; color:var(--muted-gray); font-size:1.15rem; margin-bottom:4px }
+    .brand { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.25rem; color: var(--ink-black); }
+    .nav-links { display: flex; gap: 16px; flex-wrap: wrap; }
+    .nav-links a { text-decoration: none; color: var(--muted-gray); font-weight: 500; }
+    .nav-links a:hover { color: var(--ink-black); }
 
-    /* Grid */
-    main{
-      max-width:var(--max-width);
-      margin:56px auto 0;
-      padding:0 18px;
-      display:grid;
+    header { text-align: center; margin-top: 120px; padding: 86px 20px 28px; }
+    header h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.4rem,6vw,3.6rem); margin-bottom: 16px; }
+    .subtitle { font-style: italic; color: var(--muted-gray); font-size: 1.15rem; margin-bottom: 4px; }
+
+    main {
+      max-width: var(--max-width);
+      margin: 56px auto 0;
+      padding: 0 18px;
+      display: grid;
       grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
-      gap:36px;
-      align-items:start;
+      gap: 36px;
+      align-items: start;
     }
 
-    /* Card */
-    .card{
-      position:relative;
-      background: rgba(255,255,255,0.82);
-      border-radius:var(--card-radius);
-      padding:var(--card-pad);
-      overflow:hidden;
-      box-shadow:0 10px 35px rgba(0,0,0,0.05);
-      transition: transform .28s var(--ease), box-shadow .28s var(--ease), opacity .6s var(--ease);
-      opacity:0; transform:translateY(18px);
+    .card {
+      position: relative;
+      background: rgba(255,255,255,0.80);
+      border-radius: var(--card-radius);
+      padding: var(--card-pad);
+      box-shadow: 0 10px 35px rgba(0,0,0,0.05);
+      transition: transform .28s var(--ease);
     }
-    .card.visible{ opacity:1; transform:none }
+    .card:hover { transform: translateY(-6px); }
 
-    .card:hover{ transform:translateY(-6px); box-shadow:0 14px 44px rgba(0,0,0,0.08) }
+    .title { font-family: 'Playfair Display', serif; font-size: 1.45rem; margin-bottom: 10px; color: var(--ink-black); }
+    .excerpt { color: var(--muted-gray); font-size: 1.05rem; line-height: 1.7; white-space: pre-line; overflow: hidden; max-height: 10em; transition: max-height 0.4s ease; }
+    .full { display: none; color: var(--muted-gray); white-space: pre-line; margin-top: 10px; line-height: 1.7; }
 
-    /* Brush backgrounds */
-    .card::before{
-      content:""; position:absolute; inset:-10%; z-index:0; filter:blur(12px) saturate(1.05); transform:rotate(-2deg); opacity:0.9;
+    .read { 
+      display: inline-block; 
+      margin-top: 8px; 
+      padding: 8px 14px; 
+      border-radius: 999px; 
+      background: linear-gradient(90deg, rgba(244,143,177,0.95), rgba(255,183,110,0.95)); 
+      color: #111; 
+      font-weight: 700; 
+      cursor: pointer; 
+      border: 0; 
+      font-family: 'Playfair Display', serif;
     }
-    .wash-lav::before{ background:
-      radial-gradient(circle at 20% 30%, rgba(210,190,245,0.45), transparent 55%),
-      radial-gradient(circle at 80% 70%, rgba(255,210,215,0.32), transparent 60%); }
-    .wash-mist::before{ background:
-      radial-gradient(circle at 25% 25%, rgba(190,220,250,0.42), transparent 55%),
-      radial-gradient(circle at 70% 75%, rgba(255,235,200,0.30), transparent 60%); }
-    .wash-peach::before{ background:
-      radial-gradient(circle at 18% 30%, rgba(255,220,190,0.44), transparent 55%),
-      radial-gradient(circle at 82% 68%, rgba(210,190,245,0.28), transparent 60%); }
-    .wash-blush::before{ background:
-      radial-gradient(circle at 30% 40%, rgba(255,210,215,0.42), transparent 55%),
-      radial-gradient(circle at 70% 75%, rgba(255,235,200,0.30), transparent 60%); }
 
-    /* Text styling */
-    .card *{ position:relative; z-index:3 }
-    .title{ font-family:'Playfair Display',serif; font-size:1.45rem; margin-bottom:10px; color:var(--ink-black) }
-    .excerpt{
-      color:var(--muted-gray); font-size:1.05rem; line-height:1.7; white-space:pre-line;
-      margin-bottom:10px; overflow:hidden; max-height:8.6em;
-    }
-    .full{ color:var(--muted-gray); white-space:pre-line; line-height:1.7; max-height:0; overflow:hidden; transition:max-height .46s var(--ease), opacity .32s var(--ease); opacity:0 }
-    .card.expanded .full{ max-height:2000px; opacity:1 }
-    .read{ display:inline-block; margin-top:8px; padding:8px 14px; border-radius:999px; background:linear-gradient(90deg, rgba(244,143,177,0.95), rgba(255,183,110,0.95)); color:#111; font-weight:700; cursor:pointer; border:0; font-family:'Playfair Display',serif }
-    .read.hidden{ display:none }
-    .author-line{ margin-top:14px; text-align:right; font-style:italic; color:var(--ink-black); font-weight:600 }
+    .author-line { margin-top: 14px; text-align: right; font-style: italic; color: var(--ink-black); font-weight: 600; }
 
-    .home-btn{ grid-column: 1 / -1; justify-self:center; margin-top:18px; padding:10px 20px; border-radius:8px; border:1.5px solid var(--ink-black); background:transparent; text-decoration:none; color:var(--ink-black); font-weight:500 }
-
-    @media(max-width:900px){
-      main{ grid-template-columns: 1fr; gap:22px }
-      .excerpt{ max-height:9.6em }
-    }
-    @media(max-width:420px){
-      .title{ font-size:1.15rem }
-      .excerpt,.full{ font-size:0.98rem }
-      .card{ padding:20px }
-    }
+    @media(max-width:900px){ main{ grid-template-columns: 1fr; gap:22px } }
   </style>
 </head>
 
@@ -133,7 +106,6 @@
         <a href="index.html">Home</a>
         <a href="shayari.html">Mehfill</a>
         <a href="poems.html">Poems</a>
-        <a href="naturepoems.html">Roots & Rhythms</a>
         <a href="#contact">Contact</a>
       </div>
     </nav>
@@ -145,17 +117,15 @@
 
     <main>
       <!-- 1 -->
-      <article class="card wash-blush">
+      <article class="card">
         <h2 class="title">Will I Regret...</h2>
-        <div class="excerpt">Will I regret the times I stalled,
-The chances missed, the dreams I called—
-Then left unheard, beneath my doubt,
-Too scared to scream, too worn to shout?</div>
-        <div class="full" aria-hidden="true">Will I regret the times I stalled,
+        <div class="excerpt">
+Will I regret the times I stalled,
 The chances missed, the dreams I called—
 Then left unheard, beneath my doubt,
 Too scared to scream, too worn to shout?
-
+        </div>
+        <div class="full">
 Will I regret the work half-done,
 The races lost I could have won?
 The lazy days, the fleeting fire,
@@ -179,280 +149,272 @@ Still leads somewhere—still helps me grow.
 So will I regret? The fear runs deep,
 But I’ll build something I can keep.
 Not perfect paths or flawless days—
-But truth I lived in flawed, real ways.</div>
-        <button class="read hidden">Read More ▾</button>
+But truth I lived in flawed, real ways.
+        </div>
+        <button class="read">Read More ▾</button>
         <div class="author-line">— By Pranjal Vats 🌻</div>
       </article>
 
       <!-- 2 -->
-      <article class="card wash-peach">
+      <article class="card">
         <h2 class="title">Like Salt 🧂</h2>
-        <div class="excerpt">I am like salt, simple and small,
+        <div class="excerpt">
+I am like salt, simple and small,
 Yet I blend in quietly, touching all.
 In every dish, in every soul,
-I never seek to take control.</div>
-        <div class="full" aria-hidden="true">I am like salt, simple and small,  
-Yet I blend in quietly, touching all.  
-In every dish, in every soul,  
-I never seek to take control.  
+I never seek to take control.
+        </div>
+        <div class="full">
+Too little of me—you’ll feel the lack,
+A silent space, a subtle crack.
+Too much—and I’ll sting the tongue,
+A harmony lost, a song unsung.
 
-Too little of me—you’ll feel the lack,  
-A silent space, a subtle crack.  
-Too much—and I’ll sting the tongue,  
-A harmony lost, a song unsung.  
+I walk with fire, laugh with rain,
+Ease your joy, and soothe your pain.
+I don’t need to shine or lead,
+Just be the part that others need.
 
-I walk with fire, laugh with rain,  
-Ease your joy, and soothe your pain.  
-I don’t need to shine or lead,  
-Just be the part that others need.  
+From the richest plate to the poorest fare,
+You’ll find my spirit lingering there.
+Not loud or proud, but always true—
+A silent strength that carries through.
 
-From the richest plate to the poorest fare,  
-You’ll find my spirit lingering there.  
-Not loud or proud, but always true—  
-A silent strength that carries through.  
-
-I shift, I mold, I find my place,  
-In every heart, in every space.  
-Call me humble, or call me wise—  
-I am salt—small, but I rise.</div>
-        <button class="read hidden">Read More ▾</button>
+I shift, I mold, I find my place,
+In every heart, in every space.
+Call me humble, or call me wise—
+I am salt—small, but I rise.
+        </div>
+        <button class="read">Read More ▾</button>
         <div class="author-line">— By Pranjal Vats 🌻</div>
       </article>
 
       <!-- 3 -->
-      <article class="card wash-blush">
+      <article class="card">
         <h2 class="title">Clockwork Days ⏰</h2>
-        <div class="excerpt">Tick-tock, tick-tock — the rhythm never sways,
+        <div class="excerpt">
+Tick-tock, tick-tock — the rhythm never sways,
 I rise and fall in endless, numbered days.
 A cog inside a giant, silent wheel,
-No room to laugh, no time to feel.</div>
-        <div class="full" aria-hidden="true">Tick-tock, tick-tock — the rhythm never sways,  
-I rise and fall in endless, numbered days.  
-A cog inside a giant, silent wheel,  
-No room to laugh, no time to feel.  
+No room to laugh, no time to feel.
+        </div>
+        <div class="full">
+Same street, same step, same weary breath,
+Each hour chimes a little death.
+Eyes on the screen, hands to the task,
+Beneath this skin, I wear a mask.
 
-Same street, same step, same weary breath,  
-Each hour chimes a little death.  
-Eyes on the screen, hands to the task,  
-Beneath this skin, I wear a mask.  
+No curveballs thrown, no sudden skies,
+Just blinking lights and tired eyes.
+Coffee, calls, and empty talk,
+Life reduced to a daily walk.
 
-No curveballs thrown, no sudden skies,  
-Just blinking lights and tired eyes.  
-Coffee, calls, and empty talk,  
-Life reduced to a daily walk.  
+No dance, no detour, no surprise,
+Just routine dressed in a thin disguise.
+A robot’s grace, a rusted soul,
+Marching on to someone else’s goal.
 
-No dance, no detour, no surprise,  
-Just routine dressed in a thin disguise.  
-A robot’s grace, a rusted soul,  
-Marching on to someone else’s goal.  
+I dream of mess, of wild delight,
+Of losing track of day and night.
+Of roads unplanned, of skies unknown,
+Of moments I can call my own.
 
-I dream of mess, of wild delight,  
-Of losing track of day and night.  
-Of roads unplanned, of skies unknown,  
-Of moments I can call my own.  
-
-But still I tick, I tock, I turn,  
-A silent ache, a buried yearn.  
-For now, I move where I'm supposed to be,  
-But deep inside — I long to break free.</div>
-        <button class="read hidden">Read More ▾</button>
+But still I tick, I tock, I turn,
+A silent ache, a buried yearn.
+For now, I move where I'm supposed to be,
+But deep inside — I long to break free.
+        </div>
+        <button class="read">Read More ▾</button>
         <div class="author-line">— By Pranjal Vats 🌻</div>
       </article>
 
       <!-- 4 -->
-      <article class="card wash-peach">
+      <article class="card">
         <h2 class="title">What Will Happen? 🤔</h2>
-        <div class="excerpt">I'm trying, yes, but not my best,
+        <div class="excerpt">
+I'm trying, yes, but not my best,
 A silent war inside my chest.
 I know the cost, I know the stakes,
-Still find myself making mistakes.</div>
-        <div class="full" aria-hidden="true">I'm trying, yes, but not my best,  
-A silent war inside my chest.  
-I know the cost, I know the stakes,  
-Still find myself making mistakes.  
+Still find myself making mistakes.
+        </div>
+        <div class="full">
+I want to rise, I want to prove,
+But some days I just cannot move.
+When fire burns, I give my all,
+When it goes dim, I slip, I fall.
 
-I want to rise, I want to prove,  
-But some days I just cannot move.  
-When fire burns, I give my all,  
-When it goes dim, I slip, I fall.  
+Motivation—fickle friend,
+Here one day, then meets its end.
+When it’s strong, I scale the sky,
+When it fades, I barely try.
 
-Motivation—fickle friend,  
-Here one day, then meets its end.  
-When it’s strong, I scale the sky,  
-When it fades, I barely try.  
+I ask myself, “What will this mean?”
+Will I be lost in might-have-beens?
+Will dreams decay in silent rust,
+All for a lack of constant trust?
 
-I ask myself, “What will this mean?”  
-Will I be lost in might-have-beens?  
-Will dreams decay in silent rust,  
-All for a lack of constant trust?  
+But deep inside, beneath the doubt,
+A voice still whispers, strong and loud:
+“You are not made of perfect days,
+But strength is shown in flawed displays.”
 
-But deep inside, beneath the doubt,  
-A voice still whispers, strong and loud:  
-“You are not made of perfect days,  
-But strength is shown in flawed displays.”  
-
-So what will happen? Time will say,  
-But I will rise in my own way.</div>
-        <button class="read hidden">Read More ▾</button>
+So what will happen? Time will say,
+But I will rise in my own way.
+        </div>
+        <button class="read">Read More ▾</button>
         <div class="author-line">— By Pranjal Vats 🌻</div>
       </article>
 
       <!-- 5 -->
-      <article class="card wash-blush">
+      <article class="card">
         <h2 class="title">I Am the Storm 🌪️</h2>
-        <div class="excerpt">I was the quiet one, eyes full of flame,
+        <div class="excerpt">
+I was the quiet one, eyes full of flame,
 Now they all shiver when they hear my name.
 Mocked my dreams? Well, joke’s on you—
-I built a throne from the shade you threw.</div>
-        <div class="full" aria-hidden="true">I was the quiet one, eyes full of flame,  
-Now they all shiver when they hear my name.  
-Mocked my dreams? Well, joke’s on you—  
-I built a throne from the shade you threw.  
+I built a throne from the shade you threw.
+        </div>
+        <div class="full">
+Didn’t fit in? I never tried.
+Kings don’t blend, they multiply pride.
+Now I walk in with that “don’t-care” grin,
+And a fire so fierce, I burn to win.
 
-Didn’t fit in? I never tried.  
-Kings don’t blend, they multiply pride.  
-Now I walk in with that “don’t-care” grin,  
-And a fire so fierce, I burn to win.  
+Friends turned rivals, haters in disguise,
+Watch me rise while they rehearse lies.
+I don’t flex cheap—I let my life scream,
+Luxury’s my silence, success is my scream.
 
-Friends turned rivals, haters in disguise,  
-Watch me rise while they rehearse lies.  
-I don’t flex cheap—I let my life scream,  
-Luxury’s my silence, success is my scream.  
+Call it revenge? I call it fate.
+You doubted gold ‘cause you saw it in slate.
+Now I shine like a war god’s crown,
+Watch me buy what once brought me down.
 
-Call it revenge? I call it fate.  
-You doubted gold ‘cause you saw it in slate.  
-Now I shine like a war god’s crown,  
-Watch me buy what once brought me down.  
+No more limits, no second guess,
+I’m the calm chaos in tailored finesse.
+Spent too long being their maybe, their "not quite”—
+Now I’m first-class flying into every fight.
 
-No more limits, no second guess,  
-I’m the calm chaos in tailored finesse.  
-Spent too long being their maybe, their "not quite”—  
-Now I’m first-class flying into every fight.  
+I’m the answer to every eye that rolled,
+The living proof that stories unfold
+Not in their hands, not in their say—
+But in the silence of those who slay.
 
-I’m the answer to every eye that rolled,  
-The living proof that stories unfold  
-Not in their hands, not in their say—  
-But in the silence of those who slay.  
+You want humble? That phase is dead.
+Now I live bold, paint the skyline red.
+I'm not just rich—I'm out of your league,
+A walking revenge in designer intrigue.
 
-You want humble? That phase is dead.  
-Now I live bold, paint the skyline red.  
-I'm not just rich—I'm out of your league,  
-A walking revenge in designer intrigue.  
-
-So when they ask, “How did you win?”  
-I’ll smirk and say, “By never giving in.”  
-Let my glow blind every fake smile swarm—  
-I didn’t chase the light. I became the storm.</div>
-        <button class="read hidden">Read More ▾</button>
+So when they ask, “How did you win?”
+I’ll smirk and say, “By never giving in.”
+Let my glow blind every fake smile swarm—
+I didn’t chase the light. I became the storm.
+        </div>
+        <button class="read">Read More ▾</button>
         <div class="author-line">— By Pranjal Vats 🌻</div>
       </article>
 
       <!-- 6 -->
-      <article class="card wash-peach">
+      <article class="card">
         <h2 class="title">Salt in My Soul 🧂</h2>
-        <div class="excerpt">I’m not the flame that steals the scene,
+        <div class="excerpt">
+I’m not the flame that steals the scene,
 Nor the velvet in a royal sheen.
 I’m quiet strength, not loud or bold,
-But without me, the story feels cold.</div>
-        <div class="full" aria-hidden="true">I’m not the flame that steals the scene,  
-Nor the velvet in a royal sheen.  
-I’m quiet strength, not loud or bold,  
-But without me, the story feels cold.  
+But without me, the story feels cold.
+        </div>
+        <div class="full">
+In laughter's feast or silence deep,
+In moments loud or ones you keep,
+I’m there—unseen but understood,
+The touch that turns bland into good.
 
-In laughter's feast or silence deep,  
-In moments loud or ones you keep,  
-I’m there—unseen but understood,  
-The touch that turns bland into good.  
+I sit with joy, I walk with grief,
+I bring a pause, I grant relief.
+I never beg, I never boast,
+But I become what you need most.
 
-I sit with joy, I walk with grief,  
-I bring a pause, I grant relief.  
-I never beg, I never boast,  
-But I become what you need most.  
+With strangers, I am light and kind,
+With friends, a peace they’re glad to find.
+In chaos, I can hold the ground,
+In stillness, I can wear the crown.
 
-With strangers, I am light and kind,  
-With friends, a peace they’re glad to find.  
-In chaos, I can hold the ground,  
-In stillness, I can wear the crown.  
+Adaptive, yes—yet still my core,
+Unchanged though I’m asked for more.
+I bend, but never disappear,
+I'm felt the most when I'm sincere.
 
-Adaptive, yes—yet still my core,  
-Unchanged though I’m asked for more.  
-I bend, but never disappear,  
-I'm felt the most when I'm sincere.  
-
-So taste and see—don’t rush or shove,  
-I’m best when measured, shared with love.  
-Not too much, nor barely there,  
-Just enough—and I’m everywhere.</div>
-        <button class="read hidden">Read More ▾</button>
+So taste and see—don’t rush or shove,
+I’m best when measured, shared with love.
+Not too much, nor barely there,
+Just enough—and I’m everywhere.
+        </div>
+        <button class="read">Read More ▾</button>
         <div class="author-line">— By Pranjal Vats 🌻</div>
       </article>
 
       <!-- 7 -->
-      <article class="card wash-blush">
+      <article class="card">
         <h2 class="title">Running on Empty 🕯️</h2>
-        <div class="excerpt">I used to wake with fire in my chest,
+        <div class="excerpt">
+I used to wake with fire in my chest,
 Now it’s just weight that won’t let me rest.
 My calendar's full, but my soul feels thin,
-Like I’m chasing a race I forgot to begin.</div>
-        <div class="full" aria-hidden="true">I used to wake with fire in my chest,  
-Now it’s just weight that won’t let me rest.  
-My calendar's full, but my soul feels thin,  
-Like I’m chasing a race I forgot to begin.  
+Like I’m chasing a race I forgot to begin.
+        </div>
+        <div class="full">
+Smiles worn like practiced art,
+But the cracks run deep beneath my heart.
+“Keep going,” they cheer — I nod, comply,
+Yet every breath feels like a lie.
 
-Smiles worn like practiced art,  
-But the cracks run deep beneath my heart.  
-“Keep going,” they cheer — I nod, comply,  
-Yet every breath feels like a lie.  
+The to-dos scream louder than my needs,
+I water others, forget my own seeds.
+Eyes wide open, but the light is dim,
+Even silence feels like it’s wearing thin.
 
-The to-dos scream louder than my needs,  
-I water others, forget my own seeds.  
-Eyes wide open, but the light is dim,  
-Even silence feels like it’s wearing thin.  
+It’s not that I’m weak, or don’t want to try,
+I’m just tired in ways no sleep can defy.
+A soul stretched thin, a mind worn out,
+An inner scream behind a whisper shout.
 
-It’s not that I’m weak, or don’t want to try,  
-I’m just tired in ways no sleep can defy.  
-A soul stretched thin, a mind worn out,  
-An inner scream behind a whisper shout.  
-
-But maybe rest is not defeat,  
-Maybe pause is what makes strength complete.  
-I’ll learn to breathe, not just survive—  
-To stop, to heal, to feel alive.</div>
-        <button class="read hidden">Read More ▾</button>
+But maybe rest is not defeat,
+Maybe pause is what makes strength complete.
+I’ll learn to breathe, not just survive—
+To stop, to heal, to feel alive.
+        </div>
+        <button class="read">Read More ▾</button>
         <div class="author-line">— By Pranjal Vats 🌻</div>
       </article>
 
       <!-- 8 -->
-      <article class="card wash-peach">
+      <article class="card">
         <h2 class="title">The Pause ⏸️</h2>
-        <div class="excerpt">I gave and gave, then gave some more,
+        <div class="excerpt">
+I gave and gave, then gave some more,
 Till I forgot what I was doing it for.
 Each win felt empty, joy ran dry,
-Even the sunrise passed me by.</div>
-        <div class="full" aria-hidden="true">I gave and gave, then gave some more,  
-Till I forgot what I was doing it for.  
-Each win felt empty, joy ran dry,  
-Even the sunrise passed me by.  
+Even the sunrise passed me by.
+        </div>
+        <div class="full">
+They called me strong, they called me brave,
+But didn’t see the pieces I gave.
+Behind the work, beneath the grin,
+I barely knew the skin I’m in.
 
-They called me strong, they called me brave,  
-But didn’t see the pieces I gave.  
-Behind the work, beneath the grin,  
-I barely knew the skin I’m in.  
+Then one day—I didn’t rise.
+Just laid there, staring at the skies.
+And in that stillness, something stirred:
+A softer voice I hadn’t heard.
 
-Then one day—I didn’t rise.  
-Just laid there, staring at the skies.  
-And in that stillness, something stirred:  
-A softer voice I hadn’t heard.  
-
-“You don’t have to climb today.  
-It’s okay to just float halfway.”  
-And in the quiet, I found my start—  
-Not in the doing, but in the heart.</div>
-        <button class="read hidden">Read More ▾</button>
+“You don’t have to climb today.
+It’s okay to just float halfway.”
+And in the quiet, I found my start—
+Not in the doing, but in the heart.
+        </div>
+        <button class="read">Read More ▾</button>
         <div class="author-line">— By Pranjal Vats 🌻</div>
       </article>
-
-      <a class="home-btn" href="index.html">⬅ Back to Home</a>
     </main>
 
     <footer style="text-align:center;padding:44px 20px;color:var(--muted-gray);border-top:1px solid rgba(0,0,0,0.06);background:rgba(255,255,255,0.35);margin-top:18px">
@@ -460,47 +422,17 @@ Not in the doing, but in the heart.</div>
     </footer>
   </div>
 
-  <!-- Scripts -->
-<script>
-  document.querySelectorAll(".read-more").forEach(btn => {
-    btn.addEventListener("click", () => {
-      const card = btn.closest(".poem-card");
-      const full = card.querySelector(".full");
-      full.classList.toggle("show");
-
-      if (full.classList.contains("show")) {
-        btn.textContent = "Read Less ▲";
-      } else {
-        btn.textContent = "Read More ▼";
-      }
+  <script>
+    document.querySelectorAll(".read").forEach(button => {
+      button.addEventListener("click", () => {
+        const card = button.closest(".card");
+        const full = card.querySelector(".full");
+        const excerpt = card.querySelector(".excerpt");
+        full.style.display = full.style.display === "block" ? "none" : "block";
+        excerpt.style.maxHeight = excerpt.style.maxHeight === "none" ? "10em" : "none";
+        button.textContent = full.style.display === "block" ? "Read Less ▲" : "Read More ▾";
+      });
     });
-  });
-</script>
-
-<style>
-  .full {
-    display: none;
-  }
-
-  .full.show {
-    display: block;
-    margin-top: 10px;
-  }
-
-  .read-more {
-    margin-top: 12px;
-    background: none;
-    border: none;
-    color: #5b4bb7;
-    font-weight: 600;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: color 0.2s ease;
-  }
-
-  .read-more:hover {
-    color: #3d3197;
-  }
-</style>
+  </script>
 </body>
 </html>
