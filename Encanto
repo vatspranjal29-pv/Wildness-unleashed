@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Encanto Hampers</title>
+
+<style>
+body{
+font-family: Arial, sans-serif;
+margin:0;
+background:#faf6f3;
+color:#333;
+}
+
+header{
+background:#f8e7e7;
+padding:20px;
+text-align:center;
+}
+
+header h1{
+font-size:40px;
+color:#7a4a4a;
+}
+
+nav{
+text-align:center;
+padding:10px;
+background:#fff;
+}
+
+nav a{
+margin:15px;
+text-decoration:none;
+color:#7a4a4a;
+font-weight:bold;
+}
+
+.hero{
+text-align:center;
+padding:60px 20px;
+}
+
+.hero h2{
+font-size:30px;
+}
+
+.hero p{
+font-size:18px;
+}
+
+.button{
+background:#e8b4b8;
+padding:12px 20px;
+border:none;
+border-radius:6px;
+color:white;
+text-decoration:none;
+font-weight:bold;
+}
+
+.section{
+padding:50px 20px;
+text-align:center;
+}
+
+.hampers{
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:20px;
+}
+
+.card{
+background:white;
+padding:20px;
+width:250px;
+border-radius:10px;
+box-shadow:0 3px 10px rgba(0,0,0,0.1);
+}
+
+footer{
+background:#f8e7e7;
+text-align:center;
+padding:20px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>Encanto</h1>
+<p>Curated Hampers Filled With Little Magic</p>
+</header>
+
+<nav>
+<a href="#">Home</a>
+<a href="#hampers">Hampers</a>
+<a href="#custom">Custom Orders</a>
+<a href="#contact">Contact</a>
+</nav>
+
+<section class="hero">
+<h2>Beautiful Hampers for Every Occasion</h2>
+<p>Gift happiness with Encanto's aesthetic hampers.</p>
+<a class="button" href="#hampers">Explore Hampers</a>
+</section>
+
+<section class="section" id="hampers">
+<h2>Our Hampers</h2>
+
+<div class="hampers">
+
+<div class="card">
+<h3>Box Hampers</h3>
+<p>Elegant curated gift boxes.</p>
+</div>
+
+<div class="card">
+<h3>Bouquet Hampers</h3>
+<p>Unique bouquet-style gifts.</p>
+</div>
+
+<div class="card">
+<h3>Basket Hampers</h3>
+<p>Beautiful baskets filled with surprises.</p>
+</div>
+
+</div>
+</section>
+
+<section class="section" id="custom">
+<h2>Custom Hampers</h2>
+<p>Create personalized hampers with photos, names and special items.</p>
+</section>
+
+<section class="section" id="contact">
+<h2>Contact Us</h2>
+<p>Order through Instagram or WhatsApp</p>
+<p>Instagram: @encanto_hampers</p>
+</section>
+
+<footer>
+<p>© 2026 Encanto Hampers</p>
+</footer>
+
+</body>
+</html>
