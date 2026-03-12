@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Encanto</title>
+<title>Encanto Hampers</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 
@@ -20,8 +19,8 @@ box-sizing:border-box;
 
 body{
 font-family:'Poppins',sans-serif;
-background:#faf7f5;
-color:#333;
+background:linear-gradient(to bottom,#fff8f5,#fdeeee);
+color:#4a3f3f;
 }
 
 /* NAVBAR */
@@ -32,13 +31,13 @@ justify-content:space-between;
 align-items:center;
 padding:20px 10%;
 background:white;
-border-bottom:1px solid #eee;
+box-shadow:0 2px 8px rgba(0,0,0,0.05);
 }
 
 .logo{
 font-family:'Playfair Display',serif;
 font-size:28px;
-color:#c48a8a;
+color:#c78b8b;
 }
 
 nav ul{
@@ -52,41 +51,42 @@ margin-left:25px;
 
 nav ul li a{
 text-decoration:none;
-color:#444;
-font-weight:500;
+color:#555;
 }
 
 /* HERO */
 
 .hero{
-height:70vh;
+height:80vh;
 display:flex;
 flex-direction:column;
 align-items:center;
 justify-content:center;
 text-align:center;
-padding:0 20px;
+padding:20px;
 }
 
 .hero h1{
 font-family:'Playfair Display',serif;
-font-size:46px;
+font-size:52px;
 margin-bottom:10px;
 }
 
 .hero p{
 font-size:18px;
-color:#666;
-margin-bottom:25px;
+color:#777;
+margin-bottom:30px;
 }
 
 .hero button{
-padding:12px 28px;
+padding:14px 34px;
+background:#d4a373;
 border:none;
-background:#c48a8a;
-color:white;
 border-radius:30px;
+color:white;
+font-size:16px;
 cursor:pointer;
+box-shadow:0 4px 10px rgba(0,0,0,0.1);
 }
 
 /* SECTION */
@@ -98,7 +98,7 @@ text-align:center;
 
 .section h2{
 font-family:'Playfair Display',serif;
-font-size:32px;
+font-size:34px;
 margin-bottom:50px;
 }
 
@@ -110,18 +110,18 @@ grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
 gap:30px;
 }
 
-/* CARD */
+/* CARDS */
 
 .card{
 background:white;
 padding:30px;
-border-radius:12px;
-border:1px solid #eee;
+border-radius:16px;
+box-shadow:0 4px 14px rgba(0,0,0,0.07);
 transition:0.3s;
 }
 
 .card:hover{
-transform:translateY(-6px);
+transform:translateY(-8px);
 }
 
 .card h3{
@@ -129,17 +129,17 @@ margin-bottom:10px;
 }
 
 .card p{
-color:#777;
 font-size:14px;
+color:#777;
 }
 
-/* CUSTOM */
+/* CUSTOM SECTION */
 
 .custom{
 background:#fff;
 padding:60px;
-border-radius:12px;
-border:1px solid #eee;
+border-radius:18px;
+box-shadow:0 4px 14px rgba(0,0,0,0.05);
 }
 
 /* FOOTER */
@@ -149,8 +149,25 @@ margin-top:60px;
 padding:30px;
 text-align:center;
 background:white;
-border-top:1px solid #eee;
 color:#777;
+}
+
+/* SPARKLES */
+
+.sparkle{
+position:fixed;
+width:6px;
+height:6px;
+background:white;
+border-radius:50%;
+opacity:0.8;
+animation:float 6s infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(0);opacity:0;}
+50%{opacity:1;}
+100%{transform:translateY(-200px);opacity:0;}
 }
 
 </style>
@@ -175,9 +192,9 @@ color:#777;
 
 <section class="hero">
 
-<h1>Encanto Hampers</h1>
+<h1>Encanto</h1>
 
-<p>Curated hampers filled with little magic.</p>
+<p>Little boxes of magic made to make someone smile.</p>
 
 <button onclick="scrollToHampers()">Explore Hampers</button>
 
@@ -191,23 +208,23 @@ color:#777;
 <div class="grid">
 
 <div class="card">
-<h3>Box Hampers</h3>
-<p>Aesthetic gift boxes filled with curated surprises.</p>
+<h3>Amora Hampers</h3>
+<p>Sweet little hampers perfect for thoughtful gifting.</p>
 </div>
 
 <div class="card">
 <h3>Bouquet Hampers</h3>
-<p>Creative bouquet style hampers perfect for gifting.</p>
+<p>Creative chocolate bouquets designed to surprise.</p>
 </div>
 
 <div class="card">
 <h3>Basket Hampers</h3>
-<p>Beautiful baskets with chocolates and accessories.</p>
+<p>Aesthetic baskets filled with curated treats.</p>
 </div>
 
 <div class="card">
-<h3>Photo Hampers</h3>
-<p>Customized hampers with photos and personal memories.</p>
+<h3>Tesoro Hampers</h3>
+<p>Personalized hampers with photos and memories.</p>
 </div>
 
 </div>
@@ -219,9 +236,9 @@ color:#777;
 
 <div class="custom">
 
-<h2>Create Your Own Hamper</h2>
+<h2>Create Your Own Magic</h2>
 
-<p>You can customize hampers with photos, chocolates, jewelry and special notes.</p>
+<p>Customize hampers with photos, chocolates, jewelry and personal notes.</p>
 
 </div>
 
@@ -241,7 +258,7 @@ color:#777;
 
 <footer>
 
-<p>© 2026 Encanto</p>
+<p>© 2026 Encanto Hampers</p>
 
 </footer>
 
@@ -249,15 +266,30 @@ color:#777;
 <script>
 
 function scrollToHampers(){
-
 document.getElementById("hampers").scrollIntoView({
 behavior:"smooth"
 });
+}
+
+/* sparkles */
+
+for(let i=0;i<20;i++){
+
+let sparkle=document.createElement("div");
+
+sparkle.className="sparkle";
+
+sparkle.style.left=Math.random()*100+"%";
+
+sparkle.style.bottom=Math.random()*100+"%";
+
+sparkle.style.animationDuration=(Math.random()*5+3)+"s";
+
+document.body.appendChild(sparkle);
 
 }
 
 </script>
 
 </body>
-
 </html>
