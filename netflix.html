@@ -8,9 +8,9 @@
 <style>
 body {
     margin: 0;
-    background-color: #141414;
+    background: #141414;
     color: #fff;
-    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-family: 'Helvetica Neue', Arial;
 }
 
 /* NAVBAR */
@@ -18,12 +18,11 @@ body {
     position: fixed;
     top: 0;
     width: 100%;
-    padding: 18px 40px;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.9), transparent);
+    padding: 18px 30px;
+    background: linear-gradient(to bottom, black, transparent);
     color: #e50914;
-    font-size: 1.6rem;
+    font-size: 1.5rem;
     font-weight: bold;
-    letter-spacing: 2px;
     z-index: 10;
 }
 
@@ -31,35 +30,37 @@ body {
 .hero {
     height: 100vh;
     display: flex;
-    align-items: center;
     justify-content: center;
-    background: radial-gradient(circle at center, rgba(229,9,20,0.15), transparent 60%);
+    align-items: center;
 }
 
 /* PLAY BUTTON */
 .play-btn {
-    font-size: 3rem;
-    background: rgba(0,0,0,0.6);
+    width: 90px;
+    height: 90px;
+    background: #e50914;
     border-radius: 50%;
-    padding: 20px 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5rem;
     cursor: pointer;
+    box-shadow: 0 0 25px rgba(229,9,20,0.7);
     transition: 0.3s;
 }
-
 .play-btn:hover {
-    background: rgba(229,9,20,0.8);
+    transform: scale(1.1);
 }
 
-/* CONTAINER */
+/* CONTENT */
 .container {
     max-width: 750px;
     margin: auto;
-    padding: 40px 20px;
+    padding: 90px 20px;
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(40px);
     transition: 1s;
 }
-
 .container.show {
     opacity: 1;
     transform: translateY(0);
@@ -67,68 +68,62 @@ body {
 
 h1 {
     color: #e50914;
-    font-size: 3rem;
 }
 
-/* PLACARD */
+/* PLACARDS */
 .placard {
-    background: rgba(255,255,255,0.03);
-    padding: 20px 22px;
+    background: rgba(255,255,255,0.04);
+    padding: 20px;
     border-radius: 10px;
     margin: 18px 0;
+    line-height: 1.7;
     transition: 0.3s;
-    border-left: 3px solid transparent;
 }
-
 .placard:hover {
-    background: rgba(255,255,255,0.06);
-    border-left: 3px solid #e50914;
+    background: rgba(255,255,255,0.08);
     transform: translateX(6px);
-}
-
-p {
-    margin: 0;
-    color: #e5e5e5;
-    line-height: 1.8;
 }
 
 /* DIVIDER */
 .divider {
-    margin: 30px 0;
     height: 1px;
     background: rgba(255,255,255,0.1);
+    margin: 30px 0;
+}
+
+/* TITLE HIGHLIGHT */
+.title {
+    color: #fff;
+    border-bottom: 2px solid #e50914;
 }
 
 /* QUOTE */
 .quote {
     text-align: center;
     font-style: italic;
-    color: #b3b3b3;
+    color: #bbb;
 }
 
-/* TITLE */
-.title {
-    font-weight: bold;
-    position: relative;
+/* CONTINUE WATCHING */
+.row {
+    margin-top: 50px;
 }
-
-.title::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -3px;
-    width: 100%;
-    height: 2px;
-    background: #e50914;
-    transform: scaleX(0);
+.cards {
+    display: flex;
+    gap: 10px;
+}
+.card {
+    width: 150px;
+    height: 90px;
+    background: #222;
+    border-radius: 5px;
     transition: 0.3s;
 }
-
-.title:hover::after {
-    transform: scaleX(1);
+.card:hover {
+    transform: scale(1.1);
 }
 
-/* PROGRESS */
+/* PROGRESS BAR */
 .progress-container {
     position: fixed;
     bottom: 0;
@@ -136,7 +131,6 @@ p {
     height: 4px;
     background: rgba(255,255,255,0.1);
 }
-
 .progress-bar {
     height: 100%;
     width: 0%;
@@ -148,47 +142,13 @@ p {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    background: rgba(0,0,0,0.8);
+    background: rgba(0,0,0,0.85);
     padding: 15px 20px;
     border-radius: 8px;
     display: none;
 }
-
 .overlay.show {
     display: block;
-}
-
-/* ROW */
-.row {
-    padding: 20px;
-}
-
-.cards {
-    display: flex;
-    gap: 10px;
-}
-
-.card {
-    width: 160px;
-    height: 90px;
-    background: #222;
-    border-radius: 5px;
-}
-
-/* BUTTON */
-.back-btn {
-    background: transparent;
-    color: #fff;
-    border: 1px solid rgba(255,255,255,0.3);
-    padding: 12px 28px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.back-btn:hover {
-    background: #e50914;
-    border-color: #e50914;
 }
 </style>
 </head>
@@ -197,78 +157,115 @@ p {
 
 <div class="navbar">NETFLIX</div>
 
+<!-- HERO -->
 <div class="hero" id="hero">
-    <div class="play-btn" onclick="startExperience()">▶</div>
+    <div class="play-btn" onclick="start()">▶</div>
 </div>
 
+<!-- BLOG -->
 <div class="container" id="content">
 
-<h1>Netflix Nights - By Pranjal Vats🌻</h1>
+<h1>Netflix Nights - By Pranjal Vats 🌻</h1>
 
-<div class="placard"><p>It starts with something soft.<br>Something comforting.</p></div>
+<div class="placard">It starts with something soft.<br>Something comforting.</div>
 
-<div class="placard"><p>Like <span class="title">The Life List</span> or <span class="title">The Oxford Year</span>—<br>
+<div class="placard">
+Like <span class="title">The Life List</span> or 
+<span class="title">The Oxford Year</span> —<br>
 stories where people somehow figure things out<br>
-in the most aesthetic way possible.</p></div>
-
-<div class="divider"></div>
-
-<div class="placard"><p>I watch her move to a new country,<br>fall in love,<br>heal parts of herself<br>she didn’t even know were broken.</p></div>
-
-<div class="placard"><p>And I sit there thinking—<br>maybe I need a new city too.<br>maybe I need a new life.</p></div>
-
-<div class="placard"><p>But instead of packing my bags,<br>I just click <span class="title">“Next Episode.”</span></p></div>
-
-<div class="divider"></div>
-
-<div class="placard"><p>Then it shifts.</p></div>
-
-<div class="placard"><p>Something heavier.<br>Something real.</p></div>
-
-<div class="placard"><p>Like <span class="title">Normal People</span><br>or <span class="title">13 Reasons Why</span>.</p></div>
-
-<div class="placard"><p>Stories where people don’t have it together.<br>Where love is messy.<br>Where silence says more than words ever could.</p></div>
-
-<div class="placard"><p>I pause for a second.</p></div>
-
-<div class="placard"><p>Not because I’m bored—<br>but because it feels a little too familiar.</p></div>
-
-<div class="placard"><p>Then I switch again.</p></div>
-
-<div class="placard"><p>Because staying there too long<br>is uncomfortable.</p></div>
-
-<div class="divider"></div>
-
-<div class="placard"><p>Now it’s something distracting.<br>Fast-paced. Addictive.</p></div>
-
-<div class="placard"><p>Like <span class="title">Money Heist</span><br>or <span class="title">Stranger Things</span>.</p></div>
-
-<div class="placard"><p>Where everything is intense.</p></div>
-
-<div class="placard"><p>Unlike my own life,<br>which feels like it’s buffering.</p></div>
-
-<div class="placard"><p>And somehow,<br>watching them makes me feel like<br>I’m doing something.</p></div>
-
-<div class="divider"></div>
-
-<div class="placard"><p class="quote">“Are you still watching?”</p></div>
-
-<div class="placard"><p>Yes.</p></div>
-
-<div class="placard"><p>But not just the show.</p></div>
-
-<div class="placard"><p>I’m watching lives I keep postponing.</p></div>
-
-<div class="divider"></div>
-
-<div class="placard"><p class="quote">“Next Episode starts in 5..4..3..2..1..0 seconds…”</p></div>
-
-<div style="text-align:center; margin-top:50px;">
-<button class="back-btn" onclick="goBack()">← Back to Blogs</button>
+in the most aesthetic way possible.
 </div>
 
+<div class="divider"></div>
+
+<div class="placard">
+I watch her move to a new country,<br>
+fall in love,<br>
+heal parts of herself<br>
+she didn’t even know were broken.
 </div>
 
+<div class="placard">
+And I sit there thinking —<br>
+maybe I need a new city too.<br>
+maybe I need a new life.
+</div>
+
+<div class="placard">
+But instead of packing my bags,<br>
+I just click <span class="title">Next Episode.</span>
+</div>
+
+<div class="divider"></div>
+
+<div class="placard">Then it shifts.</div>
+
+<div class="placard">Something heavier.<br>Something real.</div>
+
+<div class="placard">
+Like <span class="title">Normal People</span><br>
+or <span class="title">13 Reasons Why</span>.
+</div>
+
+<div class="placard">
+Stories where people don’t have it together.<br>
+Where love is messy.<br>
+Where silence says more than words ever could.
+</div>
+
+<div class="placard">I pause for a second.</div>
+
+<div class="placard">
+Not because I’m bored —<br>
+but because it feels a little too familiar.
+</div>
+
+<div class="placard">Then I switch again.</div>
+
+<div class="placard">
+Because staying there too long is uncomfortable.
+</div>
+
+<div class="divider"></div>
+
+<div class="placard">
+Now it’s something distracting.<br>
+Fast-paced. Addictive.
+</div>
+
+<div class="placard">
+Like <span class="title">Money Heist</span><br>
+or <span class="title">Stranger Things</span>.
+</div>
+
+<div class="placard">Where everything is intense.</div>
+
+<div class="placard">
+Unlike my own life,<br>
+which feels like it’s buffering.
+</div>
+
+<div class="placard">
+And somehow,<br>
+watching them makes me feel like<br>
+I’m doing something.
+</div>
+
+<div class="divider"></div>
+
+<div class="placard quote">“Are you still watching?”</div>
+
+<div class="placard">Yes.</div>
+<div class="placard">But not just the show.</div>
+<div class="placard">I’m watching lives I keep postponing.</div>
+
+<div class="divider"></div>
+
+<div class="placard quote">
+“Next Episode starts in 5..4..3..2..1..0 seconds…”
+</div>
+
+<!-- CONTINUE WATCHING -->
 <div class="row">
 <h2>Continue Watching</h2>
 <div class="cards">
@@ -278,19 +275,34 @@ in the most aesthetic way possible.</p></div>
 </div>
 </div>
 
+</div>
+
+<!-- PROGRESS -->
 <div class="progress-container">
 <div class="progress-bar" id="bar"></div>
 </div>
 
+<!-- OVERLAY -->
 <div class="overlay" id="overlay">
 Next Episode in <span id="count">5</span>...
 </div>
 
 <script>
-function startExperience() {
+function start() {
     document.getElementById("hero").style.display = "none";
-    document.getElementById("content").classList.add("show");
 
+    let content = document.getElementById("content");
+    content.classList.add("show");
+
+    window.scrollTo({
+        top: content.offsetTop,
+        behavior: "smooth"
+    });
+
+    startProgress();
+}
+
+function startProgress() {
     let width = 0;
     let bar = document.getElementById("bar");
 
@@ -299,7 +311,7 @@ function startExperience() {
             clearInterval(progress);
             startCountdown();
         } else {
-            width += 0.2;
+            width += 0.25;
             bar.style.width = width + "%";
         }
     }, 100);
@@ -315,18 +327,10 @@ function startCountdown() {
 
     let timer = setInterval(() => {
         num--;
-
-        if (num <= 0) {
-            num = 0;
-            clearInterval(timer);
-        }
-
         count.innerText = num;
-    }, 1000);
-}
 
-function goBack() {
-    window.location.href = "blog.html";
+        if (num <= 0) clearInterval(timer);
+    }, 1000);
 }
 </script>
 
