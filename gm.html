@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>You Are Here</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    overflow: hidden;
+}
+
+/* 🌍 REALISTIC MAP (FIXED) */
+.map {
+    position: fixed;
+    width: 300%;
+    height: 300%;
+    background-image: url('https://tile.openstreetmap.org/5/16/10.png');
+    background-repeat: repeat;
+    background-size: 256px;
+    transition: transform 1.2s ease;
+}
+
+/* subtle grid overlay */
+.map::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
+    background-size: 80px 80px;
+}
+
+/* SEARCH */
+.search-bar {
+    position: fixed;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    background: white;
+    border-radius: 25px;
+    padding: 12px 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    z-index: 10;
+}
+
+.search-bar input {
+    border: none;
+    outline: none;
+    width: 100%;
+}
+
+/* SIDEBAR */
+.sidebar {
+    position: fixed;
+    left: 0;
+    width: 280px;
+    height: 100%;
+    background: white;
+    padding: 20px;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.15);
+    z-index: 9;
+}
+
+.place {
+    padding: 12px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.place:hover {
+    background: #f1f3f4;
+}
+
+/* DOT */
+.dot {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    background: #1a73e8;
+    border-radius: 50%;
+    transition: all 1.2s ease;
+    box-shadow: 0 0 0 10px rgba(26,115,232,0.2);
+}
+
+/* ROUTE */
+.route {
+    position: absolute;
+    height: 3px;
+    background: #1a73e8;
+    transform-origin: left;
+    transition: all 1s ease;
+}
+
+/* CARDS */
+.card {
+    position: fixed;
+    right: 40px;
+    top: 100px;
+    width: 350px;
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    display: none;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.card.active {
+    display: block;
+}
+</style>
+</head>
+
+<body>
+
+<div class="map" id="map"></div>
+
+<div class="search-bar">
+<input type="text" id="searchInput" placeholder="">
+</div>
+
+<div class="sidebar">
+<h3>🌍 Explore</h3>
+
+<div class="place" onclick="goTo('search')">🔍 Search</div>
+<div class="place" onclick="goTo('location')">📍 Current Location</div>
+<div class="place" onclick="goTo('zoomIn')">🔎 Zoom In</div>
+<div class="place" onclick="goTo('zoomOut')">🌐 Zoom Out</div>
+<div class="place" onclick="goTo('nearby')">🧭 Nearby</div>
+<div class="place" onclick="goTo('recalc')">🔁 Recalculating</div>
+<div class="place" onclick="goTo('final')">🌙 Final</div>
+</div>
+
+<div class="dot" id="dot"></div>
+<div class="route" id="route"></div>
+
+<div id="search" class="card active"><h3>Search</h3><p>Where do you want to go?</p></div>
+<div id="location" class="card"><h3>You are here</h3></div>
+<div id="zoomIn" class="card"><h3>Zoom In</h3></div>
+<div id="zoomOut" class="card"><h3>Zoom Out</h3></div>
+<div id="nearby" class="card"><h3>Nearby</h3></div>
+<div id="recalc" class="card"><h3>Recalculating</h3></div>
+<div id="final" class="card"><h3>Final</h3></div>
+
+<script>
+const map = document.getElementById("map");
+const dot = document.getElementById("dot");
+
+const points = {
+    search: {x: 500, y: 400, map:"translate(0,0)"},
+    location: {x: 700, y: 300, map:"translate(-200px,-100px)"},
+    zoomIn: {x: 400, y: 200, map:"translate(-400px,-200px) scale(1.2)"},
+    zoomOut: {x: 800, y: 500, map:"translate(100px,50px) scale(0.8)"},
+    nearby: {x: 600, y: 600, map:"translate(-150px,200px)"},
+    recalc: {x: 900, y: 350, map:"translate(250px,-150px)"},
+    final: {x: 500, y: 100, map:"translate(0,-300px)"}
+};
+
+function goTo(id) {
+    document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+
+    let p = points[id];
+    map.style.transform = p.map;
+    dot.style.left = p.x + "px";
+    dot.style.top = p.y + "px";
+}
+
+/* typing */
+let txt = "Where do you want to go?";
+let i = 0;
+function type(){
+ if(i<txt.length){
+  document.getElementById("searchInput").placeholder += txt[i++];
+  setTimeout(type,50);
+ }
+}
+type();
+</script>
+
+</body>
+</html>
