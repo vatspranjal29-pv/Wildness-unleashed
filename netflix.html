@@ -11,7 +11,6 @@ body {
     background-color: #141414;
     color: #fff;
     font-family: 'Helvetica Neue', Arial, sans-serif;
-    overflow-x: hidden;
 }
 
 /* NAVBAR */
@@ -35,7 +34,6 @@ body {
     align-items: center;
     justify-content: center;
     background: radial-gradient(circle at center, rgba(229,9,20,0.15), transparent 60%);
-    position: relative;
 }
 
 /* PLAY BUTTON */
@@ -72,17 +70,26 @@ h1 {
     font-size: 3rem;
 }
 
-p {
-    margin: 14px 0;
-    color: #e5e5e5;
-    line-height: 1.8;
+/* PLACARD */
+.placard {
+    background: rgba(255,255,255,0.03);
+    padding: 20px 22px;
+    border-radius: 10px;
+    margin: 18px 0;
+    transition: 0.3s;
+    border-left: 3px solid transparent;
 }
 
-/* HIGHLIGHT */
-.highlight {
-    color: #e50914;
-    font-weight: bold;
-    cursor: pointer;
+.placard:hover {
+    background: rgba(255,255,255,0.06);
+    border-left: 3px solid #e50914;
+    transform: translateX(6px);
+}
+
+p {
+    margin: 0;
+    color: #e5e5e5;
+    line-height: 1.8;
 }
 
 /* DIVIDER */
@@ -97,7 +104,28 @@ p {
     text-align: center;
     font-style: italic;
     color: #b3b3b3;
-    margin: 30px 0;
+}
+
+/* TITLE */
+.title {
+    font-weight: bold;
+    position: relative;
+}
+
+.title::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    width: 100%;
+    height: 2px;
+    background: #e50914;
+    transform: scaleX(0);
+    transition: 0.3s;
+}
+
+.title:hover::after {
+    transform: scaleX(1);
 }
 
 /* PROGRESS */
@@ -115,7 +143,7 @@ p {
     background: #e50914;
 }
 
-/* COUNTDOWN OVERLAY */
+/* OVERLAY */
 .overlay {
     position: fixed;
     bottom: 20px;
@@ -135,10 +163,6 @@ p {
     padding: 20px;
 }
 
-.row h2 {
-    margin-bottom: 10px;
-}
-
 .cards {
     display: flex;
     gap: 10px;
@@ -149,19 +173,23 @@ p {
     height: 90px;
     background: #222;
     border-radius: 5px;
+}
+
+/* BUTTON */
+.back-btn {
+    background: transparent;
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.3);
+    padding: 12px 28px;
+    border-radius: 4px;
+    cursor: pointer;
     transition: 0.3s;
 }
 
-.card:hover {
-    transform: scale(1.1);
+.back-btn:hover {
+    background: #e50914;
+    border-color: #e50914;
 }
-
-/* GLOW ANIMATION */
-@keyframes glow {
-    0% { background-position: 0% }
-    100% { background-position: 100% }
-}
-
 </style>
 </head>
 
@@ -170,167 +198,122 @@ p {
 <div class="navbar">NETFLIX</div>
 
 <div class="hero" id="hero">
-    <div class="play-btn" onclick="startExperience()">▶</div>
+<div class="play-btn" onclick="startExperience()">▶</div>
 </div>
 
 <div class="container" id="content">
 
-<h1>Netflix Nights</h1>
+<h1>Netflix Nights - By Pranjal Vats🌻</h1>
 
-<p>It starts with something soft.<br>
-Something comforting.</p>
+<div class="placard"><p>It starts with something soft.<br>Something comforting.</p></div>
 
-<p>Like The Life List or The Oxford Year—<br>
+<div class="placard"><p>Like <span class="title">The Life List</span> or <span class="title">The Oxford Year</span>—<br>
 stories where people somehow figure things out<br>
-in the most aesthetic way possible.</p>
+in the most aesthetic way possible.</p></div>
 
 <div class="divider"></div>
 
-<p>I watch her move to a new country,<br>
-fall in love,<br>
-heal parts of herself<br>
-she didn’t even know were broken.</p>
+<div class="placard"><p>I watch her move to a new country,<br>fall in love,<br>heal parts of herself<br>she didn’t even know were broken.</p></div>
 
-<p>And I sit there thinking—<br>
-maybe I need a new city too.<br>
-maybe I need a new life.</p>
+<div class="placard"><p>And I sit there thinking—<br>maybe I need a new city too.<br>maybe I need a new life.</p></div>
 
-<p>But instead of packing my bags,<br>
-I just click <span class="highlight">“Next Episode.”</span></p>
+<div class="placard"><p>But instead of packing my bags,<br>I just click <span class="title">“Next Episode.”</span></p></div>
 
 <div class="divider"></div>
 
-<p>Then it shifts.</p>
+<div class="placard"><p>Then it shifts.</p></div>
 
-<p>Something heavier.<br>
-Something real.</p>
+<div class="placard"><p>Something heavier.<br>Something real.</p></div>
 
-<p>Like Normal People<br>
-or 13 Reasons Why.</p>
+<div class="placard"><p>Like <span class="title">Normal People</span><br>or <span class="title">13 Reasons Why</span>.</p></div>
 
-<p>Stories where people don’t have it together.<br>
-Where love is messy.<br>
-Where silence says more than words ever could.</p>
+<div class="placard"><p>Stories where people don’t have it together.<br>Where love is messy.<br>Where silence says more than words ever could.</p></div>
 
-<p>And suddenly,<br>
-it’s not just a show anymore.</p>
+<div class="placard"><p>And suddenly,<br>it’s not just a show anymore.</p></div>
 
-<p>It’s the texts I didn’t send.<br>
-The conversations I avoided.<br>
-The feelings I keep pretending I don’t have.</p>
+<div class="placard"><p>It’s the texts I didn’t send.<br>The conversations I avoided.<br>The feelings I keep pretending.</p></div>
 
-<p>I pause for a second.</p>
+<div class="placard"><p>I pause for a second.</p></div>
 
-<p>Not because I’m bored—<br>
-but because it feels a little too familiar.</p>
+<div class="placard"><p>Not because I’m bored—<br>but because it feels a little too familiar or too real.</p></div>
 
-<p>Then I switch again.</p>
+<div class="placard"><p>Then I switch again.</p></div>
 
-<p>Because staying there too long<br>
-is uncomfortable.</p>
+<div class="placard"><p>Because staying there too long<br>is uncomfortable.</p></div>
 
 <div class="divider"></div>
 
-<p>Now it’s something distracting.<br>
-Fast-paced. Addictive.</p>
+<div class="placard"><p>Now it’s something distracting.<br>Fast-paced. Addictive.</p></div>
 
-<p>Like Money Heist<br>
-or Stranger Things.</p>
+<div class="placard"><p>Like <span class="title">Money Heist</span><br>or <span class="title">Stranger Things</span>.</p></div>
 
-<p>Where everything is intense,<br>
-everything matters,<br>
-and every second feels important.</p>
+<div class="placard"><p>Where everything is intense,<br>everything matters,<br>and every second feels important.</p></div>
 
-<p>Unlike my own life,<br>
-which feels like it’s stuck buffering.</p>
+<div class="placard"><p>Unlike my own life,<br>which feels like it’s stuck buffering as if it's internet.</p></div>
 
-<p>In their world,<br>
-they’re risking everything.</p>
+<div class="placard"><p>In their world,<br>they’re risking everything.</p></div>
 
-<p>In mine,<br>
-I’m avoiding everything.</p>
+<div class="placard"><p>In mine,<br>I’m avoiding everything.</p></div>
 
-<p>And somehow,<br>
-watching them makes me feel like<br>
-I’m doing something.</p>
+<div class="placard"><p>And somehow,<br>watching them makes me feel like<br>I’m doing something.</p></div>
 
-<p>Even if I’m just lying in bed,<br>
-in the same position for hours.</p>
+<div class="placard"><p>Even if I’m just lying in bed,<br>in the same position for hours.</p></div>
 
 <div class="divider"></div>
 
-<p class="quote">“Are you still watching?”</p>
+<div class="placard"><p class="quote">“Are you still watching?”</p></div>
 
-<p>Yes.</p>
+<div class="placard"><p>Yes.</p></div>
 
-<p>But not just the show.</p>
+<div class="placard"><p>But not just the show.</p></div>
 
-<p>I’m watching other people<br>
-live the kind of lives<br>
-I keep postponing.</p>
+<div class="placard"><p>I’m watching other people<br>live the kind of lives<br>I keep postponing.</p></div>
 
-<p>People fall in love.<br>
-They take risks.<br>
-They leave.<br>
-They begin again.</p>
+<div class="placard"><p>People fall in love.<br>They take risks.<br>They leave.<br>They begin again.</p></div>
 
-<p>All in one night.</p>
+<div class="placard"><p>All in one night.</p></div>
 
-<p>And I?</p>
+<div class="placard"><p>And I?</p></div>
 
-<p>I stay.</p>
+<div class="placard"><p>I stay.</p></div>
 
-<p>In the same room.<br>
-With the same thoughts.</p>
+<div class="placard"><p>In the same room.<br>With the same thoughts.</p></div>
 
-<p>Telling myself—<br>
-tomorrow I’ll start.<br>
-tomorrow I’ll fix things.<br>
-tomorrow I’ll be different.</p>
+<div class="placard"><p>Telling myself—<br>tomorrow I’ll start.<br>tomorrow I’ll fix things.<br>tomorrow I’ll be different.</p></div>
 
-<p>But tomorrow<br>
-always begins<br>
-after one more episode.</p>
+<div class="placard"><p>But tomorrow<br>always begins<br>after one more episode.</p></div>
 
 <div class="divider"></div>
 
-<p>Because Netflix Nights<br>
-were never just about shows.</p>
+<div class="placard"><p>Because Netflix Nights<br>were never just about shows.</p></div>
 
-<p>They’re about escape.<br>
-About feeling something<br>
-without having to do anything about it.</p>
+<div class="placard"><p>They’re about escape.<br>About feeling something<br>without having to do anything about it.</p></div>
 
-<p>It’s easier to watch someone<br>
-choose a new life…</p>
+<div class="placard"><p>It’s easier to watch someone<br>choose a new life…</p></div>
 
-<p>than to choose your own.</p>
+<div class="placard"><p>than to choose your own.</p></div>
 
-<p>And maybe one day,<br>
-I’ll stop clicking <span class="highlight">“Next Episode.”</span></p>
+<div class="placard"><p>And maybe one day,<br>I’ll stop clicking <span class="title">“Next Episode.”</span></p></div>
 
-<p>Maybe one day,<br>
-I’ll become the kind of story<br>
-I keep watching.</p>
+<div class="placard"><p>Maybe one day,<br>I’ll become the kind of story<br>I keep watching.</p></div>
 
-<p>But not tonight.</p>
+<div class="placard"><p>But not tonight.</p></div>
 
-<p>Tonight,<br>
-I’m still here.</p>
+<div class="placard"><p>Tonight,<br>I’m still here.</p></div>
 
-<p>Watching.<br>
-Waiting.<br>
-Ignoring.</p>
+<div class="placard"><p>Watching.<br>Waiting.<br>Ignoring.</p></div>
 
-<p class="quote">“Next Episode starts in 5.. 4..3..2..1..0 seconds…”</p>
+<div class="placard"><p class="quote">“Next Episode starts in 5..4..3..2..1..0 seconds…”</p></div>
+
+<div style="text-align:center; margin-top:50px;">
+<button class="back-btn" onclick="goBack()">← Back to Blogs</button>
+</div>
 
 </div>
 
-<!-- CONTINUE WATCHING -->
 <div class="row">
 <h2>Continue Watching</h2>
 <div class="cards">
-<div class="card"></div>
 <div class="card"></div>
 <div class="card"></div>
 <div class="card"></div>
@@ -350,7 +333,6 @@ function startExperience() {
     document.getElementById("hero").style.display = "none";
     document.getElementById("content").classList.add("show");
 
-    // progress bar animation
     let width = 0;
     let bar = document.getElementById("bar");
 
@@ -375,11 +357,12 @@ function startCountdown() {
     let timer = setInterval(() => {
         num--;
         count.innerText = num;
-
-        if (num === 0) {
-            clearInterval(timer);
-        }
+        if (num === 0) clearInterval(timer);
     }, 1000);
+}
+
+function goBack() {
+    window.location.href = "blog.html";
 }
 </script>
 
