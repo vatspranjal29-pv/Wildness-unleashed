@@ -11,21 +11,20 @@
 body {
     margin: 0;
     font-family: 'Inter', sans-serif;
-    background: #e5e3df;
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
-/* MAP BACKGROUND */
+/* 🌍 REALISTIC FAKE MAP */
 .map {
     position: fixed;
-    width: 100%;
-    height: 100%;
-    background: url('https://maps.gstatic.com/tactile/basepage/pegman_sherlock.png');
+    width: 200%;
+    height: 200%;
+    background: url('https://tile.openstreetmap.org/3/4/2.png');
     background-size: cover;
-    filter: brightness(0.95);
+    transition: transform 1s ease;
 }
 
-/* TOP SEARCH BAR */
+/* SEARCH BAR */
 .search-bar {
     position: fixed;
     top: 15px;
@@ -37,7 +36,6 @@ body {
     padding: 12px 20px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     display: flex;
-    align-items: center;
     z-index: 10;
 }
 
@@ -45,26 +43,18 @@ body {
     border: none;
     outline: none;
     width: 100%;
-    font-size: 16px;
 }
 
 /* SIDEBAR */
 .sidebar {
     position: fixed;
     left: 0;
-    top: 0;
     width: 280px;
     height: 100%;
     background: white;
-    box-shadow: 2px 0 10px rgba(0,0,0,0.15);
     padding: 20px;
-    overflow-y: auto;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.15);
     z-index: 9;
-}
-
-.sidebar h2 {
-    font-size: 18px;
-    margin-bottom: 10px;
 }
 
 .place {
@@ -72,7 +62,6 @@ body {
     border-radius: 10px;
     margin-bottom: 10px;
     cursor: pointer;
-    transition: 0.3s;
 }
 
 .place:hover {
@@ -84,101 +73,74 @@ body {
     position: absolute;
     top: 50%;
     left: 55%;
-    width: 16px;
-    height: 16px;
+    width: 14px;
+    height: 14px;
     background: #1a73e8;
     border-radius: 50%;
-    box-shadow: 0 0 0 8px rgba(26,115,232,0.2);
-    animation: pulse 2s infinite;
+    box-shadow: 0 0 0 10px rgba(26,115,232,0.2);
 }
 
-@keyframes pulse {
-    0% { box-shadow: 0 0 0 0 rgba(26,115,232,0.4); }
-    70% { box-shadow: 0 0 0 20px rgba(26,115,232,0); }
-    100% { box-shadow: 0 0 0 0 rgba(26,115,232,0); }
-}
-
-/* CONTENT CARDS */
+/* CARDS */
 .card {
-    position: absolute;
+    position: fixed;
     right: 40px;
     top: 100px;
     width: 350px;
     background: white;
-    border-radius: 15px;
     padding: 20px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    border-radius: 15px;
     display: none;
-    animation: fadeIn 0.5s ease;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
 }
 
 .card.active {
     display: block;
 }
 
-.card h3 {
-    margin-top: 0;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px);}
-    to { opacity: 1; transform: translateY(0);}
-}
-
-/* MAP CONTROLS */
+/* CONTROLS */
 .controls {
     position: fixed;
     right: 20px;
     bottom: 40px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
 }
 
 .control-btn {
-    width: 40px;
-    height: 40px;
     background: white;
+    padding: 10px;
+    margin: 5px;
     border-radius: 8px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 20px;
     cursor: pointer;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
 }
 
-/* TITLE OVERLAY */
+/* TITLE */
 .title {
     position: fixed;
     bottom: 20px;
     left: 320px;
-    font-size: 18px;
-    color: #333;
 }
 </style>
 </head>
 
 <body>
 
-<div class="map"></div>
+<div class="map" id="map"></div>
 
 <div class="search-bar">
-    🔍 <input type="text" placeholder="Where do you want to go?">
+🔍 <input type="text" placeholder="Where do you want to go?">
 </div>
 
 <div class="sidebar">
-    <h2>🌍 Explore</h2>
+<h3>🌍 Explore</h3>
 
-    <div class="place" onclick="openCard('search')">🔍 Search</div>
-    <div class="place" onclick="openCard('location')">📍 Current Location</div>
-    <div class="place" onclick="openCard('zoomIn')">🔎 Zoom In</div>
-    <div class="place" onclick="openCard('zoomOut')">🌐 Zoom Out</div>
-    <div class="place" onclick="openCard('nearby')">🧭 Nearby Options</div>
-    <div class="place" onclick="openCard('recalc')">🔁 Recalculating</div>
-    <div class="place" onclick="openCard('saved')">📌 Saved Places</div>
-    <div class="place" onclick="openCard('noRoute')">🚫 No Route Found</div>
-    <div class="place" onclick="openCard('final')">🌙 Final View</div>
+<div class="place" onclick="goTo('search')">🔍 Search</div>
+<div class="place" onclick="goTo('location')">📍 Current Location</div>
+<div class="place" onclick="goTo('zoomIn')">🔎 Zoom In</div>
+<div class="place" onclick="goTo('zoomOut')">🌐 Zoom Out</div>
+<div class="place" onclick="goTo('nearby')">🧭 Nearby</div>
+<div class="place" onclick="goTo('recalc')">🔁 Recalculating</div>
+<div class="place" onclick="goTo('saved')">📌 Saved</div>
+<div class="place" onclick="goTo('noRoute')">🚫 No Route</div>
+<div class="place" onclick="goTo('final')">🌙 Final</div>
 </div>
 
 <div class="dot"></div>
@@ -186,79 +148,77 @@ body {
 <!-- CARDS -->
 <div id="search" class="card active">
 <h3>🔍 Search</h3>
-<p>“Where do you want to go?”</p>
-<p>That’s always the first question.</p>
-<p>Some people have clear answers. Others search for “something better.”</p>
-<p>And sometimes, we don’t search at all.</p>
+<p>Where do you want to go?</p>
+<p>Some search. Some don’t.</p>
 </div>
 
 <div id="location" class="card">
 <h3>📍 You Are Here</h3>
-<p>A small blue dot.</p>
-<p>Not final. Not everything.</p>
-<p>Just… here.</p>
-<p>Maps don’t judge. They just show.</p>
+<p>A small blue dot. Just here.</p>
 </div>
 
 <div id="zoomIn" class="card">
 <h3>🔎 Zoom In</h3>
-<p>Mistakes feel bigger.</p>
-<p>Confusion feels permanent.</p>
-<p>Everything looks like failure.</p>
+<p>Everything feels bigger.</p>
 </div>
 
 <div id="zoomOut" class="card">
 <h3>🌐 Zoom Out</h3>
-<p>You’re not stuck.</p>
-<p>You’re just not zoomed out enough.</p>
+<p>You’re part of something bigger.</p>
 </div>
 
 <div id="nearby" class="card">
-<h3>🧭 Nearby Options</h3>
-<p>A small step.</p>
-<p>A conversation.</p>
-<p>A habit.</p>
-<p>Maps show what’s close first.</p>
+<h3>🧭 Nearby</h3>
+<p>Small steps matter.</p>
 </div>
 
 <div id="recalc" class="card">
 <h3>🔁 Recalculating</h3>
-<p>You missed a turn.</p>
-<p>No judgment.</p>
-<p>Just… a new route.</p>
+<p>New route. No judgment.</p>
 </div>
 
 <div id="saved" class="card">
-<h3>📌 Saved Places</h3>
-<p>Memories. People. Versions of you.</p>
-<p>Not all saved places are destinations.</p>
+<h3>📌 Saved</h3>
+<p>Not all saved places are meant to stay.</p>
 </div>
 
 <div id="noRoute" class="card">
-<h3>🚫 No Route Found</h3>
-<p>No direction. No clarity.</p>
-<p>Some paths appear only when you move.</p>
+<h3>🚫 No Route</h3>
+<p>Some paths appear later.</p>
 </div>
 
 <div id="final" class="card">
-<h3>🌙 Final View</h3>
-<p>You don’t need the full route.</p>
-<p>You just need to start.</p>
-<p><strong>📍 You are here.</strong></p>
+<h3>🌙 Final</h3>
+<p>You are here. And that’s enough.</p>
 </div>
 
 <div class="controls">
-    <div class="control-btn">+</div>
-    <div class="control-btn">−</div>
+<div class="control-btn">+</div>
+<div class="control-btn">−</div>
 </div>
 
 <div class="title">📍 You Are Here — A Map, Not a Destination</div>
 
 <script>
-function openCard(id) {
-    let cards = document.querySelectorAll('.card');
-    cards.forEach(card => card.classList.remove('active'));
+const map = document.getElementById("map");
+
+const positions = {
+    search: "translate(0px, 0px)",
+    location: "translate(-200px, -100px)",
+    zoomIn: "translate(-400px, -200px) scale(1.2)",
+    zoomOut: "translate(100px, 50px) scale(0.8)",
+    nearby: "translate(-150px, 200px)",
+    recalc: "translate(250px, -150px)",
+    saved: "translate(-300px, 150px)",
+    noRoute: "translate(200px, 200px)",
+    final: "translate(0px, -300px) scale(0.9)"
+};
+
+function goTo(id) {
+    document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
     document.getElementById(id).classList.add('active');
+
+    map.style.transform = positions[id];
 }
 </script>
 
