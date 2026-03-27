@@ -28,13 +28,7 @@ body {
   z-index: 100;
 }
 
-/* GOOGLE LOGO STYLE */
-.logo {
-  font-size: 22px;
-  font-weight: 500;
-  font-family: 'Product Sans', sans-serif;
-}
-
+/* GOOGLE LOGO */
 .logo span:nth-child(1){color:#4285F4;}
 .logo span:nth-child(2){color:#EA4335;}
 .logo span:nth-child(3){color:#FBBC05;}
@@ -57,12 +51,11 @@ body {
   padding: 12px 20px;
   font-size: 16px;
   outline: none;
-  transition: all 0.2s ease;
+  transition: 0.3s;
 }
 
 .search-bar:focus {
-  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-  border-color: transparent;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.2);
 }
 
 /* RESULTS */
@@ -76,40 +69,46 @@ body {
 .result {
   margin-bottom: 35px;
   cursor: pointer;
-  animation: fadeIn 0.6s ease forwards;
-  opacity: 0;
+  padding: 10px;
+  border-radius: 10px;
+  transition: 0.3s;
 }
 
-.result:hover .link {
-  text-decoration: underline;
+.result:hover {
+  background: #f8f9fa;
+  transform: translateY(-2px);
 }
 
-/* LINK */
+/* EXPAND EFFECT */
+.result.active {
+  background: #eef3fd;
+}
+
+.snippet {
+  max-height: 60px;
+  overflow: hidden;
+  transition: 0.4s;
+}
+
+.result.active .snippet {
+  max-height: 500px;
+}
+
+/* TEXT */
 .link {
   color: #1a0dab;
   font-size: 18px;
-  margin-bottom: 4px;
 }
 
-/* SNIPPET */
 .snippet {
   color: #4d5156;
   line-height: 1.6;
   font-size: 15px;
 }
 
-/* TIME */
 .time {
   color: #70757a;
   font-size: 13px;
-  margin-bottom: 6px;
-}
-
-/* DIVIDER */
-.divider {
-  border: none;
-  border-top: 1px solid #ddd;
-  margin: 20px 0;
 }
 
 /* SIGNATURE */
@@ -117,22 +116,15 @@ body {
   margin-top: 60px;
   font-family: 'Playfair Display', serif;
   text-align: center;
-  font-size: 18px;
 }
 
 /* ANIMATION */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.result {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeIn 0.6s forwards;
 }
 
-/* STAGGER ANIMATION */
 .result:nth-child(1){animation-delay:0.1s;}
 .result:nth-child(2){animation-delay:0.2s;}
 .result:nth-child(3){animation-delay:0.3s;}
@@ -143,22 +135,33 @@ body {
 .result:nth-child(8){animation-delay:0.8s;}
 .result:nth-child(9){animation-delay:0.9s;}
 
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* DIVIDER */
+.divider {
+  border: none;
+  border-top: 1px solid #ddd;
+  margin: 20px 0;
+}
 </style>
 </head>
 
 <body>
 
 <div class="top-bar">
-
   <div class="logo">
     <span>G</span><span>o</span><span>o</span>
     <span>g</span><span>l</span><span>e</span>
   </div>
 
   <div class="search-wrapper">
-    <input class="search-bar" value="Why am I like this - By Pranjal Vats 🌻" />
+    <input id="search" class="search-bar">
   </div>
-
 </div>
 
 <div class="results">
@@ -189,10 +192,9 @@ My body wants rest, but my mind wants answers.
 <div class="link">Do people notice when you slowly stop talking???</div>
 <div class="snippet">
 There was a time I filled every silence.<br>
-Now I sit inside it.<br><br>
+Now I sit inside it.<br>
 No one asks.<br>
-Or maybe they do—<br>
-just not wait enough for a real answer.
+Or maybe they do—just not long enough.
 </div>
 </div>
 
@@ -204,7 +206,6 @@ I scroll.<br>
 Everyone seems to be moving somewhere.<br>
 Forward. Upward.<br>
 Anywhere but here.<br><br>
-
 And I'm stuck measuring my worth<br>
 in comparison to people<br>
 who don’t even know I exist like this.
@@ -238,13 +239,14 @@ I couldn’t recognize myself.
 
 <div class="result">
 <div class="time">4:12 AM</div>
-<div class="link">Why do I get away from things that matter?</div>
+<div class="link">Why do I get away from things that actually matter?</div>
 <div class="snippet">
 Because staying feels risky.<br>
-Because losing slowly hurts more.<br><br>
+Because losing slowly hurts more<br>
+than ending it early.<br><br>
 Sometimes,<br>
-I’d rather break it myself<br>
-than wonder why it broke.
+I’d rather be the reason it breaks<br>
+than wonder why it did.
 </div>
 </div>
 
@@ -264,16 +266,35 @@ just trying to understand.
 <div class="time">Recent Search</div>
 <div class="link">How to start over without leaving anything behind?</div>
 <div class="snippet">
-
 But morning comes anyway.<br>
 It always does.<br><br>
 
 The world wakes up<br>
 like nothing inside me stayed awake all night.<br><br>
 
-And maybe… it’s not meant to be erased.<br>
-Maybe it’s meant to be understood.
+And if my thoughts really had a search history,<br>
+I’d probably clear it.<br><br>
+
+Delete everything. Start fresh.<br>
+Pretend none of it happened.<br>
+
 <hr class="divider">
+
+But maybe that’s the problem.<br><br>
+
+Maybe it’s not meant to be erased.<br><br>
+
+Maybe it’s meant to be read—<br>
+slowly, carefully,<br>
+without skipping the uncomfortable parts.<br><br>
+
+Because somewhere between<br>
+“Why am I like this”<br>
+and<br>
+“How do I change”<br><br>
+
+there’s a version of me<br>
+still waiting to be understood.
 </div>
 </div>
 
@@ -282,6 +303,42 @@ Written by <strong>Pranjal Vats</strong>
 </div>
 
 </div>
+
+<script>
+
+/* TYPING EFFECT */
+const text = "Why am I like this - By Pranjal Vats 🌻";
+let i = 0;
+const input = document.getElementById("search");
+
+function typeEffect() {
+  if (i < text.length) {
+    input.value += text.charAt(i);
+    i++;
+    setTimeout(typeEffect, 40);
+  }
+}
+typeEffect();
+
+/* CLICK EXPAND */
+document.querySelectorAll(".result").forEach(item => {
+  item.addEventListener("click", () => {
+    item.classList.toggle("active");
+  });
+});
+
+/* ENTER SEARCH EFFECT */
+input.addEventListener("keydown", function(e) {
+  if (e.key === "Enter") {
+    document.querySelector(".results").style.opacity = "0.3";
+    setTimeout(() => {
+      document.querySelector(".results").style.opacity = "1";
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 400);
+  }
+});
+
+</script>
 
 </body>
 </html>
