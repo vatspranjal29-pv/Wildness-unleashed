@@ -3,8 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Search — If My Thoughts Had a Search History<br/>
-By Pranjal Vats🌻</title>
+<title>Search — If My Thoughts Had a Search History</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
 
@@ -16,12 +15,38 @@ body {
   color: #202124;
 }
 
-/* GOOGLE HEADER */
+/* HEADER */
 .top-bar {
-  padding: 20px;
+  position: sticky;
+  top: 0;
+  background: white;
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  border-bottom: 1px solid #eee;
+  z-index: 100;
+}
+
+/* GOOGLE LOGO STYLE */
+.logo {
+  font-size: 22px;
+  font-weight: 500;
+  font-family: 'Product Sans', sans-serif;
+}
+
+.logo span:nth-child(1){color:#4285F4;}
+.logo span:nth-child(2){color:#EA4335;}
+.logo span:nth-child(3){color:#FBBC05;}
+.logo span:nth-child(4){color:#4285F4;}
+.logo span:nth-child(5){color:#34A853;}
+.logo span:nth-child(6){color:#EA4335;}
+
+/* SEARCH BAR */
+.search-wrapper {
+  flex: 1;
   display: flex;
   justify-content: center;
-  border-bottom: 1px solid #eee;
 }
 
 .search-bar {
@@ -32,7 +57,12 @@ body {
   padding: 12px 20px;
   font-size: 16px;
   outline: none;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: all 0.2s ease;
+}
+
+.search-bar:focus {
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  border-color: transparent;
 }
 
 /* RESULTS */
@@ -42,16 +72,26 @@ body {
   padding: 0 20px;
 }
 
+/* RESULT CARD */
 .result {
   margin-bottom: 35px;
+  cursor: pointer;
+  animation: fadeIn 0.6s ease forwards;
+  opacity: 0;
 }
 
+.result:hover .link {
+  text-decoration: underline;
+}
+
+/* LINK */
 .link {
   color: #1a0dab;
   font-size: 18px;
   margin-bottom: 4px;
 }
 
+/* SNIPPET */
 .snippet {
   color: #4d5156;
   line-height: 1.6;
@@ -65,20 +105,60 @@ body {
   margin-bottom: 6px;
 }
 
-/* FINAL SIGNATURE */
+/* DIVIDER */
+.divider {
+  border: none;
+  border-top: 1px solid #ddd;
+  margin: 20px 0;
+}
+
+/* SIGNATURE */
 .signature {
   margin-top: 60px;
   font-family: 'Playfair Display', serif;
   text-align: center;
   font-size: 18px;
 }
+
+/* ANIMATION */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* STAGGER ANIMATION */
+.result:nth-child(1){animation-delay:0.1s;}
+.result:nth-child(2){animation-delay:0.2s;}
+.result:nth-child(3){animation-delay:0.3s;}
+.result:nth-child(4){animation-delay:0.4s;}
+.result:nth-child(5){animation-delay:0.5s;}
+.result:nth-child(6){animation-delay:0.6s;}
+.result:nth-child(7){animation-delay:0.7s;}
+.result:nth-child(8){animation-delay:0.8s;}
+.result:nth-child(9){animation-delay:0.9s;}
+
 </style>
 </head>
 
 <body>
 
 <div class="top-bar">
-  <input class="search-bar" value="Why am I like this -By Pranjal Vats🌻" />
+
+  <div class="logo">
+    <span>G</span><span>o</span><span>o</span>
+    <span>g</span><span>l</span><span>e</span>
+  </div>
+
+  <div class="search-wrapper">
+    <input class="search-bar" value="Why am I like this - By Pranjal Vats 🌻" />
+  </div>
+
 </div>
 
 <div class="results">
@@ -87,9 +167,9 @@ body {
 <div class="time">12:07 AM</div>
 <div class="link">Why can’t I sleep even when I’m tired?</div>
 <div class="snippet">
-<p/>The room is quiet. But my head isn’t.<br>
+The room is quiet. But my head isn’t.<br>
 The fan hums like it knows something I don’t.<br>
-and suddenly, sielence feels louder than noise.</p>
+and suddenly, silence feels louder than noise.
 </div>
 </div>
 
@@ -97,9 +177,9 @@ and suddenly, sielence feels louder than noise.</p>
 <div class="time">12:43 AM</div>
 <div class="link">How to stop overthinking everything?</div>
 <div class="snippet">
-I turn to my side. <br>
-  Then the other. <br>
-  Then back again.<br>
+I turn to my side.<br>
+Then the other.<br>
+Then back again.<br>
 My body wants rest, but my mind wants answers.
 </div>
 </div>
@@ -108,11 +188,11 @@ My body wants rest, but my mind wants answers.
 <div class="time">1:26 AM</div>
 <div class="link">Do people notice when you slowly stop talking???</div>
 <div class="snippet">
-<p/>There was a time I filled every silence.<br>
-Now I sit inside it.<p/>
-  <p/>No one asks.<br>
-    Or maybe they do-<br>
-    Just not wait enough for a real answer.</p>
+There was a time I filled every silence.<br>
+Now I sit inside it.<br><br>
+No one asks.<br>
+Or maybe they do—<br>
+just not wait enough for a real answer.
 </div>
 </div>
 
@@ -120,15 +200,14 @@ Now I sit inside it.<p/>
 <div class="time">2:11 AM</div>
 <div class="link">Is it normal to feel left behind in life?</div>
 <div class="snippet">
-  <p>I scroll.<br>
+I scroll.<br>
 Everyone seems to be moving somewhere.<br>
-    <p>Forward.<br>
-    Upward<br>
-    Anywhere but here.</p>
-<p>And i'm stuck measuring my worth<br>
+Forward. Upward.<br>
+Anywhere but here.<br><br>
+
+And I'm stuck measuring my worth<br>
 in comparison to people<br>
-who don't even know i exist like this<br>
-or think like this.</p>
+who don’t even know I exist like this.
 </div>
 </div>
 
@@ -137,94 +216,64 @@ or think like this.</p>
 <div class="link">How to disappear?</div>
 <div class="snippet">
 I don’t mean vanish.<br>
-Just… pause.
-  <p>Step out of the version of me<br>
-  that everyone expects from me</p>
-  <p>But you know even that feels selfish<br>
-  people really like me this way.</p>
+Just… pause.<br><br>
+Step out of the version of me<br>
+that everyone expects from me.<br><br>
+But even that feels selfish.
 </div>
 </div>
 
 <div class="result">
 <div class="time">3:37 AM</div>
-<div class="link">Why did i change soo much?</div>
+<div class="link">Why did I change so much?</div>
 <div class="snippet">
-It didn’t happen all at once.i guess<br>
-It was gradual.
-  <p>A little silence here.<br>
-A little pretending there.<br>
-A few swallowed words.<br>
-A few ignored feelings.</p>
-
-<p>Until one day,<br>
-I couldn’t recognize the person<br>
-who knew how to feel everything so deeply.</p>
-
+It didn’t happen all at once.<br>
+It was gradual.<br><br>
+A little silence here.<br>
+A little pretending there.<br><br>
+Until one day,<br>
+I couldn’t recognize myself.
 </div>
 </div>
 
 <div class="result">
 <div class="time">4:12 AM</div>
-<div class="link">Why do I get away from things that actually matter?</div>
+<div class="link">Why do I get away from things that matter?</div>
 <div class="snippet">
 Because staying feels risky.<br>
-Because losing something slowly hurts more<br>
-  than ending it early or running away.
-  <p>I guess because sometimes,<br>
-I’d rather be the reason it breaks<br>
-than the one left wondering why it did.</p>
-
+Because losing slowly hurts more.<br><br>
+Sometimes,<br>
+I’d rather break it myself<br>
+than wonder why it broke.
 </div>
 </div>
 
 <div class="result">
 <div class="time">4:55 AM</div>
-<div class="link">How to become someone I’d be proud of?<br>Special focus on I for once!!</div>
+<div class="link">How to become someone I’d be proud of?</div>
 <div class="snippet">
-This one feels different.<br>
-  <p>Quieter.<br>Less desperate.<br>More… honest.</p>
-
-<p>Like I’m not trying to escape anymore—<br>
-just trying to understand.</p>
-
+This one feels different.<br><br>
+Quieter. Less desperate.<br>
+More honest.<br><br>
+Not escaping anymore—<br>
+just trying to understand.
 </div>
 </div>
 
 <div class="result">
 <div class="time">Recent Search</div>
-<div class="link">How to startover without leaving anything behind?<br>
-Still finding answer to that me and google both....</div>
+<div class="link">How to start over without leaving anything behind?</div>
 <div class="snippet">
-  <p>But guys morning comes anyway.<br>It always does.</p>
 
-<p>The world wakes up<br>
-like nothing inside me stayed awake all night.</p>
+But morning comes anyway.<br>
+It always does.<br><br>
 
-<p>And if my thoughts really had a search history,<br>
-I’d probably clear it.</p>
+The world wakes up<br>
+like nothing inside me stayed awake all night.<br><br>
 
-<p>Delete everything. Start fresh.<br>
-Pretend none of it happened.</p>
-
+And maybe… it’s not meant to be erased.<br>
+Maybe it’s meant to be understood.
 <hr class="divider">
-
-<p>But maybe that’s the problem for me at least.</p>
-
-<p>Maybe it’s not meant to be erased.</p>
-
-<p>Maybe it’s meant to be read—<br>
-slowly, carefully,<br>
-without skipping the uncomfortable parts.</p>
-
-<p>Because somewhere between<br>
-“Why am I like this”<br>
-and<br>
-“How do I change”</p>
-
-<p>there’s a version of me<br>
-still waiting to be understood.<br>
-Till i find the answer to that ...bye bye</p>
-
 </div>
 </div>
 
