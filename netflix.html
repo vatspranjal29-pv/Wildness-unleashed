@@ -161,26 +161,8 @@ p {
     0% { background-position: 0% }
     100% { background-position: 100% }
 }
-<div style="text-align:center; margin-top:50px;">
-    <button class="back-btn" onclick="goBack()">← Back to Blog</button>
-</div>
-</style>
-.back-btn {
-    background: #e50914;
-    color: white;
-    border: none;
-    padding: 12px 28px;
-    font-size: 1rem;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: 0.3s;
-    letter-spacing: 1px;
-}
 
-.back-btn:hover {
-    background: #f6121d;
-    transform: scale(1.05);
-}
+</style>
 </head>
 
 <body>
@@ -398,9 +380,6 @@ function startCountdown() {
             clearInterval(timer);
         }
     }, 1000);
-}
-function goBack() {
-    window.location.href = "blog.html";
 }
 </script>
 
