@@ -198,7 +198,7 @@ p {
 <div class="navbar">NETFLIX</div>
 
 <div class="hero" id="hero">
-<div class="play-btn" onclick="startExperience()">▶</div>
+    <div class="play-btn" onclick="startExperience()">▶</div>
 </div>
 
 <div class="container" id="content">
@@ -229,13 +229,9 @@ in the most aesthetic way possible.</p></div>
 
 <div class="placard"><p>Stories where people don’t have it together.<br>Where love is messy.<br>Where silence says more than words ever could.</p></div>
 
-<div class="placard"><p>And suddenly,<br>it’s not just a show anymore.</p></div>
-
-<div class="placard"><p>It’s the texts I didn’t send.<br>The conversations I avoided.<br>The feelings I keep pretending.</p></div>
-
 <div class="placard"><p>I pause for a second.</p></div>
 
-<div class="placard"><p>Not because I’m bored—<br>but because it feels a little too familiar or too real.</p></div>
+<div class="placard"><p>Not because I’m bored—<br>but because it feels a little too familiar.</p></div>
 
 <div class="placard"><p>Then I switch again.</p></div>
 
@@ -247,17 +243,11 @@ in the most aesthetic way possible.</p></div>
 
 <div class="placard"><p>Like <span class="title">Money Heist</span><br>or <span class="title">Stranger Things</span>.</p></div>
 
-<div class="placard"><p>Where everything is intense,<br>everything matters,<br>and every second feels important.</p></div>
+<div class="placard"><p>Where everything is intense.</p></div>
 
-<div class="placard"><p>Unlike my own life,<br>which feels like it’s stuck buffering as if it's internet.</p></div>
-
-<div class="placard"><p>In their world,<br>they’re risking everything.</p></div>
-
-<div class="placard"><p>In mine,<br>I’m avoiding everything.</p></div>
+<div class="placard"><p>Unlike my own life,<br>which feels like it’s buffering.</p></div>
 
 <div class="placard"><p>And somehow,<br>watching them makes me feel like<br>I’m doing something.</p></div>
-
-<div class="placard"><p>Even if I’m just lying in bed,<br>in the same position for hours.</p></div>
 
 <div class="divider"></div>
 
@@ -267,41 +257,9 @@ in the most aesthetic way possible.</p></div>
 
 <div class="placard"><p>But not just the show.</p></div>
 
-<div class="placard"><p>I’m watching other people<br>live the kind of lives<br>I keep postponing.</p></div>
-
-<div class="placard"><p>People fall in love.<br>They take risks.<br>They leave.<br>They begin again.</p></div>
-
-<div class="placard"><p>All in one night.</p></div>
-
-<div class="placard"><p>And I?</p></div>
-
-<div class="placard"><p>I stay.</p></div>
-
-<div class="placard"><p>In the same room.<br>With the same thoughts.</p></div>
-
-<div class="placard"><p>Telling myself—<br>tomorrow I’ll start.<br>tomorrow I’ll fix things.<br>tomorrow I’ll be different.</p></div>
-
-<div class="placard"><p>But tomorrow<br>always begins<br>after one more episode.</p></div>
+<div class="placard"><p>I’m watching lives I keep postponing.</p></div>
 
 <div class="divider"></div>
-
-<div class="placard"><p>Because Netflix Nights<br>were never just about shows.</p></div>
-
-<div class="placard"><p>They’re about escape.<br>About feeling something<br>without having to do anything about it.</p></div>
-
-<div class="placard"><p>It’s easier to watch someone<br>choose a new life…</p></div>
-
-<div class="placard"><p>than to choose your own.</p></div>
-
-<div class="placard"><p>And maybe one day,<br>I’ll stop clicking <span class="title">“Next Episode.”</span></p></div>
-
-<div class="placard"><p>Maybe one day,<br>I’ll become the kind of story<br>I keep watching.</p></div>
-
-<div class="placard"><p>But not tonight.</p></div>
-
-<div class="placard"><p>Tonight,<br>I’m still here.</p></div>
-
-<div class="placard"><p>Watching.<br>Waiting.<br>Ignoring.</p></div>
 
 <div class="placard"><p class="quote">“Next Episode starts in 5..4..3..2..1..0 seconds…”</p></div>
 
@@ -354,15 +312,21 @@ function startCountdown() {
     overlay.classList.add("show");
 
     let num = 5;
+
     let timer = setInterval(() => {
         num--;
+
+        if (num <= 0) {
+            num = 0;
+            clearInterval(timer);
+        }
+
         count.innerText = num;
-        if (num === 0) clearInterval(timer);
     }, 1000);
 }
 
 function goBack() {
-    <a href="blog.html">Blogs</a>
+    window.location.href = "blog.html";
 }
 </script>
 
