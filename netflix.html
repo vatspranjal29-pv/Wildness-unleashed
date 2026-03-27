@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Netflix Nights</title>
+
+<style>
+body {
+    margin: 0;
+    background-color: #141414;
+    color: #fff;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+/* NAVBAR */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 18px 40px;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.9), transparent);
+    color: #e50914;
+    font-size: 1.6rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    z-index: 10;
+}
+
+/* HERO */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at center, rgba(229,9,20,0.15), transparent 60%);
+    position: relative;
+}
+
+/* PLAY BUTTON */
+.play-btn {
+    font-size: 3rem;
+    background: rgba(0,0,0,0.6);
+    border-radius: 50%;
+    padding: 20px 30px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.play-btn:hover {
+    background: rgba(229,9,20,0.8);
+}
+
+/* CONTAINER */
+.container {
+    max-width: 750px;
+    margin: auto;
+    padding: 40px 20px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: 1s;
+}
+
+.container.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+h1 {
+    color: #e50914;
+    font-size: 3rem;
+}
+
+p {
+    margin: 14px 0;
+    color: #e5e5e5;
+    line-height: 1.8;
+}
+
+/* HIGHLIGHT */
+.highlight {
+    color: #e50914;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* DIVIDER */
+.divider {
+    margin: 30px 0;
+    height: 1px;
+    background: rgba(255,255,255,0.1);
+}
+
+/* QUOTE */
+.quote {
+    text-align: center;
+    font-style: italic;
+    color: #b3b3b3;
+    margin: 30px 0;
+}
+
+/* PROGRESS */
+.progress-container {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 4px;
+    background: rgba(255,255,255,0.1);
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0%;
+    background: #e50914;
+}
+
+/* COUNTDOWN OVERLAY */
+.overlay {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(0,0,0,0.8);
+    padding: 15px 20px;
+    border-radius: 8px;
+    display: none;
+}
+
+.overlay.show {
+    display: block;
+}
+
+/* ROW */
+.row {
+    padding: 20px;
+}
+
+.row h2 {
+    margin-bottom: 10px;
+}
+
+.cards {
+    display: flex;
+    gap: 10px;
+}
+
+.card {
+    width: 160px;
+    height: 90px;
+    background: #222;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: scale(1.1);
+}
+
+/* GLOW ANIMATION */
+@keyframes glow {
+    0% { background-position: 0% }
+    100% { background-position: 100% }
+}
+<div style="text-align:center; margin-top:50px;">
+    <button class="back-btn" onclick="goBack()">← Back to Blog</button>
+</div>
+</style>
+.back-btn {
+    background: #e50914;
+    color: white;
+    border: none;
+    padding: 12px 28px;
+    font-size: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.3s;
+    letter-spacing: 1px;
+}
+
+.back-btn:hover {
+    background: #f6121d;
+    transform: scale(1.05);
+}
+</head>
+
+<body>
+
+<div class="navbar">NETFLIX</div>
+
+<div class="hero" id="hero">
+    <div class="play-btn" onclick="startExperience()">▶</div>
+</div>
+
+<div class="container" id="content">
+
+<h1>Netflix Nights</h1>
+
+<p>It starts with something soft.<br>
+Something comforting.</p>
+
+<p>Like The Life List or The Oxford Year—<br>
+stories where people somehow figure things out<br>
+in the most aesthetic way possible.</p>
+
+<div class="divider"></div>
+
+<p>I watch her move to a new country,<br>
+fall in love,<br>
+heal parts of herself<br>
+she didn’t even know were broken.</p>
+
+<p>And I sit there thinking—<br>
+maybe I need a new city too.<br>
+maybe I need a new life.</p>
+
+<p>But instead of packing my bags,<br>
+I just click <span class="highlight">“Next Episode.”</span></p>
+
+<div class="divider"></div>
+
+<p>Then it shifts.</p>
+
+<p>Something heavier.<br>
+Something real.</p>
+
+<p>Like Normal People<br>
+or 13 Reasons Why.</p>
+
+<p>Stories where people don’t have it together.<br>
+Where love is messy.<br>
+Where silence says more than words ever could.</p>
+
+<p>And suddenly,<br>
+it’s not just a show anymore.</p>
+
+<p>It’s the texts I didn’t send.<br>
+The conversations I avoided.<br>
+The feelings I keep pretending I don’t have.</p>
+
+<p>I pause for a second.</p>
+
+<p>Not because I’m bored—<br>
+but because it feels a little too familiar.</p>
+
+<p>Then I switch again.</p>
+
+<p>Because staying there too long<br>
+is uncomfortable.</p>
+
+<div class="divider"></div>
+
+<p>Now it’s something distracting.<br>
+Fast-paced. Addictive.</p>
+
+<p>Like Money Heist<br>
+or Stranger Things.</p>
+
+<p>Where everything is intense,<br>
+everything matters,<br>
+and every second feels important.</p>
+
+<p>Unlike my own life,<br>
+which feels like it’s stuck buffering.</p>
+
+<p>In their world,<br>
+they’re risking everything.</p>
+
+<p>In mine,<br>
+I’m avoiding everything.</p>
+
+<p>And somehow,<br>
+watching them makes me feel like<br>
+I’m doing something.</p>
+
+<p>Even if I’m just lying in bed,<br>
+in the same position for hours.</p>
+
+<div class="divider"></div>
+
+<p class="quote">“Are you still watching?”</p>
+
+<p>Yes.</p>
+
+<p>But not just the show.</p>
+
+<p>I’m watching other people<br>
+live the kind of lives<br>
+I keep postponing.</p>
+
+<p>People fall in love.<br>
+They take risks.<br>
+They leave.<br>
+They begin again.</p>
+
+<p>All in one night.</p>
+
+<p>And I?</p>
+
+<p>I stay.</p>
+
+<p>In the same room.<br>
+With the same thoughts.</p>
+
+<p>Telling myself—<br>
+tomorrow I’ll start.<br>
+tomorrow I’ll fix things.<br>
+tomorrow I’ll be different.</p>
+
+<p>But tomorrow<br>
+always begins<br>
+after one more episode.</p>
+
+<div class="divider"></div>
+
+<p>Because Netflix Nights<br>
+were never just about shows.</p>
+
+<p>They’re about escape.<br>
+About feeling something<br>
+without having to do anything about it.</p>
+
+<p>It’s easier to watch someone<br>
+choose a new life…</p>
+
+<p>than to choose your own.</p>
+
+<p>And maybe one day,<br>
+I’ll stop clicking <span class="highlight">“Next Episode.”</span></p>
+
+<p>Maybe one day,<br>
+I’ll become the kind of story<br>
+I keep watching.</p>
+
+<p>But not tonight.</p>
+
+<p>Tonight,<br>
+I’m still here.</p>
+
+<p>Watching.<br>
+Waiting.<br>
+Ignoring.</p>
+
+<p class="quote">“Next Episode starts in 5.. 4..3..2..1..0 seconds…”</p>
+
+</div>
+
+<!-- CONTINUE WATCHING -->
+<div class="row">
+<h2>Continue Watching</h2>
+<div class="cards">
+<div class="card"></div>
+<div class="card"></div>
+<div class="card"></div>
+<div class="card"></div>
+</div>
+</div>
+
+<div class="progress-container">
+<div class="progress-bar" id="bar"></div>
+</div>
+
+<div class="overlay" id="overlay">
+Next Episode in <span id="count">5</span>...
+</div>
+
+<script>
+function startExperience() {
+    document.getElementById("hero").style.display = "none";
+    document.getElementById("content").classList.add("show");
+
+    // progress bar animation
+    let width = 0;
+    let bar = document.getElementById("bar");
+
+    let progress = setInterval(() => {
+        if (width >= 100) {
+            clearInterval(progress);
+            startCountdown();
+        } else {
+            width += 0.2;
+            bar.style.width = width + "%";
+        }
+    }, 100);
+}
+
+function startCountdown() {
+    let overlay = document.getElementById("overlay");
+    let count = document.getElementById("count");
+
+    overlay.classList.add("show");
+
+    let num = 5;
+    let timer = setInterval(() => {
+        num--;
+        count.innerText = num;
+
+        if (num === 0) {
+            clearInterval(timer);
+        }
+    }, 1000);
+}
+function goBack() {
+    window.location.href = "blog.html";
+}
+</script>
+
+</body>
+</html>
