@@ -14,17 +14,17 @@ body {
     overflow: hidden;
 }
 
-/* 🌍 REALISTIC FAKE MAP */
+/* 🌍 MAP */
 .map {
     position: fixed;
     width: 200%;
     height: 200%;
     background: url('https://tile.openstreetmap.org/3/4/2.png');
     background-size: cover;
-    transition: transform 1s ease;
+    transition: transform 1.2s ease;
 }
 
-/* SEARCH BAR */
+/* SEARCH */
 .search-bar {
     position: fixed;
     top: 15px;
@@ -35,7 +35,6 @@ body {
     border-radius: 25px;
     padding: 12px 20px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    display: flex;
     z-index: 10;
 }
 
@@ -71,13 +70,21 @@ body {
 /* BLUE DOT */
 .dot {
     position: absolute;
-    top: 50%;
-    left: 55%;
     width: 14px;
     height: 14px;
     background: #1a73e8;
     border-radius: 50%;
+    transition: all 1.2s ease;
     box-shadow: 0 0 0 10px rgba(26,115,232,0.2);
+}
+
+/* ROUTE LINE */
+.route {
+    position: absolute;
+    height: 3px;
+    background: #1a73e8;
+    transform-origin: left;
+    transition: all 1s ease;
 }
 
 /* CARDS */
@@ -109,7 +116,6 @@ body {
     padding: 10px;
     margin: 5px;
     border-radius: 8px;
-    cursor: pointer;
 }
 
 /* TITLE */
@@ -126,7 +132,7 @@ body {
 <div class="map" id="map"></div>
 
 <div class="search-bar">
-🔍 <input type="text" placeholder="Where do you want to go?">
+<input type="text" id="searchInput" placeholder="">
 </div>
 
 <div class="sidebar">
@@ -143,83 +149,119 @@ body {
 <div class="place" onclick="goTo('final')">🌙 Final</div>
 </div>
 
-<div class="dot"></div>
+<div class="dot" id="dot"></div>
+<div class="route" id="route"></div>
 
-<!-- CARDS -->
+<!-- CARDS WITH YOUR REAL CONTENT -->
 <div id="search" class="card active">
 <h3>🔍 Search</h3>
-<p>Where do you want to go?</p>
-<p>Some search. Some don’t.</p>
+<p>“Where do you want to go?”</p>
+<p>That’s always the first question.</p>
+<p>Some search for something better. Some don’t search at all.</p>
 </div>
 
 <div id="location" class="card">
 <h3>📍 You Are Here</h3>
-<p>A small blue dot. Just here.</p>
+<p>A small blue dot. Not final. Just… here.</p>
+<p>Maps don’t judge. They just show.</p>
 </div>
 
 <div id="zoomIn" class="card">
 <h3>🔎 Zoom In</h3>
-<p>Everything feels bigger.</p>
+<p>Mistakes feel bigger. Everything feels permanent.</p>
 </div>
 
 <div id="zoomOut" class="card">
 <h3>🌐 Zoom Out</h3>
-<p>You’re part of something bigger.</p>
+<p>You’re not stuck. You’re just not zoomed out enough.</p>
 </div>
 
 <div id="nearby" class="card">
 <h3>🧭 Nearby</h3>
-<p>Small steps matter.</p>
+<p>Small steps. Small choices. Still movement.</p>
 </div>
 
 <div id="recalc" class="card">
 <h3>🔁 Recalculating</h3>
-<p>New route. No judgment.</p>
+<p>You missed a turn. It’s okay. New route.</p>
 </div>
 
 <div id="saved" class="card">
 <h3>📌 Saved</h3>
-<p>Not all saved places are meant to stay.</p>
+<p>Not everything familiar is meant to stay.</p>
 </div>
 
 <div id="noRoute" class="card">
 <h3>🚫 No Route</h3>
-<p>Some paths appear later.</p>
+<p>Some paths appear only when you move.</p>
 </div>
 
 <div id="final" class="card">
 <h3>🌙 Final</h3>
-<p>You are here. And that’s enough.</p>
-</div>
-
-<div class="controls">
-<div class="control-btn">+</div>
-<div class="control-btn">−</div>
+<p>You don’t need the full route.</p>
+<p><strong>📍 You are here.</strong></p>
 </div>
 
 <div class="title">📍 You Are Here — A Map, Not a Destination</div>
 
 <script>
 const map = document.getElementById("map");
+const dot = document.getElementById("dot");
+const route = document.getElementById("route");
 
-const positions = {
-    search: "translate(0px, 0px)",
-    location: "translate(-200px, -100px)",
-    zoomIn: "translate(-400px, -200px) scale(1.2)",
-    zoomOut: "translate(100px, 50px) scale(0.8)",
-    nearby: "translate(-150px, 200px)",
-    recalc: "translate(250px, -150px)",
-    saved: "translate(-300px, 150px)",
-    noRoute: "translate(200px, 200px)",
-    final: "translate(0px, -300px) scale(0.9)"
+/* POSITIONS */
+const points = {
+    search: {x: 500, y: 400, map:"translate(0,0)"},
+    location: {x: 600, y: 300, map:"translate(-200px,-100px)"},
+    zoomIn: {x: 400, y: 200, map:"translate(-400px,-200px) scale(1.2)"},
+    zoomOut: {x: 700, y: 500, map:"translate(100px,50px) scale(0.8)"},
+    nearby: {x: 550, y: 600, map:"translate(-150px,200px)"},
+    recalc: {x: 800, y: 350, map:"translate(250px,-150px)"},
+    saved: {x: 300, y: 550, map:"translate(-300px,150px)"},
+    noRoute: {x: 850, y: 650, map:"translate(200px,200px)"},
+    final: {x: 500, y: 100, map:"translate(0,-300px)"}
 };
 
+let last = points.search;
+
+/* NAVIGATION */
 function goTo(id) {
     document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
     document.getElementById(id).classList.add('active');
 
-    map.style.transform = positions[id];
+    let target = points[id];
+
+    // Move map
+    map.style.transform = target.map;
+
+    // Move dot
+    dot.style.left = target.x + "px";
+    dot.style.top = target.y + "px";
+
+    // Route animation
+    let dx = target.x - last.x;
+    let dy = target.y - last.y;
+    let dist = Math.sqrt(dx*dx + dy*dy);
+
+    route.style.width = dist + "px";
+    route.style.left = last.x + "px";
+    route.style.top = last.y + "px";
+    route.style.transform = `rotate(${Math.atan2(dy,dx)}rad)`;
+
+    last = target;
 }
+
+/* AUTO TYPING SEARCH */
+const text = "Where do you want to go?";
+let i = 0;
+function type() {
+    if (i < text.length) {
+        document.getElementById("searchInput").placeholder += text.charAt(i);
+        i++;
+        setTimeout(type, 60);
+    }
+}
+type();
 </script>
 
 </body>
