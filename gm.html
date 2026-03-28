@@ -1,189 +1,99 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>You Are Here</title>
-
+<title>Blog Map Viewer</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-
 <style>
-body {
-    margin: 0;
-    font-family: 'Inter', sans-serif;
-    overflow: hidden;
-}
+body{
+margin:0;
+font-family:Inter;
+overflow:hidden;
+background:#e9eef3;
+}/* MAP */ #map{ position:fixed; width:100vw; height:100vh; background-image:url('https://tile.openstreetmap.org/5/16/10.png'); background-size:cover; background-position:center; cursor:grab; transition:transform .6s ease, filter .4s; } #map.dark{filter:brightness(.6) contrast(1.2);}
 
-/* 🌍 REALISTIC MAP (FIXED) */
-.map {
-    position: fixed;
-    width: 300%;
-    height: 300%;
-    background-image: url('https://tile.openstreetmap.org/5/16/10.png');
-    background-repeat: repeat;
-    background-size: 256px;
-    transition: transform 1.2s ease;
-}
+#map::after{ content:""; position:absolute; width:100%;height:100%; background:linear-gradient(rgba(0,0,0,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,0.04) 1px,transparent 1px); background-size:80px 80px; pointer-events:none; }
 
-/* subtle grid overlay */
-.map::after {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
-    background-size: 80px 80px;
-}
+/* UI */ .topbar{ position:fixed; top:10px; left:50%; transform:translateX(-50%); z-index:10; width:60%; display:flex; gap:10px; }
 
-/* SEARCH */
-.search-bar {
-    position: fixed;
-    top: 15px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60%;
-    background: white;
-    border-radius: 25px;
-    padding: 12px 20px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    z-index: 10;
-}
+input{ flex:1; padding:12px 16px; border-radius:25px; border:none; box-shadow:0 4px 15px rgba(0,0,0,.2); outline:none; }
 
-.search-bar input {
-    border: none;
-    outline: none;
-    width: 100%;
-}
+button{ border:none; padding:10px 14px; border-radius:20px; cursor:pointer; }
 
-/* SIDEBAR */
-.sidebar {
-    position: fixed;
-    left: 0;
-    width: 280px;
-    height: 100%;
-    background: white;
-    padding: 20px;
-    box-shadow: 2px 0 10px rgba(0,0,0,0.15);
-    z-index: 9;
-}
+.sidebar{ position:fixed; left:0; top:0; height:100%; width:250px; background:#fff; padding:15px; box-shadow:2px 0 10px rgba(0,0,0,.15); z-index:9; }
 
-.place {
-    padding: 12px;
-    border-radius: 10px;
-    margin-bottom: 10px;
-    cursor: pointer;
-}
+.place{padding:10px;border-radius:10px;cursor:pointer;} .place:hover{background:#f1f3f4;}
 
-.place:hover {
-    background: #f1f3f4;
-}
+#dot{ position:absolute; width:14px; height:14px; border-radius:50%; background:#1a73e8; box-shadow:0 0 0 10px rgba(26,115,232,.2); left:600px; top:400px; transition:all 1s ease; }
 
-/* DOT */
-.dot {
-    position: absolute;
-    width: 14px;
-    height: 14px;
-    background: #1a73e8;
-    border-radius: 50%;
-    transition: all 1.2s ease;
-    box-shadow: 0 0 0 10px rgba(26,115,232,0.2);
-}
+.route{ position:absolute; height:3px; background:#1a73e8; transform-origin:left; display:none; }
 
-/* ROUTE */
-.route {
-    position: absolute;
-    height: 3px;
-    background: #1a73e8;
-    transform-origin: left;
-    transition: all 1s ease;
-}
+.suggestions{ position:absolute; top:55px; left:0; right:0; background:#fff; border-radius:12px; box-shadow:0 10px 20px rgba(0,0,0,.15); overflow:hidden; } .suggestions div{ padding:10px; cursor:pointer; } .suggestions div:hover{background:#eee;}
 
-/* CARDS */
-.card {
-    position: fixed;
-    right: 40px;
-    top: 100px;
-    width: 350px;
-    background: white;
-    padding: 20px;
-    border-radius: 15px;
-    display: none;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-}
-
-.card.active {
-    display: block;
-}
 </style>
 </head>
-
-<body>
-
-<div class="map" id="map"></div>
-
-<div class="search-bar">
-<input type="text" id="searchInput" placeholder="">
+<body><div id="map"></div>
+<div id="dot"></div>
+<div class="route" id="route"></div><div class="sidebar">
+<h3>📝 Blog Navigation</h3>
+<div class="place" onclick="toggleTheme()">🌙 Theme</div>
+<div class="place" onclick="fakeGPS()">📍 Highlight Section</div>
+<div class="place" onclick="zoomIn()">🔎 Zoom In View</div>
+<div class="place" onclick="zoomOut()">🌐 Zoom Out View</div><hr style="margin:10px 0;opacity:0.2"><div class="place">📌 Title</div>
+<div class="place">📖 Introduction</div>
+<div class="place">🧠 Section 1</div>
+<div class="place">🧠 Section 2</div>
+<div class="place">💭 Conclusion</div>
+<div class="place">🔙 Back to Blog</div>
+</div><div id="dot"></div>
+<div class="route" id="route"></div><div class="topbar">
+<div style="position:relative;width:100%">
+<input id="search" placeholder="Search blog content..." oninput="suggest(this.value)">
+<div class="suggestions" id="suggestions"></div>
 </div>
+<button onclick="searchGo()">Go</button>
+</div><script>
+const map=document.getElementById('map');
+const dot=document.getElementById('dot');
+const suggestions=document.getElementById('suggestions');
 
-<div class="sidebar">
-<h3>🌍 Explore</h3>
+let scale=1;
+let pos={x:0,y:0};
 
-<div class="place" onclick="goTo('search')">🔍 Search</div>
-<div class="place" onclick="goTo('location')">📍 Current Location</div>
-<div class="place" onclick="goTo('zoomIn')">🔎 Zoom In</div>
-<div class="place" onclick="goTo('zoomOut')">🌐 Zoom Out</div>
-<div class="place" onclick="goTo('nearby')">🧭 Nearby</div>
-<div class="place" onclick="goTo('recalc')">🔁 Recalculating</div>
-<div class="place" onclick="goTo('final')">🌙 Final</div>
-</div>
+/* DRAG MAP */
+let dragging=false,startX,startY;
+map.addEventListener('mousedown',e=>{dragging=true;startX=e.clientX-pos.x;startY=e.clientY-pos.y;map.style.cursor='grabbing'});
+window.addEventListener('mouseup',()=>{dragging=false;map.style.cursor='grab'});
+window.addEventListener('mousemove',e=>{
+if(!dragging)return;
+pos.x=e.clientX-startX;
+pos.y=e.clientY-startY;
+map.style.transform=`translate(${pos.x}px,${pos.y}px) scale(${scale})`;
+});
 
-<div class="dot" id="dot"></div>
-<div class="route" id="route"></div>
+function zoomIn(){scale+=0.2;apply()}
+function zoomOut(){scale=Math.max(0.6,scale-0.2);apply()}
+function apply(){map.style.transform=`translate(${pos.x}px,${pos.y}px) scale(${scale})`}
 
-<div id="search" class="card active"><h3>Search</h3><p>Where do you want to go?</p></div>
-<div id="location" class="card"><h3>You are here</h3></div>
-<div id="zoomIn" class="card"><h3>Zoom In</h3></div>
-<div id="zoomOut" class="card"><h3>Zoom Out</h3></div>
-<div id="nearby" class="card"><h3>Nearby</h3></div>
-<div id="recalc" class="card"><h3>Recalculating</h3></div>
-<div id="final" class="card"><h3>Final</h3></div>
-
-<script>
-const map = document.getElementById("map");
-const dot = document.getElementById("dot");
-
-const points = {
-    search: {x: 500, y: 400, map:"translate(0,0)"},
-    location: {x: 700, y: 300, map:"translate(-200px,-100px)"},
-    zoomIn: {x: 400, y: 200, map:"translate(-400px,-200px) scale(1.2)"},
-    zoomOut: {x: 800, y: 500, map:"translate(100px,50px) scale(0.8)"},
-    nearby: {x: 600, y: 600, map:"translate(-150px,200px)"},
-    recalc: {x: 900, y: 350, map:"translate(250px,-150px)"},
-    final: {x: 500, y: 100, map:"translate(0,-300px)"}
-};
-
-function goTo(id) {
-    document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
-
-    let p = points[id];
-    map.style.transform = p.map;
-    dot.style.left = p.x + "px";
-    dot.style.top = p.y + "px";
+/* FAKE HIGHLIGHT */
+function fakeGPS(){
+const x=600+Math.random()*200;
+const y=300+Math.random()*200;
+dot.style.left=x+'px';
+dot.style.top=y+'px';
 }
 
-/* typing */
-let txt = "Where do you want to go?";
-let i = 0;
-function type(){
- if(i<txt.length){
-  document.getElementById("searchInput").placeholder += txt[i++];
-  setTimeout(type,50);
- }
-}
-type();
-</script>
+/* THEME */
+function toggleTheme(){map.classList.toggle('dark')}
 
-</body>
+/* SEARCH SUGGESTIONS */
+const places=['Title','Introduction','Section 1','Section 2','Conclusion'];
+function suggest(v){
+if(!v){suggestions.innerHTML='';return}
+const f=places.filter(p=>p.toLowerCase().includes(v.toLowerCase()));
+suggestions.innerHTML=f.map(p=>`<div onclick=selectPlace('${p}')>${p}</div>`).join('');
+}
+function selectPlace(p){document.getElementById('search').value=p;suggestions.innerHTML=''}
+function searchGo(){fakeGPS()}
+</script></body>
 </html>
