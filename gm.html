@@ -1,99 +1,271 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Blog Map Viewer</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+<title>You Are Here</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
 <style>
-body{
-margin:0;
-font-family:Inter;
-overflow:hidden;
-background:#e9eef3;
-}/* MAP */ #map{ position:fixed; width:100vw; height:100vh; background-image:url('https://tile.openstreetmap.org/5/16/10.png'); background-size:cover; background-position:center; cursor:grab; transition:transform .6s ease, filter .4s; } #map.dark{filter:brightness(.6) contrast(1.2);}
 
-#map::after{ content:""; position:absolute; width:100%;height:100%; background:linear-gradient(rgba(0,0,0,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,0.04) 1px,transparent 1px); background-size:80px 80px; pointer-events:none; }
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+    background: #f5f3ef;
+}
 
-/* UI */ .topbar{ position:fixed; top:10px; left:50%; transform:translateX(-50%); z-index:10; width:60%; display:flex; gap:10px; }
+/* MAP CONTAINER */
+.map-container {
+    position: fixed;
+    width: 200%;
+    height: 200%;
+    top: -50%;
+    left: -50%;
+    z-index: -2;
+    transition: transform 1s ease;
+}
 
-input{ flex:1; padding:12px 16px; border-radius:25px; border:none; box-shadow:0 4px 15px rgba(0,0,0,.2); outline:none; }
+/* SVG MAP */
+svg {
+    width: 100%;
+    height: 100%;
+}
 
-button{ border:none; padding:10px 14px; border-radius:20px; cursor:pointer; }
+/* ROADS */
+.road {
+    stroke: #ccc;
+    stroke-width: 4;
+    fill: none;
+}
 
-.sidebar{ position:fixed; left:0; top:0; height:100%; width:250px; background:#fff; padding:15px; box-shadow:2px 0 10px rgba(0,0,0,.15); z-index:9; }
+.route {
+    stroke: #1a73e8;
+    stroke-width: 5;
+    fill: none;
+}
 
-.place{padding:10px;border-radius:10px;cursor:pointer;} .place:hover{background:#f1f3f4;}
+.blocked {
+    stroke: red;
+    stroke-width: 5;
+    stroke-dasharray: 8;
+}
 
-#dot{ position:absolute; width:14px; height:14px; border-radius:50%; background:#1a73e8; box-shadow:0 0 0 10px rgba(26,115,232,.2); left:600px; top:400px; transition:all 1s ease; }
+/* NAVBAR */
+.navbar {
+    position: sticky;
+    top: 0;
+    background: white;
+    display: flex;
+    padding: 12px 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    z-index: 10;
+}
 
-.route{ position:absolute; height:3px; background:#1a73e8; transform-origin:left; display:none; }
+.search {
+    flex: 1;
+    padding: 10px;
+    border-radius: 25px;
+    border: 1px solid #ddd;
+    margin: 0 10px;
+}
 
-.suggestions{ position:absolute; top:55px; left:0; right:0; background:#fff; border-radius:12px; box-shadow:0 10px 20px rgba(0,0,0,.15); overflow:hidden; } .suggestions div{ padding:10px; cursor:pointer; } .suggestions div:hover{background:#eee;}
+/* RIDER */
+.rider {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 28px;
+    z-index: 5;
+    transition: 0.5s;
+}
+
+.rider span {
+    position: absolute;
+    top: -25px;
+    left: 10px;
+}
+
+/* CARD */
+.section {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    max-width: 600px;
+    background: rgba(255,255,255,0.9);
+    padding: 30px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    opacity: 0;
+    transform: translateY(50px);
+    transition: 0.6s;
+}
+
+.card.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* LOADER */
+.loader {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+}
+
+.loader div {
+    border: 5px solid #ddd;
+    border-top: 5px solid #1a73e8;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    100% { transform: rotate(360deg); }
+}
+
+.blur {
+    filter: blur(4px);
+}
 
 </style>
 </head>
-<body><div id="map"></div>
-<div id="dot"></div>
-<div class="route" id="route"></div><div class="sidebar">
-<h3>📝 Blog Navigation</h3>
-<div class="place" onclick="toggleTheme()">🌙 Theme</div>
-<div class="place" onclick="fakeGPS()">📍 Highlight Section</div>
-<div class="place" onclick="zoomIn()">🔎 Zoom In View</div>
-<div class="place" onclick="zoomOut()">🌐 Zoom Out View</div><hr style="margin:10px 0;opacity:0.2"><div class="place">📌 Title</div>
-<div class="place">📖 Introduction</div>
-<div class="place">🧠 Section 1</div>
-<div class="place">🧠 Section 2</div>
-<div class="place">💭 Conclusion</div>
-<div class="place">🔙 Back to Blog</div>
-</div><div id="dot"></div>
-<div class="route" id="route"></div><div class="topbar">
-<div style="position:relative;width:100%">
-<input id="search" placeholder="Search blog content..." oninput="suggest(this.value)">
-<div class="suggestions" id="suggestions"></div>
+
+<body>
+
+<div class="navbar">
+☰
+<input class="search" value="...... You are here Right now">
+👤
 </div>
-<button onclick="searchGo()">Go</button>
-</div><script>
-const map=document.getElementById('map');
-const dot=document.getElementById('dot');
-const suggestions=document.getElementById('suggestions');
 
-let scale=1;
-let pos={x:0,y:0};
+<div class="map-container" id="map">
 
-/* DRAG MAP */
-let dragging=false,startX,startY;
-map.addEventListener('mousedown',e=>{dragging=true;startX=e.clientX-pos.x;startY=e.clientY-pos.y;map.style.cursor='grabbing'});
-window.addEventListener('mouseup',()=>{dragging=false;map.style.cursor='grab'});
-window.addEventListener('mousemove',e=>{
-if(!dragging)return;
-pos.x=e.clientX-startX;
-pos.y=e.clientY-startY;
-map.style.transform=`translate(${pos.x}px,${pos.y}px) scale(${scale})`;
+<svg viewBox="0 0 1000 1000">
+
+<!-- ROADS -->
+<path class="road" d="M100 200 Q500 100 900 300"/>
+<path class="road" d="M200 800 Q600 600 900 700"/>
+<path class="road" d="M300 300 Q500 500 700 200"/>
+
+<!-- ROUTES -->
+<path class="route" id="mainRoute" d="M100 200 Q500 100 900 300"/>
+<path class="blocked" id="blockedRoute" d="M300 300 Q500 500 700 200"/>
+
+</svg>
+
+</div>
+
+<div class="rider" id="rider">🚴‍♂️<span id="q">?</span></div>
+
+<div class="loader" id="loader"><div></div></div>
+
+<!-- SECTIONS -->
+
+<div class="section"><div class="card">
+<h2>🔍 Search</h2>
+<h4>Where do you want to go?</h4>
+<p>We just stare at the map… waiting for it to explain us.</p>
+</div></div>
+
+<div class="section"><div class="card">
+<h2>📍 Current Location</h2>
+<p>You are here. A small blue dot.</p>
+</div></div>
+
+<div class="section"><div class="card">
+<h2>🔎 Zoom In</h2>
+<p>Mistakes look permanent. Everything feels stuck.</p>
+</div></div>
+
+<div class="section"><div class="card">
+<h2>🌐 Zoom Out</h2>
+<p>Multiple paths appear. You’re not stuck.</p>
+</div></div>
+
+<div class="section"><div class="card">
+<h2>🧭 Nearby Options</h2>
+<p>Small steps still move you forward.</p>
+</div></div>
+
+<div class="section"><div class="card">
+<h2>🔁 Recalculating</h2>
+<p>A new route appears.</p>
+</div></div>
+
+<div class="section"><div class="card">
+<h2>🌙 Final View</h2>
+<p>You can still move.</p>
+</div></div>
+
+<script>
+
+const cards = document.querySelectorAll(".card");
+const map = document.getElementById("map");
+const rider = document.getElementById("rider");
+const loader = document.getElementById("loader");
+const blocked = document.getElementById("blockedRoute");
+const question = document.getElementById("q");
+
+window.addEventListener("scroll", () => {
+
+cards.forEach((card, i) => {
+
+let rect = card.getBoundingClientRect();
+
+if(rect.top < window.innerHeight - 100){
+
+card.classList.add("active");
+
+/* CAMERA MOVEMENT */
+map.style.transform = `scale(${1 + i*0.3}) translate(-${i*50}px, -${i*40}px)`;
+
+/* STATES */
+if(i === 0){
+question.style.opacity = 1;
+}
+
+if(i === 1){
+question.style.opacity = 0;
+}
+
+if(i === 2){
+blocked.style.stroke = "red";
+}
+
+if(i === 3){
+blocked.style.stroke = "transparent";
+}
+
+if(i === 5){
+loader.style.display = "block";
+map.classList.add("blur");
+
+setTimeout(()=>{
+loader.style.display = "none";
+map.classList.remove("blur");
+},1500);
+}
+
+}
+
 });
 
-function zoomIn(){scale+=0.2;apply()}
-function zoomOut(){scale=Math.max(0.6,scale-0.2);apply()}
-function apply(){map.style.transform=`translate(${pos.x}px,${pos.y}px) scale(${scale})`}
+});
 
-/* FAKE HIGHLIGHT */
-function fakeGPS(){
-const x=600+Math.random()*200;
-const y=300+Math.random()*200;
-dot.style.left=x+'px';
-dot.style.top=y+'px';
-}
+</script>
 
-/* THEME */
-function toggleTheme(){map.classList.toggle('dark')}
-
-/* SEARCH SUGGESTIONS */
-const places=['Title','Introduction','Section 1','Section 2','Conclusion'];
-function suggest(v){
-if(!v){suggestions.innerHTML='';return}
-const f=places.filter(p=>p.toLowerCase().includes(v.toLowerCase()));
-suggestions.innerHTML=f.map(p=>`<div onclick=selectPlace('${p}')>${p}</div>`).join('');
-}
-function selectPlace(p){document.getElementById('search').value=p;suggestions.innerHTML=''}
-function searchGo(){fakeGPS()}
-</script></body>
+</body>
 </html>
