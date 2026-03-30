@@ -5,89 +5,149 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>You Are Here</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
 
 body {
-    margin: 0;
-    font-family: 'Poppins', sans-serif;
-    overflow-x: hidden;
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: #0e1116;
+  overflow-x: hidden;
+  color: #111;
 }
 
-/* REAL MAP BACKGROUND */
+/* MAP */
 .map {
-    position: fixed;
-    width: 200%;
-    height: 200%;
-    background: url("https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/World_map_-_low_resolution.svg/2000px-World_map_-_low_resolution.svg.png");
-    background-size: cover;
-    background-position: center;
-    z-index: -2;
-    transition: transform 1.2s ease;
+  position: fixed;
+  width: 300%;
+  height: 300%;
+  background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/World_map_-_low_resolution.svg/2000px-World_map_-_low_resolution.svg.png');
+  background-size: cover;
+  filter: brightness(0.8) contrast(1.1);
+  transition: transform 1.5s ease, filter 1s;
+  z-index: -2;
+}
+
+/* OVERLAY */
+.overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba(14,17,22,0.35);
+  z-index: -1;
 }
 
 /* NAVBAR */
 .navbar {
-    position: sticky;
-    top: 0;
-    background: white;
-    display: flex;
-    padding: 12px 20px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-    z-index: 10;
+  position: sticky;
+  top: 0;
+  background: rgba(255,255,255,0.9);
+  padding: 12px 20px;
+  display: flex;
+  backdrop-filter: blur(10px);
+  z-index: 10;
 }
 
 .search {
-    flex: 1;
-    padding: 10px;
-    border-radius: 25px;
-    border: 1px solid #ddd;
-    margin: 0 10px;
+  flex: 1;
+  padding: 10px;
+  border-radius: 25px;
+  border: none;
 }
 
 /* RIDER */
 .rider {
-    position: fixed;
-    top: 60%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 32px;
-    z-index: 5;
-    text-align: center;
+  position: fixed;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 34px;
+  z-index: 5;
+  transition: transform 1s ease;
 }
 
 .rider span {
-    display: block;
-    font-size: 20px;
+  display: block;
+  text-align: center;
+  font-size: 18px;
+  transition: 0.5s;
+}
+
+/* ROUTE */
+svg {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+
+.route {
+  stroke: #4da3ff;
+  stroke-width: 4;
+  fill: none;
+  stroke-dasharray: 1200;
+  stroke-dashoffset: 1200;
+  transition: 2s ease;
+}
+
+.blocked {
+  stroke: red;
+  stroke-dasharray: 10;
+  opacity: 0;
+}
+
+/* SECTIONS */
+.section {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* CARD */
-.section {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 .card {
-    max-width: 650px;
-    background: rgba(255,255,255,0.9);
-    padding: 30px;
-    border-radius: 20px;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    opacity: 0;
-    transform: translateY(60px);
-    transition: 0.6s;
+  max-width: 720px;
+  background: rgba(255,255,255,0.96);
+  padding: 36px;
+  border-radius: 24px;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.4);
+  opacity: 0;
+  transform: translateY(40px);
+  transition: 0.6s;
+  line-height: 1.6;
 }
 
 .card.active {
-    opacity: 1;
-    transform: translateY(0);
+  opacity: 1;
+  transform: translateY(0);
 }
 
 h2 { margin-top: 0; }
+
+/* LOADER */
+.loader {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  display: none;
+}
+
+.loader div {
+  border: 5px solid #fff;
+  border-top: 5px solid #4da3ff;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  100% { transform: rotate(360deg); }
+}
+
+.blur {
+  filter: blur(6px);
+}
 
 </style>
 </head>
@@ -95,6 +155,7 @@ h2 { margin-top: 0; }
 <body>
 
 <div class="map" id="map"></div>
+<div class="overlay"></div>
 
 <div class="navbar">
 ☰
@@ -102,113 +163,294 @@ h2 { margin-top: 0; }
 👤
 </div>
 
-<!-- RIDER -->
+<svg>
+<path id="route" class="route" d="M200 700 Q600 300 1000 600"/>
+<path id="blocked" class="blocked" d="M400 600 Q600 500 800 400"/>
+</svg>
+
 <div class="rider" id="rider">
 🚴‍♂️
 <span id="q">?</span>
 </div>
 
-<!-- SECTION 1 -->
-<div class="section">
-<div class="card">
+<div class="loader" id="loader"><div></div></div>
+
+<!-- SECTIONS -->
+
+<div class="section" data-scene="search"><div class="card">
 <h2>🔍 Search</h2>
 <h4>Where do you want to go?</h4>
 <p>
-“Where do you want to go?”<br>
-That’s always the first question.<br>
-Not where you are.<br>
-Not what you’ve already figured out.<br>
-Just… where do you want to go?<br><br>
+“Where do you want to go?”  
+That’s always the first question.  
 
-Some people seem to have clear answers —<br>
-college, careers, a life that looks neatly planned.<br><br>
+Not where you are.  
+Not what you’ve already figured out.  
+Just… where do you want to go?  
 
-Some of us type things we don’t fully understand:<br>
-“something better”<br>
-“somewhere else”<br>
-“anything but this”<br><br>
+Some people seem to have clear answers —  
+college, careers, a life that looks neatly planned.  
 
-And sometimes, we don’t search at all.<br>
-We just stare at the map…
+Some of us type things we don’t fully understand into the search bar:  
+“something better”  
+“somewhere else”  
+“anything but this”  
+
+And sometimes, we don’t search at all.  
+We just stare at the map… waiting for it to explain us to ourselves.
 </p>
-</div>
-</div>
+</div></div>
 
-<!-- SECTION 2 -->
-<div class="section">
-<div class="card">
+<div class="section" data-scene="current"><div class="card">
 <h2>📍 Current Location</h2>
 <p>
-You are here.<br>
-A small blue dot.<br>
-Not everything.<br>
-Just… here.
-</p>
-</div>
-</div>
+You are here.  
 
-<!-- SECTION 3 -->
-<div class="section">
-<div class="card">
+A small blue dot.  
+Easy to overlook. Easy to underestimate.  
+
+Not impressive. Not final. Not everything.  
+
+Just… here.  
+
+Maybe this isn’t where you thought you’d be.  
+
+Maybe you expected to feel ahead, clearer, more certain.  
+
+But maps don’t judge locations.  
+
+They don’t label places as behind or wrong.  
+
+They simply show what is.  
+
+And right now — this is your point on the map.
+</p>
+</div></div>
+
+<div class="section" data-scene="zoomin"><div class="card">
 <h2>🔎 Zoom In</h2>
 <p>
-Everything feels heavier.<br>
-Mistakes look permanent.
-</p>
-</div>
-</div>
+Zoom in too much, and everything starts to feel heavier than it is.  
 
-<!-- SECTION 4 -->
-<div class="section">
-<div class="card">
+Mistakes look permanent.  
+Confusion feels like failure.  
+One bad day begins to resemble your entire story.  
+
+You notice every wrong turn.  
+Every delay.  
+Every place you didn’t reach.  
+
+And suddenly, it feels like you’re stuck.
+</p>
+</div></div>
+
+<div class="section" data-scene="zoomout"><div class="card">
 <h2>🌐 Zoom Out</h2>
 <p>
-More routes exist.<br>
-You’re not stuck.
+Then you zoom out.  
+
+And everything shifts.  
+
+Your current location becomes small —  
+not insignificant, just not everything.  
+
+There are roads you haven’t taken.  
+Places you haven’t discovered.  
+Directions you haven’t even considered yet.  
+
+You’re not stuck.  
+
+You’re just… seeing too little of the map.
 </p>
-</div>
-</div>
+</div></div>
+
+<div class="section" data-scene="nearby"><div class="card">
+<h2>🧭 Nearby Options</h2>
+<p>
+Look around.  
+
+Not at the entire world — just what’s close.  
+
+A small opportunity.  
+A conversation you’ve been avoiding.  
+A habit you could begin.  
+A step that doesn’t look big… but still moves you forward.  
+
+Maps don’t show your entire journey at once.  
+
+They show what’s nearby first.  
+
+Maybe that’s not limiting.  
+
+Maybe that’s exactly how it’s meant to be.
+</p>
+</div></div>
+
+<div class="section" data-scene="recalc"><div class="card">
+<h2>🔁 Recalculating…</h2>
+<p>
+Sometimes you miss a turn.  
+
+Sometimes things don’t go the way you planned —  
+or the way you thought they were supposed to.  
+
+There’s a pause.  
+A quiet moment where everything feels slightly off.  
+
+And then:  
+
+Recalculating.  
+
+No judgment.  
+No “you failed.”  
+No going back to prove anything.  
+
+Just… a new route.  
+
+Maybe not the one you imagined.  
+But still leading somewhere.
+</p>
+</div></div>
+
+<div class="section" data-scene="saved"><div class="card">
+<h2>📌 Saved Places</h2>
+<p>
+There are places you return to.  
+
+Memories.  
+People.  
+Versions of yourself you miss.  
+
+Some of them are worth revisiting.  
+
+Some of them only feel good because they’re familiar.  
+
+Not everything you’ve saved is meant to be your destination.  
+
+Some things are just… reminders of where you’ve been.
+</p>
+</div></div>
+
+<div class="section" data-scene="noroute"><div class="card">
+<h2>🚫 No Route Found</h2>
+<p>
+There will be moments when nothing makes sense.  
+
+No clear direction.  
+No obvious next step.  
+No route appearing on the screen.  
+
+And that feeling — it’s uncomfortable.  
+
+But maybe not everything is meant to be pre-calculated.  
+
+Some paths don’t show up  
+until you start moving.
+</p>
+</div></div>
+
+<div class="section" data-scene="final"><div class="card">
+<h2>🌙 Final View</h2>
+<p>
+You don’t need the whole route figured out.  
+
+You don’t need to be at the “right” place by now.  
+
+You don’t need perfect timing, perfect clarity, or perfect direction.  
+
+Because this isn’t about reaching a fixed destination.  
+
+It’s a map.  
+
+And maps aren’t meant to tell you where you should be —  
+they help you understand where you are…  
+and remind you that you can still move.  
+
+📍 You are here.  
+
+And that’s not a bad place to be but maybe try going forward.
+</p>
+</div></div>
 
 <script>
 
-const cards = document.querySelectorAll(".card");
+const sections = document.querySelectorAll(".section");
 const map = document.getElementById("map");
+const route = document.getElementById("route");
+const blocked = document.getElementById("blocked");
+const loader = document.getElementById("loader");
 const q = document.getElementById("q");
+const rider = document.getElementById("rider");
 
-window.addEventListener("scroll", () => {
+const observer = new IntersectionObserver(entries => {
 
-cards.forEach((card, i) => {
+entries.forEach(entry => {
 
-let rect = card.getBoundingClientRect();
+if(entry.isIntersecting){
 
-if(rect.top < window.innerHeight - 100){
+let scene = entry.target.dataset.scene;
+entry.target.querySelector(".card").classList.add("active");
 
-card.classList.add("active");
+switch(scene){
 
-/* CAMERA MOVEMENTS */
-if(i === 0){
+case "search":
 map.style.transform = "scale(1)";
 q.style.opacity = 1;
-}
+break;
 
-if(i === 1){
+case "current":
 map.style.transform = "scale(2) translate(-20%, -20%)";
 q.style.opacity = 0;
-}
+rider.style.transform = "translate(-50%, -60%)";
+break;
 
-if(i === 2){
-map.style.transform = "scale(3) translate(-30%, -30%)";
-}
+case "zoomin":
+route.style.strokeDashoffset = "0";
+blocked.style.opacity = 1;
+map.style.transform = "scale(3)";
+break;
 
-if(i === 3){
-map.style.transform = "scale(1.2) translate(0%, 0%)";
+case "zoomout":
+blocked.style.opacity = 0;
+map.style.transform = "scale(1.3)";
+break;
+
+case "nearby":
+map.style.filter = "brightness(1.2)";
+break;
+
+case "recalc":
+loader.style.display = "block";
+map.classList.add("blur");
+setTimeout(()=>{
+loader.style.display = "none";
+map.classList.remove("blur");
+},1500);
+break;
+
+case "saved":
+map.style.filter = "contrast(1.2)";
+break;
+
+case "noroute":
+map.style.filter = "brightness(0.6)";
+break;
+
+case "final":
+map.style.transform = "scale(1)";
+map.style.filter = "none";
+rider.style.transform = "translate(-50%, -50%)";
+break;
+
 }
 
 }
 
 });
 
-});
+}, { threshold: 0.6 });
+
+sections.forEach(sec => observer.observe(sec));
 
 </script>
 
