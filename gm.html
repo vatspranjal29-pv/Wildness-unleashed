@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>You Are Here</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
@@ -14,43 +13,18 @@ body {
     margin: 0;
     font-family: 'Poppins', sans-serif;
     overflow-x: hidden;
-    background: #f5f3ef;
 }
 
-/* MAP CONTAINER */
-.map-container {
+/* REAL MAP BACKGROUND */
+.map {
     position: fixed;
     width: 200%;
     height: 200%;
-    top: -50%;
-    left: -50%;
+    background: url("https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/World_map_-_low_resolution.svg/2000px-World_map_-_low_resolution.svg.png");
+    background-size: cover;
+    background-position: center;
     z-index: -2;
-    transition: transform 1s ease;
-}
-
-/* SVG MAP */
-svg {
-    width: 100%;
-    height: 100%;
-}
-
-/* ROADS */
-.road {
-    stroke: #ccc;
-    stroke-width: 4;
-    fill: none;
-}
-
-.route {
-    stroke: #1a73e8;
-    stroke-width: 5;
-    fill: none;
-}
-
-.blocked {
-    stroke: red;
-    stroke-width: 5;
-    stroke-dasharray: 8;
+    transition: transform 1.2s ease;
 }
 
 /* NAVBAR */
@@ -75,18 +49,17 @@ svg {
 /* RIDER */
 .rider {
     position: fixed;
-    top: 50%;
+    top: 60%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 28px;
+    font-size: 32px;
     z-index: 5;
-    transition: 0.5s;
+    text-align: center;
 }
 
 .rider span {
-    position: absolute;
-    top: -25px;
-    left: 10px;
+    display: block;
+    font-size: 20px;
 }
 
 /* CARD */
@@ -98,14 +71,14 @@ svg {
 }
 
 .card {
-    max-width: 600px;
+    max-width: 650px;
     background: rgba(255,255,255,0.9);
     padding: 30px;
     border-radius: 20px;
     backdrop-filter: blur(10px);
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     opacity: 0;
-    transform: translateY(50px);
+    transform: translateY(60px);
     transition: 0.6s;
 }
 
@@ -114,36 +87,14 @@ svg {
     transform: translateY(0);
 }
 
-/* LOADER */
-.loader {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: none;
-}
-
-.loader div {
-    border: 5px solid #ddd;
-    border-top: 5px solid #1a73e8;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-    100% { transform: rotate(360deg); }
-}
-
-.blur {
-    filter: blur(4px);
-}
+h2 { margin-top: 0; }
 
 </style>
 </head>
 
 <body>
+
+<div class="map" id="map"></div>
 
 <div class="navbar">
 ☰
@@ -151,73 +102,78 @@ svg {
 👤
 </div>
 
-<div class="map-container" id="map">
-
-<svg viewBox="0 0 1000 1000">
-
-<!-- ROADS -->
-<path class="road" d="M100 200 Q500 100 900 300"/>
-<path class="road" d="M200 800 Q600 600 900 700"/>
-<path class="road" d="M300 300 Q500 500 700 200"/>
-
-<!-- ROUTES -->
-<path class="route" id="mainRoute" d="M100 200 Q500 100 900 300"/>
-<path class="blocked" id="blockedRoute" d="M300 300 Q500 500 700 200"/>
-
-</svg>
-
+<!-- RIDER -->
+<div class="rider" id="rider">
+🚴‍♂️
+<span id="q">?</span>
 </div>
 
-<div class="rider" id="rider">🚴‍♂️<span id="q">?</span></div>
-
-<div class="loader" id="loader"><div></div></div>
-
-<!-- SECTIONS -->
-
-<div class="section"><div class="card">
+<!-- SECTION 1 -->
+<div class="section">
+<div class="card">
 <h2>🔍 Search</h2>
 <h4>Where do you want to go?</h4>
-<p>We just stare at the map… waiting for it to explain us.</p>
-</div></div>
+<p>
+“Where do you want to go?”<br>
+That’s always the first question.<br>
+Not where you are.<br>
+Not what you’ve already figured out.<br>
+Just… where do you want to go?<br><br>
 
-<div class="section"><div class="card">
+Some people seem to have clear answers —<br>
+college, careers, a life that looks neatly planned.<br><br>
+
+Some of us type things we don’t fully understand:<br>
+“something better”<br>
+“somewhere else”<br>
+“anything but this”<br><br>
+
+And sometimes, we don’t search at all.<br>
+We just stare at the map…
+</p>
+</div>
+</div>
+
+<!-- SECTION 2 -->
+<div class="section">
+<div class="card">
 <h2>📍 Current Location</h2>
-<p>You are here. A small blue dot.</p>
-</div></div>
+<p>
+You are here.<br>
+A small blue dot.<br>
+Not everything.<br>
+Just… here.
+</p>
+</div>
+</div>
 
-<div class="section"><div class="card">
+<!-- SECTION 3 -->
+<div class="section">
+<div class="card">
 <h2>🔎 Zoom In</h2>
-<p>Mistakes look permanent. Everything feels stuck.</p>
-</div></div>
+<p>
+Everything feels heavier.<br>
+Mistakes look permanent.
+</p>
+</div>
+</div>
 
-<div class="section"><div class="card">
+<!-- SECTION 4 -->
+<div class="section">
+<div class="card">
 <h2>🌐 Zoom Out</h2>
-<p>Multiple paths appear. You’re not stuck.</p>
-</div></div>
-
-<div class="section"><div class="card">
-<h2>🧭 Nearby Options</h2>
-<p>Small steps still move you forward.</p>
-</div></div>
-
-<div class="section"><div class="card">
-<h2>🔁 Recalculating</h2>
-<p>A new route appears.</p>
-</div></div>
-
-<div class="section"><div class="card">
-<h2>🌙 Final View</h2>
-<p>You can still move.</p>
-</div></div>
+<p>
+More routes exist.<br>
+You’re not stuck.
+</p>
+</div>
+</div>
 
 <script>
 
 const cards = document.querySelectorAll(".card");
 const map = document.getElementById("map");
-const rider = document.getElementById("rider");
-const loader = document.getElementById("loader");
-const blocked = document.getElementById("blockedRoute");
-const question = document.getElementById("q");
+const q = document.getElementById("q");
 
 window.addEventListener("scroll", () => {
 
@@ -229,34 +185,23 @@ if(rect.top < window.innerHeight - 100){
 
 card.classList.add("active");
 
-/* CAMERA MOVEMENT */
-map.style.transform = `scale(${1 + i*0.3}) translate(-${i*50}px, -${i*40}px)`;
-
-/* STATES */
+/* CAMERA MOVEMENTS */
 if(i === 0){
-question.style.opacity = 1;
+map.style.transform = "scale(1)";
+q.style.opacity = 1;
 }
 
 if(i === 1){
-question.style.opacity = 0;
+map.style.transform = "scale(2) translate(-20%, -20%)";
+q.style.opacity = 0;
 }
 
 if(i === 2){
-blocked.style.stroke = "red";
+map.style.transform = "scale(3) translate(-30%, -30%)";
 }
 
 if(i === 3){
-blocked.style.stroke = "transparent";
-}
-
-if(i === 5){
-loader.style.display = "block";
-map.classList.add("blur");
-
-setTimeout(()=>{
-loader.style.display = "none";
-map.classList.remove("blur");
-},1500);
+map.style.transform = "scale(1.2) translate(0%, 0%)";
 }
 
 }
