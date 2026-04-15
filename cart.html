@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Saved for Later</title>
+<title>Your Cart</title>
 
 <style>
 body {
@@ -16,207 +16,155 @@ body {
 .navbar {
   background: #131921;
   color: white;
-  padding: 10px;
-  display: flex;
-  gap: 10px;
-}
-.navbar input {
-  flex: 1;
-  padding: 8px;
+  padding: 12px 20px;
+  font-weight: bold;
 }
 
 /* LAYOUT */
 .container {
-  max-width: 1000px;
-  margin: auto;
-  padding: 20px;
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 20px auto;
 }
+
+/* LEFT */
 .cart {
   background: white;
   padding: 20px;
   border-radius: 8px;
 }
 
+/* RIGHT */
+.summary {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  position: sticky;
+  top: 20px;
+  height: fit-content;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
 /* ITEM */
 .item {
   display: grid;
   grid-template-columns: 120px 1fr;
-  gap: 12px;
+  gap: 15px;
   padding: 15px 0;
   border-bottom: 1px solid #ddd;
-  margin-bottom: 10px;
+  transition: 0.2s;
 }
+.item:hover { background: #fafafa; }
+
 .item img {
   width: 110px;
   border: 1px solid #ddd;
   padding: 5px;
-  background: white;
+  transition: 0.3s;
 }
+.item img:hover { transform: scale(1.08); }
 
 .title { font-weight: bold; }
 .price { color: #B12704; font-weight: bold; }
+.muted { font-size: 13px; color: #565959; }
 
-.rating {
-  font-size: 13px;
-  color: #f0c14b;
-}
-.rating span { color: #007185; }
-
-.muted {
-  font-size: 13px;
-  color: #565959;
-}
-
-.actions span {
-  color: #007185;
-  font-size: 13px;
-  cursor: pointer;
+.badge {
+  background: #cc0c39;
+  color: white;
+  font-size: 12px;
+  padding: 3px 6px;
+  display: inline-block;
+  margin-top: 5px;
 }
 
-/* STORY STYLING */
-.thought {
-  margin: 20px 0;
-  padding-left: 12px;
-  border-left: 3px solid #e3e6e6;
+/* STORY BLOCKS */
+.story {
+  margin: 25px 0;
+  padding: 15px;
+  background: #f8f9fa;
+  border-left: 4px solid #ffd814;
+  border-radius: 6px;
 }
-.thought p {
+
+.story p {
   margin: 6px 0;
+  font-size: 15px;
 }
 
-.highlight {
-  font-weight: bold;
-  color: #111;
-}
-
-.big-line {
+.big {
   font-size: 18px;
   font-weight: bold;
-  margin-top: 10px;
 }
 
-.subtle-line {
-  color: #555;
-}
-
-.pause {
-  text-align: center;
-  color: #999;
-  margin: 20px 0;
-  letter-spacing: 3px;
-}
-
-/* SECTIONS */
-.section {
-  margin-top: 30px;
-}
-
-.section.saved {
-  background: #fafafa;
-  padding: 15px;
-  border-radius: 8px;
-}
-
-.block {
-  background: white;
-  padding: 18px;
-  border-radius: 8px;
-  margin-top: 20px;
-}
-
-/* CHECKOUT */
-.checkout {
-  text-align: center;
-  margin-top: 40px;
-}
-
-.checkout button {
+/* BUTTON */
+.btn {
+  width: 100%;
   background: #ffd814;
   border: none;
-  padding: 12px 20px;
+  padding: 12px;
   font-weight: bold;
   cursor: pointer;
+  margin-top: 10px;
 }
 </style>
 </head>
 
 <body>
 
-<div class="navbar">
-  <div>Your Cart</div>
-  <input placeholder="Search items, ideas, versions of you…">
-</div>
+<div class="navbar">Shopping Cart</div>
 
 <div class="container">
+
+<!-- LEFT -->
 <div class="cart">
 
-<h2>Shopping Cart</h2>
+<h2>Your Cart</h2>
 
-<div class="thought">
-  <p class="highlight">🧾 YOUR CART IS WAITING</p>
-  <p>You weren’t planning to buy anything.</p>
-  <p>Just a quick scroll.</p>
+<div class="story">
+<p class="big">🧾 YOUR CART IS WAITING</p>
+<p>You weren’t planning to buy anything.</p>
+<p>Just a quick scroll.</p>
+<p>Just passing time.</p>
+<p>Just seeing what’s there.</p>
+<p class="big">But one thing led to another.</p>
 </div>
 
 <div class="item">
 <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff">
 <div>
 <div class="title">Nike Air Force 1</div>
-<div class="rating">⭐⭐⭐⭐☆ <span>(12,483)</span></div>
 <div class="price">₹7,999</div>
 <div class="muted">FREE delivery</div>
-<div class="actions"><span>Delete</span> | <span>Save for later</span></div>
 </div>
-</div>
-
-<div class="thought">
-  <p>Just passing time.</p>
-  <p>Just seeing what’s there.</p>
-  <p class="highlight">But one thing led to another.</p>
 </div>
 
 <div class="item">
 <img src="https://lsco.scene7.com/is/image/lsco/005010114-front-pdp">
 <div>
 <div class="title">Levi's 501 Jeans</div>
-<div class="rating">⭐⭐⭐⭐☆ <span>(8,210)</span></div>
 <div class="price">₹3,499</div>
-<div class="muted">Only 2 left in stock</div>
-<div class="actions"><span>Delete</span> | <span>Save for later</span></div>
+<div class="badge">Only 2 left</div>
 </div>
 </div>
 
-<div class="thought">
-  <p>A pair of Nike Air Force 1.</p>
-  <p>Then those Levi’s 501 Jeans you’ve seen everywhere.</p>
-  <p>The Apple AirPods Pro you imagined using on quiet evenings.</p>
+<div class="story">
+<p>A pair of Nike Air Force 1.</p>
+<p>Then those Levi’s 501 Jeans you’ve seen everywhere.</p>
+<p>The Apple AirPods Pro you imagined using on quiet evenings.</p>
+<p>You opened tabs. Closed them. Opened them again.</p>
+<p>“Not now,” you told yourself.</p>
+<p class="big">And still—you added them to your cart.</p>
 </div>
 
-<div class="pause">...</div>
-
-<div class="thought">
-  <p>You opened tabs.</p>
-  <p>Closed them.</p>
-  <p>Opened them again.</p>
-  <p class="subtle-line">“Not now,” you told yourself.</p>
-  <p class="highlight">And still—you added them to your cart.</p>
-</div>
-
-<div class="section saved">
+<!-- SAVED -->
 <h3>Saved for Later</h3>
-
-<div class="thought">
-  <p class="highlight">🛒 Items Saved</p>
-  <p>It’s strange how easy it is to save things.</p>
-  <p>No pressure.</p>
-  <p>No commitment.</p>
-  <p class="subtle-line">Just a quiet “maybe.”</p>
-</div>
 
 <div class="item">
 <img src="https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/MWP22">
 <div>
 <div class="title">AirPods Pro</div>
-<div class="rating">⭐⭐⭐⭐⭐ <span>(21,000)</span></div>
 <div class="price">₹24,900</div>
 </div>
 </div>
@@ -225,117 +173,86 @@ body {
 <img src="https://m.media-amazon.com/images/I/619BkvKW35L._SX522_.jpg">
 <div>
 <div class="title">Sony PlayStation 5</div>
-<div class="rating">⭐⭐⭐⭐⭐ <span>(45,000)</span></div>
 <div class="price">₹54,990</div>
 </div>
 </div>
 
-<div class="thought">
-  <p>So the cart fills up.</p>
-  <p>Not with random things—but with things that felt like you for a moment.</p>
-  <p>Maybe even that Sony PlayStation 5 you promised yourself after “everything’s sorted.”</p>
-  <p>Or Atomic Habits—because a part of you wanted to change.</p>
+<div class="story">
+<p>🛒 Items Saved</p>
+<p>It’s strange how easy it is to save things.</p>
+<p>No pressure.</p>
+<p>No commitment.</p>
+<p>Just a quiet “maybe.”</p>
+<p>Maybe later.</p>
+<p>Maybe when it feels right.</p>
+<p>Maybe when you’re more sure.</p>
+<p class="big">You didn’t say no. You just didn’t say yes.</p>
 </div>
 
-<div class="pause">...</div>
-
-<p class="big-line">You didn’t say no.</p>
-<p class="subtle-line">You just didn’t say yes.</p>
-
-</div>
-
-<div class="section block">
-<h3>🚫 Out of Stock</h3>
+<!-- OUT OF STOCK -->
+<h3>Out of Stock</h3>
 
 <div class="item" style="opacity:0.6;">
 <img src="https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb">
 <div>
 <div class="title">Adidas Samba OG</div>
-<div class="muted">Currently unavailable</div>
+<div class="badge">Unavailable</div>
 </div>
 </div>
 
-<div class="thought">
-  <p>And then one day, something’s gone.</p>
-  <p>No warning.</p>
-  <p>No moment where you noticed it slipping away.</p>
-  <p class="highlight">It just… isn’t there anymore.</p>
-  <p>Not everything waits for you to decide.</p>
-  <p>Some things leave quietly.</p>
-</div>
+<div class="story">
+<p>And then one day, something’s gone.</p>
+<p>No warning.</p>
+<p>No moment where you noticed it slipping away.</p>
+<p class="big">It just… isn’t there anymore.</p>
+<p>Not everything waits for you to decide.</p>
+<p>Some things leave quietly.</p>
 </div>
 
-<div class="section block">
-<h3>💸 Price Drop</h3>
+<!-- PRICE DROP -->
+<h3>Price Drop</h3>
 
 <div class="item">
 <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348">
 <div>
 <div class="title">Dyson Airwrap Hair Styler</div>
-<div class="rating">⭐⭐⭐⭐☆ <span>(9,800)</span></div>
 <div class="price">₹45,900</div>
 </div>
 </div>
 
-<div class="thought">
-  <p>Then there are things you once hesitated over.</p>
-  <p>Too expensive. Too much. Too early.</p>
-  <p>Like those Adidas Samba you kept going back to.</p>
-  <p class="highlight">Because something shifted. Not the item—you.</p>
+<div class="story">
+<p>Then there are things you once hesitated over.</p>
+<p>Too expensive. Too much. Too early.</p>
+<p class="big">What once felt out of reach now feels possible.</p>
 </div>
 
-<p class="big-line">What once felt out of reach now feels possible.</p>
-</div>
-
-<div class="section block">
-<h3>⏳ Cart Timeout</h3>
-
-<div class="thought">
-  <p>You tell yourself you’ll come back.</p>
-  <p>After exams. After life feels clearer.</p>
-  <p>After you feel more ready.</p>
-</div>
-
-<p class="big-line">But carts don’t wait forever.</p>
-<p class="subtle-line">They refresh. They empty. They move on—without asking you.</p>
-</div>
-
-<div class="section block">
-<h3>🧾 Checkout</h3>
-
-<div class="thought">
-  <p>And somewhere in between all of this, a quiet realization starts forming—</p>
-</div>
-
-<p class="big-line">this was never just a cart.</p>
-
-<div class="thought">
-  <p>They were decisions you delayed.</p>
-  <p>Versions of you that felt right—but required you to choose them.</p>
-</div>
-
-<div class="pause">...</div>
-
-<div class="thought">
-  <p>The one who starts before feeling ready</p>
-  <p>The one who stops overthinking</p>
-  <p class="highlight">The one who actually goes for it</p>
-</div>
-
-<p class="big-line">You didn’t lose them.</p>
-<p class="subtle-line">You just kept postponing becoming them.</p>
-</div>
-
-<div class="checkout">
-<p class="big-line">✅ Order Confirmed</p>
-<p>There’s no perfect time to check out.</p>
-<p>You start… and that’s how you become ready.</p>
-<p class="highlight">Your cart is still waiting.</p>
-
-<button onclick="checkout()">Proceed to Checkout</button>
+<!-- FINAL -->
+<div class="story">
+<p>And somewhere in between all of this…</p>
+<p class="big">this was never just a cart.</p>
+<p>They were decisions you delayed.</p>
+<p>Versions of you that felt right—but required you to choose them.</p>
+<p>The one who starts before feeling ready</p>
+<p>The one who stops overthinking</p>
+<p class="big">The one who actually goes for it</p>
+<p class="big">You didn’t lose them. You just kept postponing becoming them.</p>
 </div>
 
 </div>
+
+<!-- RIGHT -->
+<div class="summary">
+
+<h3>Subtotal</h3>
+<p><strong>₹11,498</strong></p>
+
+<p>There’s no perfect time.</p>
+<p><strong>You just start.</strong></p>
+
+<button class="btn" onclick="checkout()">Proceed to Checkout</button>
+
+</div>
+
 </div>
 
 <script>
