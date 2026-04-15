@@ -3,140 +3,132 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Amazon Cart</title>
+
+<!-- MODERN FONT -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+<title>Your Cart</title>
 
 <style>
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background: #eaeded;
+  font-family: 'Inter', sans-serif;
+  background: #f3f4f6;
+  color: #111;
 }
 
-/* AMAZON HEADER */
+/* HEADER */
 .header {
   background: #131921;
   color: white;
-  padding: 10px;
+  padding: 12px;
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
 .logo {
-  font-size: 20px;
-  font-weight: bold;
+  font-weight: 700;
   color: #ff9900;
+  font-size: 20px;
 }
 
 .search {
   flex: 1;
   padding: 8px;
+  border-radius: 4px;
   border: none;
-}
-
-.cart-icon {
-  font-size: 14px;
 }
 
 /* LAYOUT */
 .container {
-  display: flex;
-  gap: 20px;
-  max-width: 1200px;
-  margin: 20px auto;
-  padding: 10px;
+  max-width: 1100px;
+  margin: auto;
+  padding: 15px;
 }
 
-/* LEFT */
-.cart {
-  flex: 3;
+/* CARD */
+.card {
   background: white;
-  padding: 15px;
-  border-radius: 8px;
-}
-
-/* RIGHT */
-.summary {
-  flex: 1;
-  background: white;
-  padding: 15px;
-  border-radius: 8px;
-  height: fit-content;
-  position: sticky;
-  top: 10px;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
 
 /* ITEM */
 .item {
   display: flex;
   gap: 12px;
-  padding: 12px 0;
-  border-bottom: 1px solid #ddd;
+  align-items: center;
 }
 
 .item img {
-  width: 100px;
-  border: 1px solid #ddd;
-  padding: 5px;
+  width: 90px;
+  border-radius: 8px;
 }
 
-.title { font-weight: bold; }
-.price { color: #B12704; font-weight: bold; }
+.title {
+  font-weight: 600;
+}
+
+.price {
+  color: #b12704;
+  font-weight: 600;
+}
 
 .badge {
-  background: #cc0c39;
+  background: #e11d48;
   color: white;
-  font-size: 12px;
-  padding: 2px 6px;
+  font-size: 11px;
+  padding: 3px 6px;
+  border-radius: 4px;
   display: inline-block;
-  margin-top: 5px;
+  margin-top: 4px;
 }
 
-.deal {
-  color: #ff9900;
-  font-size: 13px;
-  font-weight: bold;
-}
-
-/* STORY */
+/* STORY (MAIN FIX) */
 .story {
-  margin: 20px 0;
-  padding: 12px;
-  background: #f8f9fa;
-  border-left: 4px solid #ff9900;
+  margin: 30px 0;
+  padding: 20px;
+  background: linear-gradient(135deg, #fff8e1, #ffffff);
+  border-radius: 12px;
+  font-size: 16px;
+  line-height: 1.6;
 }
 
 .story p {
-  margin: 5px 0;
+  margin: 8px 0;
 }
 
 .big {
-  font-weight: bold;
-  font-size: 16px;
+  font-size: 20px;
+  font-weight: 700;
 }
 
-/* BUTTON */
-.btn {
-  width: 100%;
+.subtle {
+  color: #555;
+}
+
+/* CTA */
+.cta {
   background: #ffd814;
   border: none;
-  padding: 12px;
-  font-weight: bold;
+  width: 100%;
+  padding: 14px;
+  border-radius: 8px;
+  font-weight: 600;
   cursor: pointer;
 }
 
-/* MOBILE FIX */
-@media(max-width: 768px) {
-  .container {
-    flex-direction: column;
-  }
-
-  .summary {
-    position: static;
-  }
-
+/* MOBILE */
+@media(max-width:600px){
   .item img {
-    width: 80px;
+    width: 75px;
+  }
+
+  .story {
+    font-size: 15px;
   }
 }
 </style>
@@ -144,36 +136,33 @@ body {
 
 <body>
 
-<!-- HEADER -->
 <div class="header">
   <div class="logo">amazon</div>
-  <input class="search" placeholder="Search Amazon">
-  <div class="cart-icon">🛒 Cart</div>
+  <input class="search" placeholder="Search">
 </div>
 
 <div class="container">
 
-<!-- LEFT -->
-<div class="cart">
-
-<h2>Shopping Cart</h2>
-
+<!-- STORY START -->
 <div class="story">
 <p class="big">🧾 YOUR CART IS WAITING</p>
 <p>You weren’t planning to buy anything.</p>
-<p>Just a quick scroll.</p>
+<p class="subtle">Just a quick scroll. Just passing time.</p>
 <p class="big">But one thing led to another.</p>
 </div>
 
+<!-- ITEMS -->
+<div class="card">
 <div class="item">
 <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff">
 <div>
 <div class="title">Nike Air Force 1</div>
-<div class="deal">Deal of the Day</div>
 <div class="price">₹7,999</div>
 </div>
 </div>
+</div>
 
+<div class="card">
 <div class="item">
 <img src="https://lsco.scene7.com/is/image/lsco/005010114-front-pdp">
 <div>
@@ -182,13 +171,19 @@ body {
 <div class="badge">Only 2 left</div>
 </div>
 </div>
+</div>
 
+<!-- STORY -->
 <div class="story">
+<p>A pair of Nike Air Force 1.</p>
+<p>Then those Levi’s you’ve seen everywhere.</p>
 <p>You opened tabs. Closed them. Opened them again.</p>
 <p class="big">And still—you added them.</p>
 </div>
 
-<h3>Saved for Later</h3>
+<!-- SAVED -->
+<div class="card">
+<h3>Saved for later</h3>
 
 <div class="item">
 <img src="https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/MWP22">
@@ -201,334 +196,30 @@ body {
 <div class="item">
 <img src="https://m.media-amazon.com/images/I/619BkvKW35L._SX522_.jpg">
 <div>
-<div class="title">Sony PlayStation 5</div>
+<div class="title">PlayStation 5</div>
 <div class="price">₹54,990</div>
 </div>
 </div>
+</div>
 
+<!-- STORY -->
 <div class="story">
 <p>It’s strange how easy it is to save things.</p>
-<p>No pressure. No commitment.</p>
+<p class="subtle">No pressure. No commitment.</p>
 <p class="big">You didn’t say no. You just didn’t say yes.</p>
 </div>
 
-<h3>Out of Stock</h3>
-
-<div class="item" style="opacity:0.6;">
-<img src="https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb">
-<div>
-<div class="title">Adidas Samba OG</div>
-<div class="badge">Unavailable</div>
-</div>
-</div>
-
-<div class="story">
-<p class="big">Not everything waits.</p>
-</div>
-
-<h3>Price Drop</h3>
-
-<div class="item">
-<img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348">
-<div>
-<div class="title">Dyson Airwrap Hair Styler</div>
-<div class="price">₹45,900</div>
-</div>
-</div>
-
-<div class="story">
-<p class="big">What once felt out of reach now feels possible.</p>
-</div>
-
+<!-- FINAL -->
 <div class="story">
 <p class="big">This was never just a cart.</p>
-<p>You didn’t lose them. You just postponed becoming them.</p>
+<p>They were versions of you.</p>
+<p class="big">You didn’t lose them.</p>
+<p>You just postponed becoming them.</p>
 </div>
 
-</div>
-
-<!-- RIGHT -->
-<div class="summary">
-
-<h3>Subtotal</h3>
-<p><strong>₹11,498</strong></p>
-
-<button class="btn" onclick="checkout()">Proceed to Checkout</button>
-
-<p style="margin-top:10px;">There’s no perfect time.</p>
-<p><strong>You just start.</strong></p>
-
-</div>
-
-</div>
-
-<script>
-function checkout(){
-  alert("Processing your decision...");
-}
-</script>
-
-</body>
-</html><!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Amazon Cart</title>
-
-<style>
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #eaeded;
-}
-
-/* AMAZON HEADER */
-.header {
-  background: #131921;
-  color: white;
-  padding: 10px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.logo {
-  font-size: 20px;
-  font-weight: bold;
-  color: #ff9900;
-}
-
-.search {
-  flex: 1;
-  padding: 8px;
-  border: none;
-}
-
-.cart-icon {
-  font-size: 14px;
-}
-
-/* LAYOUT */
-.container {
-  display: flex;
-  gap: 20px;
-  max-width: 1200px;
-  margin: 20px auto;
-  padding: 10px;
-}
-
-/* LEFT */
-.cart {
-  flex: 3;
-  background: white;
-  padding: 15px;
-  border-radius: 8px;
-}
-
-/* RIGHT */
-.summary {
-  flex: 1;
-  background: white;
-  padding: 15px;
-  border-radius: 8px;
-  height: fit-content;
-  position: sticky;
-  top: 10px;
-}
-
-/* ITEM */
-.item {
-  display: flex;
-  gap: 12px;
-  padding: 12px 0;
-  border-bottom: 1px solid #ddd;
-}
-
-.item img {
-  width: 100px;
-  border: 1px solid #ddd;
-  padding: 5px;
-}
-
-.title { font-weight: bold; }
-.price { color: #B12704; font-weight: bold; }
-
-.badge {
-  background: #cc0c39;
-  color: white;
-  font-size: 12px;
-  padding: 2px 6px;
-  display: inline-block;
-  margin-top: 5px;
-}
-
-.deal {
-  color: #ff9900;
-  font-size: 13px;
-  font-weight: bold;
-}
-
-/* STORY */
-.story {
-  margin: 20px 0;
-  padding: 12px;
-  background: #f8f9fa;
-  border-left: 4px solid #ff9900;
-}
-
-.story p {
-  margin: 5px 0;
-}
-
-.big {
-  font-weight: bold;
-  font-size: 16px;
-}
-
-/* BUTTON */
-.btn {
-  width: 100%;
-  background: #ffd814;
-  border: none;
-  padding: 12px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-/* MOBILE FIX */
-@media(max-width: 768px) {
-  .container {
-    flex-direction: column;
-  }
-
-  .summary {
-    position: static;
-  }
-
-  .item img {
-    width: 80px;
-  }
-}
-</style>
-</head>
-
-<body>
-
-<!-- HEADER -->
-<div class="header">
-  <div class="logo">amazon</div>
-  <input class="search" placeholder="Search Amazon">
-  <div class="cart-icon">🛒 Cart</div>
-</div>
-
-<div class="container">
-
-<!-- LEFT -->
-<div class="cart">
-
-<h2>Shopping Cart</h2>
-
-<div class="story">
-<p class="big">🧾 YOUR CART IS WAITING</p>
-<p>You weren’t planning to buy anything.</p>
-<p>Just a quick scroll.</p>
-<p class="big">But one thing led to another.</p>
-</div>
-
-<div class="item">
-<img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff">
-<div>
-<div class="title">Nike Air Force 1</div>
-<div class="deal">Deal of the Day</div>
-<div class="price">₹7,999</div>
-</div>
-</div>
-
-<div class="item">
-<img src="https://lsco.scene7.com/is/image/lsco/005010114-front-pdp">
-<div>
-<div class="title">Levi's 501 Jeans</div>
-<div class="price">₹3,499</div>
-<div class="badge">Only 2 left</div>
-</div>
-</div>
-
-<div class="story">
-<p>You opened tabs. Closed them. Opened them again.</p>
-<p class="big">And still—you added them.</p>
-</div>
-
-<h3>Saved for Later</h3>
-
-<div class="item">
-<img src="https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/MWP22">
-<div>
-<div class="title">AirPods Pro</div>
-<div class="price">₹24,900</div>
-</div>
-</div>
-
-<div class="item">
-<img src="https://m.media-amazon.com/images/I/619BkvKW35L._SX522_.jpg">
-<div>
-<div class="title">Sony PlayStation 5</div>
-<div class="price">₹54,990</div>
-</div>
-</div>
-
-<div class="story">
-<p>It’s strange how easy it is to save things.</p>
-<p>No pressure. No commitment.</p>
-<p class="big">You didn’t say no. You just didn’t say yes.</p>
-</div>
-
-<h3>Out of Stock</h3>
-
-<div class="item" style="opacity:0.6;">
-<img src="https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb">
-<div>
-<div class="title">Adidas Samba OG</div>
-<div class="badge">Unavailable</div>
-</div>
-</div>
-
-<div class="story">
-<p class="big">Not everything waits.</p>
-</div>
-
-<h3>Price Drop</h3>
-
-<div class="item">
-<img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348">
-<div>
-<div class="title">Dyson Airwrap Hair Styler</div>
-<div class="price">₹45,900</div>
-</div>
-</div>
-
-<div class="story">
-<p class="big">What once felt out of reach now feels possible.</p>
-</div>
-
-<div class="story">
-<p class="big">This was never just a cart.</p>
-<p>You didn’t lose them. You just postponed becoming them.</p>
-</div>
-
-</div>
-
-<!-- RIGHT -->
-<div class="summary">
-
-<h3>Subtotal</h3>
-<p><strong>₹11,498</strong></p>
-
-<button class="btn" onclick="checkout()">Proceed to Checkout</button>
-
-<p style="margin-top:10px;">There’s no perfect time.</p>
-<p><strong>You just start.</strong></p>
-
+<!-- CTA -->
+<div class="card">
+<button class="cta" onclick="checkout()">Proceed to Checkout</button>
 </div>
 
 </div>
