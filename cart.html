@@ -12,6 +12,7 @@ body {
   background: #eaeded;
 }
 
+/* NAVBAR */
 .navbar {
   background: #131921;
   color: white;
@@ -19,32 +20,32 @@ body {
   display: flex;
   gap: 10px;
 }
-
 .navbar input {
   flex: 1;
   padding: 8px;
 }
 
+/* LAYOUT */
 .container {
   max-width: 1000px;
   margin: auto;
   padding: 20px;
 }
-
 .cart {
   background: white;
   padding: 20px;
   border-radius: 8px;
 }
 
+/* ITEM */
 .item {
   display: grid;
   grid-template-columns: 120px 1fr;
   gap: 12px;
   padding: 15px 0;
   border-bottom: 1px solid #ddd;
+  margin-bottom: 10px;
 }
-
 .item img {
   width: 110px;
   border: 1px solid #ddd;
@@ -72,13 +73,46 @@ body {
   cursor: pointer;
 }
 
+/* STORY STYLING */
+.thought {
+  margin: 20px 0;
+  padding-left: 12px;
+  border-left: 3px solid #e3e6e6;
+}
+.thought p {
+  margin: 6px 0;
+}
+
+.highlight {
+  font-weight: bold;
+  color: #111;
+}
+
+.big-line {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.subtle-line {
+  color: #555;
+}
+
+.pause {
+  text-align: center;
+  color: #999;
+  margin: 20px 0;
+  letter-spacing: 3px;
+}
+
+/* SECTIONS */
 .section {
   margin-top: 30px;
 }
 
 .section.saved {
   background: #fafafa;
-  padding: 10px;
+  padding: 15px;
   border-radius: 8px;
 }
 
@@ -89,13 +123,7 @@ body {
   margin-top: 20px;
 }
 
-.line {
-  margin: 6px 0;
-  line-height: 1.5;
-}
-
-.bold { font-weight: bold; }
-
+/* CHECKOUT */
 .checkout {
   text-align: center;
   margin-top: 40px;
@@ -123,9 +151,11 @@ body {
 
 <h2>Shopping Cart</h2>
 
-<p class="line">🧾 YOUR CART IS WAITING</p>
-<p class="line">You weren’t planning to buy anything.</p>
-<p class="line">Just a quick scroll.</p>
+<div class="thought">
+  <p class="highlight">🧾 YOUR CART IS WAITING</p>
+  <p>You weren’t planning to buy anything.</p>
+  <p>Just a quick scroll.</p>
+</div>
 
 <div class="item">
 <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff">
@@ -138,9 +168,11 @@ body {
 </div>
 </div>
 
-<p class="line">Just passing time.</p>
-<p class="line">Just seeing what’s there.</p>
-<p class="line">But one thing led to another.</p>
+<div class="thought">
+  <p>Just passing time.</p>
+  <p>Just seeing what’s there.</p>
+  <p class="highlight">But one thing led to another.</p>
+</div>
 
 <div class="item">
 <img src="https://lsco.scene7.com/is/image/lsco/005010114-front-pdp">
@@ -153,26 +185,32 @@ body {
 </div>
 </div>
 
-<p class="line">A pair of Nike Air Force 1.</p>
-<p class="line">Then those Levi’s 501 Jeans you’ve seen everywhere.</p>
-<p class="line">The Apple AirPods Pro you imagined using on quiet evenings.</p>
-<p class="line">You opened tabs.</p>
-<p class="line">Closed them.</p>
-<p class="line">Opened them again.</p>
-<p class="line">“Not now,” you told yourself.</p>
-<p class="line">And still—you added them to your cart.</p>
+<div class="thought">
+  <p>A pair of Nike Air Force 1.</p>
+  <p>Then those Levi’s 501 Jeans you’ve seen everywhere.</p>
+  <p>The Apple AirPods Pro you imagined using on quiet evenings.</p>
+</div>
+
+<div class="pause">...</div>
+
+<div class="thought">
+  <p>You opened tabs.</p>
+  <p>Closed them.</p>
+  <p>Opened them again.</p>
+  <p class="subtle-line">“Not now,” you told yourself.</p>
+  <p class="highlight">And still—you added them to your cart.</p>
+</div>
 
 <div class="section saved">
 <h3>Saved for Later</h3>
 
-<p class="line">🛒 Items Saved</p>
-<p class="line">It’s strange how easy it is to save things.</p>
-<p class="line">No pressure.</p>
-<p class="line">No commitment.</p>
-<p class="line">Just a quiet “maybe.”</p>
-<p class="line">Maybe later.</p>
-<p class="line">Maybe when it feels right.</p>
-<p class="line">Maybe when you’re more sure.</p>
+<div class="thought">
+  <p class="highlight">🛒 Items Saved</p>
+  <p>It’s strange how easy it is to save things.</p>
+  <p>No pressure.</p>
+  <p>No commitment.</p>
+  <p class="subtle-line">Just a quiet “maybe.”</p>
+</div>
 
 <div class="item">
 <img src="https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/MWP22">
@@ -192,12 +230,17 @@ body {
 </div>
 </div>
 
-<p class="line">So the cart fills up.</p>
-<p class="line">Not with random things—but with things that felt like you for a moment.</p>
-<p class="line">Maybe even that Sony PlayStation 5 you promised yourself after “everything’s sorted.”</p>
-<p class="line">Or Atomic Habits—because a part of you wanted to change.</p>
-<p class="line bold">You didn’t say no.</p>
-<p class="line">You just didn’t say yes.</p>
+<div class="thought">
+  <p>So the cart fills up.</p>
+  <p>Not with random things—but with things that felt like you for a moment.</p>
+  <p>Maybe even that Sony PlayStation 5 you promised yourself after “everything’s sorted.”</p>
+  <p>Or Atomic Habits—because a part of you wanted to change.</p>
+</div>
+
+<div class="pause">...</div>
+
+<p class="big-line">You didn’t say no.</p>
+<p class="subtle-line">You just didn’t say yes.</p>
 
 </div>
 
@@ -212,19 +255,21 @@ body {
 </div>
 </div>
 
-<p class="line">And then one day, something’s gone.</p>
-<p class="line">No warning.</p>
-<p class="line">No moment where you noticed it slipping away.</p>
-<p class="line">It just… isn’t there anymore.</p>
-<p class="line">Not everything waits for you to decide.</p>
-<p class="line">Some things leave quietly.</p>
+<div class="thought">
+  <p>And then one day, something’s gone.</p>
+  <p>No warning.</p>
+  <p>No moment where you noticed it slipping away.</p>
+  <p class="highlight">It just… isn’t there anymore.</p>
+  <p>Not everything waits for you to decide.</p>
+  <p>Some things leave quietly.</p>
+</div>
 </div>
 
 <div class="section block">
 <h3>💸 Price Drop</h3>
 
 <div class="item">
-<img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348">">
+<img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348">
 <div>
 <div class="title">Dyson Airwrap Hair Styler</div>
 <div class="rating">⭐⭐⭐⭐☆ <span>(9,800)</span></div>
@@ -232,40 +277,60 @@ body {
 </div>
 </div>
 
-<p class="line">Then there are things you once hesitated over.</p>
-<p class="line">Too expensive. Too much. Too early.</p>
-<p class="line">Like those Adidas Samba you kept going back to.</p>
-<p class="line">But when you see them again, they don’t intimidate you the same way.</p>
-<p class="line">Because something shifted. Not the item—you.</p>
-<p class="line bold">What once felt out of reach now feels possible.</p>
+<div class="thought">
+  <p>Then there are things you once hesitated over.</p>
+  <p>Too expensive. Too much. Too early.</p>
+  <p>Like those Adidas Samba you kept going back to.</p>
+  <p class="highlight">Because something shifted. Not the item—you.</p>
+</div>
+
+<p class="big-line">What once felt out of reach now feels possible.</p>
 </div>
 
 <div class="section block">
 <h3>⏳ Cart Timeout</h3>
-<p class="line">You tell yourself you’ll come back.</p>
-<p class="line">After exams. After life feels clearer.</p>
-<p class="line">After you feel more ready.</p>
-<p class="line bold">But carts don’t wait forever.</p>
-<p class="line">They refresh. They empty. They move on—without asking you.</p>
+
+<div class="thought">
+  <p>You tell yourself you’ll come back.</p>
+  <p>After exams. After life feels clearer.</p>
+  <p>After you feel more ready.</p>
+</div>
+
+<p class="big-line">But carts don’t wait forever.</p>
+<p class="subtle-line">They refresh. They empty. They move on—without asking you.</p>
 </div>
 
 <div class="section block">
 <h3>🧾 Checkout</h3>
-<p class="line">And somewhere in between all of this, a quiet realization starts forming—</p>
-<p class="line bold">this was never just a cart.</p>
-<p class="line">They were decisions you delayed.</p>
-<p class="line">Versions of you that felt right—but required you to choose them.</p>
-<p class="line">The one who starts before feeling ready</p>
-<p class="line">The one who stops overthinking</p>
-<p class="line">The one who actually goes for it</p>
-<p class="line">You didn’t lose them. You just kept postponing becoming them.</p>
+
+<div class="thought">
+  <p>And somewhere in between all of this, a quiet realization starts forming—</p>
+</div>
+
+<p class="big-line">this was never just a cart.</p>
+
+<div class="thought">
+  <p>They were decisions you delayed.</p>
+  <p>Versions of you that felt right—but required you to choose them.</p>
+</div>
+
+<div class="pause">...</div>
+
+<div class="thought">
+  <p>The one who starts before feeling ready</p>
+  <p>The one who stops overthinking</p>
+  <p class="highlight">The one who actually goes for it</p>
+</div>
+
+<p class="big-line">You didn’t lose them.</p>
+<p class="subtle-line">You just kept postponing becoming them.</p>
 </div>
 
 <div class="checkout">
-<p class="line">✅ Order Confirmed</p>
-<p class="line">There’s no perfect time to check out.</p>
-<p class="line">You start… and that’s how you become ready.</p>
-<p class="line bold">Your cart is still waiting.</p>
+<p class="big-line">✅ Order Confirmed</p>
+<p>There’s no perfect time to check out.</p>
+<p>You start… and that’s how you become ready.</p>
+<p class="highlight">Your cart is still waiting.</p>
 
 <button onclick="checkout()">Proceed to Checkout</button>
 </div>
