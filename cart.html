@@ -9,130 +9,172 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
+:root {
+  --bg: #eaeded;
+  --card: #ffffff;
+  --text: #111;
+  --muted: #565959;
+  --accent: #ffd814;
+  --border: #e6e6e6;
+}
+
+/* RESET */
 body {
   margin: 0;
   font-family: 'Inter', sans-serif;
-  background: #eaeded;
+  background: var(--bg);
+  color: var(--text);
 }
 
 /* NAVBAR */
 .navbar {
   background: #131921;
-  padding: 10px;
+  padding: 10px 12px;
   display: flex;
   align-items: center;
+  gap: 10px;
   color: white;
 }
 
 .logo {
   color: #ff9900;
-  font-weight: bold;
+  font-weight: 700;
+  font-size: 18px;
 }
 
 .search {
   flex: 1;
-  margin: 0 10px;
 }
 
 .search input {
   width: 100%;
-  padding: 8px;
-  border-radius: 8px;
+  padding: 8px 10px;
+  border-radius: 6px;
   border: none;
+  font-size: 13px;
 }
 
 /* BUY BAR */
 .buy-bar {
-  background: #ffd814;
   margin: 10px;
+  background: var(--accent);
   padding: 12px;
   text-align: center;
+  border-radius: 22px;
   font-weight: 600;
-  border-radius: 25px;
+  cursor: pointer;
+  transition: transform 0.15s ease;
 }
 
-/* SECTIONS */
+.buy-bar:active {
+  transform: scale(0.97);
+}
+
+/* SECTION */
 .section {
-  background: white;
-  margin-top: 10px;
+  background: var(--card);
   padding: 12px;
   font-weight: 600;
+  font-size: 14px;
+  border-bottom: 1px solid var(--border);
 }
 
-/* CARDS */
+/* PRODUCT CARD */
 .card {
   display: flex;
-  gap: 12px;
-  background: white;
+  gap: 10px;
+  background: var(--card);
   padding: 12px;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.2s ease;
+}
+
+.card:hover {
+  background: #f9f9f9;
 }
 
 .card img {
-  width: 90px;
+  width: 85px;
+  height: 85px;
+  object-fit: cover;
+  border-radius: 6px;
 }
 
-/* STORY BLOCK */
-.story {
-  background: white;
-  margin: 10px;
-  padding: 15px;
-  border-radius: 8px;
-  display: none;
-  animation: fade 0.6s ease;
+.info {
+  font-size: 13px;
+  line-height: 1.4;
 }
 
-.story.active {
-  display: block;
-}
-
-.story h3 {
-  margin-bottom: 10px;
-}
-
-.story p {
-  margin: 8px 0;
-  font-size: 14px;
-}
-
-.fade {
-  color: #555;
-}
-
-/* BUTTON */
-.next-btn {
-  background: #ffd814;
-  border: none;
-  padding: 10px;
-  border-radius: 20px;
-  width: 90%;
-  margin: 10px auto;
-  display: block;
+.price {
+  color: #b12704;
   font-weight: 600;
+  margin-top: 4px;
+}
+
+/* STORY LINES */
+.story-line {
+  background: var(--card);
+  padding: 12px;
+  font-size: 13px;
+  border-bottom: 1px solid var(--border);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: all 0.4s ease;
+}
+
+.story-line.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.bold {
+  font-weight: 600;
+}
+
+/* ICON STYLE */
+.icon {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  margin-right: 6px;
+  vertical-align: middle;
 }
 
 /* FINAL SCREEN */
 .final {
-  display: none;
   position: fixed;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
+  inset: 0;
   background: white;
+  display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: 20px;
+  padding: 30px;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.5s ease;
 }
 
-.final.active {
-  display: flex;
+.final.show {
+  opacity: 1;
+  pointer-events: all;
 }
 
-@keyframes fade {
-  from {opacity:0; transform: translateY(10px);}
-  to {opacity:1;}
+.final h2 {
+  margin-bottom: 10px;
+}
+
+/* SUBTLE SCROLLBAR */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 10px;
 }
 </style>
 </head>
@@ -145,108 +187,103 @@ body {
   <div class="search"><input placeholder="Search Amazon.in"></div>
 </div>
 
-<div class="buy-bar">Proceed to Buy</div>
+<div class="buy-bar" onclick="checkout()">Proceed to Buy</div>
 
 <div class="section">Saved for later</div>
 
 <!-- PRODUCTS -->
 <div class="card">
 <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff">
-<div>
-Nike Air Force 1<br>₹7,999
+<div class="info">
+Nike Air Force 1<br>
+<span class="price">₹7,999</span>
 </div>
 </div>
 
 <div class="card">
 <img src="https://lsco.scene7.com/is/image/lsco/005010114-front-pdp">
-<div>
-Levi's 501 Jeans<br>₹3,499
+<div class="info">
+Levi's 501 Jeans<br>
+<span class="price">₹3,499</span>
 </div>
 </div>
 
-<!-- STORY FLOW -->
-
-<div class="story active">
-<h3>Saved for Later</h3>
-<p>Your cart has items you never bought.<br>Your life does too.</p>
-<button class="next-btn" onclick="next()">Continue</button>
+<div class="card">
+<img src="https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/MWP22">
+<div class="info">
+AirPods Pro<br>
+<span class="price">₹24,900</span>
+</div>
 </div>
 
-<div class="story">
-<p>You’ve been browsing for a while now.</p>
-<p class="fade">Scrolling without urgency. Opening, closing, reopening.</p>
-<p>A pair of Nike Air Force 1 sitting there.</p>
-<p>Levi’s 501 jeans you almost chose.</p>
-<p>AirPods you didn’t need—but imagined.</p>
-<button class="next-btn" onclick="next()">Continue</button>
-</div>
+<!-- STORY -->
+<div class="story-line">Your cart has items you never bought. Your life does too.</div>
 
-<div class="story">
-<h3>🛒 Items Saved</h3>
-<p>Your cart isn’t empty.</p>
-<p>It holds things that felt right for a moment.</p>
-<p class="fade">Not rejected. Not chosen. Just… paused.</p>
-<button class="next-btn" onclick="next()">Continue</button>
-</div>
+<div class="story-line muted">You’ve been browsing for a while. Scrolling. No urgency.</div>
 
-<div class="story">
-<h3>🚫 Out of Stock</h3>
-<p>Sometimes you go back—and something’s gone.</p>
-<p class="fade">No warning. You thought there was time.</p>
-<button class="next-btn" onclick="next()">Continue</button>
-</div>
+<div class="story-line">Opening. Closing. Reopening.</div>
 
-<div class="story">
-<h3>💸 Price Drop</h3>
-<p>What once felt too much… doesn’t anymore.</p>
-<button class="next-btn" onclick="next()">Continue</button>
-</div>
+<div class="story-line">Some felt right. <span class="muted">Just not enough.</span></div>
 
-<div class="story">
-<h3>⏳ Cart Timeout</h3>
-<p>You said “later.”</p>
-<p class="fade">But carts don’t wait forever.</p>
-<button class="next-btn" onclick="next()">Continue</button>
-</div>
+<div class="story-line bold">So you saved them.</div>
 
-<div class="story">
-<h3>🧾 Checkout</h3>
-<p>This was never about the cart.</p>
-<p class="fade">It was about choosing.</p>
-<button class="next-btn" onclick="next()">Continue</button>
-</div>
+<div class="story-line muted">Not to buy. Just to keep. For later.</div>
 
-<div class="story">
-<h3>✅ Order Confirmed</h3>
-<p>The only difference between your cart and your life…</p>
-<p><b>You check out.</b></p>
-<button class="next-btn" onclick="checkout()">Proceed</button>
-</div>
+<div class="story-line bold">Items Saved</div>
+
+<div class="story-line">Not rejected. Not chosen. Just… paused.</div>
+
+<div class="story-line bold">Out of Stock</div>
+
+<div class="story-line muted">Some things disappear quietly.</div>
+
+<div class="story-line bold">Price Drop</div>
+
+<div class="story-line">What changed wasn’t the price.</div>
+
+<div class="story-line bold">It was you.</div>
+
+<div class="story-line bold">Cart Timeout</div>
+
+<div class="story-line muted">Carts don’t wait forever.</div>
+
+<div class="story-line bold">Checkout</div>
+
+<div class="story-line">This was never about the cart.</div>
+
+<div class="story-line bold">It was about choosing.</div>
+
+<div class="story-line bold">Order Confirmed</div>
+
+<div class="story-line">The only difference between your cart and your life…</div>
+
+<div class="story-line bold">You check out.</div>
 
 <!-- FINAL -->
 <div class="final" id="final">
-<div>
-<h2>Your cart is still waiting.</h2>
-<p>Not for time.<br>Not for a better version of you.</p>
-<p><b>Just a decision.</b></p>
-<p>And this time—don’t close the tab.</p>
-</div>
+  <div>
+    <h2>Your cart is still waiting.</h2>
+    <p>Not for time. Not for a better version of you.</p>
+    <p><b>Just a decision.</b></p>
+    <p>And this time—don’t close the tab.</p>
+  </div>
 </div>
 
 <script>
-let index = 0;
-let stories = document.querySelectorAll(".story");
+let lines = document.querySelectorAll(".story-line");
 
-function next(){
-  stories[index].classList.remove("active");
-  index++;
-  if(index < stories.length){
-    stories[index].classList.add("active");
-  }
-}
+let observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add("show");
+    }
+  });
+}, { threshold: 0.2 });
+
+lines.forEach(line => observer.observe(line));
 
 function checkout(){
-  document.getElementById("final").classList.add("active");
+  document.getElementById("final").classList.add("show");
 }
 </script>
 
