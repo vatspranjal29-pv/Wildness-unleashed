@@ -11,14 +11,13 @@
 <style>
 :root {
   --bg: #eaeded;
-  --card: #ffffff;
+  --card: #fff;
   --text: #111;
-  --muted: #565959;
+  --muted: #6b6b6b;
   --accent: #ffd814;
   --border: #e6e6e6;
 }
 
-/* RESET */
 body {
   margin: 0;
   font-family: 'Inter', sans-serif;
@@ -29,29 +28,26 @@ body {
 /* NAVBAR */
 .navbar {
   background: #131921;
-  padding: 10px 12px;
+  padding: 10px;
   display: flex;
   align-items: center;
-  gap: 10px;
-  color: white;
 }
 
 .logo {
   color: #ff9900;
   font-weight: 700;
-  font-size: 18px;
 }
 
 .search {
   flex: 1;
+  margin-left: 10px;
 }
 
 .search input {
   width: 100%;
-  padding: 8px 10px;
+  padding: 8px;
   border-radius: 6px;
   border: none;
-  font-size: 13px;
 }
 
 /* BUY BAR */
@@ -63,7 +59,7 @@ body {
   border-radius: 22px;
   font-weight: 600;
   cursor: pointer;
-  transition: transform 0.15s ease;
+  transition: 0.2s;
 }
 
 .buy-bar:active {
@@ -75,22 +71,17 @@ body {
   background: var(--card);
   padding: 12px;
   font-weight: 600;
-  font-size: 14px;
   border-bottom: 1px solid var(--border);
 }
 
-/* PRODUCT CARD */
+/* CARD */
 .card {
   display: flex;
   gap: 10px;
   background: var(--card);
   padding: 12px;
   border-bottom: 1px solid var(--border);
-  transition: background 0.2s ease;
-}
-
-.card:hover {
-  background: #f9f9f9;
+  transition: 0.4s;
 }
 
 .card img {
@@ -102,24 +93,22 @@ body {
 
 .info {
   font-size: 13px;
-  line-height: 1.4;
 }
 
 .price {
   color: #b12704;
   font-weight: 600;
-  margin-top: 4px;
 }
 
-/* STORY LINES */
+/* STORY */
 .story-line {
   background: var(--card);
   padding: 12px;
-  font-size: 13px;
   border-bottom: 1px solid var(--border);
+  font-size: 13px;
   opacity: 0;
   transform: translateY(8px);
-  transition: all 0.4s ease;
+  transition: 0.5s ease;
 }
 
 .story-line.show {
@@ -127,21 +116,13 @@ body {
   transform: translateY(0);
 }
 
-.muted {
-  color: var(--muted);
-}
+.muted { color: var(--muted); }
+.strong { font-weight: 600; }
+.big { font-size: 16px; font-weight: 600; }
 
-.bold {
-  font-weight: 600;
-}
-
-/* ICON STYLE */
-.icon {
-  width: 16px;
-  height: 16px;
-  display: inline-block;
-  margin-right: 6px;
-  vertical-align: middle;
+/* BREAK */
+.break {
+  height: 40px;
 }
 
 /* FINAL SCREEN */
@@ -156,25 +137,12 @@ body {
   padding: 30px;
   opacity: 0;
   pointer-events: none;
-  transition: 0.5s ease;
+  transition: 0.5s;
 }
 
 .final.show {
   opacity: 1;
   pointer-events: all;
-}
-
-.final h2 {
-  margin-bottom: 10px;
-}
-
-/* SUBTLE SCROLLBAR */
-::-webkit-scrollbar {
-  width: 4px;
-}
-::-webkit-scrollbar-thumb {
-  background: #ccc;
-  border-radius: 10px;
 }
 </style>
 </head>
@@ -216,8 +184,17 @@ AirPods Pro<br>
 </div>
 </div>
 
+<div class="card" id="ps5">
+<img src="https://m.media-amazon.com/images/I/619BkvKW35L._SX522_.jpg">
+<div class="info">
+PlayStation 5<br>
+<span class="price">₹54,990</span>
+</div>
+</div>
+
 <!-- STORY -->
-<div class="story-line">Your cart has items you never bought. Your life does too.</div>
+<div class="story-line big">Your cart has items you never bought.</div>
+<div class="story-line muted">Your life does too.</div>
 
 <div class="story-line muted">You’ve been browsing for a while. Scrolling. No urgency.</div>
 
@@ -225,39 +202,39 @@ AirPods Pro<br>
 
 <div class="story-line">Some felt right. <span class="muted">Just not enough.</span></div>
 
-<div class="story-line bold">So you saved them.</div>
+<div class="story-line strong">So you saved them.</div>
 
 <div class="story-line muted">Not to buy. Just to keep. For later.</div>
 
-<div class="story-line bold">Items Saved</div>
+<div class="story-line strong">Items Saved</div>
 
 <div class="story-line">Not rejected. Not chosen. Just… paused.</div>
 
-<div class="story-line bold">Out of Stock</div>
+<div class="story-line strong" id="out">Out of Stock</div>
 
 <div class="story-line muted">Some things disappear quietly.</div>
 
-<div class="story-line bold">Price Drop</div>
+<div class="story-line strong">Price Drop</div>
 
 <div class="story-line">What changed wasn’t the price.</div>
 
-<div class="story-line bold">It was you.</div>
+<div class="story-line strong">It was you.</div>
 
-<div class="story-line bold">Cart Timeout</div>
+<div class="story-line strong">Cart Timeout</div>
 
 <div class="story-line muted">Carts don’t wait forever.</div>
 
-<div class="story-line bold">Checkout</div>
+<div class="story-line strong">Checkout</div>
 
 <div class="story-line">This was never about the cart.</div>
 
-<div class="story-line bold">It was about choosing.</div>
+<div class="story-line strong">It was about choosing.</div>
 
-<div class="story-line bold">Order Confirmed</div>
+<div class="break"></div>
 
-<div class="story-line">The only difference between your cart and your life…</div>
+<div class="story-line strong">The only difference between your cart and your life…</div>
 
-<div class="story-line bold">You check out.</div>
+<div class="story-line big">You check out.</div>
 
 <!-- FINAL -->
 <div class="final" id="final">
@@ -270,18 +247,27 @@ AirPods Pro<br>
 </div>
 
 <script>
+// REVEAL ON SCROLL
 let lines = document.querySelectorAll(".story-line");
 
 let observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if(entry.isIntersecting){
       entry.target.classList.add("show");
+
+      // OUT OF STOCK EFFECT
+      if(entry.target.id === "out"){
+        let ps5 = document.getElementById("ps5");
+        ps5.style.opacity = "0.3";
+        ps5.style.filter = "grayscale(1)";
+      }
     }
   });
-}, { threshold: 0.2 });
+}, { threshold: 0.3 });
 
 lines.forEach(line => observer.observe(line));
 
+// CHECKOUT
 function checkout(){
   document.getElementById("final").classList.add("show");
 }
