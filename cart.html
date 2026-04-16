@@ -6,7 +6,7 @@
 
 <title>Saved for Later</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 :root {
@@ -20,9 +20,8 @@
 
 body {
   margin: 0;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Poppins', sans-serif;
   background: var(--bg);
-  color: var(--text);
 }
 
 /* NAVBAR */
@@ -50,79 +49,86 @@ body {
   border: none;
 }
 
-/* BUY BAR */
-.buy-bar {
-  margin: 10px;
+/* HERO BLOG */
+.hero {
+  background: white;
+  padding: 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.hero h1 {
+  font-size: 24px;
+  margin: 10px 0;
+}
+
+.hero h2 {
+  font-size: 16px;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.hero p {
+  font-size: 14px;
+  line-height: 1.7;
+  margin: 10px 0;
+}
+
+.bold {
+  font-weight: 600;
+}
+
+/* CTA */
+.cta {
+  margin: 15px;
   background: var(--accent);
-  padding: 12px;
+  padding: 14px;
   text-align: center;
-  border-radius: 22px;
+  border-radius: 25px;
   font-weight: 600;
   cursor: pointer;
-  transition: 0.2s;
 }
 
-.buy-bar:active {
-  transform: scale(0.97);
-}
-
-/* SECTION */
+/* PRODUCTS */
 .section {
-  background: var(--card);
   padding: 12px;
   font-weight: 600;
-  border-bottom: 1px solid var(--border);
+  background: #fff;
+  border-top: 1px solid var(--border);
 }
 
-/* CARD */
-.card {
+.product {
   display: flex;
-  gap: 10px;
-  background: var(--card);
+  gap: 12px;
+  background: #fff;
   padding: 12px;
   border-bottom: 1px solid var(--border);
-  transition: 0.4s;
 }
 
-.card img {
-  width: 85px;
-  height: 85px;
+.product img {
+  width: 90px;
+  height: 90px;
   object-fit: cover;
-  border-radius: 6px;
+  border-radius: 8px;
 }
 
-.info {
+.details {
   font-size: 13px;
+}
+
+.title {
+  font-weight: 500;
 }
 
 .price {
   color: #b12704;
   font-weight: 600;
+  margin-top: 4px;
 }
 
-/* STORY */
-.story-line {
-  background: var(--card);
-  padding: 12px;
-  border-bottom: 1px solid var(--border);
-  font-size: 13px;
-  opacity: 0;
-  transform: translateY(8px);
-  transition: 0.5s ease;
-}
-
-.story-line.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.muted { color: var(--muted); }
-.strong { font-weight: 600; }
-.big { font-size: 16px; font-weight: 600; }
-
-/* BREAK */
-.break {
-  height: 40px;
+.meta {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 4px;
 }
 
 /* FINAL SCREEN */
@@ -155,86 +161,102 @@ body {
   <div class="search"><input placeholder="Search Amazon.in"></div>
 </div>
 
-<div class="buy-bar" onclick="checkout()">Proceed to Buy</div>
+<!-- BLOG -->
+<div class="hero">
 
-<div class="section">Saved for later</div>
+<h1>Your cart has items you never bought.</h1>
+<h2>Your life does too.</h2>
+
+<p>You’ve been browsing for a while. Scrolling without urgency.</p>
+<p>Opening. Closing. Reopening.</p>
+
+<p>A pair of sneakers you liked.</p>
+<p>A <span class="bold">PlayStation 5</span> you imagined owning.</p>
+<p>A <span class="bold">MacBook</span> you thought might change your workflow.</p>
+
+<p>Some felt right.</p>
+<p>Just not enough.</p>
+
+<p class="bold">So you saved them.</p>
+
+<p>Not to buy.</p>
+<p>Just to keep.</p>
+<p>For later.</p>
+
+<hr>
+
+<p class="bold">Items Saved</p>
+<p>Not rejected. Not chosen. Just paused.</p>
+
+<p class="bold">Out of Stock</p>
+<p>Some things disappear quietly.</p>
+
+<p class="bold">Price Drop</p>
+<p>What changed wasn’t the price.</p>
+<p class="bold">It was you.</p>
+
+<p class="bold">Cart Timeout</p>
+<p>Carts don’t wait forever.</p>
+
+<p class="bold">Checkout</p>
+<p>This was never about the cart.</p>
+<p class="bold">It was about choosing.</p>
+
+<p class="bold">The only difference between your cart and your life…</p>
+<p style="font-size:18px;font-weight:600;">You check out.</p>
+
+</div>
 
 <!-- PRODUCTS -->
-<div class="card">
+<div class="section">Saved for later</div>
+
+<div class="product">
 <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff">
-<div class="info">
-Nike Air Force 1<br>
-<span class="price">₹7,999</span>
+<div class="details">
+<div class="title">Nike Sneakers</div>
+<div class="price">₹7,999</div>
+<div class="meta">Free Delivery • In stock</div>
 </div>
 </div>
 
-<div class="card">
-<img src="https://lsco.scene7.com/is/image/lsco/005010114-front-pdp">
-<div class="info">
-Levi's 501 Jeans<br>
-<span class="price">₹3,499</span>
-</div>
-</div>
-
-<div class="card">
-<img src="https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/MWP22">
-<div class="info">
-AirPods Pro<br>
-<span class="price">₹24,900</span>
-</div>
-</div>
-
-<div class="card" id="ps5">
+<div class="product">
 <img src="https://m.media-amazon.com/images/I/619BkvKW35L._SX522_.jpg">
-<div class="info">
-PlayStation 5<br>
-<span class="price">₹54,990</span>
+<div class="details">
+<div class="title">PlayStation 5</div>
+<div class="price">₹54,990</div>
+<div class="meta">Prime • Fast delivery</div>
 </div>
 </div>
 
-<!-- STORY -->
-<div class="story-line big">Your cart has items you never bought.</div>
-<div class="story-line muted">Your life does too.</div>
+<div class="product">
+<img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348">
+<div class="details">
+<div class="title">Dyson Airwrap</div>
+<div class="price">₹45,900</div>
+<div class="meta">Premium • In stock</div>
+</div>
+</div>
 
-<div class="story-line muted">You’ve been browsing for a while. Scrolling. No urgency.</div>
+<div class="product">
+<img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8">
+<div class="details">
+<div class="title">MacBook</div>
+<div class="price">₹1,20,000</div>
+<div class="meta">Apple • Free delivery</div>
+</div>
+</div>
 
-<div class="story-line">Opening. Closing. Reopening.</div>
+<div class="product">
+<img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9">
+<div class="details">
+<div class="title">iPhone 17 Pro</div>
+<div class="price">₹1,39,900</div>
+<div class="meta">Latest • Fast delivery</div>
+</div>
+</div>
 
-<div class="story-line">Some felt right. <span class="muted">Just not enough.</span></div>
-
-<div class="story-line strong">So you saved them.</div>
-
-<div class="story-line muted">Not to buy. Just to keep. For later.</div>
-
-<div class="story-line strong">Items Saved</div>
-
-<div class="story-line">Not rejected. Not chosen. Just… paused.</div>
-
-<div class="story-line strong" id="out">Out of Stock</div>
-
-<div class="story-line muted">Some things disappear quietly.</div>
-
-<div class="story-line strong">Price Drop</div>
-
-<div class="story-line">What changed wasn’t the price.</div>
-
-<div class="story-line strong">It was you.</div>
-
-<div class="story-line strong">Cart Timeout</div>
-
-<div class="story-line muted">Carts don’t wait forever.</div>
-
-<div class="story-line strong">Checkout</div>
-
-<div class="story-line">This was never about the cart.</div>
-
-<div class="story-line strong">It was about choosing.</div>
-
-<div class="break"></div>
-
-<div class="story-line strong">The only difference between your cart and your life…</div>
-
-<div class="story-line big">You check out.</div>
+<!-- CTA -->
+<div class="cta" onclick="checkout()">Proceed to Buy</div>
 
 <!-- FINAL -->
 <div class="final" id="final">
@@ -242,32 +264,10 @@ PlayStation 5<br>
     <h2>Your cart is still waiting.</h2>
     <p>Not for time. Not for a better version of you.</p>
     <p><b>Just a decision.</b></p>
-    <p>And this time—don’t close the tab.</p>
   </div>
 </div>
 
 <script>
-// REVEAL ON SCROLL
-let lines = document.querySelectorAll(".story-line");
-
-let observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if(entry.isIntersecting){
-      entry.target.classList.add("show");
-
-      // OUT OF STOCK EFFECT
-      if(entry.target.id === "out"){
-        let ps5 = document.getElementById("ps5");
-        ps5.style.opacity = "0.3";
-        ps5.style.filter = "grayscale(1)";
-      }
-    }
-  });
-}, { threshold: 0.3 });
-
-lines.forEach(line => observer.observe(line));
-
-// CHECKOUT
 function checkout(){
   document.getElementById("final").classList.add("show");
 }
